@@ -1,0 +1,2747 @@
+{
+  "version": 2,
+  "titleZh": "數位邏輯自學 · 三欄（DAT）",
+  "uiNoteZh": "校本自製示意圖 · DAT",
+  "chapters": [
+    {
+      "n": 1,
+      "name": "數位邏輯基本概念",
+      "live": true,
+      "soon": false
+    },
+    {
+      "n": 2,
+      "name": "基本邏輯閘",
+      "live": true,
+      "soon": false
+    },
+    {
+      "n": 3,
+      "name": "布林／摩根",
+      "live": true,
+      "soon": false
+    },
+    {
+      "n": 4,
+      "name": "化簡",
+      "live": true,
+      "soon": false
+    },
+    {
+      "n": 5,
+      "name": "數字系統",
+      "live": false,
+      "soon": true
+    },
+    {
+      "n": 6,
+      "name": "組合邏輯",
+      "live": false,
+      "soon": true
+    },
+    {
+      "n": 7,
+      "name": "正反器",
+      "live": false,
+      "soon": true
+    },
+    {
+      "n": 8,
+      "name": "循序邏輯",
+      "live": false,
+      "soon": true
+    }
+  ],
+  "lessons": [
+    {
+      "id": "home",
+      "chapter": 0,
+      "nav": "地圖首頁",
+      "title": "數位邏輯學習地圖",
+      "pill": "總覽",
+      "live": true,
+      "teach": "\n<p>呢個係 DAT「可程式邏輯設計實習」用嘅<strong>離線三欄自學</strong>：左目錄、中教學＋練習、右「定義 · 範例 · 提示」。</p>\n<div class=\"tip\"><strong>已上線：</strong>第 1–4 章（概念、基本閘、布林／De Morgan、SOP／POS／代數／K-map、成果9 選閘）。第 5–8 章預告中。</div>\n<p>建議路線：地圖 → 第 1 章 → 第 2 章閘 → 第 3 章定律 → 第 4 章化簡／K-map／選閘。</p>\n",
+      "practice": null,
+      "support": {
+        "definition": "左目錄揀課；中欄短講＋練習；右欄定義／範例／逐步解鎖引導提示。",
+        "example": "試開「2.1 AND」：撳「提示」睇右欄點解鎖。",
+        "tip": "第 3 章有「16條定律一覽」，11／13 成對記。"
+      }
+    },
+    {
+      "id": "c1-digital",
+      "chapter": 1,
+      "nav": "1.1 數位 vs 模擬",
+      "title": "數位信號同模擬信號",
+      "pill": "概念",
+      "live": true,
+      "teach": "\n<p>電子系統處理嘅信號大致分兩類：</p>\n<ul>\n  <li><strong>模擬（analogue）</strong>：數值連續變化，例如溫度、聲音波形。</li>\n  <li><strong>數位（digital）</strong>：只取離散狀態。邏輯電路通常只用兩個狀態，寫成 <span class=\"kw\">0</span> 同 <span class=\"kw\">1</span>。</li>\n</ul>\n<p>微處理器、記憶體、邏輯閘入面嘅運算，都係以數位邏輯為基礎。</p>\n<figure class=\"gate-fig\">\n  <img src=\"assets/c1_digital_analog.png\" alt=\"數位與模擬信號對照\">\n  <div class=\"gate-meta\">左：連續模擬波；右：離散數位 0／1。</div>\n</figure>\n\n<div class=\"tip\">課堂記住：數位邏輯「淨係關心 0 定 1」，唔使即刻計真實電壓數值。</div>\n",
+      "practice": {
+        "type": "mcq",
+        "prompt": "下列邊項最能描述「數位信號」？",
+        "choices": [
+          "數值可以係任何連續實數",
+          "通常只用少數離散狀態（例如 0 同 1）表示",
+          "一定係正弦波",
+          "唔可以用真值表表示"
+        ],
+        "answer": 1,
+        "explain": "數位信號用離散狀態；邏輯電路常用兩個邏輯電平 0／1。"
+      },
+      "support": {
+        "definition": "模擬信號連續變化（例如音量、光暗）；數碼信號只取離散狀態，邏輯電路通常只用 0 同 1（關／開）。",
+        "example": "燈掣＝數碼（開或關）；光暗掣＝模擬（連續亮度）。傳感器：溫控電阻＝模擬；微型開關＝數碼。",
+        "tip": "課堂記住：數位邏輯「淨係關心 0 定 1」，唔使即刻計真實電壓。",
+        "guidedHints": [
+          "呢題問嘅係「信號點樣變化」——連續一路變，定係淨係幾個離散狀態？",
+          "日常生活入面，調光燈旋鈕同電掣開關，邊種更似「只有幾個清楚狀態」？",
+          "數位邏輯通常只關心邊兩個符號？"
+        ]
+      }
+    },
+    {
+      "id": "c1-binary",
+      "chapter": 1,
+      "nav": "1.2 二進制 0／1",
+      "title": "二進制同邏輯電平",
+      "pill": "0 同 1",
+      "live": true,
+      "teach": "\n<p>邏輯閘只處理<strong>二進制（binary）</strong>信號。實務上可以對應：</p>\n<ul>\n  <li>高電壓 ／ 低電壓</li>\n  <li>導電 ／ 不導電</li>\n  <li>真（TRUE）／ 假（FALSE）</li>\n</ul>\n<figure class=\"gate-fig\">\n  <img src=\"assets/binary01.png\" alt=\"二進制 0 與 1\">\n  <div class=\"gate-meta\">約定：<strong>1＝真／高</strong>，<strong>0＝假／低</strong>（跟課本）。</div>\n</figure>\n<div class=\"koujue\">口訣：邏輯世界得兩個字——0 同 1。</div>\n",
+      "practice": {
+        "type": "mcq",
+        "prompt": "在基本邏輯電路中，用 1 表示「真／高」、用 0 表示「假／低」。呢種做法叫乜？",
+        "choices": [
+          "十進制編碼",
+          "二進制／邏輯電平表示",
+          "模擬調變",
+          "浮點表示"
+        ],
+        "answer": 1,
+        "explain": "邏輯閘用二進制信號；1／0 對應真假或高低電平。"
+      },
+      "support": {
+        "definition": "邏輯閘只處理二進制信號。約定：1＝真／高，0＝假／低。",
+        "example": "對應：高電壓／低電壓、導電／不導電、TRUE／FALSE。",
+        "tip": "口訣：邏輯世界得兩個字——0 同 1。",
+        "guidedHints": [
+          "邏輯閘處理嘅信號有幾多個基本狀態？",
+          "課堂約定：高／真用邊個數字？低／假用邊個？",
+          "呢種「淨用兩個值」嘅做法通常叫乜名？"
+        ]
+      }
+    },
+    {
+      "id": "c1-truth",
+      "chapter": 1,
+      "nav": "1.3 真值表",
+      "title": "真值表係乜",
+      "pill": "真值表",
+      "live": true,
+      "teach": "\n<p><strong>真值表（truth table）</strong>列出所有輸入組合，同埋對應嘅輸出。</p>\n<ul>\n  <li>輸入列喺左邊；輸出列喺右邊。</li>\n  <li>兩輸入時，輸入次序通常係 <span class=\"kw\">00、01、10、11</span>。</li>\n  <li>一輸入（例如 NOT）得兩行：A＝0、A＝1。</li>\n</ul>\n<figure class=\"gate-fig\">\n  <img src=\"assets/truth_idea.png\" alt=\"真值表示意\" style=\"max-height:140px\">\n</figure>\n<figure class=\"gate-fig\">\n  <img src=\"assets/c1_truth_structure.png\" alt=\"真值表結構：輸入／輸出／2ⁿ\">\n  <div class=\"gate-meta\">輸入左、輸出右；行數＝2<sup>n</sup>。</div>\n</figure>\n\n<div class=\"tip\">做題時：先數輸入有幾多個 → 行數＝2<sup>n</sup> → 再逐行填輸出。</div>\n",
+      "practice": {
+        "type": "mcq",
+        "prompt": "一個有兩個輸入嘅邏輯閘，完整真值表通常有幾多行？",
+        "choices": [
+          "2 行",
+          "3 行",
+          "4 行",
+          "8 行"
+        ],
+        "answer": 2,
+        "explain": "兩輸入 → 2²＝4 種組合：00、01、10、11。"
+      },
+      "support": {
+        "definition": "真值表列出所有輸入組合同對應輸出。輸入左、輸出右；n 個輸入 → 2ⁿ 行。",
+        "example": "兩輸入：00、01、10、11 共 4 行；NOT 一輸入得 2 行。",
+        "tip": "先數輸入個數 → 行數＝2ⁿ → 再逐行填輸出。",
+        "guidedHints": [
+          "真值表左邊列乜？右邊列乜？",
+          "若有 n 個輸入，完整表要列晒所有組合，行數係幾多？",
+          "兩個輸入時，2ⁿ 等於幾多？"
+        ]
+      }
+    },
+    {
+      "id": "c1-bool",
+      "chapter": 1,
+      "nav": "1.4 布林式入門",
+      "title": "布林表達式入門",
+      "pill": "布林",
+      "live": true,
+      "teach": "\n<p>可以用<strong>布林表達式</strong>寫出邏輯關係（跟課本符號）：</p>\n<ul>\n  <li>AND「與」：<span class=\"kw\">A·B</span>（亦可寫 AB）</li>\n  <li>OR「或」：<span class=\"kw\">A＋B</span></li>\n  <li>NOT「非」：字母上加劃線，寫成 <span class=\"kw\">A'</span>（讀「非 A」）</li>\n</ul>\n<p>複雜電路由多個邏輯閘組成，都可以用布林式表達。</p>\n<figure class=\"gate-fig\">\n  <img src=\"assets/c1_bool_intro.png\" alt=\"布林式入門：· ＋ 上劃線\">\n  <div class=\"gate-meta\">·＝AND，＋＝OR，上劃線＝NOT。</div>\n</figure>\n\n<div class=\"tip\">答題時：A·B 同 AB 同等；上劃線、NOT A、A' 課堂上通常都接受，但宜跟課本用 ·、＋、上劃線。</div>\n",
+      "practice": {
+        "type": "mcq",
+        "prompt": "布林式 F ＝ A＋B 對應邊種基本運算？",
+        "choices": [
+          "AND 與",
+          "OR 或",
+          "NOT 非",
+          "NAND 與非"
+        ],
+        "answer": 1,
+        "explain": "「＋」在布林代數表示 OR（或）。"
+      },
+      "support": {
+        "definition": "布林表達式：AND 寫 A·B（或 AB）；OR 寫 A＋B；NOT 寫 A'。",
+        "example": "F＝A＋B 表示「或」；F＝A·B 表示「與」。",
+        "tip": "答題時 A·B 同 AB 同等；宜跟課本用 ·、＋、上劃線。",
+        "guidedHints": [
+          "布林式入面「＋」通常代表邊種閘運算？",
+          "「·」同「上劃線」又分別代表乜？",
+          "A＋B 對應邊個基本運算名？"
+        ]
+      }
+    },
+    {
+      "id": "c1-quiz",
+      "chapter": 1,
+      "nav": "1.5 概念小測",
+      "title": "第 1 章概念小測",
+      "pill": "練習",
+      "live": true,
+      "teach": "\n<p>綜合第 1 章：數位／模擬、二進制電平、真值表結構、布林符號（· ＋ 上劃線）。</p>\n<ul>\n  <li>數位＝離散 0／1；模擬＝連續</li>\n  <li>真值表：輸入左、輸出右；行數＝2<sup>n</sup></li>\n  <li>A·B＝AND，A＋B＝OR，A'＝NOT</li>\n</ul>\n<div class=\"tip\">答完對照講解；唔肯定就翻返 1.1–1.4。</div>\n",
+      "practice": {
+        "type": "mcq",
+        "prompt": "「全部輸入組合有系統地列喺左邊，輸出列喺右邊」——呢句喺講乜？",
+        "choices": [
+          "波形圖",
+          "真值表",
+          "電路佈線圖",
+          "真值只得一行"
+        ],
+        "answer": 1,
+        "explain": "真值表正正就係系統列出輸入－輸出關係。"
+      },
+      "support": {
+        "definition": "綜合第 1 章：數位／模擬、二進制電平、真值表結構、布林符號（· ＋ 上劃線）。",
+        "example": "練習講解：真值表正正就係系統列出輸入－輸出關係。",
+        "tip": "答完對照講解；唔肯定就翻返 1.1–1.4。",
+        "guidedHints": [
+          "重溫：輸入組合有系統列左邊、輸出列右邊——呢個工具叫乜？",
+          "若題目講「離散 0／1」，係數位定模擬？",
+          "唔肯定就翻 1.1–1.4 定義再揀。"
+        ]
+      }
+    },
+    {
+      "id": "c2-and",
+      "chapter": 2,
+      "nav": "2.1 AND 與門",
+      "title": "「與」門 AND",
+      "pill": "AND",
+      "live": true,
+      "teach": "\n<figure class=\"gate-fig\">\n  <img src=\"assets/gate_and.png\" alt=\"AND 閘符號\">\n  <div class=\"gate-meta\">\n    <div>中文：<strong>與門</strong>　英文：<strong>AND</strong></div>\n    <div class=\"expr\">F ＝ A·B</div>\n  </div>\n</figure>\n<div class=\"koujue\">口訣：全部輸入是 1，輸出先是 1。</div>\n<p>示範真值表：</p>\n<table class=\"truth-demo\">\n  <thead><tr><th>A</th><th>B</th><th>F＝A·B</th></tr></thead>\n  <tbody>\n    <tr><td>0</td><td>0</td><td class=\"f\">0</td></tr>\n    <tr><td>0</td><td>1</td><td class=\"f\">0</td></tr>\n    <tr><td>1</td><td>0</td><td class=\"f\">0</td></tr>\n    <tr><td>1</td><td>1</td><td class=\"f\">1</td></tr>\n  </tbody>\n</table>\n",
+      "practice": {
+        "type": "truth",
+        "prompt": "完成 AND 真值表（填輸出 F）：",
+        "inputs": [
+          "A",
+          "B"
+        ],
+        "rows": [
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            0
+          ],
+          [
+            1,
+            1
+          ]
+        ],
+        "answers": [
+          0,
+          0,
+          0,
+          1
+        ],
+        "explain": "只有 A＝1 且 B＝1 時 F＝1；其餘都係 0。"
+      },
+      "support": {
+        "definition": "與門 AND：當且僅當全部輸入為高(1)，輸出先為高(1)。F＝A·B。",
+        "example": "兩個串聯開關：兩個都接通燈先亮——對應 AND。",
+        "tip": "口訣：全部輸入是 1，輸出先是 1。",
+        "guidedHints": [
+          "AND 口訣：要全部輸入係乜，輸出先係 1？",
+          "睇吓 00、01、10、11 四行，邊一行先應該出 1？",
+          "其餘三行輸出應該係 0 定 1？"
+        ]
+      }
+    },
+    {
+      "id": "c2-or",
+      "chapter": 2,
+      "nav": "2.2 OR 或門",
+      "title": "「或」門 OR",
+      "pill": "OR",
+      "live": true,
+      "teach": "\n<figure class=\"gate-fig\">\n  <img src=\"assets/gate_or.png\" alt=\"OR 閘符號\">\n  <div class=\"gate-meta\">\n    <div>中文：<strong>或門</strong>　英文：<strong>OR</strong></div>\n    <div class=\"expr\">F ＝ A＋B</div>\n  </div>\n</figure>\n<div class=\"koujue\">口訣：有一個輸入是 1，輸出就是 1。</div>\n<table class=\"truth-demo\">\n  <thead><tr><th>A</th><th>B</th><th>F＝A＋B</th></tr></thead>\n  <tbody>\n    <tr><td>0</td><td>0</td><td class=\"f\">0</td></tr>\n    <tr><td>0</td><td>1</td><td class=\"f\">1</td></tr>\n    <tr><td>1</td><td>0</td><td class=\"f\">1</td></tr>\n    <tr><td>1</td><td>1</td><td class=\"f\">1</td></tr>\n  </tbody>\n</table>\n",
+      "practice": {
+        "type": "truth",
+        "prompt": "完成 OR 真值表（填輸出 F）：",
+        "inputs": [
+          "A",
+          "B"
+        ],
+        "rows": [
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            0
+          ],
+          [
+            1,
+            1
+          ]
+        ],
+        "answers": [
+          0,
+          1,
+          1,
+          1
+        ],
+        "explain": "只要有任一輸入為 1，F＝1；只有 00 係 0。"
+      },
+      "support": {
+        "definition": "或門 OR：任一輸入為高(1)，輸出即為高(1)；全部為低先輸出低。F＝A＋B。",
+        "example": "兩個並聯開關：任一接通燈就亮——對應 OR。",
+        "tip": "口訣：有一個輸入是 1，輸出就是 1。",
+        "guidedHints": [
+          "OR 口訣：有一個輸入係 1，輸出會點？",
+          "邊一行先係「全部輸入都係 0」？嗰行輸出應係？",
+          "其餘有 1 嘅行，輸出係 0 定 1？"
+        ]
+      }
+    },
+    {
+      "id": "c2-not",
+      "chapter": 2,
+      "nav": "2.3 NOT 非門",
+      "title": "「非」門 NOT（反相器）",
+      "pill": "NOT",
+      "live": true,
+      "teach": "\n<figure class=\"gate-fig\">\n  <img src=\"assets/gate_not.png\" alt=\"NOT 閘符號\">\n  <div class=\"gate-meta\">\n    <div>中文：<strong>非門</strong>　英文：<strong>NOT</strong>（反相器）</div>\n    <div class=\"expr\">F ＝ A'</div>\n  </div>\n</figure>\n<div class=\"koujue\">口訣：輸出與輸入相反。</div>\n<p>NOT 只有<strong>一個</strong>輸入。</p>\n<table class=\"truth-demo\">\n  <thead><tr><th>A</th><th>F＝A'</th></tr></thead>\n  <tbody>\n    <tr><td>0</td><td class=\"f\">1</td></tr>\n    <tr><td>1</td><td class=\"f\">0</td></tr>\n  </tbody>\n</table>\n",
+      "practice": {
+        "type": "truth",
+        "prompt": "完成 NOT 真值表（填輸出 F）：",
+        "inputs": [
+          "A"
+        ],
+        "rows": [
+          [
+            0
+          ],
+          [
+            1
+          ]
+        ],
+        "answers": [
+          1,
+          0
+        ],
+        "explain": "A＝0 → F＝1；A＝1 → F＝0。"
+      },
+      "support": {
+        "definition": "非門 NOT（反相器）：輸出與輸入相反。F＝A'。只有一個輸入。",
+        "example": "A＝0 → F＝1；A＝1 → F＝0。兩個非門串聯 ≈ 緩衝。",
+        "tip": "口訣：輸出與輸入相反。",
+        "guidedHints": [
+          "NOT 只有幾個輸入？輸出同輸入有咩關係？",
+          "輸入 0 時輸出應係？輸入 1 時呢？",
+          "口訣：輸出與輸入……？"
+        ]
+      }
+    },
+    {
+      "id": "c2-nand",
+      "chapter": 2,
+      "nav": "2.4 NAND 與非",
+      "title": "「與非」門 NAND",
+      "pill": "NAND",
+      "live": true,
+      "teach": "\n<figure class=\"gate-fig\">\n  <img src=\"assets/gate_nand.png\" alt=\"NAND 閘符號\">\n  <div class=\"gate-meta\">\n    <div>中文：<strong>與非門</strong>　英文：<strong>NAND</strong></div>\n    <div class=\"expr\">F ＝ (A·B)'　＝ NOT(A·B)</div>\n  </div>\n</figure>\n<p>課本：可由一個<strong>與門</strong>再串一個<strong>非門</strong>而成——輸出同 AND <strong>相反</strong>。</p>\n<div class=\"koujue\">口訣：NAND ＝ AND 再反相。全部係 1 先輸出 0；其餘輸出 1。</div>\n<table class=\"truth-demo\">\n  <thead><tr><th>A</th><th>B</th><th>AND</th><th>NAND</th></tr></thead>\n  <tbody>\n    <tr><td>0</td><td>0</td><td>0</td><td class=\"f\">1</td></tr>\n    <tr><td>0</td><td>1</td><td>0</td><td class=\"f\">1</td></tr>\n    <tr><td>1</td><td>0</td><td>0</td><td class=\"f\">1</td></tr>\n    <tr><td>1</td><td>1</td><td>1</td><td class=\"f\">0</td></tr>\n  </tbody>\n</table>\n",
+      "practice": {
+        "type": "truth",
+        "prompt": "完成 NAND 真值表（填輸出 F）：",
+        "inputs": [
+          "A",
+          "B"
+        ],
+        "rows": [
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            0
+          ],
+          [
+            1,
+            1
+          ]
+        ],
+        "answers": [
+          1,
+          1,
+          1,
+          0
+        ],
+        "explain": "NAND 與 AND 相反：11 先係 0，其餘係 1。"
+      },
+      "support": {
+        "definition": "與非門 NAND＝AND 再接 NOT。F＝(A·B)'。真值表與 AND 相反。",
+        "example": "信號次序：先 AND，再 NOT。11 先輸出 0，其餘輸出 1。",
+        "tip": "口訣：NAND＝AND 再反相。",
+        "guidedHints": [
+          "NAND＝邊兩個閘串聯？真值表同 AND 有咩關係？",
+          "先諗 AND 四行輸出，再逐行取反。",
+          "邊一行 NAND 先會出 0？"
+        ]
+      }
+    },
+    {
+      "id": "c2-nor",
+      "chapter": 2,
+      "nav": "2.5 NOR 或非",
+      "title": "「或非」門 NOR",
+      "pill": "NOR",
+      "live": true,
+      "teach": "\n<figure class=\"gate-fig\">\n  <img src=\"assets/gate_nor.png\" alt=\"NOR 閘符號\">\n  <div class=\"gate-meta\">\n    <div>中文：<strong>或非門</strong>　英文：<strong>NOR</strong></div>\n    <div class=\"expr\">F ＝ (A＋B)'　＝ NOT(A＋B)</div>\n  </div>\n</figure>\n<figure class=\"gate-fig\">\n  <img src=\"assets/c2_nor_eq.png\" alt=\"NOR＝OR＋NOT 串聯等價\">\n  <div class=\"gate-meta\">先 OR，再 NOT → 或非。</div>\n</figure>\n\n<p>可由一個<strong>或門</strong>再串一個<strong>非門</strong>——輸出同 OR <strong>相反</strong>。</p>\n<div class=\"koujue\">口訣：NOR ＝ OR 再反相。全部係 0 先輸出 1；有 1 就輸出 0。</div>\n<table class=\"truth-demo\">\n  <thead><tr><th>A</th><th>B</th><th>OR</th><th>NOR</th></tr></thead>\n  <tbody>\n    <tr><td>0</td><td>0</td><td>0</td><td class=\"f\">1</td></tr>\n    <tr><td>0</td><td>1</td><td>1</td><td class=\"f\">0</td></tr>\n    <tr><td>1</td><td>0</td><td>1</td><td class=\"f\">0</td></tr>\n    <tr><td>1</td><td>1</td><td>1</td><td class=\"f\">0</td></tr>\n  </tbody>\n</table>\n",
+      "practice": {
+        "type": "truth",
+        "prompt": "完成 NOR 真值表（填輸出 F）：",
+        "inputs": [
+          "A",
+          "B"
+        ],
+        "rows": [
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            0
+          ],
+          [
+            1,
+            1
+          ]
+        ],
+        "answers": [
+          1,
+          0,
+          0,
+          0
+        ],
+        "explain": "NOR 與 OR 相反：只有 00 係 1。"
+      },
+      "support": {
+        "definition": "或非門 NOR＝OR 再接 NOT。F＝(A＋B)'。有任一輸入為 1 則輸出 0。",
+        "example": "只有 00 輸出 1；其餘輸出 0。",
+        "tip": "口訣：NOR＝OR 再反相。",
+        "guidedHints": [
+          "NOR＝OR 再接乜？",
+          "先寫 OR 四行，再全部取反。",
+          "邊一行 NOR 先會出 1？"
+        ]
+      }
+    },
+    {
+      "id": "c2-koujue",
+      "chapter": 2,
+      "nav": "2.6 口訣配對",
+      "title": "口訣同布林式配對",
+      "pill": "練習",
+      "live": true,
+      "teach": "\n<p>溫習三句基本口訣，再配 NAND／NOR。</p>\n<ul>\n  <li>AND：全部輸入是 1，輸出先是 1。</li>\n  <li>OR：有一個輸入是 1，輸出就是 1。</li>\n  <li>NOT：輸出與輸入相反。</li>\n</ul>\n",
+      "practice": {
+        "type": "mcq",
+        "prompt": "「全部輸入是 1，輸出先是 1。」對應邊個邏輯閘？",
+        "choices": [
+          "OR",
+          "AND",
+          "NOT",
+          "XOR"
+        ],
+        "answer": 1,
+        "explain": "呢句係 AND（與）口訣。"
+      },
+      "support": {
+        "definition": "溫習三句基本口訣，再配 NAND／NOR。",
+        "example": "練習講解：呢句係 AND（與）口訣。",
+        "tip": "先睇中欄教學，再做 Try it；唔肯定就翻真值表／口訣。",
+        "guidedHints": [
+          "「全部輸入是 1，輸出先是 1。」對應邊句基本閘口訣？",
+          "逐句對照 AND／OR／NOT，邊句字面吻合？",
+          "唔好同「再反相」嗰類閘混淆。"
+        ]
+      }
+    },
+    {
+      "id": "c2-identify",
+      "chapter": 2,
+      "nav": "2.7 由真值表辨認",
+      "title": "由真值表辨認邏輯閘",
+      "pill": "辨認",
+      "live": true,
+      "teach": "\n<p>見到輸出欄，可以倒轉問：呢個係邊種閘？</p>\n<figure class=\"gate-fig\">\n  <img src=\"assets/c2_identify_tips.png\" alt=\"由真值表辨認閘：睇 00／11\">\n  <div class=\"gate-meta\">先睇 11 同 00 兩行，快速分 AND／OR／XOR／NAND。</div>\n</figure>\n\n<div class=\"tip\">技巧：睇 <strong>11</strong> 同 <strong>00</strong> 兩行——AND 喺 11 先出 1；OR 喺 00 先出 0；XOR 喺 11 出 0。</div>\n",
+      "practice": {
+        "type": "mcq",
+        "prompt": "下表 F 係：00→0，01→1，10→1，11→1。呢個係邊種閘？",
+        "choices": [
+          "AND（F＝A·B）",
+          "OR（F＝A＋B）",
+          "NAND",
+          "XOR"
+        ],
+        "answer": 1,
+        "explain": "有 1 就出 1，得 00 係 0 → OR。"
+      },
+      "support": {
+        "definition": "由真值表辨認邏輯閘——見中欄教學同練習。",
+        "example": "練習講解：有 1 就出 1，得 00 係 0 → OR。",
+        "tip": "技巧：睇 11 同 00 兩行——AND 喺 11 先出 1；OR 喺 00 先出 0；XOR 喺 11 出 0。",
+        "fig": "assets/c2_identify_tips.png",
+        "guidedHints": [
+          "先睇 11 同 00 兩行：11→1 而 00→0 較似邊類閘？",
+          "01 同 10 都係 1——仲似 AND 定 OR？",
+          "XOR 喺 11 會出 0；呢表 11 係乜？"
+        ]
+      }
+    },
+    {
+      "id": "c2-output",
+      "chapter": 2,
+      "nav": "2.8 已知輸入求 F",
+      "title": "已知輸入，求輸出",
+      "pill": "速算",
+      "live": true,
+      "teach": "\n<p>唔使成張表都背熟——用口訣即時計。</p>\n<ul>\n  <li>AND，A＝1，B＝0 → F＝0</li>\n  <li>OR，A＝0，B＝1 → F＝1</li>\n  <li>NOT，A＝1 → F＝0</li>\n</ul>\n",
+      "practice": {
+        "type": "mcq",
+        "prompt": "AND 閘，A＝1，B＝1，輸出 F 係？",
+        "choices": [
+          "0",
+          "1",
+          "無法決定",
+          "等於 A＋B"
+        ],
+        "answer": 1,
+        "explain": "AND：兩個都係 1，F＝1。"
+      },
+      "support": {
+        "definition": "已知輸入，求輸出——見中欄教學同練習。",
+        "example": "練習講解：AND：兩個都係 1，F＝1。",
+        "tip": "先睇中欄教學，再做 Try it；唔肯定就翻真值表／口訣。",
+        "guidedHints": [
+          "題目閘係 AND，輸入 A＝1、B＝1。",
+          "AND 要兩個都係 1 先出 1——而家滿唔滿足？",
+          "直接代入口訣，唔使睇晒成張表。"
+        ]
+      }
+    },
+    {
+      "id": "c2-nand-concept",
+      "chapter": 2,
+      "nav": "2.9 NAND 串聯概念",
+      "title": "NAND 點樣由 AND＋NOT 組成",
+      "pill": "概念",
+      "live": true,
+      "teach": "\n<p>課本：「與非」門可以由<strong>與門</strong>同<strong>非門</strong>串聯而成。</p>\n<p>信號次序：先經過 <strong>AND</strong>，再經過 <strong>NOT</strong>。</p>\n<figure class=\"gate-fig\">\n  <img src=\"assets/c2_nand_series.png\" alt=\"NAND＝AND＋NOT 串聯\">\n  <div class=\"gate-meta\">信號先 AND，再 NOT → 與非。</div>\n</figure>\n\n<div class=\"tip\">若 AND 輸出係 1，串上 NOT 之後最終輸出係 <strong>0</strong>。</div>\n",
+      "practice": {
+        "type": "mcq",
+        "prompt": "組成 NAND 時，信號應先經過邊個門，再經過邊個門？",
+        "choices": [
+          "先 NOT，再 AND",
+          "先 AND，再 NOT",
+          "先 OR，再 NOT",
+          "兩個 AND 並聯"
+        ],
+        "answer": 1,
+        "explain": "次序：先與門，再非門（反相器）。"
+      },
+      "support": {
+        "definition": "課本：「與非」門可以由與門同非門串聯而成。",
+        "example": "練習講解：次序：先與門，再非門（反相器）。",
+        "tip": "若 AND 輸出係 1，串上 NOT 之後最終輸出係 0。",
+        "fig": "assets/c2_nand_series.png",
+        "guidedHints": [
+          "課本話 NAND 可以由邊兩個閘串聯？",
+          "信號應先經過邊個、再經過邊個？",
+          "想一想：若順序調轉，係咪仲叫 NAND？"
+        ]
+      }
+    },
+    {
+      "id": "c2-xor",
+      "chapter": 2,
+      "nav": "2.10 XOR 先認識",
+      "title": "「異或」門 XOR（選讀）",
+      "pill": "XOR",
+      "live": true,
+      "teach": "\n<figure class=\"gate-fig\">\n  <img src=\"assets/gate_xor.png\" alt=\"XOR 閘符號\">\n  <div class=\"gate-meta\">\n    <div>中文：<strong>異或門</strong>　英文：<strong>XOR</strong></div>\n    <div>特殊的「或」：只有<strong>其中一個</strong>輸入為 1 時，輸出先係 1。</div>\n  </div>\n</figure>\n<div class=\"koujue\">兩個都係 0，或兩個都係 1 → 輸出 0；一單一雙 → 輸出 1。</div>\n<table class=\"truth-demo\">\n  <thead><tr><th>A</th><th>B</th><th>XOR</th><th>（比較）OR</th></tr></thead>\n  <tbody>\n    <tr><td>0</td><td>0</td><td class=\"f\">0</td><td>0</td></tr>\n    <tr><td>0</td><td>1</td><td class=\"f\">1</td><td>1</td></tr>\n    <tr><td>1</td><td>0</td><td class=\"f\">1</td><td>1</td></tr>\n    <tr><td>1</td><td>1</td><td class=\"f\">0</td><td>1</td></tr>\n  </tbody>\n</table>\n<div class=\"tip\">同 OR 分別主要喺 <strong>A＝1、B＝1</strong>：XOR＝0，OR＝1。</div>\n",
+      "practice": {
+        "type": "truth",
+        "prompt": "完成 XOR 真值表（填輸出 F）：",
+        "inputs": [
+          "A",
+          "B"
+        ],
+        "rows": [
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            0
+          ],
+          [
+            1,
+            1
+          ]
+        ],
+        "answers": [
+          0,
+          1,
+          1,
+          0
+        ],
+        "explain": "XOR：01、10 → 1；00、11 → 0。"
+      },
+      "support": {
+        "definition": "異或 XOR：兩輸入邏輯電平唔同時輸出 1；相同則輸出 0。",
+        "example": "01、10 → 1；00、11 → 0。常用於比較、奇偶校驗。",
+        "tip": "同 OR 分別主要喺 11：XOR＝0，OR＝1。",
+        "guidedHints": [
+          "XOR：兩輸入相同 →？唔同 →？",
+          "特別對照 OR：11 嗰行 XOR 同 OR 有咩分別？",
+          "四行：00、01、10、11 逐行填。"
+        ]
+      }
+    },
+    {
+      "id": "c2-identify2",
+      "chapter": 2,
+      "nav": "2.11 再辨認一次",
+      "title": "辨認：AND 定 NAND？",
+      "pill": "練習",
+      "live": true,
+      "teach": "\n<p>再練：由輸出欄倒轉辨認閘。</p>\n<ul>\n  <li>先睇 <strong>11</strong>：AND＝1、NAND＝0、OR＝1、XOR＝0</li>\n  <li>再睇 <strong>00</strong>：OR＝0、NOR＝1、AND＝0、NAND＝1</li>\n</ul>\n<figure class=\"gate-fig\">\n  <img src=\"assets/c2_identify_tips.png\" alt=\"由真值表辨認閘\">\n</figure>\n",
+      "practice": {
+        "type": "mcq",
+        "prompt": "真值表 F：00→1，01→1，10→1，11→0。呢個係？",
+        "choices": [
+          "AND",
+          "OR",
+          "NAND",
+          "NOR"
+        ],
+        "answer": 2,
+        "explain": "同 AND 相反，11 先係 0 → NAND。"
+      },
+      "support": {
+        "definition": "辨認：AND 定 NAND？——見中欄教學同練習。",
+        "example": "練習講解：同 AND 相反，11 先係 0 → NAND。",
+        "tip": "先睇中欄教學，再做 Try it；唔肯定就翻真值表／口訣。",
+        "fig": "assets/c2_identify_tips.png",
+        "guidedHints": [
+          "先睇 11 同 00：同 AND 比，輸出係相同定相反？",
+          "若成表似「某閘再全部取反」，會係邊類？",
+          "01、10 兩行係 1 定 0？用嚟確認。"
+        ]
+      }
+    },
+    {
+      "id": "c3-intro",
+      "chapter": 3,
+      "nav": "3.1 布林代數係乜",
+      "title": "布林代數同常用符號",
+      "pill": "布林",
+      "live": true,
+      "teach": "\n<p><strong>布林代數</strong>用 0／1 同三種基本運算，描述邏輯電路：</p>\n<figure class=\"gate-fig\">\n  <img src=\"assets/c3_symbols.png\" alt=\"布林符號 · ＋ 上劃線\">\n  <div class=\"gate-meta\">符號一覽：<strong>·</strong>＝AND，<strong>＋</strong>＝OR，上劃線＝NOT。</div>\n</figure>\n\n<ul>\n  <li><span class=\"kw\">·</span>（或並寫）— AND 與</li>\n  <li><span class=\"kw\">＋</span> — OR 或</li>\n  <li>上劃線 <span class=\"kw\">A'</span>（或 A′）— NOT 非／求補</li>\n</ul>\n<p>運算次序習慣：先非，再與，最後或；有括號先計括號。</p>\n<div class=\"tip\">第 3 章重點係<strong>定律同 De Morgan 求補</strong>；多步化簡留待第 4 章。</div>\n",
+      "practice": {
+        "type": "mcq",
+        "prompt": "布林式入面，「＋」通常表示邊種運算？",
+        "choices": [
+          "AND 與",
+          "OR 或",
+          "NOT 非",
+          "XOR 異或"
+        ],
+        "answer": 1,
+        "explain": "布林代數用＋表示 OR（或）；· 表示 AND。"
+      },
+      "support": {
+        "definition": "布林代數用 0／1 同三種基本運算，描述邏輯電路：",
+        "example": "練習講解：布林代數用＋表示 OR（或）；· 表示 AND。",
+        "tip": "第 3 章重點係定律同 De Morgan 求補；多步化簡留待第 4 章。",
+        "fig": "assets/c3_symbols.png",
+        "guidedHints": [
+          "布林式入面「＋」通常表示邊種運算？",
+          "「·」同上劃線又係？",
+          "第 3 章重點係定律同求補，化簡多步留第 4 章。"
+        ]
+      }
+    },
+    {
+      "id": "c3-basic-laws",
+      "chapter": 3,
+      "nav": "3.2 基本定律",
+      "title": "恆等、零／壹、冪等、互補",
+      "pill": "定律",
+      "live": true,
+      "teach": "\n<p>常用基本定律（跟課本）：</p>\n<figure class=\"gate-fig\">\n  <img src=\"assets/c3_laws_cards.png\" alt=\"基本定律一覽表\">\n  <div class=\"gate-meta\">恆等／零壹／冪等／互補——一眼睇晒。</div>\n</figure>\n\n<ul>\n  <li><strong>恆等：</strong>A＋0＝A；A·1＝A</li>\n  <li><strong>零／壹：</strong>A＋1＝1；A·0＝0</li>\n  <li><strong>冪等：</strong>A＋A＝A；A·A＝A</li>\n  <li><strong>互補：</strong>A＋A'＝1；A·A'＝0</li>\n</ul>\n<div class=\"koujue\">口訣：自己加自己＝自己；自己同「非自己」相加＝1。</div>\n",
+      "practice": {
+        "type": "mcq",
+        "prompt": "A ＋ A' 等於？",
+        "choices": [
+          "0",
+          "1",
+          "A",
+          "A'"
+        ],
+        "answer": 1,
+        "explain": "互補律：A＋A'＝1（一個真一個假，或運算必為真）。"
+      },
+      "support": {
+        "definition": "恆等 A＋0＝A、A·1＝A；零壹 A＋1＝1、A·0＝0；冪等 A＋A＝A；互補 A＋A'＝1、A·A'＝0。",
+        "example": "A＋A'＝1；A·A'＝0。",
+        "tip": "口訣：自己同「非自己」相加＝1。",
+        "guidedHints": [
+          "A 同 A' 用「＋」連埋，結果應係 0 定 1？",
+          "呢條叫互補律（或形式）。",
+          "對偶：A·A' 又等於幾多？"
+        ]
+      }
+    },
+    {
+      "id": "c3-laws-16",
+      "chapter": 3,
+      "nav": "3.2b 16條定律一覽",
+      "title": "布爾表達式：16 條定律一覽",
+      "pill": "定律表",
+      "live": true,
+      "teach": "\n<p><strong>校本 16 條定律一覽</strong>：複雜邏輯可用布爾式清楚表示。下面 16 條係化簡常用「形狀」——第 4 章會反覆用。</p>\n<figure class=\"gate-fig\">\n  <img src=\"assets/c3_laws_table.png\" alt=\"布林代數基本定律對照表\">\n  <img src=\"assets/c3_laws_cards.png\" alt=\"基本定律四卡\">\n  <div class=\"gate-meta\">校本自製示意圖 · 恆等／零壹／冪等／互補等對照。</div>\n</figure>\n<div class=\"laws-note\"><strong>黃標重點：</strong>第 <strong>11</strong> 同第 <strong>13</strong> 係<strong>對偶／同一思想</strong>（一係補喺「或」側、一係補喺「與」側）。記得<strong>成對記</strong>：A'＋A·B＝A'＋B　↔　A＋A'·B＝A＋B。</div>\n<table class=\"laws-table\">\n  <thead><tr><th>#</th><th>定律（校本編號）</th></tr></thead>\n  <tbody>\n    <tr><td class=\"n\">1</td><td>A＋A'＝1</td></tr>\n    <tr><td class=\"n\">2</td><td>A＋A＝A</td></tr>\n    <tr><td class=\"n\">3</td><td>A＋0＝A</td></tr>\n    <tr><td class=\"n\">4</td><td>A＋1＝1</td></tr>\n    <tr><td class=\"n\">5</td><td>A·A'＝0</td></tr>\n    <tr><td class=\"n\">6</td><td>A·A＝A</td></tr>\n    <tr><td class=\"n\">7</td><td>A·0＝0</td></tr>\n    <tr><td class=\"n\">8</td><td>A·1＝A</td></tr>\n    <tr><td class=\"n\">9</td><td>A·(B＋B')＝A</td></tr>\n    <tr><td class=\"n\">10</td><td>A＋A·B＝A·(1＋B)＝A</td></tr>\n    <tr class=\"hl\"><td class=\"n\">11</td><td>A'＋A·B＝A'＋B</td></tr>\n    <tr><td class=\"n\">12</td><td>A·(A＋B)＝A</td></tr>\n    <tr class=\"hl\"><td class=\"n\">13</td><td>A＋A'·B＝A＋B</td></tr>\n    <tr><td class=\"n\">14</td><td>A·B＋B'·C＋A·C＝A·B＋B'·C（共識／冗餘）</td></tr>\n    <tr><td class=\"n\">15</td><td>(A＋B)'＝A'·B'</td></tr>\n    <tr><td class=\"n\">16</td><td>(A·B)'＝A'＋B'</td></tr>\n  </tbody>\n</table>\n<div class=\"koujue\">記法：1–8 係單變數基本形；9–14 係化簡常用；15–16 係 De Morgan。11／13 成對記。</div>\n<div class=\"tip\"><strong>校本化簡例（三條）：</strong>\n<ol>\n  <li>F＝B(A＋C)＋C → 展開 AB＋BC＋C → AB＋C(B＋1) → <strong>AB＋C</strong></li>\n  <li>F＝(A＋B)·B·C＋A → 展開 ABC＋BC＋A → A(1＋BC)＋BC → <strong>A＋BC</strong></li>\n  <li>F＝B[(A＋B')(B＋C)] → 展開刪 B·B'＝0 → <strong>AB</strong></li>\n</ol>\n</div>\n",
+      "practice": {
+        "type": "mcq",
+        "prompt": "根據 16 條定律表：第 11 條同第 13 條最貼切嘅關係係？",
+        "choices": [
+          "完全無關，唔使一齊記",
+          "對偶／同一思想（補喺或側 vs 補喺與側），宜成對記",
+          "兩條都係 De Morgan",
+          "兩條都係共識定理（第 14 條）"
+        ],
+        "answer": 1,
+        "explain": "第 11：A'＋A·B＝A'＋B；第 13：A＋A'·B＝A＋B。一邊補喺或、一邊補喺與，意思一樣，記作成對。"
+      },
+      "support": {
+        "definition": "校本 16 條布爾定律一覽。第 11 同第 13 係對偶／同一思想：A'＋A·B＝A'＋B 與 A＋A'·B＝A＋B，記得成對記。",
+        "example": "例：F＝B(A＋C)＋C → AB＋C；F＝(A＋B)BC＋A → A＋BC；F＝B[(A＋B')(B＋C)] → AB。亦可用第 11／13：A'＋A·B → A'＋B。",
+        "tip": "11／13 成對；15／16 係 De Morgan；14 係共識（冗餘項可刪）。",
+        "fig": "assets/c3_laws_table.png",
+        "guidedHints": [
+          "先喺表搵第 11 同第 13——兩邊左邊有咩相同「形狀」？",
+          "一個係 A'＋（A·B），另一個係 A＋（A'·B）。補係喺「外面或」定「裡面與」？",
+          "呢兩條係咪同一思想嘅對偶寫法？宜唔宜成對記？"
+        ]
+      }
+    },
+    {
+      "id": "c3-comm-assoc",
+      "chapter": 3,
+      "nav": "3.3 交換／結合／分配",
+      "title": "交換律、結合律、分配律",
+      "pill": "定律",
+      "live": true,
+      "teach": "\n<p>結構定律：</p>\n<figure class=\"gate-fig\">\n  <img src=\"assets/c3_comm_assoc.png\" alt=\"交換、結合、分配律示意\">\n  <div class=\"gate-meta\">交換＝對調；結合＝改括號；分配＝乘入／加分。</div>\n</figure>\n\n<ul>\n  <li><strong>交換：</strong>A＋B＝B＋A；A·B＝B·A</li>\n  <li><strong>結合：</strong>(A＋B)＋C＝A＋(B＋C)；同理對 ·</li>\n  <li><strong>分配：</strong>A·(B＋C)＝A·B＋A·C<br>\n      另一條：A＋(B·C)＝(A＋B)·(A＋C)</li>\n</ul>\n<div class=\"tip\">分配律第二條喺普通代數唔成立，布林先有——化簡常會用到（第 4 章）。</div>\n",
+      "practice": {
+        "type": "mcq",
+        "prompt": "邊條係正確嘅分配律？",
+        "choices": [
+          "A·(B＋C)＝A·B＋A·C",
+          "A·(B＋C)＝A＋B·C",
+          "A＋B＝A·B",
+          "A·A'＝1"
+        ],
+        "answer": 0,
+        "explain": "A 乘入括號：A·(B＋C)＝AB＋AC。另一條係 A＋BC＝(A＋B)(A＋C)。"
+      },
+      "support": {
+        "definition": "交換律、結合律、分配律——見中欄教學同練習。",
+        "example": "練習講解：A 乘入括號：A·(B＋C)＝AB＋AC。另一條係 A＋BC＝(A＋B)(A＋C)。",
+        "tip": "分配律第二條喺普通代數唔成立，布林先有——化簡常會用到（第 4 章）。",
+        "fig": "assets/c3_comm_assoc.png",
+        "guidedHints": [
+          "分配律有兩條：一條似普通代數，另一條淨係布林先有。",
+          "邊條把「＋」分配入「·」入面？",
+          "揀正確寫法嗰條，唔好揀漏括號嗰款。"
+        ]
+      }
+    },
+    {
+      "id": "c3-demorgan",
+      "chapter": 3,
+      "nav": "3.4 De Morgan 定理",
+      "title": "De Morgan 定理（兩條）",
+      "pill": "摩根",
+      "live": true,
+      "teach": "\n<p><strong>De Morgan 定理</strong>講「整條式嘅補」點拆：</p>\n<figure class=\"gate-fig\">\n  <img src=\"assets/c3_demorgan.png\" alt=\"De Morgan 兩條定理示意\">\n  <div class=\"gate-meta\">(A·B)'＝A'＋B'；(A＋B)'＝A'·B'。</div>\n</figure>\n\n<ul>\n  <li><span class=\"kw\">(A·B)' ＝ A'＋B'</span>　—— 與嘅補＝各自補再或</li>\n  <li><span class=\"kw\">(A＋B)' ＝ A'·B'</span>　—— 或嘅補＝各自補再與</li>\n</ul>\n<div class=\"koujue\">口訣：求補時——<strong>加法變乘法、乘法變加法；每個變數都取反</strong>。</div>\n<p>例子：(A·B)'＝A'＋B'；亦可以理解成 NAND 等價於「兩輸入各自非再 OR」。</p>\n",
+      "practice": {
+        "type": "mcq",
+        "prompt": "(A＋B)' 等於？",
+        "choices": [
+          "A'＋B'",
+          "A'·B'",
+          "A·B",
+          "A＋B"
+        ],
+        "answer": 1,
+        "explain": "De Morgan：(A＋B)' ＝ A'·B'（或嘅補＝各自補再與）。"
+      },
+      "support": {
+        "definition": "De Morgan：(A·B)'＝A'＋B'；(A＋B)'＝A'·B'。",
+        "example": "NAND 等價「兩輸入各自非再 OR」；(A＋B)'＝A'·B'＝NOR。",
+        "tip": "口訣：求補時——加法變乘法、乘法變加法；每個變數都取反。",
+        "guidedHints": [
+          "求補時：加法變？乘法變？每個變數點處理？",
+          "(A＋B)' 應變成兩個補嘅乜運算？",
+          "口訣：破＋變·，破·變＋，再各自取反。"
+        ]
+      }
+    },
+    {
+      "id": "c3-complement1",
+      "chapter": 3,
+      "nav": "3.5 求補練習",
+      "title": "簡單求補（單項／兩項）",
+      "pill": "求補",
+      "live": true,
+      "teach": "\n<p>求<strong>補數（complement）</strong>＝對整式取非。用 De Morgan：</p>\n<figure class=\"gate-fig\">\n  <img src=\"assets/c3_complement.png\" alt=\"求補步驟示意\">\n  <div class=\"gate-meta\">加法↔乘法，每個變數取反。</div>\n</figure>\n\n<ul>\n  <li>(AB)' ＝ (A·B)' ＝ A'＋B'</li>\n  <li>(A＋B)' ＝ A'·B'</li>\n</ul>\n<div class=\"tip\">提示同工作紙丙部：加法↔乘法，各變數取反。</div>\n",
+      "practice": {
+        "type": "mcq",
+        "prompt": "(AB)' 等於？",
+        "choices": [
+          "A'B'",
+          "A'＋B'",
+          "A＋B",
+          "AB"
+        ],
+        "answer": 1,
+        "explain": "(A·B)'＝A'＋B'（乘法變加法，各取反）。"
+      },
+      "support": {
+        "definition": "求補數（complement）＝對整式取非。用 De Morgan：",
+        "example": "練習講解：(A·B)'＝A'＋B'（乘法變加法，各取反）。",
+        "tip": "提示同工作紙丙部：加法↔乘法，各變數取反。",
+        "fig": "assets/c3_complement.png",
+        "guidedHints": [
+          "AB 係「與」——整式求補用邊條 De Morgan？",
+          "乘積求補：各自補再用邊個運算連？",
+          "答案應係兩項用「＋」定「·」連？"
+        ]
+      }
+    },
+    {
+      "id": "c3-complement2",
+      "chapter": 3,
+      "nav": "3.6 求補再練",
+      "title": "求補：AB＋CD 風格",
+      "pill": "求補",
+      "live": true,
+      "teach": "\n<p>兩項「或」再求補（工作紙丙部風格）：</p>\n\n<p>對 <span class=\"kw\">AB＋CD</span> 整式求補：</p>\n<ol>\n  <li>或變與：變成兩大括號相乘</li>\n  <li>每項入面再對「與」用 De Morgan</li>\n</ol>\n<p>結果：<span class=\"kw\">(AB＋CD)' ＝ (A'＋B')·(C'＋D')</span></p>\n<div class=\"tip\">另一例：(A'B＋CD')'＝(A＋B')(C'＋D)——先對每項求補再相乘。</div>\n",
+      "practice": {
+        "type": "mcq",
+        "prompt": "(AB＋CD)' 等於？",
+        "choices": [
+          "(A'＋B')(C'＋D')",
+          "A'B'＋C'D'",
+          "(A＋B)(C＋D)",
+          "A'＋B'＋C'＋D'"
+        ],
+        "answer": 0,
+        "explain": "(AB＋CD)'＝(AB)'·(CD)'＝(A'＋B')(C'＋D')。唔好只對每個字母取反再保持＋。"
+      },
+      "support": {
+        "definition": "結果：(AB＋CD)' ＝ (A'＋B')·(C'＋D')",
+        "example": "練習講解：(AB＋CD)'＝(AB)'·(CD)'＝(A'＋B')(C'＋D')。唔好只對每個字母取反再保持＋。",
+        "tip": "另一例：(A'B＋CD')'＝(A＋B')(C'＋D)——先對每項求補再相乘。",
+        "guidedHints": [
+          "AB＋CD 係兩項相或——整式求補先點拆？",
+          "整式求補後應相與：(AB)'·(CD)'。",
+          "每一項（AB、CD）再各自用 De Morgan。"
+        ]
+      }
+    },
+    {
+      "id": "c3-light-id",
+      "chapter": 3,
+      "nav": "3.7 輕量恆等辨認",
+      "title": "輕量：邊條定律？（預告化簡）",
+      "pill": "辨認",
+      "live": true,
+      "teach": "\n<p>第 4 章先做多步化簡；呢度只辨認「用咗邊條」。例如：</p>\n<ul>\n  <li>A＋A'＝1 → <strong>互補律</strong></li>\n  <li>A＋AB＝A → 可寫成 A(1＋B)＝A（吸收／恆等）</li>\n  <li>A·(A＋B)＝A → 吸收律</li>\n</ul>\n<div class=\"tip\">記住結果形狀：多餘項被「食咗」，最後剩主導變數。</div>\n",
+      "practice": {
+        "type": "mcq",
+        "prompt": "A ＋ A' ＝ 1 主要用邊條？",
+        "choices": [
+          "交換律",
+          "互補律",
+          "De Morgan",
+          "結合律"
+        ],
+        "answer": 1,
+        "explain": "互補律：變數同其補相或得 1。"
+      },
+      "support": {
+        "definition": "第 4 章先做多步化簡；呢度只辨認「用咗邊條」。例如：",
+        "example": "練習講解：互補律：變數同其補相或得 1。",
+        "tip": "記住結果形狀：多餘項被「食咗」，最後剩主導變數。",
+        "guidedHints": [
+          "A＋A'＝1 主要用邊條定律名？",
+          "係恆等、冪等，定互補？",
+          "記住：自己同「非自己」相或＝1。"
+        ]
+      }
+    },
+    {
+      "id": "c3-quiz",
+      "chapter": 3,
+      "nav": "3.8 小綜合",
+      "title": "第 3 章小綜合：定律／摩根",
+      "pill": "綜合",
+      "live": true,
+      "teach": "\n<p>綜合：符號、基本定律、De Morgan、求補。</p>\n<ul>\n  <li>(A·B)'＝A'＋B'</li>\n  <li>(A＋B)'＝A'·B'</li>\n  <li>(AB＋CD)'＝(A'＋B')(C'＋D')</li>\n</ul>\n",
+      "practice": {
+        "type": "mcq",
+        "prompt": "(A·B)' 等於？",
+        "choices": [
+          "A'·B'",
+          "A'＋B'",
+          "A＋B",
+          "AB"
+        ],
+        "answer": 1,
+        "explain": "De Morgan 第一條：(A·B)' ＝ A'＋B'。"
+      },
+      "support": {
+        "definition": "綜合：符號、基本定律、De Morgan、求補。",
+        "example": "練習講解：De Morgan 第一條：(A·B)' ＝ A'＋B'。",
+        "tip": "先睇中欄教學，再做 Try it；唔肯定就翻真值表／口訣。",
+        "guidedHints": [
+          "(A·B)' 用 De Morgan 變成？",
+          "破乘變加，再各自取反。",
+          "對照另一條：(A＋B)'＝A'·B'。"
+        ]
+      }
+    },
+    {
+      "id": "c3-truth-orbar",
+      "chapter": 3,
+      "nav": "3.9 真值表：(A＋B)'",
+      "title": "真值表練習：填 (A＋B)'",
+      "pill": "真值表",
+      "live": true,
+      "teach": "\n<p>用真值表驗證 <strong>De Morgan</strong> 左邊：F＝(A＋B)'（即 NOR）。</p>\n\n<p>逐行：先算 A＋B，再取補。</p>\n<figure class=\"gate-fig\">\n  <img src=\"assets/c3_truth_demorgan.png\" alt=\"真值表對照 (A＋B)'＝A'·B'\">\n  <div class=\"gate-meta\">橙色欄 (A＋B)' 同綠色欄 A'·B'——每一行都一樣。</div>\n</figure>\n\n<table class=\"truth-demo\">\n  <thead><tr><th>A</th><th>B</th><th>A＋B</th><th>(A＋B)'</th></tr></thead>\n  <tbody>\n    <tr><td>0</td><td>0</td><td>0</td><td class=\"f\">？</td></tr>\n    <tr><td>0</td><td>1</td><td>1</td><td class=\"f\">？</td></tr>\n    <tr><td>1</td><td>0</td><td>1</td><td class=\"f\">？</td></tr>\n    <tr><td>1</td><td>1</td><td>1</td><td class=\"f\">？</td></tr>\n  </tbody>\n</table>\n<div class=\"tip\">下一課會填 A'·B'——兩邊應該一樣。</div>\n",
+      "practice": {
+        "type": "truth",
+        "prompt": "完成 F＝(A＋B)' 真值表（填輸出 F）：",
+        "inputs": [
+          "A",
+          "B"
+        ],
+        "rows": [
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            0
+          ],
+          [
+            1,
+            1
+          ]
+        ],
+        "answers": [
+          1,
+          0,
+          0,
+          0
+        ],
+        "explain": "只有 A＝B＝0 時 A＋B＝0，補為 1；其餘 A＋B＝1，補為 0。即 NOR。"
+      },
+      "support": {
+        "definition": "用真值表驗證 De Morgan 左邊：F＝(A＋B)'（即 NOR）。",
+        "example": "練習講解：只有 A＝B＝0 時 A＋B＝0，補為 1；其餘 A＋B＝1，補為 0。即 NOR。",
+        "tip": "下一課會填 A'·B'——兩邊應該一樣。",
+        "fig": "assets/c3_truth_demorgan.png",
+        "guidedHints": [
+          "先對每行計 A＋B，再對結果取反。",
+          "只有 A、B 都係 0 嗰行，A＋B 先係 0，取反後呢？",
+          "其餘三行 A＋B＝1，取反後係？"
+        ]
+      }
+    },
+    {
+      "id": "c3-truth-abar-bbar",
+      "chapter": 3,
+      "nav": "3.10 真值表：A'·B'",
+      "title": "真值表練習：填 A'·B'（對照摩根）",
+      "pill": "真值表",
+      "live": true,
+      "teach": "\n<p>De Morgan：<span class=\"kw\">(A＋B)' ＝ A'·B'</span>。</p>\n\n<p>上一課填咗 (A＋B)'；而家填右邊 <strong>A'·B'</strong>——兩張表應完全相同。</p>\n<figure class=\"gate-fig\">\n  <img src=\"assets/c3_truth_demorgan.png\" alt=\"真值表對照 (A＋B)'＝A'·B'\">\n  <div class=\"gate-meta\">兩邊輸出欄完全相同 → De Morgan 成立。</div>\n</figure>\n\n<div class=\"koujue\">口訣：或嘅補＝各自補再與。</div>\n",
+      "practice": {
+        "type": "truth",
+        "prompt": "完成 F＝A'·B' 真值表（填輸出 F）：",
+        "inputs": [
+          "A",
+          "B"
+        ],
+        "rows": [
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            0
+          ],
+          [
+            1,
+            1
+          ]
+        ],
+        "answers": [
+          1,
+          0,
+          0,
+          0
+        ],
+        "explain": "00：1·1＝1；01：1·0＝0；10：0·1＝0；11：0·0＝0。同 (A＋B)' 完全一致 → De Morgan 成立。"
+      },
+      "support": {
+        "definition": "De Morgan：(A＋B)' ＝ A'·B'。",
+        "example": "練習講解：00：1·1＝1；01：1·0＝0；10：0·1＝0；11：0·0＝0。同 (A＋B)' 完全一致 → De Morgan 成立。",
+        "tip": "口訣：或嘅補＝各自補再與。",
+        "fig": "assets/c3_truth_demorgan.png",
+        "guidedHints": [
+          "呢課驗證 De Morgan 右邊：各自取反再相與。",
+          "邊一行 A' 同 B' 先同時係 1？",
+          "對照上一課 (A＋B)'——兩邊應相同。"
+        ]
+      }
+    },
+    {
+      "id": "c3-truth-andbar",
+      "chapter": 3,
+      "nav": "3.11 真值表：(A·B)'",
+      "title": "真值表練習：填 (A·B)'",
+      "pill": "真值表",
+      "live": true,
+      "teach": "\n<p>另一條 De Morgan：<span class=\"kw\">(A·B)' ＝ A'＋B'</span>（即 NAND）。</p>\n\n<p>試填 (A·B)'；記住——同 AND 相反。</p>\n<div class=\"tip\">之後可用 A'＋B' 對照：兩邊都應係 1,1,1,0。</div>\n",
+      "practice": {
+        "type": "truth",
+        "prompt": "完成 F＝(A·B)' 真值表（填輸出 F）：",
+        "inputs": [
+          "A",
+          "B"
+        ],
+        "rows": [
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            0
+          ],
+          [
+            1,
+            1
+          ]
+        ],
+        "answers": [
+          1,
+          1,
+          1,
+          0
+        ],
+        "explain": "AND 只有 11＝1，補之後 11＝0、其餘＝1。即 NAND；亦等於 A'＋B'。"
+      },
+      "support": {
+        "definition": "另一條 De Morgan：(A·B)' ＝ A'＋B'（即 NAND）。",
+        "example": "練習講解：AND 只有 11＝1，補之後 11＝0、其餘＝1。即 NAND；亦等於 A'＋B'。",
+        "tip": "之後可用 A'＋B' 對照：兩邊都應係 1,1,1,0。",
+        "guidedHints": [
+          "先算 A·B，再取反（即 NAND）。",
+          "邊一行 A·B 先係 1？取反後呢行輸出？",
+          "其餘三行取反後應係 1。"
+        ]
+      }
+    },
+    {
+      "id": "c3-eval-nand",
+      "chapter": 3,
+      "nav": "3.12 代入求值",
+      "title": "已知 A、B，求 F 數值",
+      "pill": "速算",
+      "live": true,
+      "teach": "\n<p>唔使成張表——直接代入 0／1。</p>\n<ul>\n  <li>A＝1，B＝0 → A·B＝0 → (A·B)'＝1</li>\n  <li>A＝1，B＝1 → A·B＝1 → (A·B)'＝0</li>\n</ul>\n<div class=\"koujue\">口訣：先算括號入面，再取補。</div>\n",
+      "practice": {
+        "type": "mcq",
+        "prompt": "A＝1，B＝0，F＝(A·B)' 等於？",
+        "choices": [
+          "0",
+          "1",
+          "A",
+          "無法決定"
+        ],
+        "answer": 1,
+        "explain": "A·B＝1·0＝0；取補得 1。"
+      },
+      "support": {
+        "definition": "已知 A、B，求 F 數值——見中欄教學同練習。",
+        "example": "練習講解：A·B＝1·0＝0；取補得 1。",
+        "tip": "口訣：先算括號入面，再取補。",
+        "guidedHints": [
+          "先算括號入面 A·B（A＝1，B＝0）。",
+          "1·0＝？再對呢個結果取反。",
+          "口訣：先括號，再取補。"
+        ]
+      }
+    },
+    {
+      "id": "c3-eval-or",
+      "chapter": 3,
+      "nav": "3.13 再代入一次",
+      "title": "代入：F＝A'＋B",
+      "pill": "速算",
+      "live": true,
+      "teach": "\n<p>代入求值：F＝A'＋B（非 A 再或 B）。</p>\n<ul>\n  <li>先求 A'，再同 B 做 OR</li>\n  <li>例：A＝0，B＝0 → A'＝1 → F＝1＋0＝1</li>\n  <li>例：A＝1，B＝0 → A'＝0 → F＝0＋0＝0</li>\n</ul>\n",
+      "practice": {
+        "type": "mcq",
+        "prompt": "A＝1，B＝0，F＝A'＋B 等於？",
+        "choices": [
+          "0",
+          "1",
+          "A'",
+          "B"
+        ],
+        "answer": 0,
+        "explain": "A＝1 → A'＝0；F＝0＋0＝0。"
+      },
+      "support": {
+        "definition": "代入求值：F＝A'＋B（非 A 再或 B）。",
+        "example": "練習講解：A＝1 → A'＝0；F＝0＋0＝0。",
+        "tip": "先睇中欄教學，再做 Try it；唔肯定就翻真值表／口訣。",
+        "guidedHints": [
+          "F＝A'＋B；先求 A'（A＝1）。",
+          "A' 係 0；再同 B＝0 做或。",
+          "0＋0＝？"
+        ]
+      }
+    },
+    {
+      "id": "c3-idempotent",
+      "chapter": 3,
+      "nav": "3.14 冪等律練習",
+      "title": "冪等：A＋A、A·A",
+      "pill": "定律",
+      "live": true,
+      "teach": "\n<p><strong>冪等律（idempotent）：</strong></p>\n\n<ul>\n  <li>A＋A＝A</li>\n  <li>A·A＝A</li>\n</ul>\n<p>同普通代數唔同：布林入面「自己加自己／乘自己」唔會變 2A 或 A²，而係返返自己。</p>\n",
+      "practice": {
+        "type": "mcq",
+        "prompt": "A＋A 同 A·A 分別等於？",
+        "choices": [
+          "2A 同 A²",
+          "都係 A",
+          "1 同 0",
+          "0 同 1"
+        ],
+        "answer": 1,
+        "explain": "冪等律：A＋A＝A；A·A＝A。"
+      },
+      "support": {
+        "definition": "同普通代數唔同：布林入面「自己加自己／乘自己」唔會變 2A 或 A²，而係返返自己。",
+        "example": "練習講解：冪等律：A＋A＝A；A·A＝A。",
+        "tip": "先睇中欄教學，再做 Try it；唔肯定就翻真值表／口訣。",
+        "guidedHints": [
+          "冪等律：自己加自己／乘自己會變 2A 定返自己？",
+          "A＋A＝？　A·A＝？",
+          "兩個答案應相同。"
+        ]
+      }
+    },
+    {
+      "id": "c3-wrong-stmt",
+      "chapter": 3,
+      "nav": "3.15 邊句係錯？",
+      "title": "挑錯：邊句唔正確？",
+      "pill": "挑錯",
+      "live": true,
+      "teach": "\n<p>温習定律時，要識分<strong>啱同錯</strong>。</p>\n<ul>\n  <li>啱：A＋0＝A；A·A'＝0；(A＋B)'＝A'·B'</li>\n  <li>錯例：A·A'＝1（互補相與其實係 0）</li>\n</ul>\n",
+      "practice": {
+        "type": "mcq",
+        "prompt": "下列邊句係<strong>錯</strong>嘅？",
+        "choices": [
+          "A＋A'＝1",
+          "A·A'＝0",
+          "(A·B)'＝A'＋B'",
+          "(A＋B)'＝A'＋B'"
+        ],
+        "answer": 3,
+        "explain": "錯句：(A＋B)' 應＝A'·B'，唔係 A'＋B'。A'＋B' 先係 (A·B)'。"
+      },
+      "support": {
+        "definition": "挑錯：邊句唔正確？——見中欄教學同練習。",
+        "example": "練習講解：錯句：(A＋B)' 應＝A'·B'，唔係 A'＋B'。A'＋B' 先係 (A·B)'。",
+        "tip": "先睇中欄教學，再做 Try it；唔肯定就翻真值表／口訣。",
+        "guidedHints": [
+          "逐句對照基本定律同 De Morgan。",
+          "邊句違反「求補時加減對調」或「互補律」？",
+          "揀「錯」嗰句，唔係揀啱嗰句。"
+        ]
+      }
+    },
+    {
+      "id": "c3-law-step",
+      "chapter": 3,
+      "nav": "3.16 辨認步驟用邊律",
+      "title": "由步驟辨認定律",
+      "pill": "辨認",
+      "live": true,
+      "teach": "\n<p>見到一步化簡，指出用咗邊條律：</p>\n<ul>\n  <li>A＋AB → A(1＋B) → A　（提出公因／吸收）</li>\n  <li>A·(B＋C) → AB＋AC　（分配）</li>\n  <li>(A·B)' → A'＋B'　（De Morgan）</li>\n</ul>\n",
+      "practice": {
+        "type": "mcq",
+        "prompt": "步驟：(A·B)' → A'＋B'。呢步主要用邊條？",
+        "choices": [
+          "交換律",
+          "冪等律",
+          "De Morgan 定理",
+          "互補律"
+        ],
+        "answer": 2,
+        "explain": "(A·B)' ＝ A'＋B' → De Morgan。"
+      },
+      "support": {
+        "definition": "由步驟辨認定律——見中欄教學同練習。",
+        "example": "練習講解：(A·B)' ＝ A'＋B' → De Morgan。",
+        "tip": "先睇中欄教學，再做 Try it；唔肯定就翻真值表／口訣。",
+        "guidedHints": [
+          "步驟由 (A·B)' 變成 A'＋B'——呢係邊條定理？",
+          "係交換、分配，定 De Morgan？",
+          "特徵：括號上嘅補拆開，運算由·變＋。"
+        ]
+      }
+    },
+    {
+      "id": "c3-comp-nested",
+      "chapter": 3,
+      "nav": "3.17 求補：(A＋BC)'",
+      "title": "求補：兩層式 (A＋B·C)'",
+      "pill": "求補",
+      "live": true,
+      "teach": "\n<p>對 <span class=\"kw\">(A＋B·C)'</span> 求補：</p>\n\n<ol>\n  <li>外層係「或」→ 變「與」，各部分取補</li>\n  <li>得 A' · (B·C)'</li>\n  <li>再對 (B·C)' 用 De Morgan → A'·(B'＋C')</li>\n</ol>\n<div class=\"tip\">亦可寫 A'(B'＋C')。唔好漏咗內層再拆一次。</div>\n",
+      "practice": {
+        "type": "mcq",
+        "prompt": "(A＋B·C)' 等於？",
+        "choices": [
+          "A'＋B'·C'",
+          "A'·(B'＋C')",
+          "A'·B'·C'",
+          "(A'＋B')·C'"
+        ],
+        "answer": 1,
+        "explain": "(A＋BC)'＝A'·(BC)'＝A'·(B'＋C')。"
+      },
+      "support": {
+        "definition": "求補：兩層式 (A＋B·C)'——見中欄教學同練習。",
+        "example": "練習講解：(A＋BC)'＝A'·(BC)'＝A'·(B'＋C')。",
+        "tip": "亦可寫 A'(B'＋C')。唔好漏咗內層再拆一次。",
+        "guidedHints": [
+          "外層係「或」嘅補：先變做兩個補相與。",
+          "(A＋X)'＝A'·X'；呢度 X＝B·C。",
+          "內層 B·C 嘅補再拆一次：B'＋C'。"
+        ]
+      }
+    },
+    {
+      "id": "c3-quiz-hard",
+      "chapter": 3,
+      "nav": "3.18 進階小測",
+      "title": "進階：三項 De Morgan",
+      "pill": "綜合",
+      "live": true,
+      "teach": "\n<p>三變數亦可推廣 De Morgan：</p>\n\n<ul>\n  <li><span class=\"kw\">(A·B·C)' ＝ A'＋B'＋C'</span></li>\n  <li><span class=\"kw\">(A＋B＋C)' ＝ A'·B'·C'</span></li>\n</ul>\n<p>口訣不變：加減互換、每個變數取反。</p>\n<div class=\"tip\">亦可用兩次兩項：先 (A·B·C)'＝(A·(B·C))'＝A'＋(B·C)'＝A'＋B'＋C'。</div>\n",
+      "practice": {
+        "type": "mcq",
+        "prompt": "(A＋B＋C)' 等於？",
+        "choices": [
+          "A'＋B'＋C'",
+          "A'·B'·C'",
+          "(A·B·C)'",
+          "A'＋B'·C'"
+        ],
+        "answer": 1,
+        "explain": "(A＋B＋C)' ＝ A'·B'·C'（各自補再與）。A'＋B'＋C' 先係 (A·B·C)'。"
+      },
+      "support": {
+        "definition": "進階：三項 De Morgan——見中欄教學同練習。",
+        "example": "練習講解：(A＋B＋C)' ＝ A'·B'·C'（各自補再與）。A'＋B'＋C' 先係 (A·B·C)'。",
+        "tip": "亦可用兩次兩項：先 (A·B·C)'＝(A·(B·C))'＝A'＋(B·C)'＝A'＋B'＋C'。",
+        "guidedHints": [
+          "三項相或嘅補：運算符號會點變？每個變數點處理？",
+          "可以拆成兩次兩項 De Morgan 去驗證。",
+          "最終應係三個補用「與」連埋——自己寫出嚟再對選項。"
+        ]
+      }
+    },
+    {
+      "id": "c4-sop-intro",
+      "chapter": 4,
+      "nav": "4.1 SOP／POS",
+      "title": "標準型：SOP 同 POS",
+      "pill": "SOP／POS",
+      "live": true,
+      "teach": "\n<p><strong>標準型（canonical form）</strong>把布林函數寫成固定格式，方便對真值表同 K-map：</p>\n<ul>\n  <li><strong>SOP</strong>（Sum of Products／積之和）：多個<strong>乘積項</strong>用「＋」相加，例如 A'BC＋AB'C</li>\n  <li><strong>POS</strong>（Product of Sums／和之積）：多個<strong>和項</strong>用「·」相乘，例如 (A＋B'＋C)·(A'＋B＋C)</li>\n</ul>\n<p>每個完整列出<strong>全部變數</strong>（或補）嘅乘積項叫 <strong>minterm</strong>；完整和項叫 <strong>maxterm</strong>。</p>\n<figure class=\"gate-fig\">\n  <img src=\"assets/c4_sop_pos.png\" alt=\"SOP／POS／Σm／ΠM 對照\">\n  <div class=\"gate-meta\">SOP＝積之和（Σm）；POS＝和之積（ΠM）。</div>\n</figure>\n\n<div class=\"tip\">口訣：SOP 睇「邊啲輸入令 F＝1」；POS 睇「邊啲輸入令 F＝0」。</div>\n<div class=\"koujue\">Σm = 把 F＝1 嘅 minterm 加埋；ΠM = 把 F＝0 嘅 maxterm 乘埋。</div>\n",
+      "practice": {
+        "type": "mcq",
+        "prompt": "「積之和」（多個乘積項相或）係邊種標準型？",
+        "choices": [
+          "POS",
+          "SOP",
+          "只有 De Morgan 形式",
+          "只有化簡後先叫標準型"
+        ],
+        "answer": 1,
+        "explain": "SOP = Sum of Products = 積之和。POS = Product of Sums = 和之積。"
+      },
+      "support": {
+        "definition": "SOP＝積之和（乘積項相或）；POS＝和之積（和項相與）。",
+        "example": "SOP：A'BC＋AB'C；POS：(A＋B'＋C)·(A'＋B＋C)。",
+        "tip": "口訣：SOP 睇 F＝1；POS 睇 F＝0。Σm／ΠM 分別對應。",
+        "guidedHints": [
+          "「積之和」＝多個乘積項用邊種運算連埋？",
+          "標準型兩個名：一個睇 F＝1，一個睇 F＝0——呢題係邊個？",
+          "口訣：先分清「積之和」同「和之積」。"
+        ]
+      }
+    },
+    {
+      "id": "c4-minterm",
+      "chapter": 4,
+      "nav": "4.2 Minterm／Σm",
+      "title": "Minterm 同 Σm(…) 記法",
+      "pill": "Σm",
+      "live": true,
+      "teach": "\n<p>三變數時，每個輸入組合對應一個 minterm（跟二進制編號）：</p>\n<ul>\n  <li>m<sub>0</sub>＝A'B'C'　（000）</li>\n  <li>m<sub>1</sub>＝A'B'C　（001）</li>\n  <li>m<sub>2</sub>＝A'BC'　（010）</li>\n  <li>m<sub>3</sub>＝A'BC　（011）</li>\n  <li>m<sub>4</sub>＝AB'C'　…　以至 m<sub>7</sub>＝ABC</li>\n</ul>\n<p>若 F 只喺組合 3、5、6、7 為 1，寫：</p>\n<p><span class=\"kw\">F(A,B,C) ＝ Σm(3, 5, 6, 7)</span></p>\n<p>展開即 A'BC＋AB'C＋ABC'＋ABC（跟工作紙丁部）。</p>\n<div class=\"tip\">編號＝把 ABC 當二進制：A 係最高位。</div>\n",
+      "practice": {
+        "type": "mcq",
+        "prompt": "F ＝ A′BC ＋ AB′C ＋ ABC′ ＋ ABC，寫成 Σm 係？",
+        "choices": [
+          "Σm(1, 2, 4, 7)",
+          "Σm(3, 5, 6, 7)",
+          "Σm(0, 3, 5, 7)",
+          "Σm(3, 4, 5, 6)"
+        ],
+        "answer": 1,
+        "explain": "A′BC＝011→m3；AB′C＝101→m5；ABC′＝110→m6；ABC＝111→m7。跟工作紙丁部。"
+      },
+      "support": {
+        "definition": "三變數時，每個輸入組合對應一個 minterm（跟二進制編號）：",
+        "example": "練習講解：A′BC＝011→m3；AB′C＝101→m5；ABC′＝110→m6；ABC＝111→m7。跟工作紙丁部。",
+        "tip": "編號＝把 ABC 當二進制：A 係最高位。",
+        "guidedHints": [
+          "每個乘積項對應一個編號——把 ABC 當二進制。",
+          "列出題目四個項各自嘅 minterm 編號。",
+          "Σm 括號入面由細到大寫齊。"
+        ]
+      }
+    },
+    {
+      "id": "c4-maxterm",
+      "chapter": 4,
+      "nav": "4.3 Maxterm／ΠM",
+      "title": "Maxterm 同 ΠM(…) 記法",
+      "pill": "ΠM",
+      "live": true,
+      "teach": "\n<p><strong>Maxterm</strong>＝完整和項。F＝0 嘅組合寫入 POS：</p>\n<ul>\n  <li>M<sub>0</sub>＝A＋B＋C　（對應輸入 000 時為 0）</li>\n  <li>M<sub>1</sub>＝A＋B＋C'　（001）</li>\n  <li>其餘類推</li>\n</ul>\n<p>例：真值表 F 喺 0、3、5、7 為 0 →</p>\n<p><span class=\"kw\">F ＝ ΠM(0, 3, 5, 7)</span></p>\n<p>同一函數亦可寫 SOP：Σm（其餘為 1 嘅編號）。</p>\n<div class=\"koujue\">口訣：1 → 入 Σm；0 → 入 ΠM。兩者描述同一 F。</div>\n",
+      "practice": {
+        "type": "mcq",
+        "prompt": "若三變數 F 只喺輸入 0、3、5、7 為 0，POS 應寫？",
+        "choices": [
+          "Σm(0, 3, 5, 7)",
+          "ΠM(0, 3, 5, 7)",
+          "ΠM(1, 2, 4, 6)",
+          "Σm(1, 2, 4, 6)"
+        ],
+        "answer": 1,
+        "explain": "F＝0 嘅編號入 ΠM → ΠM(0,3,5,7)。其餘 1、2、4、6 先入 Σm。"
+      },
+      "support": {
+        "definition": "Maxterm＝完整和項。F＝0 嘅組合寫入 POS：",
+        "example": "練習講解：F＝0 嘅編號入 ΠM → ΠM(0,3,5,7)。其餘 1、2、4、6 先入 Σm。",
+        "tip": "口訣：1 → 入 Σm；0 → 入 ΠM。兩者描述同一 F。",
+        "guidedHints": [
+          "POS／ΠM 對應 F＝0 嘅組合。",
+          "題目講輸入 0、3、5、7 為 0——呢啲係 maxterm 編號。",
+          "寫成 ΠM(……)。"
+        ]
+      }
+    },
+    {
+      "id": "c4-sop-pos-tt",
+      "chapter": 4,
+      "nav": "4.4 真值表→SOP／POS",
+      "title": "由真值表寫 Σm 同 ΠM",
+      "pill": "練習",
+      "live": true,
+      "teach": "\n<p>跟工作紙丁部：逐行睇 F。</p>\n<table class=\"truth-demo\">\n  <thead><tr><th>A</th><th>B</th><th>C</th><th>F</th><th>編號</th></tr></thead>\n  <tbody>\n    <tr><td>0</td><td>0</td><td>0</td><td class=\"f\">0</td><td>0</td></tr>\n    <tr><td>0</td><td>0</td><td>1</td><td class=\"f\">1</td><td>1</td></tr>\n    <tr><td>0</td><td>1</td><td>0</td><td class=\"f\">1</td><td>2</td></tr>\n    <tr><td>0</td><td>1</td><td>1</td><td class=\"f\">0</td><td>3</td></tr>\n    <tr><td>1</td><td>0</td><td>0</td><td class=\"f\">1</td><td>4</td></tr>\n    <tr><td>1</td><td>0</td><td>1</td><td class=\"f\">0</td><td>5</td></tr>\n    <tr><td>1</td><td>1</td><td>0</td><td class=\"f\">1</td><td>6</td></tr>\n    <tr><td>1</td><td>1</td><td>1</td><td class=\"f\">0</td><td>7</td></tr>\n  </tbody>\n</table>\n<p>F＝1 → 1,2,4,6；F＝0 → 0,3,5,7。</p>\n<div class=\"tip\">SOP：Σm(1,2,4,6)；POS：ΠM(0,3,5,7)。</div>\n",
+      "practice": {
+        "type": "mcq",
+        "prompt": "上表正確一組係？",
+        "choices": [
+          "SOP＝Σm(0,3,5,7)；POS＝ΠM(1,2,4,6)",
+          "SOP＝Σm(1,2,4,6)；POS＝ΠM(0,3,5,7)",
+          "SOP＝Σm(1,2,3,4)；POS＝ΠM(0,5,6,7)",
+          "只能寫 SOP，唔可以寫 POS"
+        ],
+        "answer": 1,
+        "explain": "1 嘅行入 Σm(1,2,4,6)；0 嘅行入 ΠM(0,3,5,7)。跟工作紙丁部。"
+      },
+      "support": {
+        "definition": "F＝1 → 1,2,4,6；F＝0 → 0,3,5,7。",
+        "example": "練習講解：1 嘅行入 Σm(1,2,4,6)；0 嘅行入 ΠM(0,3,5,7)。跟工作紙丁部。",
+        "tip": "SOP：Σm(1,2,4,6)；POS：ΠM(0,3,5,7)。",
+        "guidedHints": [
+          "先分清邊啲編號 F＝1、邊啲 F＝0。",
+          "Σm 收 F＝1；ΠM 收 F＝0。",
+          "兩組編號唔好調轉。"
+        ]
+      }
+    },
+    {
+      "id": "c4-intro",
+      "chapter": 4,
+      "nav": "4.5 化簡係乜",
+      "title": "點解要化簡布林式？",
+      "pill": "化簡",
+      "live": true,
+      "teach": "\n<p><strong>化簡（simplification）</strong>＝用定律把布林式寫得更短，但邏輯功能不變。</p>\n<ul>\n  <li>閘數少 → 電路較簡單、成本低、較易除錯</li>\n  <li>本章路線：<strong>SOP／POS</strong>（已學）→ <strong>代數化簡</strong> → <strong>K-map</strong>（2×2／2×4／4×4 填格）</li>\n</ul>\n<div class=\"tip\">數字系統、組合邏輯留第 5–6 章。</div>\n<div class=\"koujue\">口訣：化簡目標——「一樣真假、少啲符號」。</div>\n",
+      "practice": {
+        "type": "mcq",
+        "prompt": "化簡布林式嘅主要目的係？",
+        "choices": [
+          "改到同原本真值表唔同",
+          "保持功能不變，令表達式更簡短",
+          "一定要用十進制",
+          "只可以改變數名"
+        ],
+        "answer": 1,
+        "explain": "化簡唔改邏輯功能；目標係更短、更好用閘實現。"
+      },
+      "support": {
+        "definition": "化簡（simplification）＝用定律把布林式寫得更短，但邏輯功能不變。",
+        "example": "練習講解：化簡唔改邏輯功能；目標係更短、更好用閘實現。",
+        "tip": "口訣：化簡目標——「一樣真假、少啲符號」。",
+        "guidedHints": [
+          "化簡嘅目標係改邏輯功能，定係寫短啲但功能不變？",
+          "「一樣真假、少啲符號」——對應邊個選項？",
+          "第 4 章會用定律同 K-map 去做到呢點。"
+        ]
+      }
+    },
+    {
+      "id": "c4-absorb",
+      "chapter": 4,
+      "nav": "4.6 吸收律",
+      "title": "吸收律：多餘項被「食咗」",
+      "pill": "吸收",
+      "live": true,
+      "teach": "\n<p><strong>吸收律</strong>常見兩條：</p>\n<ul>\n  <li><span class=\"kw\">A＋A·B ＝ A</span></li>\n  <li><span class=\"kw\">A·(A＋B) ＝ A</span></li>\n</ul>\n<p>點記：提出公因式——A＋AB ＝ A(1＋B) ＝ A·1 ＝ A。</p>\n<div class=\"koujue\">口訣：有 A 又有「A 乘啲嘢」相或 → 剩返 A。</div>\n<figure class=\"gate-fig\">\n  <img src=\"assets/c4_absorb.png\" alt=\"吸收律一步示意\">\n  <div class=\"gate-meta\">A＋A·B＝A；多餘項被「食咗」。</div>\n</figure>\n\n<div class=\"tip\">工作紙 Q1：F＝A＋A·B → A；Q2：F＝A·(A＋B) → A。</div>\n",
+      "practice": {
+        "type": "mcq",
+        "prompt": "F ＝ A＋A·B 化簡後係？",
+        "choices": [
+          "A·B",
+          "A",
+          "A＋B",
+          "1"
+        ],
+        "answer": 1,
+        "explain": "A＋AB＝A(1＋B)＝A（吸收／恆等）。答案跟工作紙 Q1。"
+      },
+      "support": {
+        "definition": "吸收律：A＋A·B＝A；A·(A＋B)＝A。",
+        "example": "A＋AB＝A(1＋B)＝A。",
+        "tip": "有 A 又有「A 乘啲嘢」相或 → 剩返 A。",
+        "guidedHints": [
+          "有 A，又有 A·B 同佢相或——多餘嗰項會點？",
+          "吸收律：A＋A·B＝？",
+          "結果應剩主導變數。"
+        ]
+      }
+    },
+    {
+      "id": "c4-distrib",
+      "chapter": 4,
+      "nav": "4.7 分配律化簡",
+      "title": "分配律：X＋YZ 同展開",
+      "pill": "分配",
+      "live": true,
+      "teach": "\n<p>布林有兩條<strong>分配</strong>（第 3 章已見）：</p>\n<ul>\n  <li>A·(B＋C)＝AB＋AC　（展開）</li>\n  <li><span class=\"kw\">A＋(B·C)＝(A＋B)·(A＋C)</span>　（普通代數無呢條！）</li>\n</ul>\n<p>化簡常用第二條，尤其配<strong>互補</strong>：</p>\n<p>例：A＋A'·B ＝ (A＋A')·(A＋B) ＝ 1·(A＋B) ＝ A＋B</p>\n<div class=\"tip\">見到「變數＋其補·另一變數」，優先諗 X＋X'Y＝X＋Y。</div>\n",
+      "practice": {
+        "type": "mcq",
+        "prompt": "F ＝ A＋A'·B 化簡後係？",
+        "choices": [
+          "A·B",
+          "A'＋B",
+          "A＋B",
+          "A"
+        ],
+        "answer": 2,
+        "explain": "分配：A＋A'B＝(A＋A')(A＋B)＝A＋B。跟工作紙 Q5。"
+      },
+      "support": {
+        "definition": "例：A＋A'·B ＝ (A＋A')·(A＋B) ＝ 1·(A＋B) ＝ A＋B",
+        "example": "練習講解：分配：A＋A'B＝(A＋A')(A＋B)＝A＋B。跟工作紙 Q5。",
+        "tip": "見到「變數＋其補·另一變數」，優先諗 X＋X'Y＝X＋Y。",
+        "guidedHints": [
+          "見到 A＋A'·B，可用 X＋X'Y＝X＋Y。",
+          "或者用分配律再化：A＋A' 變成 1。",
+          "最終應剩 A 同 B 用或連。"
+        ]
+      }
+    },
+    {
+      "id": "c4-q2",
+      "chapter": 4,
+      "nav": "4.8 練習：A(A＋B)",
+      "title": "練習 Q2：F＝A·(A＋B)",
+      "pill": "練習",
+      "live": true,
+      "teach": "\n<p>跟工作紙 Q2。步驟提示：</p>\n<ol>\n  <li>F＝A·(A＋B)</li>\n  <li>展開：F＝A·A＋A·B＝A＋AB</li>\n  <li>再吸收：F＝A(1＋B)＝A</li>\n</ol>\n<div class=\"tip\">或者直接記吸收律：A·(A＋B)＝A。</div>\n",
+      "practice": {
+        "type": "mcq",
+        "prompt": "F ＝ A·(A＋B) 化簡後係？",
+        "choices": [
+          "A＋B",
+          "A·B",
+          "A",
+          "B"
+        ],
+        "answer": 2,
+        "explain": "吸收律：A(A＋B)＝A。跟工作紙 Q2。"
+      },
+      "support": {
+        "definition": "練習 Q2：F＝A·(A＋B)——見中欄教學同練習。",
+        "example": "練習講解：吸收律：A(A＋B)＝A。跟工作紙 Q2。",
+        "tip": "或者直接記吸收律：A·(A＋B)＝A。",
+        "guidedHints": [
+          "呢條係吸收律另一形：A·(A＋B)。",
+          "展開或直接記口訣，結果係？",
+          "應簡成單一變數。"
+        ]
+      }
+    },
+    {
+      "id": "c4-q3",
+      "chapter": 4,
+      "nav": "4.9 練習：展開＋吸收",
+      "title": "練習 Q3：F＝B(A＋C)＋C",
+      "pill": "練習",
+      "live": true,
+      "teach": "\n<p>跟工作紙 Q3——先展開再吸收：</p>\n<ol>\n  <li>F＝B(A＋C)＋C＝AB＋BC＋C</li>\n  <li>提出 C：F＝AB＋C(B＋1)</li>\n  <li>B＋1＝1 → F＝AB＋C</li>\n</ol>\n<div class=\"koujue\">有 C 又有 BC 相或 → C「食咗」BC。</div>\n",
+      "practice": {
+        "type": "mcq",
+        "prompt": "F ＝ B(A＋C)＋C 化簡後係？",
+        "choices": [
+          "AB＋BC",
+          "AB＋C",
+          "A＋C",
+          "BC＋C"
+        ],
+        "answer": 1,
+        "explain": "展開得 AB＋BC＋C＝AB＋C。跟工作紙 Q3。"
+      },
+      "support": {
+        "definition": "練習 Q3：F＝B(A＋C)＋C——見中欄教學同練習。",
+        "example": "練習講解：展開得 AB＋BC＋C＝AB＋C。跟工作紙 Q3。",
+        "tip": "有 C 又有 BC 相或 → C「食咗」BC。",
+        "guidedHints": [
+          "先展開 B(A＋C)，得到邊啲項？",
+          "有 C 又有 B·C 相或——邊項被吸收？",
+          "最後剩 AB 同 C 相或。"
+        ]
+      }
+    },
+    {
+      "id": "c4-q4",
+      "chapter": 4,
+      "nav": "4.10 練習：A'＋AB",
+      "title": "練習 Q4：F＝A'＋A·B",
+      "pill": "練習",
+      "live": true,
+      "teach": "\n<p>跟工作紙 Q4。用分配律 X＋YZ＝(X＋Y)(X＋Z)：</p>\n<ol>\n  <li>F＝A'＋A·B</li>\n  <li>F＝(A'＋A)·(A'＋B)</li>\n  <li>A'＋A＝1 → F＝A'＋B</li>\n</ol>\n<div class=\"tip\">對稱於 Q5（A＋A'B＝A＋B）；一邊係「補在前」、一邊係「變數在前」。</div>\n",
+      "practice": {
+        "type": "mcq",
+        "prompt": "F ＝ A'＋A·B 化簡後係？",
+        "choices": [
+          "A'·B",
+          "A'＋B",
+          "A＋B",
+          "B"
+        ],
+        "answer": 1,
+        "explain": "分配後 (A'＋A)(A'＋B)＝A'＋B。跟工作紙 Q4。"
+      },
+      "support": {
+        "definition": "跟工作紙 Q4。用分配律 X＋YZ＝(X＋Y)(X＋Z)：",
+        "example": "練習講解：分配後 (A'＋A)(A'＋B)＝A'＋B。跟工作紙 Q4。",
+        "tip": "對稱於 Q5（A＋A'B＝A＋B）；一邊係「補在前」、一邊係「變數在前」。",
+        "guidedHints": [
+          "同 A＋A'B＝A＋B 對稱；而家補喺前面。",
+          "A'＋A·B 可化成 A'＋B。",
+          "對照定律表第 11 條思想。"
+        ]
+      }
+    },
+    {
+      "id": "c4-q6",
+      "chapter": 4,
+      "nav": "4.11 練習：多項吸收",
+      "title": "練習 Q6：F＝(A＋B)·B·C＋A",
+      "pill": "練習",
+      "live": true,
+      "teach": "\n<p>跟工作紙 Q6：</p>\n<ol>\n  <li>(A＋B)·B·C＝ABC＋BC　（因為 BB＝B）</li>\n  <li>F＝ABC＋BC＋A</li>\n  <li>提出 A：F＝A(1＋BC)＋BC＝A＋BC</li>\n</ol>\n<div class=\"tip\">見到孤立嘅 A 同含 A 嘅乘積相或 → A 往往吸收含 A 項。</div>\n",
+      "practice": {
+        "type": "mcq",
+        "prompt": "F ＝ (A＋B)·B·C＋A 化簡後係？",
+        "choices": [
+          "ABC＋BC",
+          "A＋BC",
+          "A·B·C",
+          "BC＋A·B"
+        ],
+        "answer": 1,
+        "explain": "展開後 ABC＋BC＋A＝A＋BC。跟工作紙 Q6。"
+      },
+      "support": {
+        "definition": "練習 Q6：F＝(A＋B)·B·C＋A——見中欄教學同練習。",
+        "example": "練習講解：展開後 ABC＋BC＋A＝A＋BC。跟工作紙 Q6。",
+        "tip": "見到孤立嘅 A 同含 A 嘅乘積相或 → A 往往吸收含 A 項。",
+        "guidedHints": [
+          "展開 (A＋B)·B·C 後會有邊啲項？",
+          "最後同孤立嘅 A 相或——A 會吸收含 A 項。",
+          "最終常見答案形狀：A＋B·C。"
+        ]
+      }
+    },
+    {
+      "id": "c4-q7",
+      "chapter": 4,
+      "nav": "4.12 練習：刪 0 項",
+      "title": "練習 Q7：F＝B[(A＋B')(B＋C)]",
+      "pill": "練習",
+      "live": true,
+      "teach": "\n<p>跟工作紙 Q7——括號展開時刪掉<strong>互補乘積＝0</strong>：</p>\n<ol>\n  <li>內括號：(A＋B')(B＋C)＝AB＋AC＋B'B＋B'C</li>\n  <li>B'·B＝0</li>\n  <li>再乘外層 B，並刪 B·B'·C＝0</li>\n  <li>剩 AB＋ABC＝AB(1＋C)＝AB</li>\n</ol>\n<div class=\"koujue\">口訣：見到 X·X' → 整項變 0，即刻刪。</div>\n",
+      "practice": {
+        "type": "mcq",
+        "prompt": "F ＝ B[(A＋B')(B＋C)] 化簡後係？",
+        "choices": [
+          "A＋B",
+          "AB",
+          "BC",
+          "A＋B'C"
+        ],
+        "answer": 1,
+        "explain": "展開並刪 0 項後得 AB。跟工作紙 Q7。"
+      },
+      "support": {
+        "definition": "跟工作紙 Q7——括號展開時刪掉互補乘積＝0：",
+        "example": "練習講解：展開並刪 0 項後得 AB。跟工作紙 Q7。",
+        "tip": "口訣：見到 X·X' → 整項變 0，即刻刪。",
+        "guidedHints": [
+          "括號展開時，見到 X·X' 整項變幾多？",
+          "刪晒 0 項之後再提取公因式。",
+          "目標簡成兩個變數相與。"
+        ]
+      }
+    },
+    {
+      "id": "c4-q8",
+      "chapter": 4,
+      "nav": "4.13 練習：展開合併",
+      "title": "練習 Q8：F＝A(B＋C')＋C(A＋B)",
+      "pill": "練習",
+      "live": true,
+      "teach": "\n<p>跟工作紙 Q8：</p>\n<ol>\n  <li>展開：AB＋AC'＋AC＋BC</li>\n  <li>合併 AC'＋AC＝A(C'＋C)＝A</li>\n  <li>F＝AB＋A＋BC＝A(1＋B)＋BC＝A＋BC</li>\n</ol>\n<div class=\"tip\">Q6 同 Q8 答案都係 <strong>A＋BC</strong>，但路徑唔同——對吓步驟。</div>\n",
+      "practice": {
+        "type": "mcq",
+        "prompt": "F ＝ A(B＋C')＋C(A＋B) 化簡後係？",
+        "choices": [
+          "AB＋AC'",
+          "A＋BC",
+          "AC＋BC",
+          "A＋B＋C"
+        ],
+        "answer": 1,
+        "explain": "展開合併後 A＋BC。跟工作紙 Q8。"
+      },
+      "support": {
+        "definition": "練習 Q8：F＝A(B＋C')＋C(A＋B)——見中欄教學同練習。",
+        "example": "練習講解：展開合併後 A＋BC。跟工作紙 Q8。",
+        "tip": "Q6 同 Q8 答案都係 A＋BC，但路徑唔同——對吓步驟。",
+        "guidedHints": [
+          "分別展開 A(B＋C') 同 C(A＋B)。",
+          "合併同類、再諗吸收／分配。",
+          "結果好多時同 Q6 一樣形狀。"
+        ]
+      }
+    },
+    {
+      "id": "c4-consensus",
+      "chapter": 4,
+      "nav": "4.14 共識／De Morgan",
+      "title": "代數收尾：共識項同 De Morgan 化簡",
+      "pill": "進階",
+      "live": true,
+      "teach": "\n<p>工作紙 Q9、Q10（代數段收尾）：</p>\n<ul>\n  <li><strong>Q9：</strong>F＝A'B'·(A＋B)　先處理 → 展開刪 0 → <span class=\"kw\">A'B＋AB'</span> 一類異或形（跟步驟）</li>\n  <li><strong>Q10 共識：</strong>F＝AB＋B'C＋AC　中間 AC 多餘 → <span class=\"kw\">AB＋B'C</span></li>\n</ul>\n<div class=\"tip\">共識定理：若已有 XY 同 Y'Z，則 XZ 可刪。下一節轉用 <strong>K-map</strong> 填格化簡。</div>\n",
+      "practice": {
+        "type": "mcq",
+        "prompt": "F ＝ A·B＋B'·C＋A·C 化簡後係？",
+        "choices": [
+          "AB＋AC",
+          "AB＋B'C",
+          "AC＋B'C",
+          "A＋B＋C"
+        ],
+        "answer": 1,
+        "explain": "AC 為共識多餘項，F＝AB＋B'C。跟工作紙 Q10。"
+      },
+      "support": {
+        "definition": "代數收尾：共識項同 De Morgan 化簡——見中欄教學同練習。",
+        "example": "練習講解：AC 為共識多餘項，F＝AB＋B'C。跟工作紙 Q10。",
+        "tip": "共識定理：若已有 XY 同 Y'Z，則 XZ 可刪。下一節轉用 K-map 填格化簡。",
+        "guidedHints": [
+          "已有 A·B 同 B'·C，中間多出嘅 A·C 叫乜？",
+          "共識／冗餘項可以刪——剩邊兩項？",
+          "對照定律表第 14 條。"
+        ]
+      }
+    },
+    {
+      "id": "c4-kmap-intro",
+      "chapter": 4,
+      "nav": "4.15 K-map 係乜",
+      "title": "卡諾圖（K-map）入門",
+      "pill": "K-map",
+      "live": true,
+      "teach": "\n<p><strong>K-map（Karnaugh map／卡諾圖）</strong>用格子把真值表排成「相鄰只差一個變數」嘅圖，方便圈 1 化簡。</p>\n<ul>\n  <li><strong>兩變數：</strong>2×2（4 格）</li>\n  <li><strong>三變數：</strong>2×4（8 格）——唔係 3×3</li>\n  <li><strong>四變數：</strong>4×4（16 格）</li>\n</ul>\n<p>軸標用 <strong>Gray code</strong>：兩位時次序係 <span class=\"kw\">00、01、11、10</span>（相鄰只改 1 bit）。</p>\n<figure class=\"gate-fig\">\n  <img src=\"assets/c4_kmap_axes.png\" alt=\"K-map 軸標：2×2／2×4／4×4（Gray）\">\n  <div class=\"gate-meta\">Gray code：00、01、11、10；三變數係 2×4。</div>\n</figure>\n\n<div class=\"koujue\">口訣：相鄰格只改一個 bit；圈得越大，項越簡。</div>\n",
+      "practice": {
+        "type": "mcq",
+        "prompt": "三變數 K-map 正確格數同形狀係？",
+        "choices": [
+          "3×3＝9 格",
+          "2×4＝8 格",
+          "2×2＝4 格",
+          "4×4＝16 格"
+        ],
+        "answer": 1,
+        "explain": "三變數 2³＝8 格，排成 2×4（左邊一變數，上邊兩變數 Gray）。唔好叫 3×3。"
+      },
+      "support": {
+        "definition": "K-map 用格子把真值表排成相鄰只差 1 bit，方便圈 1 化簡。軸標用 Gray code：00、01、11、10。",
+        "example": "兩變數 2×2；三變數 2×4（8 格）；四變數 4×4（16 格）。",
+        "tip": "口訣：相鄰格只改一個 bit；圈得越大，項越簡。唔好叫三變數做 3×3。",
+        "guidedHints": [
+          "三變數一共幾多個 minterm？K-map 應係幾乘幾？",
+          "軸標用 Gray code，唔係普通二進制順序。",
+          "唔好選 3×3。"
+        ]
+      }
+    },
+    {
+      "id": "c4-kmap-2x2",
+      "chapter": 4,
+      "nav": "4.16 兩變數 2×2",
+      "title": "K-map 練習：2×2 填格＋讀式",
+      "pill": "填格",
+      "live": true,
+      "teach": "\n<p>兩變數：列 <strong>A</strong>＝0／1，行 <strong>B</strong>＝0／1。</p>\n<table class=\"truth-demo\">\n  <thead><tr><th></th><th>B' (0)</th><th>B (1)</th></tr></thead>\n  <tbody>\n    <tr><th>A' (0)</th><td>m0</td><td>m1</td></tr>\n    <tr><th>A (1)</th><td>m2</td><td>m3</td></tr>\n  </tbody>\n</table>\n<p>例：F＝Σm(1,2,3) → 格填 0,1 / 1,1；簡式 <span class=\"kw\">A＋B</span>。</p>\n<figure class=\"gate-fig\">\n  <img src=\"assets/c4_kmap_read.png\" alt=\"由圈讀簡式\">\n  <div class=\"gate-meta\">不變位留下、有變就消 → 讀出簡式。</div>\n</figure>\n\n<div class=\"tip\">Try it：撳每格喺 0↔1 切換，填完再揀簡式。</div>\n",
+      "practice": {
+        "type": "kmap",
+        "prompt": "F＝Σm(1, 2, 3)。填入 2×2 K-map，再揀簡式。",
+        "rows": 2,
+        "cols": 2,
+        "rowLabels": [
+          "A'",
+          "A"
+        ],
+        "colLabels": [
+          "B'",
+          "B"
+        ],
+        "cellIds": [
+          "m0",
+          "m1",
+          "m2",
+          "m3"
+        ],
+        "answers": [
+          0,
+          1,
+          1,
+          1
+        ],
+        "readPrompt": "化簡後 F 係？",
+        "readChoices": [
+          "A·B",
+          "A＋B",
+          "A'＋B'",
+          "A'·B"
+        ],
+        "readAnswer": 1,
+        "explain": "m0＝0，其餘＝1。整行／列可圈得 A＋B。驗證：A＋B 喺 00 先係 0。"
+      },
+      "support": {
+        "definition": "例：F＝Σm(1,2,3) → 格填 0,1 / 1,1；簡式 A＋B。",
+        "example": "練習講解：m0＝0，其餘＝1。整行／列可圈得 A＋B。驗證：A＋B 喺 00 先係 0。",
+        "tip": "Try it：撳每格喺 0↔1 切換，填完再揀簡式。",
+        "fig": "assets/c4_kmap_read.png",
+        "guidedHints": [
+          "Σm(1,2,3)——邊格填 1？邊格填 0？",
+          "圈最大組之後，簡式剩邊啲變數？",
+          "讀簡式時：圈內唔變嘅位先寫入。"
+        ]
+      }
+    },
+    {
+      "id": "c4-kmap-2x4",
+      "chapter": 4,
+      "nav": "4.17 三變數 2×4",
+      "title": "K-map 練習：2×4 填格＋讀式",
+      "pill": "填格",
+      "live": true,
+      "teach": "\n<p>三變數：左邊 <strong>A</strong>，上邊 <strong>BC</strong> 用 Gray：00、01、11、10。</p>\n<table class=\"truth-demo\">\n  <thead><tr><th></th><th>00</th><th>01</th><th>11</th><th>10</th></tr></thead>\n  <tbody>\n    <tr><th>A＝0</th><td>m0</td><td>m1</td><td>m3</td><td>m2</td></tr>\n    <tr><th>A＝1</th><td>m4</td><td>m5</td><td>m7</td><td>m6</td></tr>\n  </tbody>\n</table>\n<p>例：F＝Σm(0,1,2,3) → A＝0 整行四格為 1 → 簡式 <span class=\"kw\">A'</span>。</p>\n<div class=\"tip\">注意上邊唔係 00、01、10、11——中間係 <strong>11</strong> 先到 <strong>10</strong>。</div>\n",
+      "practice": {
+        "type": "kmap",
+        "prompt": "F＝Σm(0, 1, 2, 3)。填入三變數 2×4 K-map（Gray：00 01 11 10），再揀簡式。",
+        "rows": 2,
+        "cols": 4,
+        "rowLabels": [
+          "A＝0",
+          "A＝1"
+        ],
+        "colLabels": [
+          "BC＝00",
+          "01",
+          "11",
+          "10"
+        ],
+        "cellIds": [
+          "m0",
+          "m1",
+          "m3",
+          "m2",
+          "m4",
+          "m5",
+          "m7",
+          "m6"
+        ],
+        "answers": [
+          1,
+          1,
+          1,
+          1,
+          0,
+          0,
+          0,
+          0
+        ],
+        "readPrompt": "化簡後 F 係？",
+        "readChoices": [
+          "A",
+          "A'",
+          "B",
+          "A'·B"
+        ],
+        "readAnswer": 1,
+        "explain": "顯示次序係 m0,m1,m3,m2 | m4,m5,m7,m6。Σm(0,1,2,3)＝A＝0 整行 → A'。"
+      },
+      "support": {
+        "definition": "三變數：左邊 A，上邊 BC 用 Gray：00、01、11、10。",
+        "example": "練習講解：顯示次序係 m0,m1,m3,m2 | m4,m5,m7,m6。Σm(0,1,2,3)＝A＝0 整行 → A'。",
+        "tip": "注意上邊唔係 00、01、10、11——中間係 11 先到 10。",
+        "guidedHints": [
+          "上邊 BC 順序係 00、01、11、10——唔好写成 10 喺 11 前。",
+          "Σm(0,1,2,3) 對應 A＝0 嗰列成行？",
+          "簡式可能係單一變數嘅補。"
+        ]
+      }
+    },
+    {
+      "id": "c4-kmap-4x4",
+      "chapter": 4,
+      "nav": "4.18 四變數 4×4",
+      "title": "K-map 練習：4×4 填格＋讀式",
+      "pill": "填格",
+      "live": true,
+      "teach": "\n<p>四變數：列 <strong>AB</strong>、行 <strong>CD</strong> 都用 Gray：00、01、11、10。</p>\n<table class=\"truth-demo\">\n  <thead><tr><th></th><th>00</th><th>01</th><th>11</th><th>10</th></tr></thead>\n  <tbody>\n    <tr><th>AB＝00</th><td>m0</td><td>m1</td><td>m3</td><td>m2</td></tr>\n    <tr><th>01</th><td>m4</td><td>m5</td><td>m7</td><td>m6</td></tr>\n    <tr><th>11</th><td>m12</td><td>m13</td><td>m15</td><td>m14</td></tr>\n    <tr><th>10</th><td>m8</td><td>m9</td><td>m11</td><td>m10</td></tr>\n  </tbody>\n</table>\n<p>例：F＝Σm(5,7,13,15) → 中間 2×2 四格 → 簡式 <span class=\"kw\">B·D</span>。</p>\n",
+      "practice": {
+        "type": "kmap",
+        "prompt": "F＝Σm(5, 7, 13, 15)。填入 4×4 K-map，再揀簡式。",
+        "rows": 4,
+        "cols": 4,
+        "rowLabels": [
+          "AB＝00",
+          "01",
+          "11",
+          "10"
+        ],
+        "colLabels": [
+          "CD＝00",
+          "01",
+          "11",
+          "10"
+        ],
+        "cellIds": [
+          "m0",
+          "m1",
+          "m3",
+          "m2",
+          "m4",
+          "m5",
+          "m7",
+          "m6",
+          "m12",
+          "m13",
+          "m15",
+          "m14",
+          "m8",
+          "m9",
+          "m11",
+          "m10"
+        ],
+        "answers": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          1,
+          1,
+          0,
+          0,
+          1,
+          1,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "readPrompt": "化簡後 F 係？",
+        "readChoices": [
+          "A·C",
+          "B·D",
+          "A·B",
+          "C·D"
+        ],
+        "readAnswer": 1,
+        "explain": "四格 m5,m7,m13,m15 相鄰：B＝1、D＝1 不變，A／C 有變 → F＝B·D。"
+      },
+      "support": {
+        "definition": "四變數：列 AB、行 CD 都用 Gray：00、01、11、10。",
+        "example": "練習講解：四格 m5,m7,m13,m15 相鄰：B＝1、D＝1 不變，A／C 有變 → F＝B·D。",
+        "tip": "先睇中欄教學，再做 Try it；唔肯定就翻真值表／口訣。",
+        "guidedHints": [
+          "四變數 16 格；先搵 minterm 5、7、13、15 座標。",
+          "呢四格通常可以圈成一組。",
+          "讀不變位：邊兩個變數固定？"
+        ]
+      }
+    },
+    {
+      "id": "c4-kmap-group",
+      "chapter": 4,
+      "nav": "4.19 圈組規則",
+      "title": "圈組：2／4／8 格同讀不變位",
+      "pill": "圈組",
+      "live": true,
+      "teach": "\n<p>填完 1 之後：</p>\n<ul>\n  <li>把相鄰嘅 1 圈成 <strong>1、2、4、8…</strong>（2 的次方）格</li>\n  <li>可以重疊；每個 1 至少入一圈；唔好圈 0</li>\n  <li>邊緣相鄰（左右／上下捲筒）都算</li>\n  <li>讀圈：變數<strong>全程不變</strong>就留下；有變就消</li>\n</ul>\n<figure class=\"gate-fig\">\n  <img src=\"assets/c4_kmap_group.png\" alt=\"K-map 圈組示範（2／4／8）\">\n  <div class=\"gate-meta\">圈 2 的次方格；可重疊；唔圈 0。</div>\n</figure>\n\n<div class=\"koujue\">能圈大唔圈細；單格＝完整乘積項。</div>\n",
+      "practice": {
+        "type": "mcq",
+        "prompt": "喺 K-map 圈組時，邊項正確？",
+        "choices": [
+          "可以任意圈 3 格成一組",
+          "組內格數應為 2 的次方，且格要相鄰（可重疊）",
+          "每個 1 最多只可以出現喺一個圈",
+          "一定要連 0 一齊圈"
+        ],
+        "answer": 1,
+        "explain": "合法組係 1／2／4／8… 相鄰格；可以重疊，但唔圈 0。"
+      },
+      "support": {
+        "definition": "圈組：2／4／8 格同讀不變位——見中欄教學同練習。",
+        "example": "練習講解：合法組係 1／2／4／8… 相鄰格；可以重疊，但唔圈 0。",
+        "tip": "能圈大唔圈細；單格＝完整乘積項。",
+        "fig": "assets/c4_kmap_group.png",
+        "guidedHints": [
+          "合法圈組個數係 2 嘅冪：1、2、4、8……",
+          "能圈大唔圈細；單格＝完整乘積項。",
+          "邊項描述正確？"
+        ]
+      }
+    },
+    {
+      "id": "c4-kmap-2x2b",
+      "chapter": 4,
+      "nav": "4.20 再練 2×2",
+      "title": "再練：2×2 填 Σm(0,1)",
+      "pill": "填格",
+      "live": true,
+      "teach": "\n<p>兩變數 2×2 再練：F＝Σm(0,1)。</p>\n<ul>\n  <li>m0、m1 為 1 → A＝0 嗰行兩格</li>\n  <li>B 有變（0 同 1）→ 消 B → 簡式 <span class=\"kw\">A'</span></li>\n</ul>\n<div class=\"tip\">填格後再揀簡式；圈整行／整列通常對應單一變數。</div>\n",
+      "practice": {
+        "type": "kmap",
+        "prompt": "F＝Σm(0, 1)。填 2×2，再揀簡式。",
+        "rows": 2,
+        "cols": 2,
+        "rowLabels": [
+          "A'",
+          "A"
+        ],
+        "colLabels": [
+          "B'",
+          "B"
+        ],
+        "cellIds": [
+          "m0",
+          "m1",
+          "m2",
+          "m3"
+        ],
+        "answers": [
+          1,
+          1,
+          0,
+          0
+        ],
+        "readPrompt": "化簡後 F 係？",
+        "readChoices": [
+          "A",
+          "A'",
+          "B",
+          "A'·B"
+        ],
+        "readAnswer": 1,
+        "explain": "m0、m1 為 1 → A＝0 整行 → 消 B → A'。"
+      },
+      "support": {
+        "definition": "兩變數 2×2 再練：F＝Σm(0,1)。",
+        "example": "練習講解：m0、m1 為 1 → A＝0 整行 → 消 B → A'。",
+        "tip": "填格後再揀簡式；圈整行／整列通常對應單一變數。",
+        "guidedHints": [
+          "Σm(0,1)——兩格係咪同一列或同一行？",
+          "圈整行／整列通常對應單一變數（或補）。",
+          "填格後再揀簡式選項。"
+        ]
+      }
+    },
+    {
+      "id": "c4-kmap-ex1",
+      "chapter": 4,
+      "nav": "4.21 練習① 由式填 2×2",
+      "title": "練習①：由布林式填 2×2（XOR 形）",
+      "pill": "由式填",
+      "live": true,
+      "teach": "\n<p>由<strong>布林式</strong>填 K-map：先睇每項令邊啲 minterm＝1。</p>\n<ul>\n  <li>例：<span class=\"kw\">A'·B</span> → A＝0、B＝1 → m<sub>1</sub></li>\n  <li>例：<span class=\"kw\">A·B'</span> → A＝1、B＝0 → m<sub>2</sub></li>\n</ul>\n<figure class=\"gate-fig\">\n  <img src=\"assets/c4_kmap_axes.png\" alt=\"K-map 軸標（含 2×2）\">\n  <div class=\"gate-meta\">2×2：列 A'／A，行 B'／B。</div>\n</figure>\n<div class=\"tip\">填完再圈：對角兩個 1 → 唔好硬圈成一組；各自讀項再相或。</div>\n",
+      "practice": {
+        "type": "kmap",
+        "prompt": "F＝A'·B ＋ A·B'。填入 2×2 K-map，再揀簡式（或等價式）。",
+        "rows": 2,
+        "cols": 2,
+        "rowLabels": [
+          "A'",
+          "A"
+        ],
+        "colLabels": [
+          "B'",
+          "B"
+        ],
+        "cellIds": [
+          "m0",
+          "m1",
+          "m2",
+          "m3"
+        ],
+        "answers": [
+          0,
+          1,
+          1,
+          0
+        ],
+        "readPrompt": "化簡／等價後 F 係？",
+        "readChoices": [
+          "A'·B＋A·B'",
+          "A＋B",
+          "A·B",
+          "A'·B'"
+        ],
+        "readAnswer": 0,
+        "explain": "m1＝A'B、m2＝AB'；兩格唔相鄰成對，維持 A'·B＋A·B'（即 XOR）。"
+      },
+      "support": {
+        "definition": "由布林式填 K-map：先睇每項令邊啲 minterm＝1。",
+        "example": "練習講解：m1＝A'B、m2＝AB'；兩格唔相鄰成對，維持 A'·B＋A·B'（即 XOR）。",
+        "tip": "填完再圈：對角兩個 1 → 唔好硬圈成一組；各自讀項再相或。",
+        "fig": "assets/c4_kmap_axes.png",
+        "guidedHints": [
+          "A'·B 同 A·B' 各令邊格＝1？",
+          "對角兩個 1 通常唔好硬圈成一組。",
+          "簡式可以維持兩項 XOR 形。"
+        ]
+      }
+    },
+    {
+      "id": "c4-kmap-ex2",
+      "chapter": 4,
+      "nav": "4.22 練習② 三變數由式填",
+      "title": "練習②：由式填 2×4（A'BC＋A'B'C'）",
+      "pill": "由式填",
+      "live": true,
+      "teach": "\n<p>三變數：左邊 <strong>A</strong>，上邊 <strong>BC</strong> Gray：00、01、11、10。</p>\n<ul>\n  <li><span class=\"kw\">A'·B'·C'</span> → A＝0、B＝0、C＝0 → m<sub>0</sub></li>\n  <li><span class=\"kw\">A'·B·C</span> → A＝0、B＝1、C＝1 → m<sub>3</sub></li>\n</ul>\n<figure class=\"gate-fig\">\n  <img src=\"assets/c4_kmap_axes.png\" alt=\"K-map 軸標（含 2×4）\">\n  <div class=\"gate-meta\">注意上邊次序：00、01、<strong>11</strong>、10。</div>\n</figure>\n<div class=\"tip\">兩格若唔相鄰，唔好硬合併；可以維持兩項 SOP。</div>\n",
+      "practice": {
+        "type": "kmap",
+        "prompt": "F＝A'·B·C ＋ A'·B'·C'。填入 2×4（Gray：00 01 11 10），再揀簡式／等價式。",
+        "rows": 2,
+        "cols": 4,
+        "rowLabels": [
+          "A＝0",
+          "A＝1"
+        ],
+        "colLabels": [
+          "BC＝00",
+          "01",
+          "11",
+          "10"
+        ],
+        "cellIds": [
+          "m0",
+          "m1",
+          "m3",
+          "m2",
+          "m4",
+          "m5",
+          "m7",
+          "m6"
+        ],
+        "answers": [
+          1,
+          0,
+          1,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "readPrompt": "化簡／等價後 F 係？",
+        "readChoices": [
+          "A'·B·C＋A'·B'·C'",
+          "A'·(B＋C)",
+          "A'·B'·C",
+          "B·C＋B'·C'"
+        ],
+        "readAnswer": 0,
+        "explain": "m0 同 m3 喺 Gray 上邊唔相鄰（隔住 m1），唔成對；維持 A'BC＋A'B'C'。"
+      },
+      "support": {
+        "definition": "三變數：左邊 A，上邊 BC Gray：00、01、11、10。",
+        "example": "練習講解：m0 同 m3 喺 Gray 上邊唔相鄰（隔住 m1），唔成對；維持 A'BC＋A'B'C'。",
+        "tip": "兩格若唔相鄰，唔好硬合併；可以維持兩項 SOP。",
+        "fig": "assets/c4_kmap_axes.png",
+        "guidedHints": [
+          "三變數：左邊 A，上邊 Gray BC。",
+          "兩項若唔相鄰，可以維持兩項 SOP。",
+          "填完對照簡式選項。"
+        ]
+      }
+    },
+    {
+      "id": "c4-kmap-ex3",
+      "chapter": 4,
+      "nav": "4.23 練習③ A'BCD＋A'B'C'",
+      "title": "練習③：四變數由式填（Leo 例）",
+      "pill": "由式填",
+      "live": true,
+      "teach": "\n<p>四變數由式填重點：<strong>缺變數＝該位 0 同 1 兩格都要 1</strong>。</p>\n<ul>\n  <li><span class=\"kw\">A'·B'·C'</span> 冇 D → D＝0 同 1 都係 1 → m<sub>0</sub>、m<sub>1</sub></li>\n  <li><span class=\"kw\">A'·B·C·D</span>＝0111 → m<sub>7</sub></li>\n</ul>\n<figure class=\"gate-fig\">\n  <img src=\"assets/c4_kmap_group.png\" alt=\"K-map 圈組提醒\">\n  <div class=\"gate-meta\">相鄰先可圈；唔相鄰就維持多項。</div>\n</figure>\n<div class=\"koujue\">口訣：式入面冇寫嘅變數 → 嗰位「自由」→ 兩格（或更多）一齊填 1。</div>\n",
+      "practice": {
+        "type": "kmap",
+        "prompt": "F＝A'·B·C·D ＋ A'·B'·C'。填入 4×4 K-map，再揀最簡或等價式。",
+        "rows": 4,
+        "cols": 4,
+        "rowLabels": [
+          "AB＝00",
+          "01",
+          "11",
+          "10"
+        ],
+        "colLabels": [
+          "CD＝00",
+          "01",
+          "11",
+          "10"
+        ],
+        "cellIds": [
+          "m0",
+          "m1",
+          "m3",
+          "m2",
+          "m4",
+          "m5",
+          "m7",
+          "m6",
+          "m12",
+          "m13",
+          "m15",
+          "m14",
+          "m8",
+          "m9",
+          "m11",
+          "m10"
+        ],
+        "answers": [
+          1,
+          1,
+          0,
+          0,
+          0,
+          0,
+          1,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "readPrompt": "化簡／等價後 F 係？",
+        "readChoices": [
+          "A'·B'·C' ＋ A'·B·C·D",
+          "A'·B' ＋ C·D",
+          "B'·C' ＋ B·C·D",
+          "A'·C' ＋ B·D"
+        ],
+        "readAnswer": 0,
+        "explain": "A'B'C' 佔 m0、m1；A'BCD＝m7。m7 唔同 m0／m1 相鄰成更大圈，所以維持兩項。"
+      },
+      "support": {
+        "definition": "四變數由式填重點：缺變數＝該位 0 同 1 兩格都要 1。",
+        "example": "練習講解：A'B'C' 佔 m0、m1；A'BCD＝m7。m7 唔同 m0／m1 相鄰成更大圈，所以維持兩項。",
+        "tip": "口訣：式入面冇寫嘅變數 → 嗰位「自由」→ 兩格（或更多）一齊填 1。",
+        "fig": "assets/c4_kmap_group.png",
+        "guidedHints": [
+          "式入面冇寫嘅變數＝嗰位「自由」→ 多格要填 1。",
+          "A'BCD 只佔一格；A'B'C' 缺 D → 兩格。",
+          "圈組後再揀最簡／等價式。"
+        ]
+      }
+    },
+    {
+      "id": "c4-design-intro",
+      "chapter": 4,
+      "nav": "4.25 成果9 選閘入門",
+      "title": "成果9：選閘解問題——由情境到閘",
+      "pill": "成果9",
+      "live": true,
+      "teach": "\n<p><strong>成果9（選閘解問題）</strong>：用基本邏輯閘解決實際組合問題。</p>\n<ol>\n  <li>讀情境 → 用「同／或／非／只有其中一個」翻譯成邏輯</li>\n  <li>揀閘（AND／OR／NOT／XOR／NAND／NOR）</li>\n  <li>寫布林式 → 列真值表核對</li>\n</ol>\n<div class=\"koujue\">口訣：全部要＝AND；任一要＝OR；相反＝NOT；一單一雙＝XOR。</div>\n<div class=\"tip\">第 6 章會擴到半加器／多工器；呢度先練「讀題選閘」。</div>\n",
+      "practice": {
+        "type": "mcq",
+        "prompt": "「兩個掣要同時撳，門先開」——應優先諗邊種閘？",
+        "choices": [
+          "OR 或門",
+          "AND 與門",
+          "NOT 非門",
+          "XOR 異或"
+        ],
+        "answer": 1,
+        "explain": "「同時／全部」→ AND。若寫「唔係同時」先再加 NOT／NAND。"
+      },
+      "support": {
+        "definition": "組合邏輯：輸出只取決於而家輸入（無記憶）。選閘＝把日常條件譯成 AND／OR／NOT／XOR 等。",
+        "example": "兩掣同時 → AND；任一傳感器 → OR；走廊兩掣控一燈（一單一雙）→ XOR。",
+        "tip": "先用中文講清楚條件，再對口訣揀閘，最後寫 F＝… 同真值表。",
+        "guidedHints": [
+          "「兩個掣要同時撳」——同時＝邊種閘口訣？",
+          "AND：全部為 1 先出 1。",
+          "OR 係「任一」；唔好調轉。"
+        ]
+      }
+    },
+    {
+      "id": "c4-design-and",
+      "chapter": 4,
+      "nav": "4.26 選閘：同時條件",
+      "title": "選閘練習：安全門（兩掣同時）",
+      "pill": "成果9",
+      "live": true,
+      "teach": "\n<p>情境：安全門要<strong>掣 A 同掣 B 同時撳</strong>先打開（輸出 F＝1 表示開門）。</p>\n<ul>\n  <li>條件關鍵字：<strong>同時／全部</strong> → AND</li>\n  <li>布林式：<span class=\"kw\">F＝A·B</span></li>\n</ul>\n<figure class=\"gate-fig\"><img src=\"assets/gate_and.png\" alt=\"AND\"><div class=\"gate-meta\">與門</div></figure>\n",
+      "practice": {
+        "type": "design",
+        "scenario": "安全門：掣 A、掣 B 要同時撳，門先開（F＝1）。",
+        "steps": [
+          {
+            "kind": "mcq",
+            "prompt": "應選邊種閘？",
+            "choices": [
+              "OR",
+              "AND",
+              "XOR",
+              "NOR"
+            ],
+            "answer": 1
+          },
+          {
+            "kind": "mcq",
+            "prompt": "正確布林式係？",
+            "choices": [
+              "F＝A＋B",
+              "F＝A·B",
+              "F＝A'",
+              "F＝(A·B)'"
+            ],
+            "answer": 1
+          },
+          {
+            "kind": "truth",
+            "prompt": "填真值表輸出 F（開門＝1）：",
+            "inputs": [
+              "A",
+              "B"
+            ],
+            "rows": [
+              [
+                0,
+                0
+              ],
+              [
+                0,
+                1
+              ],
+              [
+                1,
+                0
+              ],
+              [
+                1,
+                1
+              ]
+            ],
+            "answers": [
+              0,
+              0,
+              0,
+              1
+            ]
+          }
+        ],
+        "explain": "同時條件 → AND → F＝A·B；只有 11 開門。"
+      },
+      "support": {
+        "definition": "AND：全部輸入為 1，輸出先為 1。",
+        "example": "安全門兩掣、兩道鎖同時解除。",
+        "tip": "逐步：選閘 → 寫式 → 真值表核對 11 先係 1。",
+        "fig": "assets/gate_and.png",
+        "guidedHints": [
+          "步驟 1：條件係「同時」→ 揀邊閘？",
+          "步驟 2：布林式應寫成 A·B 定 A＋B？",
+          "真值表：只有 11 先係 1。"
+        ]
+      }
+    },
+    {
+      "id": "c4-design-or",
+      "chapter": 4,
+      "nav": "4.27 選閘：任一條件",
+      "title": "選閘練習：警報（任一觸發）",
+      "pill": "成果9",
+      "live": true,
+      "teach": "\n<p>情境：防盜警報——<strong>門磁 A 或 窗磁 B 任一觸發</strong>就要響（F＝1）。</p>\n<ul>\n  <li>關鍵字：<strong>任一／或者</strong> → OR</li>\n  <li>布林式：<span class=\"kw\">F＝A＋B</span></li>\n</ul>\n<figure class=\"gate-fig\"><img src=\"assets/gate_or.png\" alt=\"OR\"><div class=\"gate-meta\">或門</div></figure>\n",
+      "practice": {
+        "type": "design",
+        "scenario": "警報：門磁 A 或窗磁 B 任一為 1 就響。",
+        "steps": [
+          {
+            "kind": "mcq",
+            "prompt": "應選邊種閘？",
+            "choices": [
+              "AND",
+              "OR",
+              "NOT",
+              "NAND"
+            ],
+            "answer": 1
+          },
+          {
+            "kind": "mcq",
+            "prompt": "正確布林式係？",
+            "choices": [
+              "F＝A·B",
+              "F＝A＋B",
+              "F＝(A＋B)'",
+              "F＝A'·B'"
+            ],
+            "answer": 1
+          },
+          {
+            "kind": "truth",
+            "prompt": "填 F（響＝1）：",
+            "inputs": [
+              "A",
+              "B"
+            ],
+            "rows": [
+              [
+                0,
+                0
+              ],
+              [
+                0,
+                1
+              ],
+              [
+                1,
+                0
+              ],
+              [
+                1,
+                1
+              ]
+            ],
+            "answers": [
+              0,
+              1,
+              1,
+              1
+            ]
+          }
+        ],
+        "explain": "任一條件 → OR → F＝A＋B；得 00 唔響。"
+      },
+      "support": {
+        "definition": "OR：任一輸入為 1，輸出即為 1。",
+        "example": "多個傳感器「任一觸發即報警」。",
+        "tip": "同 AND 對照：警報少用「全部傳感器同時」除非題目寫明。",
+        "fig": "assets/gate_or.png",
+        "guidedHints": [
+          "「任一條件成立就動作」→ OR。",
+          "式係 A＋B；真值表 00 先係 0。",
+          "同 AND 對照 11 都係 1，但 01／10 都亮。"
+        ]
+      }
+    },
+    {
+      "id": "c4-design-xor",
+      "chapter": 4,
+      "nav": "4.28 選閘：走廊兩掣",
+      "title": "選閘練習：走廊燈（兩掣控制）",
+      "pill": "成果9",
+      "live": true,
+      "teach": "\n<p>情境：走廊兩端各一個掣，兩掣邏輯電平<strong>唔同</strong>時燈亮。</p>\n<ul>\n  <li>關鍵字：一單一雙／唔同先亮 → <strong>XOR</strong></li>\n  <li>布林式：<span class=\"kw\">F＝A'B＋AB'</span>（異或）</li>\n</ul>\n<figure class=\"gate-fig\"><img src=\"assets/gate_xor.png\" alt=\"XOR\"><div class=\"gate-meta\">異或門</div></figure>\n<div class=\"tip\">課堂以真值表為準核對。</div>\n",
+      "practice": {
+        "type": "design",
+        "scenario": "兩掣 A、B：電平唔同時燈亮（F＝1）；相同則熄。",
+        "steps": [
+          {
+            "kind": "mcq",
+            "prompt": "應選邊種閘？",
+            "choices": [
+              "AND",
+              "OR",
+              "XOR",
+              "NOR"
+            ],
+            "answer": 2
+          },
+          {
+            "kind": "mcq",
+            "prompt": "邊條式等價 XOR？",
+            "choices": [
+              "F＝A·B",
+              "F＝A＋B",
+              "F＝A'B＋AB'",
+              "F＝(A＋B)'"
+            ],
+            "answer": 2
+          },
+          {
+            "kind": "truth",
+            "prompt": "填 F：",
+            "inputs": [
+              "A",
+              "B"
+            ],
+            "rows": [
+              [
+                0,
+                0
+              ],
+              [
+                0,
+                1
+              ],
+              [
+                1,
+                0
+              ],
+              [
+                1,
+                1
+              ]
+            ],
+            "answers": [
+              0,
+              1,
+              1,
+              0
+            ]
+          }
+        ],
+        "explain": "唔同先亮 → XOR；00／11＝0，01／10＝1。"
+      },
+      "support": {
+        "definition": "XOR：輸入唔同 → 1；相同 → 0。",
+        "example": "走廊兩掣、位元比較、奇偶校驗。",
+        "tip": "同 OR 差在 11：XOR 熄、OR 亮。",
+        "fig": "assets/gate_xor.png",
+        "guidedHints": [
+          "走廊兩掣：相同熄、唔同亮——似 XOR。",
+          "同 OR 差在 11：XOR 熄。",
+          "真值表：01、10 → 1；00、11 → 0。"
+        ]
+      }
+    },
+    {
+      "id": "c4-design-nand",
+      "chapter": 4,
+      "nav": "4.29 選閘：唔係同時",
+      "title": "選閘練習：NAND（禁止同時）",
+      "pill": "成果9",
+      "live": true,
+      "teach": "\n<p>情境：機台互鎖——<strong>唔可以兩個掣同時撳</strong>；同時撳時輸出 F＝0（正常時 F＝1）。等價 AND 再反相。</p>\n<ul>\n  <li>「同時先唔得」而日常輸出為高 → <strong>NAND</strong></li>\n  <li><span class=\"kw\">F＝(A·B)'</span></li>\n</ul>\n<figure class=\"gate-fig\"><img src=\"assets/gate_nand.png\" alt=\"NAND\"><div class=\"gate-meta\">與非門</div></figure>\n",
+      "practice": {
+        "type": "design",
+        "scenario": "正常 F＝1；只有 A、B 同時為 1 時 F＝0（禁止同時）。",
+        "steps": [
+          {
+            "kind": "mcq",
+            "prompt": "應選邊種閘？",
+            "choices": [
+              "AND",
+              "OR",
+              "NAND",
+              "XOR"
+            ],
+            "answer": 2
+          },
+          {
+            "kind": "mcq",
+            "prompt": "布林式？",
+            "choices": [
+              "F＝A·B",
+              "F＝A＋B",
+              "F＝(A·B)'",
+              "F＝A'＋B"
+            ],
+            "answer": 2
+          },
+          {
+            "kind": "truth",
+            "prompt": "填 F：",
+            "inputs": [
+              "A",
+              "B"
+            ],
+            "rows": [
+              [
+                0,
+                0
+              ],
+              [
+                0,
+                1
+              ],
+              [
+                1,
+                0
+              ],
+              [
+                1,
+                1
+              ]
+            ],
+            "answers": [
+              1,
+              1,
+              1,
+              0
+            ]
+          }
+        ],
+        "explain": "禁止同時 → NAND；11＝0，其餘＝1。"
+      },
+      "support": {
+        "definition": "NAND＝AND 再 NOT；全部為 1 先輸出 0。",
+        "example": "互鎖、通用閘（NAND 可砌其他閘）。",
+        "tip": "題目若話「同時先警報」而警報＝1，可能係 AND；睇清 F＝1 代表乜。",
+        "fig": "assets/gate_nand.png",
+        "guidedHints": [
+          "NAND：全部為 1 先輸出 0。",
+          "題意若「唔係同時先允許」要想清楚 F＝1 代表乜。",
+          "真值表同 AND 相反。"
+        ]
+      }
+    },
+    {
+      "id": "c4-quiz",
+      "chapter": 4,
+      "nav": "4.30 小綜合",
+      "title": "第 4 章小綜合：SOP／代數／K-map",
+      "pill": "綜合",
+      "live": true,
+      "teach": "\n<p>綜合第 4 章三條線＋成果9：</p>\n<ul>\n  <li><strong>SOP／POS：</strong>1→Σm，0→ΠM</li>\n  <li><strong>代數：</strong>吸收、分配、刪 0、共識</li>\n  <li><strong>K-map：</strong>2×2／2×4／4×4 填格＋圈組</li>\n  <li><strong>選閘：</strong>同時→AND；任一→OR；唔同→XOR；禁止同時→NAND</li>\n</ul>\n",
+      "practice": {
+        "type": "mcq",
+        "prompt": "關於第 4 章，邊句正確？",
+        "choices": [
+          "三變數 K-map 係 3×3＝9 格",
+          "Σm 列出 F＝1 嘅 minterm；ΠM 列出 F＝0 嘅 maxterm",
+          "K-map 軸標應用普通二進制 00、01、10、11（兩位）",
+          "吸收律只適用於 K-map，唔適用代數"
+        ],
+        "answer": 1,
+        "explain": "Σm／ΠM 分別對應 1／0。三變數係 2×4；Gray 係 00、01、11、10。"
+      },
+      "support": {
+        "definition": "第 4 章：標準型、代數化簡、K-map、選閘解問題。",
+        "example": "Σm／ΠM；A＋AB＝A；Gray 軸；走廊燈 XOR。",
+        "tip": "同一功能可用代數同 K-map 對答案。",
+        "guidedHints": [
+          "綜合：SOP／化簡／K-map／選閘——對應題幹關鍵字。",
+          "見到 Σm、圈組、同時條件，分別聯想邊章技巧？",
+          "唔肯定就翻該小節定義再答。"
+        ]
+      }
+    },
+    {
+      "id": "c5-stub",
+      "chapter": 5,
+      "nav": "5 · 即將推出",
+      "title": "第 5 章：數字系統（預告）",
+      "pill": "預告",
+      "live": false,
+      "soon": true,
+      "teach": "<p>二進制／十六進制轉換、BCD 等。完整練習下一輪補。</p><div class=\"tip\">而家可自由溫習第 1–4 章；地圖可睇本章預告。</div>",
+      "practice": null,
+      "support": {
+        "definition": "二進制／十六進制轉換、BCD 等。完整練習下一輪補。",
+        "example": "內容稍後上線。",
+        "tip": "建議先完成第 1–4 章星號練習。"
+      }
+    },
+    {
+      "id": "c6-stub",
+      "chapter": 6,
+      "nav": "6 · 即將推出",
+      "title": "第 6 章：組合邏輯（預告）",
+      "pill": "預告",
+      "live": false,
+      "soon": true,
+      "teach": "<p>半加器、全加器、解碼器、多工器。成果9 選閘已喺第 4 章先練。</p><div class=\"tip\">而家可自由溫習第 1–4 章；地圖可睇本章預告。</div>",
+      "practice": null,
+      "support": {
+        "definition": "半加器、全加器、解碼器、多工器。成果9 選閘已喺第 4 章先練。",
+        "example": "內容稍後上線。",
+        "tip": "建議先完成第 1–4 章星號練習。"
+      }
+    },
+    {
+      "id": "c7-stub",
+      "chapter": 7,
+      "nav": "7 · 即將推出",
+      "title": "第 7 章：正反器（預告）",
+      "pill": "預告",
+      "live": false,
+      "soon": true,
+      "teach": "<p>SR／D／JK 正反器、鎖存與邊緣觸發。</p><div class=\"tip\">而家可自由溫習第 1–4 章；地圖可睇本章預告。</div>",
+      "practice": null,
+      "support": {
+        "definition": "SR／D／JK 正反器、鎖存與邊緣觸發。",
+        "example": "內容稍後上線。",
+        "tip": "建議先完成第 1–4 章星號練習。"
+      }
+    },
+    {
+      "id": "c8-stub",
+      "chapter": 8,
+      "nav": "8 · 即將推出",
+      "title": "第 8 章：循序邏輯（預告）",
+      "pill": "預告",
+      "live": false,
+      "soon": true,
+      "teach": "<p>計數器、暫存器、簡單狀態機。</p><div class=\"tip\">而家可自由溫習第 1–4 章；地圖可睇本章預告。</div>",
+      "practice": null,
+      "support": {
+        "definition": "計數器、暫存器、簡單狀態機。",
+        "example": "內容稍後上線。",
+        "tip": "建議先完成第 1–4 章星號練習。"
+      }
+    }
+  ]
+}
