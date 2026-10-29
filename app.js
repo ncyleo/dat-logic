@@ -176,6 +176,10 @@
     }
     const s = lesson.support || {};
     let html = '';
+    if (lesson.practice && lesson.practice.type === 'tt-live') {
+      html += '<div class="tt-live-panel" id="ttLiveSideSync"><div class="live-lab">即時</div>' +
+        '<div class="muted">填表或輸入公式後顯示 Σm／簡式</div></div>';
+    }
     html += '<h3>定義</h3><dl class="defs"><dt>' + boolHtml(lesson.title || '') + '</dt><dd>' +
       boolHtml(s.definition || '見中欄教學。') + '</dd></dl>';
     if (s.fig) {
@@ -207,6 +211,9 @@
         (lesson.live ? '' : ' · 即將推出') + '</p>';
     }
     box.innerHTML = html;
+    if (lesson.practice && lesson.practice.type === 'tt-live' && $('ttLiveTable')) {
+      ttLiveUpdatePanel();
+    }
   }
 
   function renderHome() {
@@ -230,6 +237,473 @@
     html += '</div></div>';
     return html;
   }
+
+
+  /* ===== tt-live: truth table / K-map ↔ Boolean formula ===== */
+  const TT_LIVE_VARS = ['A', 'B', 'C', 'D'];
+  let ttLive = { n: 3, lastSrc: null, debounce: null, formulaTouched: false };
+
+  function ttLiveVarNames(n) { return TT_LIVE_VARS.slice(0, n); }
+
+  function ttLiveKmapLayout(n) {
+    if (n === 2) {
+      return {
+        rows: 2, cols: 2,
+        rowLabels: ['A＝0', 'A＝1'],
+        colLabels: ['B＝0', 'B＝1'],
+        cellMinterms: [0, 1, 2, 3]
+      };
+    }
+    if (n === 3) {
+      return {
+        rows: 2, cols: 4,
+        rowLabels: ['A＝0', 'A＝1'],
+        colLabels: ['BC＝00', '01', '11', '10'],
+        cellMinterms: [0, 1, 3, 2, 4, 5, 7, 6]
+      };
+    }
+    const gray = [0, 1, 3, 2];
+    const cellMinterms = [];
+    for (let r = 0; r < 4; r++) for (let c = 0; c < 4; c++) {
+      cellMinterms.push((gray[r] << 2) | gray[c]);
+    }
+    return {
+      rows: 4, cols: 4,
+      rowLabels: ['AB＝00', '01', '11', '10'],
+      colLabels: ['CD＝00', '01', '11', '10'],
+      cellMinterms: cellMinterms
+    };
+  }
+
+  function ttLiveMintermExpr(idx, n) {
+    const names = ttLiveVarNames(n);
+    const parts = [];
+    for (let i = 0; i < n; i++) {
+      const bit = (idx >> (n - 1 - i)) & 1;
+      parts.push(bit ? names[i] : (names[i] + "'"));
+    }
+    return parts.join('·');
+  }
+
+  function ttLiveReadValues() {
+    const bits = document.querySelectorAll('#ttLiveTable button.bit');
+    const vals = [];
+    let missing = 0;
+    bits.forEach(btn => {
+      const v = btn.getAttribute('data-val');
+      if (v === '' || v == null) { vals.push(null); missing++; }
+      else vals.push(+v);
+    });
+    return { vals: vals, missing: missing };
+  }
+
+  function ttLiveSetValues(vals, n) {
+    const N = 1 << n;
+    document.querySelectorAll('#ttLiveTable button.bit').forEach(btn => {
+      const ri = +btn.getAttribute('data-row');
+      const v = (ri < N && vals[ri] != null) ? vals[ri] : 0;
+      const s = String(v);
+      btn.setAttribute('data-val', s);
+      btn.textContent = s;
+      btn.classList.toggle('on', v === 1);
+      btn.classList.toggle('off', v === 0);
+    });
+    const layout = ttLiveKmapLayout(n);
+    document.querySelectorAll('#ttLiveKmap button.kbit').forEach(btn => {
+      const di = +btn.getAttribute('data-idx');
+      const m = layout.cellMinterms[di];
+      const v = (m < N && vals[m] != null) ? vals[m] : 0;
+      const s = String(v);
+      btn.setAttribute('data-val', s);
+      btn.textContent = s;
+      btn.classList.toggle('on', v === 1);
+      btn.classList.toggle('off', v === 0);
+    });
+  }
+
+  function ttLiveSyncKmapFromTable(n) {
+    const { vals } = ttLiveReadValues();
+    const layout = ttLiveKmapLayout(n);
+    document.querySelectorAll('#ttLiveKmap button.kbit').forEach(btn => {
+      const di = +btn.getAttribute('data-idx');
+      const m = layout.cellMinterms[di];
+      const raw = vals[m];
+      const s = (raw === null || raw === undefined) ? '' : String(raw);
+      btn.setAttribute('data-val', s);
+      btn.textContent = s === '' ? '?' : s;
+      btn.classList.toggle('on', s === '1');
+      btn.classList.toggle('off', s === '0');
+    });
+  }
+
+  function ttLiveSyncTableFromKmap(n) {
+    const layout = ttLiveKmapLayout(n);
+    const byM = {};
+    document.querySelectorAll('#ttLiveKmap button.kbit').forEach(btn => {
+      const di = +btn.getAttribute('data-idx');
+      const m = layout.cellMinterms[di];
+      byM[m] = btn.getAttribute('data-val');
+    });
+    document.querySelectorAll('#ttLiveTable button.bit').forEach(btn => {
+      const ri = +btn.getAttribute('data-row');
+      const s = byM[ri] == null ? '' : byM[ri];
+      btn.setAttribute('data-val', s);
+      btn.textContent = s === '' ? '?' : s;
+      btn.classList.toggle('on', s === '1');
+      btn.classList.toggle('off', s === '0');
+    });
+  }
+
+  /** Quine–McCluskey (exact, n≤4). ones: array of minterm indices. */
+  function ttLiveSimplify(ones, n) {
+    const names = ttLiveVarNames(n);
+    const total = 1 << n;
+    if (!ones.length) return '0';
+    if (ones.length === total) return '1';
+    const uniq = Array.from(new Set(ones)).sort((a, b) => a - b);
+
+    function bitCount(x) {
+      let c = 0;
+      while (x) { c += x & 1; x >>= 1; }
+      return c;
+    }
+    function combine(a, b) {
+      const diff = a.mask ^ b.mask;
+      if (a.dash !== b.dash) return null;
+      if (bitCount(diff) !== 1) return null;
+      if ((diff & a.dash) !== 0) return null;
+      return { mask: a.mask & b.mask, dash: a.dash | diff, terms: a.terms.concat(b.terms.filter(t => a.terms.indexOf(t) < 0)).sort((x, y) => x - y) };
+    }
+    function keyOf(p) { return p.mask + '/' + p.dash; }
+    function toExpr(p) {
+      const parts = [];
+      for (let i = 0; i < n; i++) {
+        const bit = 1 << (n - 1 - i);
+        if (p.dash & bit) continue;
+        parts.push((p.mask & bit) ? names[i] : (names[i] + "'"));
+      }
+      return parts.length ? parts.join('·') : '1';
+    }
+
+    let current = uniq.map(t => ({ mask: t, dash: 0, terms: [t] }));
+    const allPrime = [];
+    while (current.length) {
+      const used = {};
+      const nextMap = {};
+      for (let i = 0; i < current.length; i++) {
+        for (let j = i + 1; j < current.length; j++) {
+          const c = combine(current[i], current[j]);
+          if (!c) continue;
+          used[i] = true; used[j] = true;
+          const k = keyOf(c);
+          if (!nextMap[k]) nextMap[k] = c;
+        }
+      }
+      for (let i = 0; i < current.length; i++) {
+        if (!used[i]) allPrime.push(current[i]);
+      }
+      current = Object.keys(nextMap).map(k => nextMap[k]);
+    }
+
+    // unique primes
+    const primeMap = {};
+    allPrime.forEach(p => { primeMap[keyOf(p)] = p; });
+    const primes = Object.keys(primeMap).map(k => primeMap[k]);
+
+    // Petrick / greedy essential covering
+    const chart = {};
+    uniq.forEach(m => { chart[m] = []; });
+    primes.forEach((p, pi) => {
+      p.terms.forEach(t => {
+        if (chart[t]) chart[t].push(pi);
+      });
+    });
+
+    const selected = {};
+    const remaining = {};
+    uniq.forEach(m => { remaining[m] = true; });
+
+    function coverWith(pi) {
+      selected[pi] = true;
+      primes[pi].terms.forEach(t => { delete remaining[t]; });
+    }
+
+    let changed = true;
+    while (changed) {
+      changed = false;
+      Object.keys(remaining).forEach(m => {
+        const list = (chart[m] || []).filter(pi => {
+          return primes[pi].terms.some(t => remaining[t]);
+        });
+        // essentials: only one prime covers m among primes that still cover something in remaining
+        const coverers = (chart[m] || []).filter(pi => primes[pi].terms.indexOf(+m) >= 0 && !selected[pi]);
+        if (coverers.length === 1 && remaining[m]) {
+          coverWith(coverers[0]);
+          changed = true;
+        }
+      });
+    }
+
+    // greedy for rest
+    while (Object.keys(remaining).length) {
+      let best = -1, bestCover = -1;
+      primes.forEach((p, pi) => {
+        if (selected[pi]) return;
+        let c = 0;
+        p.terms.forEach(t => { if (remaining[t]) c++; });
+        if (c > bestCover) { bestCover = c; best = pi; }
+      });
+      if (best < 0 || bestCover <= 0) break;
+      coverWith(best);
+    }
+
+    const exprs = Object.keys(selected).map(pi => toExpr(primes[+pi]));
+    exprs.sort();
+    return exprs.join('＋');
+  }
+
+  function ttLiveNormalizeExpr(raw) {
+    let s = String(raw == null ? '' : raw).trim();
+    if (!s) return '';
+    s = s.replace(/＋/g, '+').replace(/·/g, '*').replace(/[⋅•]/g, '*')
+      .replace(/[′’']/g, "'").replace(/～/g, '~').replace(/∨/g, '+').replace(/∧/g, '*')
+      .replace(/⊕/g, '^').replace(/‾/g, '~');
+    s = s.replace(/\bNOT\b/gi, '~').replace(/\bAND\b/gi, '*').replace(/\bOR\b/gi, '+').replace(/\bXOR\b/gi, '^');
+    s = s.replace(/\s+/g, '');
+    s = s.replace(/[a-d]/g, ch => ch.toUpperCase());
+    let out = '';
+    for (let i = 0; i < s.length; i++) {
+      const c = s[i];
+      const prev = out.length ? out[out.length - 1] : '';
+      if (prev && /[A-D01)']/.test(prev) && /[A-D01(~]/.test(c)) out += '*';
+      out += c;
+    }
+    return out;
+  }
+
+  function ttLiveParse(raw, n) {
+    const names = ttLiveVarNames(n);
+    const allowed = {};
+    names.forEach(v => { allowed[v] = true; });
+    const s = ttLiveNormalizeExpr(raw);
+    if (!s) return { ok: false, error: '請輸入布林公式。' };
+    let i = 0;
+    function peek() { return s[i] || ''; }
+    function get() { return s[i++] || ''; }
+    function err(msg) { const e = new Error(msg); e.parse = true; throw e; }
+
+    function parseExpr() { return parseXor(); }
+    function parseXor() {
+      let left = parseOr();
+      while (peek() === '^') {
+        get();
+        const right = parseOr();
+        const L = left, R = right;
+        left = env => L(env) ^ R(env);
+      }
+      return left;
+    }
+    function parseOr() {
+      let left = parseAnd();
+      while (peek() === '+') {
+        get();
+        const right = parseAnd();
+        const L = left, R = right;
+        left = env => (L(env) | R(env)) & 1;
+      }
+      return left;
+    }
+    function parseAnd() {
+      let left = parseUnary();
+      while (peek() === '*') {
+        get();
+        const right = parseUnary();
+        const L = left, R = right;
+        left = env => (L(env) & R(env)) & 1;
+      }
+      return left;
+    }
+    function parseUnary() {
+      if (peek() === '~') {
+        get();
+        const u = parseUnary();
+        return env => (u(env) ^ 1) & 1;
+      }
+      return parsePrimary();
+    }
+    function parsePrimary() {
+      const c = peek();
+      if (c === '(') {
+        get();
+        const e = parseExpr();
+        if (get() !== ')') err('括號唔對稱，檢查 ( )。');
+        return finishPostfix(e);
+      }
+      if (c === '0' || c === '1') {
+        get();
+        const v = +c;
+        return finishPostfix(() => v);
+      }
+      if (/[A-D]/.test(c)) {
+        const name = get();
+        if (!allowed[name]) err('呢課用緊 ' + names.join('、') + '，唔好用 ' + name + '。');
+        return finishPostfix(env => env[name] & 1);
+      }
+      if (!c) err('公式未寫完。');
+      err('唔認得「' + c + '」。可用 A–D、·、＋、\'、NOT、~、括號。');
+    }
+    function finishPostfix(node) {
+      while (peek() === "'") {
+        get();
+        const inner = node;
+        node = env => (inner(env) ^ 1) & 1;
+      }
+      return node;
+    }
+
+    try {
+      const fn = parseExpr();
+      if (i < s.length) err('多餘字元「' + s.slice(i) + '」。');
+      return { ok: true, eval: fn, normalized: s };
+    } catch (e) {
+      return { ok: false, error: e.message || '無法解析公式。' };
+    }
+  }
+
+  function ttLiveEvalAll(fn, n) {
+    const names = ttLiveVarNames(n);
+    const N = 1 << n;
+    const vals = [];
+    for (let m = 0; m < N; m++) {
+      const env = {};
+      for (let i = 0; i < n; i++) env[names[i]] = (m >> (n - 1 - i)) & 1;
+      vals.push(fn(env) & 1);
+    }
+    return vals;
+  }
+
+  function ttLiveDerive(vals, n) {
+    const ones = [];
+    let missing = 0;
+    vals.forEach((v, i) => {
+      if (v === null || v === undefined) missing++;
+      else if (v === 1) ones.push(i);
+    });
+    const N = 1 << n;
+    const filled = vals.map(v => (v === null || v === undefined) ? null : v);
+    const allFilled = missing === 0;
+    let sigma = '';
+    let sop = '';
+    let simplified = '';
+    if (ones.length === 0 && allFilled) {
+      sigma = 'Σm( )';
+      sop = '0';
+      simplified = '0';
+    } else if (allFilled && ones.length === N) {
+      sigma = 'Σm(' + ones.join(', ') + ')';
+      sop = '1';
+      simplified = '1';
+    } else {
+      sigma = ones.length ? ('Σm(' + ones.join(', ') + ')') : 'Σm( )';
+      sop = ones.length ? ones.map(i => ttLiveMintermExpr(i, n)).join('＋') : '0';
+      simplified = ones.length ? ttLiveSimplify(ones, n) : '0';
+    }
+    return { ones: ones, sigma: sigma, sop: sop, simplified: simplified, missing: missing, allFilled: allFilled };
+  }
+
+  function ttLiveRenderPanel(der, opts) {
+    opts = opts || {};
+    const note = der.missing
+      ? ('尚有 ' + der.missing + ' 格未填（?）；Σm／SOP 只計已填嘅 1。')
+      : '全部格已填。';
+    let err = opts.error ? ('<div class="live-err">' + esc(opts.error) + '</div>') : '';
+    return '' +
+      '<h4>即時公式</h4>' +
+      '<div class="live-row"><div class="live-lab">Σm（F＝1）</div><div class="live-val">' + boolHtml(der.sigma) + '</div></div>' +
+      '<div class="live-row"><div class="live-lab">標準 SOP</div><div class="live-val">' + boolHtml('F＝' + der.sop) + '</div></div>' +
+      '<div class="live-row"><div class="live-lab">簡式（≤4 變數）</div><div class="live-val">' + boolHtml('F＝' + der.simplified) + '</div></div>' +
+      '<div class="live-note">' + esc(note) + '</div>' + err;
+  }
+
+  function ttLiveUpdatePanel(opts) {
+    const box = $('ttLivePanel');
+    if (!box) return;
+    const n = ttLive.n;
+    const { vals, missing } = ttLiveReadValues();
+    const der = ttLiveDerive(vals, n);
+    box.innerHTML = ttLiveRenderPanel(der, opts);
+    // side support live strip
+    const side = $('ttLiveSideSync');
+    if (side) {
+      side.innerHTML = '<div class="live-lab">即時</div><div class="live-val">' +
+        boolHtml(der.sigma) + '</div><div class="live-val">' + boolHtml('F＝' + der.simplified) + '</div>';
+    }
+    return der;
+  }
+
+  function ttLiveBuildTruthHtml(n) {
+    const names = ttLiveVarNames(n);
+    const N = 1 << n;
+    let body = '<table class="tt-fill" id="ttLiveTable"><thead><tr>';
+    names.forEach(h => { body += '<th>' + h + '</th>'; });
+    body += '<th>編號</th><th>F</th></tr></thead><tbody>';
+    for (let m = 0; m < N; m++) {
+      body += '<tr data-row="' + m + '">';
+      for (let i = 0; i < n; i++) {
+        body += '<td>' + ((m >> (n - 1 - i)) & 1) + '</td>';
+      }
+      body += '<td>' + m + '</td>';
+      body += '<td class="fcell"><button type="button" class="bit" data-row="' + m + '" data-val="">?</button></td>';
+      body += '</tr>';
+    }
+    body += '</tbody></table>';
+    body += '<p style="font-size:.8rem;color:#64748b">撳 F：? → 0 → 1。</p>';
+    return body;
+  }
+
+  function ttLiveBuildKmapHtml(n) {
+    const layout = ttLiveKmapLayout(n);
+    let body = '<div class="kmap-wrap"><table class="kmap-grid" id="ttLiveKmap"><thead><tr><th class="kmap-corner"></th>';
+    layout.colLabels.forEach(h => { body += '<th>' + boolHtml(h) + '</th>'; });
+    body += '</tr></thead><tbody>';
+    for (let r = 0; r < layout.rows; r++) {
+      body += '<tr><th>' + boolHtml(layout.rowLabels[r] || '') + '</th>';
+      for (let c = 0; c < layout.cols; c++) {
+        const di = r * layout.cols + c;
+        const m = layout.cellMinterms[di];
+        body += '<td class="kmap-cell"><button type="button" class="kbit" data-idx="' + di +
+          '" data-minterm="' + m + '" data-val="" title="m' + m + '">?</button></td>';
+      }
+      body += '</tr>';
+    }
+    body += '</tbody></table>';
+    body += '<p class="kmap-hint">K-map 同真值表雙向同步（Gray code 軸）。</p></div>';
+    return body;
+  }
+
+  function renderTtLive(pr) {
+    const n0 = pr.defaultVars || 3;
+    ttLive.n = n0;
+    ttLive.lastSrc = null;
+    ttLive.formulaTouched = false;
+    let body = '<p class="try-note">' + boolHtml(pr.prompt || '') + '</p>';
+    body += '<div class="tt-live-vars"><label>變數數</label>';
+    [2, 3, 4].forEach(n => {
+      body += '<button type="button" class="var-btn' + (n === n0 ? ' active' : '') + '" data-n="' + n + '">' +
+        n + '（' + ttLiveVarNames(n).join('') + '）</button>';
+    });
+    body += '</div>';
+    body += '<div class="tt-live-wrap">';
+    body += '<div id="ttLiveTableWrap">' + ttLiveBuildTruthHtml(n0) + '</div>';
+    body += '<div class="tt-live-panel" id="ttLivePanel"></div>';
+    body += '</div>';
+    body += '<div class="tt-live-formula-box"><label for="ttLiveFormula">輸入／貼上布林公式（即時更新表同 K-map）</label>';
+    body += '<input type="text" id="ttLiveFormula" placeholder="例：A\'·B ＋ C  或  (A＋B)\'  或  NOT A" autocomplete="off" spellcheck="false">';
+        body += '<div class="ex">支援 · ＊ &amp; AND、＋ + OR、\'／NOT／~、括號；變數 A–D。XOR 可用 ⊕ 或 ^。</div></div>';
+    body += '<div id="ttLiveKmapWrap">' + ttLiveBuildKmapHtml(n0) + '</div>';
+    return body;
+  }
+
 
   function bitToggleHtml(cls, rowAttr) {
     return '<button type="button" class="' + cls + '" ' + rowAttr + ' data-val="">?</button>';
@@ -276,6 +750,8 @@
         body += '</div>';
       }
       body += '</div>';
+    } else if (pr.type === 'tt-live') {
+      body += renderTtLive(pr);
     } else if (pr.type === 'design') {
       body += '<p class="try-note"><strong>情境：</strong>' + boolHtml(pr.scenario || pr.prompt || '') + '</p>';
       (pr.steps || []).forEach((st, si) => {
@@ -296,11 +772,12 @@
     }
 
     const first = isFirstLivePractice(lesson.id);
+    const checkLabel = (pr.type === 'tt-live') ? '標為已練' : '檢查答案';
     body += '<div class="btn-row">' +
       '<button type="button" class="btn btn-ghost" id="prevBtn"' +
       (first ? ' disabled title="已經係第一題"' : '') + '>上一題</button>' +
       '<button type="button" class="btn btn-ghost" id="hintBtn">提示</button>' +
-      '<button type="button" class="btn btn-primary" id="checkBtn">檢查答案</button>' +
+      '<button type="button" class="btn btn-primary" id="checkBtn">' + checkLabel + '</button>' +
       '<button type="button" class="btn btn-ghost" id="retryBtn">重試</button>' +
       '<button type="button" class="btn btn-secondary" id="nextBtn">下一題</button>' +
       '</div>';
@@ -373,6 +850,9 @@
     if (pr.type === 'truth') bindBitButtons('#ttFill button.bit');
     if (pr.type === 'design') {
       bindBitButtons('.design-step button.bit');
+    }
+    if (pr.type === 'tt-live') {
+      bindTtLive(lesson);
     }
 
     const status = $('practiceStatus');
@@ -487,6 +967,14 @@
         }
         explain.style.display = 'block';
         explain.innerHTML = '<strong>講解：</strong>' + boolHtml(pr.explain || '');
+      } else if (pr.type === 'tt-live') {
+        practiceChecked = true;
+        const der = ttLiveUpdatePanel();
+        status.textContent = '已標為練過。而家 Σm／SOP 會繼續即時更新。★';
+        status.className = 'status ok';
+        markDone(lesson.id);
+        explain.style.display = 'block';
+        explain.innerHTML = '<strong>講解：</strong>' + boolHtml(pr.explain || '');
       } else if (pr.type === 'design') {
         let allOk = true;
         let msgParts = [];
@@ -550,6 +1038,123 @@
     });
   }
 
+
+  function bindTtLive(lesson) {
+    const pr = lesson.practice || {};
+    ttLive.n = pr.defaultVars || 3;
+    ttLive.lastSrc = null;
+    ttLive.formulaTouched = false;
+
+    function cycleBit(btn) {
+      const cur = btn.getAttribute('data-val');
+      let next = '';
+      if (cur === '') next = '0';
+      else if (cur === '0') next = '1';
+      else next = '';
+      btn.setAttribute('data-val', next);
+      btn.textContent = next === '' ? '?' : next;
+      btn.classList.toggle('on', next === '1');
+      btn.classList.toggle('off', next === '0');
+    }
+
+    function mirrorFormulaFromDer(der) {
+      const inp = $('ttLiveFormula');
+      if (!inp) return;
+      // Table/K-map is source of truth: mirror 簡式 into input (not a parse loop — lastSrc guards).
+      if (!der.ones.length && der.allFilled) inp.value = '0';
+      else if (der.allFilled && der.sop === '1') inp.value = '1';
+      else if (der.ones.length) inp.value = der.simplified;
+      else inp.value = '';
+      ttLive.formulaTouched = false;
+    }
+
+    function onTableEdit() {
+      ttLive.lastSrc = 'table';
+      ttLiveSyncKmapFromTable(ttLive.n);
+      const der = ttLiveUpdatePanel();
+      mirrorFormulaFromDer(der);
+    }
+
+    function onKmapEdit() {
+      ttLive.lastSrc = 'kmap';
+      ttLiveSyncTableFromKmap(ttLive.n);
+      const der = ttLiveUpdatePanel();
+      mirrorFormulaFromDer(der);
+    }
+
+    function applyFormula(raw) {
+      ttLive.lastSrc = 'formula';
+      ttLive.formulaTouched = true;
+      const parsed = ttLiveParse(raw, ttLive.n);
+      if (!parsed.ok) {
+        ttLiveUpdatePanel({ error: parsed.error });
+        return;
+      }
+      const vals = ttLiveEvalAll(parsed.eval, ttLive.n);
+      ttLiveSetValues(vals, ttLive.n);
+      ttLiveUpdatePanel();
+    }
+
+    document.querySelectorAll('#ttLiveTable button.bit').forEach(btn => {
+      btn.addEventListener('click', () => {
+        cycleBit(btn);
+        onTableEdit();
+      });
+    });
+    document.querySelectorAll('#ttLiveKmap button.kbit').forEach(btn => {
+      btn.addEventListener('click', () => {
+        cycleBit(btn);
+        onKmapEdit();
+      });
+    });
+
+    document.querySelectorAll('.tt-live-vars button.var-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const n = +btn.getAttribute('data-n');
+        if (n === ttLive.n) return;
+        ttLive.n = n;
+        ttLive.formulaTouched = false;
+        ttLive.lastSrc = null;
+        document.querySelectorAll('.tt-live-vars button.var-btn').forEach(b => {
+          b.classList.toggle('active', +b.getAttribute('data-n') === n);
+        });
+        $('ttLiveTableWrap').innerHTML = ttLiveBuildTruthHtml(n);
+        $('ttLiveKmapWrap').innerHTML = ttLiveBuildKmapHtml(n);
+        document.querySelectorAll('#ttLiveTable button.bit').forEach(b => {
+          b.addEventListener('click', () => { cycleBit(b); onTableEdit(); });
+        });
+        document.querySelectorAll('#ttLiveKmap button.kbit').forEach(b => {
+          b.addEventListener('click', () => { cycleBit(b); onKmapEdit(); });
+        });
+        const inp = $('ttLiveFormula');
+        if (inp) inp.value = '';
+        ttLiveUpdatePanel();
+      });
+    });
+
+    const inp = $('ttLiveFormula');
+    if (inp) {
+      const run = () => {
+        if (ttLive.debounce) clearTimeout(ttLive.debounce);
+        ttLive.debounce = setTimeout(() => {
+          const v = inp.value;
+          if (!String(v).trim()) {
+            ttLiveUpdatePanel();
+            return;
+          }
+          applyFormula(v);
+        }, 180);
+      };
+      inp.addEventListener('input', run);
+      inp.addEventListener('change', run);
+    }
+
+    // Right-rail strip shell comes from renderSupport; fill after a tick if needed.
+    setTimeout(() => ttLiveUpdatePanel(), 0);
+    ttLiveUpdatePanel();
+  }
+
+
   function showLesson(id) {
     currentId = id;
     hintStep = 0;
@@ -601,6 +1206,7 @@
     mid.innerHTML = html;
     if (lesson.live && lesson.practice) bindPractice(lesson);
     renderSupport(lesson);
+    if (lesson.practice && lesson.practice.type === 'tt-live') ttLiveUpdatePanel();
 
     const goPrev = $('prevLesson');
     if (goPrev) goPrev.addEventListener('click', () => {
