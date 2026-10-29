@@ -178,7 +178,7 @@
     let html = '';
     if (lesson.practice && lesson.practice.type === 'tt-live') {
       html += '<div class="tt-live-panel" id="ttLiveSideSync"><div class="live-lab">即時</div>' +
-        '<div class="muted">填表或輸入公式後顯示 Σm／簡式</div></div>';
+        '<div class="muted">填表或輸入公式後顯示 Σm／簡式／邏輯圖</div></div>';
     }
     html += '<h3>定義</h3><dl class="defs"><dt>' + boolHtml(lesson.title || '') + '</dt><dd>' +
       boolHtml(s.definition || '見中欄教學。') + '</dd></dl>';
@@ -611,6 +611,368 @@
     return { ones: ones, sigma: sigma, sop: sop, simplified: simplified, missing: missing, allFilled: allFilled };
   }
 
+  /**
+   * Logic diagram is NOT+AND+OR from the simplified SOP (else standard SOP).
+   * XOR/⊕ is not drawn as an XOR gate: the live lab already evaluates it onto
+   * the truth table, and Quine–McCluskey rewrites it as SOP (A⊕B → A'·B＋A·B').
+   */
+  function ttLiveParseGateExpr(expr) {
+    let s = String(expr == null ? '' : expr).replace(/\s+/g, '');
+    if (!s) return { ok: false };
+    s = s.replace(/[′’']/g, "'").replace(/[⋅•]/g, '·');
+    if (s === '0' || s === '1') return { ok: true, kind: 'const', value: s };
+    const chunks = s.split(/＋|\+/);
+    const terms = [];
+    for (let ci = 0; ci < chunks.length; ci++) {
+      const chunk = chunks[ci];
+      if (!chunk) return { ok: false };
+      if (chunk === '1') return { ok: true, kind: 'const', value: '1' };
+      if (chunk === '0') continue;
+      const bits = chunk.split(/·|\*/);
+      const lits = [];
+      for (let bi = 0; bi < bits.length; bi++) {
+        const m = /^([A-D])('*)$/.exec(bits[bi]);
+        if (!m) return { ok: false };
+        lits.push({ v: m[1], inv: (m[2].length % 2) === 1 });
+      }
+      if (!lits.length) return { ok: false };
+      terms.push(lits);
+    }
+    if (!terms.length) return { ok: true, kind: 'const', value: '0' };
+    return { ok: true, kind: 'sop', terms: terms };
+  }
+
+  function ttLiveCircuitBlurb(model) {
+    if (model.kind === 'const') {
+      return model.value === '1'
+        ? '常數 1：輸出一直係高，唔接輸入。'
+        : '常數 0：輸出一直係低，唔接輸入。';
+    }
+    const terms = model.terms;
+    const anyInv = terms.some(t => t.some(l => l.inv));
+    const anyAnd = terms.some(t => t.length >= 2);
+    const multi = terms.length >= 2;
+    if (!multi && !anyAnd && !anyInv) return '單一變數：F 直接由輸入連去輸出，唔使閘。';
+    if (!multi && !anyAnd && anyInv) return '一個 NOT（反相器）。';
+    if (!multi && anyAnd) return '一個乘積項：AND' + (anyInv ? '，補數輸入先經 NOT。' : '。');
+    if (multi && !anyAnd) return '多個輸入相或：OR' + (anyInv ? '，補數先經 NOT。' : '。');
+    return '積之和：每個乘積項一個 AND，輸出再入 OR' + (anyInv ? '；補數輸入用 NOT。' : '。');
+  }
+
+  function ttLiveCircuitSvg(model) {
+    const px = n => String(Math.round(n * 10) / 10);
+    const INK = '#111827';
+    const parts = [];
+    function wirePath(d) {
+      parts.push('<path d="' + d + '" fill="none" stroke="' + INK + '" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>');
+    }
+    function hWire(x1, x2, y, hopXs) {
+      if (x2 < x1) return;
+      const r = 4.5;
+      const hops = (hopXs || []).filter(hx => hx > x1 + r + 0.5 && hx < x2 - r - 0.5).sort((a, b) => a - b);
+      hops.forEach(hx => {
+        parts.push('<path d="M ' + px(hx - r) + ' ' + px(y) + ' A ' + r + ' ' + r + ' 0 0 0 ' +
+          px(hx + r) + ' ' + px(y) + ' Z" fill="#fff" stroke="none"/>');
+      });
+      let d = 'M ' + px(x1) + ' ' + px(y);
+      hops.forEach(hx => {
+        d += ' L ' + px(hx - r) + ' ' + px(y);
+        d += ' A ' + r + ' ' + r + ' 0 0 0 ' + px(hx + r) + ' ' + px(y);
+      });
+      d += ' L ' + px(x2) + ' ' + px(y);
+      wirePath(d);
+    }
+    function label(text, x, y, anchor) {
+      parts.push('<text x="' + px(x) + '" y="' + px(y) + '" text-anchor="' + anchor +
+        '" dominant-baseline="central" font-family="\'Noto Sans TC\',\'Microsoft JhengHei\',system-ui,sans-serif" font-size="15" font-weight="700" fill="' + INK + '">' +
+        text + '</text>');
+    }
+    function svgWrap(w, h, body, aria) {
+      return '<svg class="ckt" xmlns="http://www.w3.org/2000/svg" width="' + px(w) + '" height="' + px(h) +
+        '" viewBox="0 0 ' + px(w) + ' ' + px(h) + '" role="img" aria-label="邏輯圖 ' + esc(aria) + '" focusable="false">' +
+        '<title>邏輯圖 ' + esc(aria) + '</title>' +
+        '<rect width="100%" height="100%" fill="#fff"/>' + body + '</svg>';
+    }
+
+    if (model.kind === 'const') {
+      const w = 196;
+      const h = 72;
+      const body =
+        '<rect x="28" y="20" width="42" height="32" rx="6" fill="#fff" stroke="' + INK + '" stroke-width="1.8"/>' +
+        '<text x="49" y="36" text-anchor="middle" dominant-baseline="central" font-family="ui-monospace,Consolas,monospace" font-size="18" font-weight="700" fill="' + INK + '">' + model.value + '</text>' +
+        '<path d="M 70 36 H 150" fill="none" stroke="' + INK + '" stroke-width="1.7" stroke-linecap="round"/>' +
+        '<text x="158" y="36" text-anchor="start" dominant-baseline="central" font-family="\'Noto Sans TC\',system-ui,sans-serif" font-size="16" font-weight="700" fill="' + INK + '">F</text>';
+      return svgWrap(w, h, body, 'F=' + model.value);
+    }
+
+    const terms = model.terms;
+    const varOrder = ['A', 'B', 'C', 'D'];
+    const used = [];
+    terms.forEach(t => t.forEach(l => { if (used.indexOf(l.v) < 0) used.push(l.v); }));
+    used.sort((a, b) => varOrder.indexOf(a) - varOrder.indexOf(b));
+
+    const anyInv = terms.some(t => t.some(l => l.inv));
+    const anyAnd = terms.some(t => t.length >= 2);
+    const multi = terms.length >= 2;
+
+    const PITCH = 30;
+    const PAD = 13;
+    const GAP = 18;
+    const BAND1 = 34;
+    const railDx = 36;
+    const taps = {};
+    used.forEach(v => { taps[v] = []; });
+
+    const needHeaders = used.some(v => {
+      let c = 0;
+      terms.forEach(t => t.forEach(l => { if (l.v === v) c++; }));
+      return c >= 2;
+    });
+    let y = needHeaders ? 42 : 16;
+    const bands = terms.map(term => {
+      const k = term.length;
+      const h = k >= 2 ? (PAD * 2 + (k - 1) * PITCH) : BAND1;
+      const top = y;
+      const inputs = [];
+      if (k <= 1) inputs.push(top + h / 2);
+      else for (let i = 0; i < k; i++) inputs.push(top + PAD + i * PITCH);
+      const mid = (inputs[0] + inputs[inputs.length - 1]) / 2;
+      y += h + GAP;
+      return { term: term, top: top, h: h, inputs: inputs, mid: mid };
+    });
+    bands.forEach(b => {
+      b.term.forEach((lit, li) => {
+        taps[lit.v].push({ y: b.inputs[li], inv: lit.inv, band: b, li: li });
+      });
+    });
+
+    const hasShared = used.some(v => taps[v].length >= 2);
+    const hasSingle = used.some(v => taps[v].length < 2);
+    const rail0 = hasShared && hasSingle ? 78 : 52;
+    const pinX = hasShared ? 46 : 52;
+    const railX = {};
+    let railN = 0;
+    used.forEach(v => {
+      if (taps[v].length >= 2) {
+        railX[v] = rail0 + railN * railDx;
+        railN++;
+      }
+    });
+    function srcX(v) { return taps[v].length >= 2 ? railX[v] : pinX; }
+    const lastX = used.length ? Math.max.apply(null, used.map(srcX)) : 24;
+    const hopRails = used.filter(v => taps[v].length >= 2).map(v => railX[v]);
+
+    const NOT_TRI_W = 18;
+    const NOT_TRI_H = 18;
+    const NOT_R = 4.4;
+    function notOutDelta() { return NOT_TRI_W + NOT_R * 2 - 0.35; }
+
+    let cursor = lastX + 28;
+    let xNotIn = null;
+    let xNotOut = null;
+    if (anyInv) {
+      xNotIn = cursor;
+      xNotOut = xNotIn + notOutDelta();
+      cursor = xNotOut + 18;
+    }
+    let xAndIn = null;
+    if (anyAnd) {
+      xAndIn = cursor;
+    }
+
+    function andGeom(x, top, h) {
+      const depth = Math.min(26, h / 2);
+      const flat = 16;
+      const right = x + flat;
+      const out = right + depth;
+      const d = 'M ' + px(x) + ' ' + px(top) + ' H ' + px(right) +
+        ' A ' + px(depth) + ' ' + px(h / 2) + ' 0 0 1 ' + px(right) + ' ' + px(top + h) +
+        ' H ' + px(x) + ' Z';
+      return { d: d, out: out };
+    }
+
+    const andOut = {};
+    let maxAndOut = xAndIn || cursor;
+    if (anyAnd) {
+      bands.forEach((b, bi) => {
+        if (b.term.length >= 2) {
+          const g = andGeom(xAndIn, b.top, b.h);
+          andOut[bi] = g;
+          if (g.out > maxAndOut) maxAndOut = g.out;
+        }
+      });
+    }
+
+    const gateRight = anyAnd ? maxAndOut : (anyInv ? xNotOut : lastX);
+    const OR_BACK = 0.36;
+    const OR_BOW = 0.66;
+    let or = null;
+    if (multi) {
+      const top = bands[0].mid - 15;
+      const bot = bands[bands.length - 1].mid + 15;
+      const h = Math.max(40, bot - top);
+      const w = Math.max(50, Math.min(64, h * 0.58));
+      or = { x: gateRight + 26, y: top, w: w, h: h };
+    }
+
+    function orHitX(wireY) {
+      const t = Math.min(1, Math.max(0, (wireY - or.y) / or.h));
+      const back = or.w * OR_BACK;
+      const bow = or.w * OR_BOW;
+      const lx = (1 - t) * (1 - t) * back + 2 * (1 - t) * t * bow + t * t * back;
+      return or.x + lx;
+    }
+
+    const wAfterNot = [];
+    const wAfterAnd = [];
+    const wAfterOr = [];
+    function stub(bucket, x1, x2, y) {
+      if (x2 < x1) return;
+      bucket.push('<path d="M ' + px(x1) + ' ' + px(y) + ' H ' + px(x2) + '" fill="none" stroke="' + INK + '" stroke-width="1.7" stroke-linecap="butt"/>');
+    }
+
+    // Rails
+    if (needHeaders) {
+      used.forEach(v => {
+        if (taps[v].length < 2) return;
+        const ys = taps[v].map(t => t.y);
+        const y2 = Math.max.apply(null, ys);
+        wirePath('M ' + px(railX[v]) + ' 28 L ' + px(railX[v]) + ' ' + px(y2));
+      });
+    }
+
+    bands.forEach((b, bi) => {
+      const isAnd = b.term.length >= 2;
+      b.term.forEach((lit, li) => {
+        const wy = b.inputs[li];
+        const x0 = srcX(lit.v);
+        let xEnd;
+        if (lit.inv) xEnd = xNotIn;
+        else if (isAnd) xEnd = xAndIn;
+        else if (multi) xEnd = orHitX(b.mid) + 1.2;
+        else xEnd = gateRight + 36;
+        hWire(x0, xEnd, wy, hopRails.filter(hx => hx !== x0));
+        if (lit.inv) {
+          const nx = xNotOut;
+          if (isAnd) stub(wAfterNot, nx, xAndIn, wy);
+          else if (multi) stub(wAfterAnd, nx, orHitX(b.mid) + 1.2, wy);
+          else stub(wAfterNot, nx, xNotOut + 28, wy);
+        }
+      });
+      if (isAnd) {
+        const g = andOut[bi];
+        if (multi) stub(wAfterAnd, g.out, orHitX(b.mid) + 1.2, b.mid);
+        else stub(wAfterAnd, g.out, g.out + 28, b.mid);
+      }
+    });
+
+    const notGates = [];
+    const andGates = [];
+    const orGates = [];
+    bands.forEach((b, bi) => {
+      b.term.forEach((lit, li) => {
+        if (!lit.inv) return;
+        const cy = b.inputs[li];
+        const top = cy - NOT_TRI_H / 2;
+        const tip = xNotIn + NOT_TRI_W;
+        const bcx = tip + NOT_R - 0.35;
+        notGates.push('<path d="M ' + px(xNotIn) + ' ' + px(top) + ' L ' + px(tip) + ' ' + px(cy) + ' L ' + px(xNotIn) + ' ' + px(top + NOT_TRI_H) + ' Z" fill="#fff" stroke="' + INK + '" stroke-width="1.8" stroke-linejoin="miter"/>');
+        notGates.push('<circle cx="' + px(bcx) + '" cy="' + px(cy) + '" r="' + NOT_R + '" fill="#fff" stroke="' + INK + '" stroke-width="1.8"/>');
+      });
+      if (b.term.length >= 2) {
+        andGates.push('<path d="' + andOut[bi].d + '" fill="#fff" stroke="' + INK + '" stroke-width="1.8" stroke-linejoin="miter"/>');
+      }
+    });
+    if (or) {
+      const x = or.x, y0 = or.y, w = or.w, h = or.h;
+      const ym = y0 + h / 2;
+      const xb = x + w * OR_BACK;
+      const bow = x + w * OR_BOW;
+      const sh = x + w * 0.72;
+      const tip = x + w;
+      const d = 'M ' + px(xb) + ' ' + px(y0) +
+        ' Q ' + px(bow) + ' ' + px(ym) + ' ' + px(xb) + ' ' + px(y0 + h) +
+        ' Q ' + px(sh) + ' ' + px(y0 + h) + ' ' + px(tip) + ' ' + px(ym) +
+        ' Q ' + px(sh) + ' ' + px(y0) + ' ' + px(xb) + ' ' + px(y0) + ' Z';
+      orGates.push('<path d="' + d + '" fill="#fff" stroke="' + INK + '" stroke-width="1.8" stroke-linejoin="round"/>');
+      stub(wAfterOr, tip, tip + 26, ym);
+    }
+    parts.push(notGates.join(''));
+    parts.push(wAfterNot.join(''));
+    parts.push(andGates.join(''));
+    parts.push(wAfterAnd.join(''));
+    parts.push(orGates.join(''));
+    parts.push(wAfterOr.join(''));
+
+    // Junction dots on shared nets only (drawn above wires)
+    used.forEach(v => {
+      if (taps[v].length < 2) return;
+      taps[v].forEach(t => {
+        parts.push('<circle cx="' + px(railX[v]) + '" cy="' + px(t.y) + '" r="3.15" fill="' + INK + '"/>');
+      });
+    });
+
+    used.forEach(v => {
+      if (taps[v].length >= 2) {
+        label(v, railX[v], 14, 'middle');
+      } else {
+        label(v, pinX - 8, taps[v][0].y, 'end');
+      }
+    });
+
+    let fX, fY;
+    if (or) {
+      fX = or.x + or.w + 26 + 6;
+      fY = or.y + or.h / 2;
+    } else if (anyAnd) {
+      const g = andOut[0];
+      fX = g.out + 28 + 6;
+      fY = bands[0].mid;
+    } else if (anyInv) {
+      fX = xNotOut + 28 + 6;
+      fY = bands[0].mid;
+    } else {
+      fX = lastX + 36 + 6;
+      fY = bands[0].mid;
+    }
+    label('F', fX, fY, 'start');
+
+    const yBottom = Math.max(y - GAP, or ? or.y + or.h : 0, fY) + 16;
+    const xRight = fX + 18;
+    const desc = terms.map(t => t.map(l => l.v + (l.inv ? "'" : '')).join('*')).join('+');
+    return svgWrap(Math.max(160, xRight), Math.max(64, yBottom), parts.join(''), 'F=' + desc);
+  }
+
+  function ttLivePickCircuit(der) {
+    const simp = String(der.simplified || '').trim();
+    const sop = String(der.sop || '').trim();
+    if (simp) {
+      const m = ttLiveParseGateExpr(simp);
+      if (m.ok) return { model: m, expr: simp, src: '簡式' };
+    }
+    if (sop) {
+      const m = ttLiveParseGateExpr(sop);
+      if (m.ok) return { model: m, expr: sop, src: '標準 SOP' };
+    }
+    return null;
+  }
+
+  function ttLiveCircuitHtml(der) {
+    const chosen = ttLivePickCircuit(der);
+    if (!chosen) {
+      return '<h4>邏輯圖</h4><div class="ckt-cap">暫時畫唔到呢條式。邏輯圖支援常數 0／1、單項、乘積同積之和（SOP）。</div>';
+    }
+    const missing = der.missing
+      ? '<div class="ckt-cap">仲有未填格（?）。邏輯圖跟而家嘅' + chosen.src + '，只計已填嘅 1。</div>'
+      : '';
+    return '<h4>邏輯圖</h4>' +
+      '<div class="ckt-cap">跟' + chosen.src + '畫，只用 NOT、AND、OR（⊕／XOR 會先化成 SOP，唔畫異或閘）。' +
+      ttLiveCircuitBlurb(chosen.model) + '</div>' +
+      '<div class="ckt-scroll" data-expr="' + esc(chosen.expr) + '">' + ttLiveCircuitSvg(chosen.model) + '</div>' +
+      '<div class="live-val">F＝' + boolHtml(chosen.expr) + '</div>' +
+      missing;
+  }
+
   function ttLiveRenderPanel(der, opts) {
     opts = opts || {};
     const note = der.missing
@@ -636,8 +998,11 @@
     const side = $('ttLiveSideSync');
     if (side) {
       side.innerHTML = '<div class="live-lab">即時</div><div class="live-val">' +
-        boolHtml(der.sigma) + '</div><div class="live-val">' + boolHtml('F＝' + der.simplified) + '</div>';
+        boolHtml(der.sigma) + '</div><div class="live-val">' + boolHtml('F＝' + der.simplified) + '</div>' +
+        '<div class="live-note">邏輯圖跟簡式（NOT＋AND＋OR）</div>';
     }
+    const circ = $('ttLiveCircuit');
+    if (circ) circ.innerHTML = ttLiveCircuitHtml(der);
     return der;
   }
 
@@ -697,9 +1062,10 @@
     body += '<div id="ttLiveTableWrap">' + ttLiveBuildTruthHtml(n0) + '</div>';
     body += '<div class="tt-live-panel" id="ttLivePanel"></div>';
     body += '</div>';
-    body += '<div class="tt-live-formula-box"><label for="ttLiveFormula">輸入／貼上布林公式（即時更新表同 K-map）</label>';
+    body += '<div class="tt-live-formula-box"><label for="ttLiveFormula">輸入／貼上布林公式（即時更新表、K-map 同邏輯圖）</label>';
     body += '<input type="text" id="ttLiveFormula" placeholder="例：A\'·B ＋ C  或  (A＋B)\'  或  NOT A" autocomplete="off" spellcheck="false">';
-        body += '<div class="ex">支援 · ＊ &amp; AND、＋ + OR、\'／NOT／~、括號；變數 A–D。XOR 可用 ⊕ 或 ^。</div></div>';
+    body += '<div class="ex">支援 · ＊ &amp; AND、＋ + OR、\'／NOT／~、括號；變數 A–D。XOR 可用 ⊕ 或 ^（邏輯圖會化成 SOP）。</div></div>';
+    body += '<div class="tt-live-circuit" id="ttLiveCircuit"></div>';
     body += '<div id="ttLiveKmapWrap">' + ttLiveBuildKmapHtml(n0) + '</div>';
     return body;
   }
@@ -970,7 +1336,7 @@
       } else if (pr.type === 'tt-live') {
         practiceChecked = true;
         const der = ttLiveUpdatePanel();
-        status.textContent = '已標為練過。而家 Σm／SOP 會繼續即時更新。★';
+        status.textContent = '已標為練過。而家 Σm／SOP／邏輯圖會繼續即時更新。★';
         status.className = 'status ok';
         markDone(lesson.id);
         explain.style.display = 'block';

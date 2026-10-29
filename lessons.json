@@ -1471,21 +1471,21 @@
       "live": true,
       "practice": {
         "type": "tt-live",
-        "prompt": "左邊填真值表或 K-map，右邊即時出 Σm 同 SOP；亦可喺下方輸入布林式，表同 K-map 即時更新。",
+        "prompt": "左邊填真值表或 K-map，右邊即時出 Σm、SOP 同邏輯圖；亦可喺下方輸入布林式，表、K-map 同電路一齊更新。",
         "defaultVars": 3,
-        "explain": "F＝1 嘅編號組成 Σm；每格 1 對應一個 minterm 乘積項。全部 0 → F＝0；全部 1 → F＝1。輸入式支援 · ＋ '／NOT 同括號。"
+        "explain": "F＝1 嘅編號組成 Σm；每格 1 對應一個 minterm 乘積項。全部 0 → F＝0；全部 1 → F＝1。邏輯圖跟簡式，用 NOT＋AND＋OR；⊕ 會化成 SOP 再畫。輸入式支援 · ＋ '／NOT 同括號。"
       },
       "support": {
-        "definition": "由真值表即時讀 Σm（F＝1 編號）同標準 SOP（minterm 展開）。亦可輸入布林式反推真值表。",
-        "example": "例如撳 F 令編號 0,1,2,3 為 1（三變數）→ Σm(0,1,2,3) → 標準 SOP 展開 → 簡式可能係 A'。",
-        "tip": "雙向：改表／K-map → 公式；打公式 → 表／K-map。解析失敗唔會清空已填表。",
+        "definition": "由真值表即時讀 Σm（F＝1 編號）、標準 SOP，同埋跟簡式畫嘅邏輯圖（NOT／AND／OR）。亦可輸入布林式反推真值表。",
+        "example": "例如輸入 A'·B ＋ A·B'（或 A⊕B）→ 簡式同異或一樣 → 邏輯圖係兩個 AND 入一個 OR，補輸入經 NOT。",
+        "tip": "雙向：改表／K-map → 公式同邏輯圖；打公式 → 表／K-map／電路。解析失敗唔會清空已填表。⊕ 會化成 SOP 再畫閘。",
         "guidedHints": [
           "先揀 2／3／4 變數，再逐行撳 F：?→0→1。",
-          "右邊會即時列出 Σm 同標準 SOP（補式用上劃線）。",
-          "試喺公式欄輸入 A'＋B 或 (A＋B)'，睇表同 K-map 點變。"
+          "右邊會即時列出 Σm、標準 SOP，同埋跟簡式畫嘅邏輯圖（補式用上劃線）。",
+          "試輸入 A'·B ＋ A·B' 或 A⊕B，睇電路係咪 NOT＋AND＋OR。"
         ]
       },
-      "teach": "\n<p><strong>實驗室：</strong>填真值表或 K-map，右邊<strong>即時</strong>顯示 Σm 同標準 SOP；亦可輸入布林公式，表同 K-map 即時更新。</p>\n<ul>\n  <li>變數：A、B（、C、D）；F＝1 嘅行編號入 Σm。</li>\n  <li>標準 SOP＝各 minterm 用 · 同 ＋ 展開；補變數用上劃線。</li>\n  <li>公式輸入可用 <span class=\"kw\">·</span>、<span class=\"kw\">＋</span>、<span class=\"kw\">'</span>／NOT、括號。</li>\n</ul>\n<div class=\"tip\">唔使撳「檢查」先出公式——改完即變。解析失敗會顯示提示，但唔清空真值表。</div>\n"
+      "teach": "\n<p><strong>實驗室：</strong>填真值表或 K-map，右邊<strong>即時</strong>顯示 Σm、標準 SOP，同埋跟簡式畫嘅<strong>邏輯圖</strong>；亦可輸入布林公式，表、K-map 同電路一齊更新。</p>\n<ul>\n  <li>變數：A、B（、C、D）；F＝1 嘅行編號入 Σm。</li>\n  <li>標準 SOP＝各 minterm 用 · 同 ＋ 展開；補變數用上劃線。</li>\n  <li>邏輯圖跟<strong>簡式</strong>（冇簡式先用標準 SOP）：NOT、AND、OR。常數 0／1、單項、乘積、積之和都會畫。</li>\n  <li>公式可用 <span class=\"kw\">·</span>、<span class=\"kw\">＋</span>、<span class=\"kw\">'</span>／NOT、括號；<span class=\"kw\">⊕</span> 會先化成 SOP 再畫（唔用異或閘符號）。</li>\n</ul>\n<div class=\"tip\">唔使撳「檢查」先出公式同電路——改完即變。解析失敗會顯示提示，但唔清空真值表。</div>\n"
     },
     {
       "id": "c4-intro",
