@@ -1,5 +1,5 @@
 {
-  "version": 6,
+  "version": 7,
   "titleZh": "數位邏輯自學 · 三欄（DAT）",
   "uiNoteZh": "校本自製示意圖 · DAT",
   "chapters": [
@@ -2809,7 +2809,7 @@
       "title": "二進制同十六進制互轉",
       "pill": "十六進制",
       "live": true,
-      "teach": "\n<p><strong>十六進制（hex）</strong>用 0–9 同 A–F（10–15）。因為 16＝2⁴，<strong>每 4 個二進位＝1 個 hex 位</strong>。</p>\n<ul>\n  <li>二→十六：由右每 4 位一組，不足補 0，再查表</li>\n  <li>十六→二：每位換成 4 位二進制</li>\n</ul>\n<table class=\"mini\">\n  <tr><th>十</th><td>10</td><td>11</td><td>12</td><td>13</td><td>14</td><td>15</td></tr>\n  <tr><th>hex</th><td>A</td><td>B</td><td>C</td><td>D</td><td>E</td><td>F</td></tr>\n  <tr><th>二</th><td>1010</td><td>1011</td><td>1100</td><td>1101</td><td>1110</td><td>1111</td></tr>\n</table>\n<p>例：1101 1110₂ → D E → <strong>DE₁₆</strong>。</p>\n",
+      "teach": "\n<p><strong>十六進制（hex）</strong>用 0–9 同 A–F（10–15）。因為 16＝2⁴，<strong>每 4 個二進位＝1 個 hex 位</strong>。</p>\n<ul>\n  <li>二→十六：由右每 4 位一組，不足補 0，再查表</li>\n  <li>十六→二：每位換成 4 位二進制</li>\n</ul>\n<table class=\"mini\">\n  <tr><th>十</th><td>10</td><td>11</td><td>12</td><td>13</td><td>14</td><td>15</td></tr>\n  <tr><th>hex</th><td>A</td><td>B</td><td>C</td><td>D</td><td>E</td><td>F</td></tr>\n  <tr><th>二</th><td>1010</td><td>1011</td><td>1100</td><td>1101</td><td>1110</td><td>1111</td></tr>\n</table>\n<p>例：1101 1110₂ → D E → <strong>DE₁₆</strong>。</p>\n<figure class=\"gate-fig\">\n  <img src=\"assets/c5_hex.png\" alt=\"十六進制四位一組：1101 1010 → DA\">\n  <div class=\"gate-meta\">由右每 4 位一組；圖例高位 nibble 1101＝D，低位 1010＝A，所以 1101 1010₂＝DA₁₆。</div>\n</figure>\n",
       "practice": {
         "type": "mcq",
         "prompt": "二進制 1011 0110₂ 嘅十六進制係？",
@@ -3161,7 +3161,7 @@
       "title": "編碼器：多線 → 二進碼",
       "pill": "編碼",
       "live": true,
-      "teach": "\n<p><strong>編碼器（encoder）</strong>大致係解碼器反向：多條輸入（常 one-hot）→ 較少位嘅二進編碼。</p>\n<ul>\n  <li>4-to-2：Y1／Y2／Y3／Y0 之一為 1 → 輸出 01／10／11／00</li>\n  <li><strong>優先編碼器</strong>：多個輸入同時為 1 時，輸出優先級最高嗰個編號</li>\n</ul>\n<div class=\"tip\">鍵盤掃描、中斷優先常用優先編碼概念。</div>\n",
+      "teach": "\n<p><strong>編碼器（encoder）</strong>大致係解碼器反向：多條輸入（常 one-hot）→ 較少位嘅二進編碼。</p>\n<ul>\n  <li>4-to-2：Y1／Y2／Y3／Y0 之一為 1 → 輸出 01／10／11／00</li>\n  <li><strong>優先編碼器</strong>：多個輸入同時為 1 時，輸出優先級最高嗰個編號</li>\n</ul>\n<figure class=\"gate-fig\">\n  <img src=\"assets/c6_encoder.png\" alt=\"4-to-2 編碼器：只有 Y2＝1 時輸出 10\">\n  <div class=\"gate-meta\">解碼器相反：四條輸入一次只有一條係 1，編成兩位輸出。圖例 Y2＝1 → A1A0＝10。</div>\n</figure>\n<div class=\"tip\">鍵盤掃描、中斷優先常用優先編碼概念。</div>\n",
       "practice": {
         "type": "mcq",
         "prompt": "同「解碼器」功能最相反嘅係？",
@@ -3592,7 +3592,7 @@
       "title": "少數狀態表",
       "pill": "FSM",
       "live": true,
-      "teach": "\n<p><strong>有限狀態機 FSM</strong>：用狀態表／圖描述「而家狀態＋輸入 → 下一狀態＋輸出」。</p>\n<table class=\"mini\">\n  <tr><th>而家</th><th>輸入 X</th><th>下一</th><th>輸出 Z</th></tr>\n  <tr><td>S0</td><td>0</td><td>S0</td><td>0</td></tr>\n  <tr><td>S0</td><td>1</td><td>S1</td><td>0</td></tr>\n  <tr><td>S1</td><td>0</td><td>S0</td><td>0</td></tr>\n  <tr><td>S1</td><td>1</td><td>S1</td><td>1</td></tr>\n</table>\n<p>上表意思：連續見到 X＝1 就輸出 1（示意）。</p>\n",
+      "teach": "\n<p><strong>有限狀態機 FSM</strong>：用狀態表／圖描述「而家狀態＋輸入 → 下一狀態＋輸出」。</p>\n<table class=\"mini\">\n  <tr><th>而家</th><th>輸入 X</th><th>下一</th><th>輸出 Z</th></tr>\n  <tr><td>S0</td><td>0</td><td>S0</td><td>0</td></tr>\n  <tr><td>S0</td><td>1</td><td>S1</td><td>0</td></tr>\n  <tr><td>S1</td><td>0</td><td>S0</td><td>0</td></tr>\n  <tr><td>S1</td><td>1</td><td>S1</td><td>1</td></tr>\n</table>\n<p>上表意思：連續見到 X＝1 就輸出 1（示意）。</p>\n<figure class=\"gate-fig\">\n  <img src=\"assets/c8_fsm.png\" alt=\"3 態狀態機：圓圈係狀態，箭咀係轉換；每個轉換都喺 CLK 沿發生\">\n  <div class=\"gate-meta\">圖例 S0／S1／S2：X＝1 去下一態，X＝0 留原態；轉換都要等 CLK。</div>\n</figure>\n",
       "practice": {
         "type": "mcq",
         "prompt": "上表：而家 S0、X＝1，下一狀態係？",
