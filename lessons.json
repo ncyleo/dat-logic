@@ -1,5 +1,5 @@
 {
-  "version": 5,
+  "version": 6,
   "titleZh": "數位邏輯自學 · 三欄（DAT）",
   "uiNoteZh": "校本自製示意圖 · DAT",
   "chapters": [
@@ -2716,7 +2716,7 @@
       "title": "二進制位權：1、2、4、8…",
       "pill": "權重",
       "live": true,
-      "teach": "\n<p><strong>二進制（binary）</strong>每一位都有<strong>位權（weight）</strong>：由右（LSB）起係 2<sup>0</sup>、2<sup>1</sup>、2<sup>2</sup>…即 1、2、4、8、16…</p>\n<ul>\n  <li>某位係 <strong>1</strong> → 把該位權加落總和</li>\n  <li>某位係 <strong>0</strong> → 該位唔貢獻</li>\n</ul>\n<table class=\"mini\">\n  <tr><th>位</th><td>b<sub>3</sub></td><td>b<sub>2</sub></td><td>b<sub>1</sub></td><td>b<sub>0</sub></td></tr>\n  <tr><th>權</th><td>8</td><td>4</td><td>2</td><td>1</td></tr>\n  <tr><th>例 1101</th><td>1</td><td>1</td><td>0</td><td>1</td></tr>\n</table>\n<p>1101<sub>2</sub>＝8＋4＋0＋1＝<strong>13<sub>10</sub></strong>。</p>\n<div class=\"koujue\">口訣：由右數 1-2-4-8，有 1 就加權。</div>\n",
+      "teach": "\n<p><strong>二進制（binary）</strong>每一位都有<strong>位權（weight）</strong>：由右（LSB）起係 2<sup>0</sup>、2<sup>1</sup>、2<sup>2</sup>…即 1、2、4、8、16…</p>\n<ul>\n  <li>某位係 <strong>1</strong> → 把該位權加落總和</li>\n  <li>某位係 <strong>0</strong> → 該位唔貢獻</li>\n</ul>\n<table class=\"mini\">\n  <tr><th>位</th><td>b<sub>3</sub></td><td>b<sub>2</sub></td><td>b<sub>1</sub></td><td>b<sub>0</sub></td></tr>\n  <tr><th>權</th><td>8</td><td>4</td><td>2</td><td>1</td></tr>\n  <tr><th>例 1101</th><td>1</td><td>1</td><td>0</td><td>1</td></tr>\n</table>\n<p>1101<sub>2</sub>＝8＋4＋0＋1＝<strong>13<sub>10</sub></strong>。</p>\n<figure class=\"gate-fig\">\n  <img src=\"assets/c5_weights.png\" alt=\"二進制位權：1101₂＝8＋4＋0＋1＝13₁₀\">\n  <div class=\"gate-meta\">例：1101₂ 只把為 1 嘅位權加起（8＋4＋1）＝13₁₀。</div>\n</figure>\n<div class=\"koujue\">口訣：由右數 1-2-4-8，有 1 就加權。</div>\n",
       "practice": {
         "type": "mcq",
         "prompt": "二進制 1010₂ 嘅十進制值係？",
@@ -2747,7 +2747,7 @@
       "title": "十進制轉二進制（連除 2）",
       "pill": "十→二",
       "live": true,
-      "teach": "\n<p>把十進制整數轉二進制，常用<strong>連除 2 取餘</strong>：</p>\n<ol>\n  <li>除以 2，記<strong>餘數</strong>（0 或 1）</li>\n  <li>商再除 2，直至商＝0</li>\n  <li>餘數由<strong>後寫到前</strong>（最後一個餘數係 MSB）</li>\n</ol>\n<p>例：13 → 13÷2＝6…1；6÷2＝3…0；3÷2＝1…1；1÷2＝0…1 → <strong>1101₂</strong>。</p>\n<div class=\"tip\">驗算：用位權加返應等於原本十進制。</div>\n",
+      "teach": "\n<p>把十進制整數轉二進制，常用<strong>連除 2 取餘</strong>：</p>\n<ol>\n  <li>除以 2，記<strong>餘數</strong>（0 或 1）</li>\n  <li>商再除 2，直至商＝0</li>\n  <li>餘數由<strong>後寫到前</strong>（最後一個餘數係 MSB）</li>\n</ol>\n<p>例：13 → 13÷2＝6…1；6÷2＝3…0；3÷2＝1…1；1÷2＝0…1 → <strong>1101₂</strong>。</p>\n<figure class=\"gate-fig\">\n  <img src=\"assets/c5_dec2bin.png\" alt=\"十進制轉二進制：13 連除 2，餘數由下而上讀出 1101\">\n  <div class=\"gate-meta\">13 連除 2 取餘，由下而上讀 → 1101₂。</div>\n</figure>\n<div class=\"tip\">驗算：用位權加返應等於原本十進制。</div>\n",
       "practice": {
         "type": "mcq",
         "prompt": "用連除 2，25₁₀ 轉成二進制係？",
@@ -2840,7 +2840,7 @@
       "title": "BCD：每位十進制用 4 位二進制",
       "pill": "BCD",
       "live": true,
-      "teach": "\n<p><strong>BCD（Binary-Coded Decimal）</strong>把<strong>每一位十進制數字</strong>各自編成 4 位二進制（0–9 → 0000–1001）。</p>\n<ul>\n  <li>例：25₁₀ 嘅 BCD＝0010 0101（唔係純二進 11001）</li>\n  <li>1010–1111 喺 BCD <strong>唔合法</strong>（超過 9）</li>\n</ul>\n<div class=\"tip\">BCD 方便顯示七段，但運算要比純二進制多處理「校正」。</div>\n",
+      "teach": "\n<p><strong>BCD（Binary-Coded Decimal）</strong>把<strong>每一位十進制數字</strong>各自編成 4 位二進制（0–9 → 0000–1001）。</p>\n<ul>\n  <li>例：25₁₀ 嘅 BCD＝0010 0101（唔係純二進 11001）</li>\n  <li>1010–1111 喺 BCD <strong>唔合法</strong>（超過 9）</li>\n</ul>\n<figure class=\"gate-fig\">\n  <img src=\"assets/c5_bcd.png\" alt=\"BCD：59 → 0101 1001，唔等同普通二進制 111011\">\n  <div class=\"gate-meta\">圖例 59 → BCD 0101 1001；普通二進制係 111011，唔好混淆。</div>\n</figure>\n<div class=\"tip\">BCD 方便顯示七段，但運算要比純二進制多處理「校正」。</div>\n",
       "practice": {
         "type": "mcq",
         "prompt": "十進制 39 用 BCD 編碼係？",
@@ -3099,7 +3099,7 @@
       "title": "n-to-2ⁿ 解碼器",
       "pill": "解碼",
       "live": true,
-      "teach": "\n<p><strong>解碼器（decoder）</strong>：n 條選擇線 → 最多 2ⁿ 條輸出，通常<strong>一次只啟動一條</strong>（one-hot）。</p>\n<ul>\n  <li>2-to-4：輸入 00／01／10／11 → 分別點亮 Y0–Y3</li>\n  <li>用途：位址解碼、七段驅動前級、指令解碼概念</li>\n</ul>\n<div class=\"koujue\">口訣：解碼＝「二進地址 → 揀邊條線」。</div>\n",
+      "teach": "\n<p><strong>解碼器（decoder）</strong>：n 條選擇線 → 最多 2ⁿ 條輸出，通常<strong>一次只啟動一條</strong>（one-hot）。</p>\n<ul>\n  <li>2-to-4：輸入 00／01／10／11 → 分別點亮 Y0–Y3</li>\n  <li>用途：位址解碼、七段驅動前級、指令解碼概念</li>\n</ul>\n<figure class=\"gate-fig\">\n  <img src=\"assets/c6_decoder.png\" alt=\"2-to-4 解碼器：A1A0＝10 時只有 Y2＝1（one-hot）\">\n  <div class=\"gate-meta\">2-to-4：輸入當二進編號；A1A0＝10 只點亮 Y2。</div>\n</figure>\n<div class=\"koujue\">口訣：解碼＝「二進地址 → 揀邊條線」。</div>\n",
       "practice": {
         "type": "mcq",
         "prompt": "2-to-4 解碼器，輸入 AB＝10（A 高位）時，通常點亮邊條輸出？",
@@ -3130,7 +3130,7 @@
       "title": "MUX：多揀一",
       "pill": "MUX",
       "live": true,
-      "teach": "\n<p><strong>多工器 MUX</strong>：多條資料輸入，用選擇線<strong>揀一條</strong>送到輸出。</p>\n<ul>\n  <li>2-to-1：1 條 Sel；4-to-1：2 條 Sel</li>\n  <li>好似波段掣：Sel 決定聽邊個台</li>\n</ul>\n<p>同解碼器對偶：解碼「開邊路」；MUX「送邊路資料」。</p>\n",
+      "teach": "\n<p><strong>多工器 MUX</strong>：多條資料輸入，用選擇線<strong>揀一條</strong>送到輸出。</p>\n<ul>\n  <li>2-to-1：1 條 Sel；4-to-1：2 條 Sel</li>\n  <li>好似波段掣：Sel 決定聽邊個台</li>\n</ul>\n<p>同解碼器對偶：解碼「開邊路」；MUX「送邊路資料」。</p>\n<figure class=\"gate-fig\">\n  <img src=\"assets/c6_mux.png\" alt=\"4-to-1 多工器：S1S0＝10 時輸出 Y＝I2\">\n  <div class=\"gate-meta\">4-to-1 用兩條選擇線；圖例 S1S0＝10 → Y＝I2。</div>\n</figure>\n",
       "practice": {
         "type": "mcq",
         "prompt": "4-to-1 MUX 需要幾多條選擇線？",
@@ -3251,7 +3251,7 @@
       "title": "Latch 同 Flip-flop 分別",
       "pill": "記憶",
       "live": true,
-      "teach": "\n<p>兩者都可<strong>記住 1 bit</strong>，但觸發方式不同：</p>\n<ul>\n  <li><strong>鎖存 Latch</strong>：多屬<strong>電平觸發</strong>（Enable＝1 期間跟住輸入變）</li>\n  <li><strong>正反器 Flip-flop</strong>：多屬<strong>邊緣觸發</strong>（只喺時鐘上升／下降沿取樣）</li>\n</ul>\n<div class=\"koujue\">口訣：Latch 跟住电平；FF 等「邊沿一刻」。</div>\n",
+      "teach": "\n<p>兩者都可<strong>記住 1 bit</strong>，但觸發方式不同：</p>\n<ul>\n  <li><strong>鎖存 Latch</strong>：多屬<strong>電平觸發</strong>（Enable＝1 期間跟住輸入變）</li>\n  <li><strong>正反器 Flip-flop</strong>：多屬<strong>邊緣觸發</strong>（只喺時鐘上升／下降沿取樣）</li>\n</ul>\n<figure class=\"gate-fig\">\n  <img src=\"assets/c7_latch_vs_ff.png\" alt=\"鎖存器跟住 CLK 高電平；正反器只喺邊緣取樣\">\n  <div class=\"gate-meta\">左邊 Latch 喺 CLK＝1 期間透明；右邊 FF 只喺上升沿更新 Q。</div>\n</figure>\n<div class=\"koujue\">口訣：Latch 跟住电平；FF 等「邊沿一刻」。</div>\n",
       "practice": {
         "type": "mcq",
         "prompt": "邊項最能形容邊緣觸發正反器？",
@@ -3282,7 +3282,7 @@
       "title": "SR：Set／Reset",
       "pill": "SR",
       "live": true,
-      "teach": "\n<p><strong>SR 正反器</strong>（或 SR 鎖存）輸入 S（Set）、R（Reset）：</p>\n<ul>\n  <li>S＝1,R＝0 → Q＝1</li>\n  <li>S＝0,R＝1 → Q＝0</li>\n  <li>S＝R＝0 → 保持</li>\n  <li>S＝R＝1 → <strong>禁止／不定</strong>（基本 NOR／NAND 結構會有問題）</li>\n</ul>\n<div class=\"tip\">實際設計避免 S＝R＝1；可用閘約束或改用 D／JK。</div>\n",
+      "teach": "\n<p><strong>SR 正反器</strong>（或 SR 鎖存）輸入 S（Set）、R（Reset）：</p>\n<ul>\n  <li>S＝1,R＝0 → Q＝1</li>\n  <li>S＝0,R＝1 → Q＝0</li>\n  <li>S＝R＝0 → 保持</li>\n  <li>S＝R＝1 → <strong>禁止／不定</strong>（基本 NOR／NAND 結構會有問題）</li>\n</ul>\n<figure class=\"gate-fig\">\n  <img src=\"assets/c7_sr.png\" alt=\"SR：置位／復位／保持；S＝R＝1 禁止\">\n  <div class=\"gate-meta\">S＝1,R＝0 置 1；S＝0,R＝1 置 0；00 保持；11 禁止。</div>\n</figure>\n<div class=\"tip\">實際設計避免 S＝R＝1；可用閘約束或改用 D／JK。</div>\n",
       "practice": {
         "type": "mcq",
         "prompt": "基本 SR，S＝0、R＝0 時輸出？",
@@ -3313,7 +3313,7 @@
       "title": "D：資料鎖存",
       "pill": "D-FF",
       "live": true,
-      "teach": "\n<p><strong>D 正反器</strong>：喺觸發沿把輸入 D 抄到 Q（下一狀態 Q⁺＝D）。</p>\n<ul>\n  <li>用途：暫存器位元、同步輸入、延遲一個時鐘</li>\n  <li>避免咗 SR 嘅 11 禁忌（D 同 <span class=\"obar\">D</span> 成對驅動時）</li>\n</ul>\n<div class=\"koujue\">口訣：D-FF＝「拍一下，記住 D」。</div>\n",
+      "teach": "\n<p><strong>D 正反器</strong>：喺觸發沿把輸入 D 抄到 Q（下一狀態 Q⁺＝D）。</p>\n<ul>\n  <li>用途：暫存器位元、同步輸入、延遲一個時鐘</li>\n  <li>避免咗 SR 嘅 11 禁忌（D 同 <span class=\"obar\">D</span> 成對驅動時）</li>\n</ul>\n<figure class=\"gate-fig\">\n  <img src=\"assets/c7_d.png\" alt=\"D 正反器：時鐘沿把 D 載入 Q，Q⁺＝D\">\n  <div class=\"gate-meta\">邊緣觸發：下一狀態 Q⁺＝D。</div>\n</figure>\n<div class=\"koujue\">口訣：D-FF＝「拍一下，記住 D」。</div>\n",
       "practice": {
         "type": "mcq",
         "prompt": "邊緣觸發 D-FF，喺有效時鐘沿之後 Q 等於？",
@@ -3344,7 +3344,7 @@
       "title": "JK：可切換",
       "pill": "JK",
       "live": true,
-      "teach": "\n<p><strong>JK 正反器</strong>可看成改良 SR：</p>\n<ul>\n  <li>J＝1,K＝0 → 置 1</li>\n  <li>J＝0,K＝1 → 置 0</li>\n  <li>J＝K＝0 → 保持</li>\n  <li>J＝K＝1 → <strong>Toggle</strong>（Q 反相）——解決 SR 嘅 11 問題</li>\n</ul>\n",
+      "teach": "\n<p><strong>JK 正反器</strong>可看成改良 SR：</p>\n<ul>\n  <li>J＝1,K＝0 → 置 1</li>\n  <li>J＝0,K＝1 → 置 0</li>\n  <li>J＝K＝0 → 保持</li>\n  <li>J＝K＝1 → <strong>Toggle</strong>（Q 反相）——解決 SR 嘅 11 問題</li>\n</ul>\n<figure class=\"gate-fig\">\n  <img src=\"assets/c7_jk.png\" alt=\"JK 正反器：J＝K＝1 時每個時鐘沿切換（toggle）\">\n  <div class=\"gate-meta\">00 保持、10 置 1、01 置 0；11 則 Q⁺＝Q 的反相。</div>\n</figure>\n",
       "practice": {
         "type": "mcq",
         "prompt": "JK 正反器喺 J＝K＝1（邊緣觸發）時會？",
@@ -3375,7 +3375,7 @@
       "title": "上升沿／下降沿",
       "pill": "時鐘",
       "live": true,
-      "teach": "\n<p><strong>邊緣觸發</strong>只喺時鐘<strong>轉變瞬間</strong>有效：</p>\n<ul>\n  <li>上升沿（↑）：0→1</li>\n  <li>下降沿（↓）：1→0</li>\n</ul>\n<p>符號：三角時鐘口；有氣泡多數表示下降沿觸發。</p>\n<div class=\"tip\">同步系統多數元件用<strong>同一邊緣</strong>，避免競態混亂。</div>\n",
+      "teach": "\n<p><strong>邊緣觸發</strong>只喺時鐘<strong>轉變瞬間</strong>有效：</p>\n<ul>\n  <li>上升沿（↑）：0→1</li>\n  <li>下降沿（↓）：1→0</li>\n</ul>\n<p>符號：三角時鐘口；有氣泡多數表示下降沿觸發。</p>\n<figure class=\"gate-fig\">\n  <img src=\"assets/c7_edge.png\" alt=\"同一條 CLK 波：向上箭咀係上升沿，向下箭咀係下降沿\">\n  <div class=\"gate-meta\">上升沿＝0→1，下降沿＝1→0；同步系統多數統一用同一邊緣。</div>\n</figure>\n<div class=\"tip\">同步系統多數元件用<strong>同一邊緣</strong>，避免競態混亂。</div>\n",
       "practice": {
         "type": "mcq",
         "prompt": "符號有時鐘三角＋氣泡，通常表示？",
@@ -3499,7 +3499,7 @@
       "title": "計數器概念",
       "pill": "計數",
       "live": true,
-      "teach": "\n<p><strong>計數器</strong>按時鐘把狀態當二進（或模 n）遞增／遞減。</p>\n<ul>\n  <li><strong>同步計數器</strong>：所有 FF 共用同一時鐘</li>\n  <li>模 4：狀態 00→01→10→11→00…</li>\n  <li>JK 全接 1 可做 T（toggle）位元砌計數</li>\n</ul>\n",
+      "teach": "\n<p><strong>計數器</strong>按時鐘把狀態當二進（或模 n）遞增／遞減。</p>\n<ul>\n  <li><strong>同步計數器</strong>：所有 FF 共用同一時鐘</li>\n  <li>模 4：狀態 00→01→10→11→00…</li>\n  <li>JK 全接 1 可做 T（toggle）位元砌計數</li>\n</ul>\n<figure class=\"gate-fig\">\n  <img src=\"assets/c8_counter.png\" alt=\"3 位元同步計數器：Q2 Q1 Q0 由 000 數到 111，共用同一 CLK\">\n  <div class=\"gate-meta\">三個正反器共用 CLK；000→111 之後下一拍回到 000（模 8）。</div>\n</figure>\n",
       "practice": {
         "type": "mcq",
         "prompt": "模 4 同步上數計數器，而家係 10₂，下一個時鐘後係？",
@@ -3561,7 +3561,7 @@
       "title": "Shift register",
       "pill": "移位",
       "live": true,
-      "teach": "\n<p><strong>移位暫存器</strong>：一串 D-FF，每拍把資料向左或向右移一格。</p>\n<ul>\n  <li>串入並出（SIPO）、並入串出（PISO）等模式</li>\n  <li>用途：延遲線、序列傳輸、簡易乘法（左移×2）概念</li>\n</ul>\n<div class=\"tip\">4-bit 右移：b3b2b1b0 → 0 b3 b2 b1（視輸入位）。</div>\n",
+      "teach": "\n<p><strong>移位暫存器</strong>：一串 D-FF，每拍把資料向左或向右移一格。</p>\n<ul>\n  <li>串入並出（SIPO）、並入串出（PISO）等模式</li>\n  <li>用途：延遲線、序列傳輸、簡易乘法（左移×2）概念</li>\n</ul>\n<figure class=\"gate-fig\">\n  <img src=\"assets/c8_shift.png\" alt=\"4 位元右移暫存器：1011 右移一位（左邊補 0）→ 0101\">\n  <div class=\"gate-meta\">每個 CLK，所有位向右移一格；圖例 1011 → 0101。</div>\n</figure>\n<div class=\"tip\">4-bit 右移：b3b2b1b0 → 0 b3 b2 b1（視輸入位）。</div>\n",
       "practice": {
         "type": "mcq",
         "prompt": "4-bit 暫存器而家係 0101，同步左移 1 位（右補 0）後係？",
