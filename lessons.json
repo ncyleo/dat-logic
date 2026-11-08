@@ -1,5 +1,5 @@
 {
-  "version": 7,
+  "version": 8,
   "titleZh": "數位邏輯自學 · 三欄（DAT）",
   "uiNoteZh": "校本自製示意圖 · DAT",
   "chapters": [
@@ -3016,7 +3016,7 @@
       "title": "半加器 Carry 真值表",
       "pill": "Carry",
       "live": true,
-      "teach": "\n<p>半加器進位 <strong>C＝A·B</strong>：只有兩位都係 1 先會「進位去高位」。</p>\n<p>對照：日常生活「1＋1＝2」寫成二進就係 S＝0、C＝1。</p>\n<figure class=\"gate-fig\">\n  <img src=\"assets/ha_nand_only.png\" alt=\"半加器 NAND-only 實作\">\n  <div class=\"gate-meta\">延伸：亦可用純 NAND 砌半加器；課堂常見實作仍係 XOR＋AND。</div>\n</figure>\n",
+      "teach": "\n<p>半加器進位 <strong>C＝A·B</strong>：只有兩位都係 1 先會「進位去高位」。</p>\n<p>對照：日常生活「1＋1＝2」寫成二進就係 S＝0、C＝1。</p>\n<figure class=\"gate-fig\">\n  <img src=\"assets/ha_nand_only.png\" alt=\"半加器 NAND-only 實作\">\n  <div class=\"gate-meta\">純 NAND 實作：5 個 NAND（4 個砌 XOR 得出 S，第 5 個把 NAND(A,B) 短接反相得出 C）。課堂常見實作仍係 XOR＋AND。</div>\n</figure>\n",
       "practice": {
         "type": "truth",
         "prompt": "填半加器 Carry C：",
