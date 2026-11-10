@@ -1,5 +1,5 @@
 {
-  "version": 8,
+  "version": 9,
   "titleZh": "數位邏輯自學 · 三欄（DAT）",
   "uiNoteZh": "校本自製示意圖 · DAT",
   "chapters": [
@@ -2933,7 +2933,7 @@
       "title": "組合邏輯同循序邏輯分別",
       "pill": "分類",
       "live": true,
-      "teach": "\n<p><strong>組合邏輯（combinational）</strong>：輸出<strong>只取決於當下輸入</strong>，無記憶。</p>\n<p><strong>循序邏輯（sequential）</strong>：輸出取決於輸入<strong>同內部狀態</strong>（有記憶／時鐘）。</p>\n<ul>\n  <li>組合例：閘網路、半加器、MUX、解碼器</li>\n  <li>循序例：正反器、計數器、暫存器</li>\n</ul>\n<div class=\"koujue\">口訣：組合「即加即出」；循序「有記性」。</div>\n",
+      "teach": "\n<p><strong>組合邏輯（combinational logic）</strong>：輸出<strong>只取決於當下輸入</strong>。輸入一變，輸出就跟住變；電路本身<strong>無記憶</strong>，亦<strong>唔靠時鐘</strong>去記住頭先發生過咩事。</p>\n<p>同一組輸入，會得出同一組輸出（忽略極短嘅閘延遲）。</p>\n<p><strong>時序邏輯（sequential logic）</strong>（又叫循序邏輯）：輸出取決於<strong>當下輸入，加上先前狀態</strong>。要有記憶，先至可以根據「頭先發生過嘅事」去決定而家點做。</p>\n<ul>\n  <li>組合例子：燈掣控制電燈（而家開就亮、關就暗）、半加器、MUX、解碼器</li>\n  <li>時序例子：升降機要記住而家喺邊層、電子鐘要記住而家幾點、正反器／計數器／暫存器</li>\n</ul>\n<div class=\"koujue\">口訣：組合「即加即出、無記性」；時序「有記性」。</div>\n",
       "practice": {
         "type": "mcq",
         "prompt": "下列邊項一定係組合邏輯？",
@@ -2947,9 +2947,9 @@
         "explain": "無記憶／狀態嘅純閘網路屬組合；正反器、計數、移位屬循序。"
       },
       "support": {
-        "definition": "組合＝f(輸入)；循序＝f(輸入, 狀態)。",
-        "example": "半加器＝組合；JK＝循序。",
-        "tip": "有無「記住上一次」係分界。",
+        "definition": "組合＝只跟當下輸入，無記憶／時鐘；時序＝跟輸入加先前狀態。",
+        "example": "燈掣＋電燈＝組合；電子鐘／升降機要記住而家去到邊＝時序。",
+        "tip": "判斷方法：輸出有冇「記住頭先」？有就時序，無就組合。",
         "guidedHints": [
           "題目邊項「無記憶」？",
           "正反器／計數器都有狀態。",
@@ -2964,7 +2964,7 @@
       "title": "半加器：Sum 同 Carry",
       "pill": "半加",
       "live": true,
-      "teach": "\n<p><strong>半加器（half adder）</strong>把兩個 1-bit（A、B）相加，產生：</p>\n<ul>\n  <li><strong>Sum S</strong>＝A XOR B</li>\n  <li><strong>Carry C</strong>＝A AND B</li>\n</ul>\n<table class=\"mini\">\n  <tr><th>A</th><th>B</th><th>S</th><th>C</th></tr>\n  <tr><td>0</td><td>0</td><td>0</td><td>0</td></tr>\n  <tr><td>0</td><td>1</td><td>1</td><td>0</td></tr>\n  <tr><td>1</td><td>0</td><td>1</td><td>0</td></tr>\n  <tr><td>1</td><td>1</td><td>0</td><td>1</td></tr>\n</table>\n<p>「半」＝<strong>唔處理低位來嘅進位</strong>。</p>\n<figure class=\"gate-fig\">\n  <img src=\"assets/ha_xor_and.png\" alt=\"半加器：Sum＝XOR，Carry＝AND\">\n  <div class=\"gate-meta\">常見實作：S 用 XOR，C 用 AND。</div>\n</figure>\n<figure class=\"gate-fig\">\n  <img src=\"assets/ha_kmap_sc.png\" alt=\"半加器 Sum 與 Carry 的 K-map\">\n  <div class=\"gate-meta\">K-map：S 對應 XOR 圖樣；C 只喺 AB＝11 一格。</div>\n</figure>\n",
+      "teach": "\n<p><strong>半加器（half adder）</strong>係最基本嘅一位元加法電路：把兩個 1-bit 輸入 A、B 相加，產生兩個輸出：</p>\n<ul>\n  <li><strong>和 S（Sum）</strong>＝A XOR B（本位結果）</li>\n  <li><strong>進位 C（Carry）</strong>＝A AND B（要唔要進去高一位）</li>\n</ul>\n<p>點解叫「半」？因為佢<strong>唔接收、亦唔處理低位來嘅進位 Cin</strong>，只可以加呢兩個位。要加多位元（或者加埋低位進位），就要用全加器。</p>\n<table class=\"mini\">\n  <tr><th>A</th><th>B</th><th>S</th><th>C</th><th>意思</th></tr>\n  <tr><td>0</td><td>0</td><td>0</td><td>0</td><td>0＋0＝0</td></tr>\n  <tr><td>0</td><td>1</td><td>1</td><td>0</td><td>0＋1＝1</td></tr>\n  <tr><td>1</td><td>0</td><td>1</td><td>0</td><td>1＋0＝1</td></tr>\n  <tr><td>1</td><td>1</td><td>0</td><td>1</td><td>1＋1＝10<sub>2</sub>＝2<sub>10</sub></td></tr>\n</table>\n<p><strong>例子：</strong></p>\n<ul>\n  <li>0＋1：A＝0、B＝1 → S＝1、C＝0，結果就係 1。</li>\n  <li>1＋1：A＝1、B＝1 → S＝0、C＝1。寫成二進制係 10<sub>2</sub>，即十進制 <strong>1＋1＝2</strong>（本位寫 0，進 1 去高位）。</li>\n</ul>\n<figure class=\"gate-fig\">\n  <img src=\"assets/ha_xor_and.png\" alt=\"半加器：Sum＝XOR，Carry＝AND\">\n  <div class=\"gate-meta\">常見實作：S 用 XOR，C 用 AND。</div>\n</figure>\n<figure class=\"gate-fig\">\n  <img src=\"assets/ha_kmap_sc.png\" alt=\"半加器 Sum 與 Carry 的 K-map\">\n  <div class=\"gate-meta\">K-map：S 對應 XOR 圖樣；C 只喺 AB＝11 一格。</div>\n</figure>\n",
       "practice": {
         "type": "truth",
         "prompt": "填半加器 Sum S（先唔理 Carry）：",
@@ -3000,7 +3000,7 @@
       },
       "support": {
         "definition": "HA：S＝A⊕B，C＝A·B。",
-        "example": "1＋1 → S＝0，C＝1。對照圖：XOR＋AND 同 K-map。",
+        "example": "0＋1 → S＝1、C＝0；1＋1 → S＝0、C＝1（即 10₂，對照十進 1＋1＝2）。",
         "tip": "半加器無 Cin；先記 S＝XOR、C＝AND。",
         "guidedHints": [
           "Sum 係 XOR 行為。",
@@ -3068,7 +3068,7 @@
       "title": "全加器：加埋 Cin",
       "pill": "全加",
       "live": true,
-      "teach": "\n<p><strong>全加器（full adder）</strong>有三個輸入：A、B、<strong>Cin</strong>（低位進位），輸出 Sum、Cout。</p>\n<ul>\n  <li>S＝A ⊕ B ⊕ Cin</li>\n  <li>Cout＝多數決（至少兩個 1）＝AB＋BCin＋ACin</li>\n</ul>\n<p>多位元加法器＝多個全加器<strong>串聯</strong>（ripple carry）。</p>\n<figure class=\"gate-fig\">\n  <img src=\"assets/fa_truth.png\" alt=\"全加器真值表\">\n  <div class=\"gate-meta\">三輸入真值表：逐行睇 S 同 Cout。</div>\n</figure>\n<figure class=\"gate-fig\">\n  <img src=\"assets/fa_kmap_sc.png\" alt=\"全加器 Sum／Cout 的 K-map\">\n  <div class=\"gate-meta\">K-map 圈組可對照 Cout＝AB＋BCin＋ACin。</div>\n</figure>\n<figure class=\"gate-fig\">\n  <img src=\"assets/fa_gi_pi.png\" alt=\"全加器 Gi／Pi 電路\">\n  <div class=\"gate-meta\">Generate／Propagate（Gi／Pi）睇法，方便理解進位鏈。</div>\n</figure>\n<div class=\"tip\">半加器＋半加器可以砌成全加器（其中一個處理 Cin）。</div>\n",
+      "teach": "\n<p><strong>全加器（full adder）</strong>有三個輸入：A、B、<strong>Cin</strong>（低位進位），輸出 Sum、Cout。</p>\n<ul>\n  <li>S＝A ⊕ B ⊕ Cin</li>\n  <li>Cout＝多數決（至少兩個 1）＝AB＋BCin＋ACin</li>\n</ul>\n<p>多位元加法器＝多個全加器<strong>串聯</strong>（ripple carry）。</p>\n<figure class=\"gate-fig\">\n  <img src=\"assets/fa_truth.png\" alt=\"全加器真值表\">\n  <div class=\"gate-meta\">三輸入真值表：逐行睇 S 同 Cout。</div>\n</figure>\n<figure class=\"gate-fig\">\n  <img src=\"assets/fa_kmap_sc.png\" alt=\"全加器 Sum／Cout 的 K-map\">\n  <div class=\"gate-meta\">K-map 圈組可對照 Cout＝AB＋BCin＋ACin。</div>\n</figure>\n<figure class=\"gate-fig\">\n  <img src=\"assets/fa_gi_pi.png\" alt=\"全加器：兩個半加器加 OR 得出 Sum 同 Cout\">\n  <div class=\"gate-meta\">半加器 1 加 A、B 得出 S1／C1；半加器 2 把 S1 再加 Cin 得出 S／C2；C1 同 C2 經 OR 合成 Cout。</div>\n</figure>\n<div class=\"tip\">兩個半加器＋一隻 OR，就可以砌成一個全加器。</div>\n",
       "practice": {
         "type": "mcq",
         "prompt": "全加器比半加器多咗邊個輸入？",
@@ -3083,8 +3083,8 @@
       },
       "support": {
         "definition": "FA：三輸入 A、B、Cin。",
-        "example": "S＝A⊕B⊕Cin；見真值表同電路圖。",
-        "tip": "多位加法靠 FA 串聯；對照真值表、K-map 同 Gi／Pi 圖。",
+        "example": "S＝A⊕B⊕Cin；Cout 由兩路進位經 OR 合成。",
+        "tip": "多位加法靠 FA 串聯；對照真值表、K-map，同「兩個半加器＋OR」電路圖。",
         "guidedHints": [
           "「全」係因為處理進位入。",
           "對照半加器缺咩。",
@@ -3093,9 +3093,40 @@
       }
     },
     {
+      "id": "c6-decimal-add",
+      "chapter": 6,
+      "nav": "6.5 十進位加法器",
+      "title": "十進位加法器：BCD 加法同應用",
+      "pill": "十進加",
+      "live": true,
+      "teach": "\n<p><strong>十進位加法器（decimal adder）</strong>用來把兩個十進數字（0–9）相加，得出個位同進位，方便直接對應日常用嘅十進制。</p>\n<p>常見實作係 <strong>BCD 加法</strong>：每位十進數字用 4 位二進制（0000–1001）表示，先用 4-bit 二元加法器（四個全加器）相加；若和大於 9，或呢一組產生進位，就要再加 6（0110）做 <strong>BCD 校正</strong>，結果先至係合法十進數字。</p>\n<p>例：7＋8＝15</p>\n<ul>\n  <li>BCD：0111＋1000＝1111（等於 15，但大過 9，唔係合法 BCD）</li>\n  <li>再加 0110 → 1 0101，即進位 1、個位 5，正正係 15<sub>10</sub></li>\n</ul>\n<p>多位十進數就把多個十進位加法器串聯，低位進位入高位。</p>\n<p><strong>應用：</strong>電子計算機、收銀機、電子鐘同計分板、電子秤／儀表讀數（常再接 BCD 七段顯示）。</p>\n<div class=\"tip\">記住：純二進加法同 BCD 加法唔相同；超過 9 就要加 6 校正。</div>\n",
+      "practice": {
+        "type": "mcq",
+        "prompt": "用 BCD 做 7＋8，得出 1111 之後，點解通常再加 0110（即 6）？",
+        "choices": [
+          "把結果校正成合法 BCD，顯示 15（進位 1、個位 5）",
+          "因為 7＋8 一定要用八個全加器",
+          "把二進制轉成十六進制",
+          "計數器要喺呢一步清零"
+        ],
+        "answer": 0,
+        "explain": "1111＝15＞9，唔係合法 BCD；加 0110 之後變成 1 0101，即 15₁₀。"
+      },
+      "support": {
+        "definition": "十進位加法器：用 BCD 加兩個 0–9；和＞9 或有進位就要加 6 校正。",
+        "example": "7＋8：0111＋1000＝1111，再＋0110 → 1 0101。",
+        "tip": "應用常見於計算機、電子鐘、收銀同儀表顯示。",
+        "guidedHints": [
+          "1111 等於十幾？係唔係合法 BCD？",
+          "BCD 只可以用 0000–1001 代表 0–9。",
+          "加 6 之後先至變成進位 1、個位 5。"
+        ]
+      }
+    },
+    {
       "id": "c6-decoder",
       "chapter": 6,
-      "nav": "6.5 解碼器",
+      "nav": "6.6 解碼器",
       "title": "n-to-2ⁿ 解碼器",
       "pill": "解碼",
       "live": true,
@@ -3126,7 +3157,7 @@
     {
       "id": "c6-mux",
       "chapter": 6,
-      "nav": "6.6 多工器",
+      "nav": "6.7 多工器",
       "title": "MUX：多揀一",
       "pill": "MUX",
       "live": true,
@@ -3157,7 +3188,7 @@
     {
       "id": "c6-encoder",
       "chapter": 6,
-      "nav": "6.7 編碼器簡介",
+      "nav": "6.8 編碼器簡介",
       "title": "編碼器：多線 → 二進碼",
       "pill": "編碼",
       "live": true,
@@ -3188,7 +3219,7 @@
     {
       "id": "c6-design-add",
       "chapter": 6,
-      "nav": "6.8 設計：兩 bit 加",
+      "nav": "6.9 設計：兩 bit 加",
       "title": "情境：要 Sum 同進位",
       "pill": "設計",
       "live": true,
@@ -3251,7 +3282,7 @@
       "title": "Latch 同 Flip-flop 分別",
       "pill": "記憶",
       "live": true,
-      "teach": "\n<p>兩者都可<strong>記住 1 bit</strong>，但觸發方式不同：</p>\n<ul>\n  <li><strong>鎖存 Latch</strong>：多屬<strong>電平觸發</strong>（Enable＝1 期間跟住輸入變）</li>\n  <li><strong>正反器 Flip-flop</strong>：多屬<strong>邊緣觸發</strong>（只喺時鐘上升／下降沿取樣）</li>\n</ul>\n<figure class=\"gate-fig\">\n  <img src=\"assets/c7_latch_vs_ff.png\" alt=\"鎖存器跟住 CLK 高電平；正反器只喺邊緣取樣\">\n  <div class=\"gate-meta\">左邊 Latch 喺 CLK＝1 期間透明；右邊 FF 只喺上升沿更新 Q。</div>\n</figure>\n<div class=\"koujue\">口訣：Latch 跟住电平；FF 等「邊沿一刻」。</div>\n",
+      "teach": "\n<p>兩者都可<strong>記住 1 bit</strong>，但觸發方式不同。</p>\n<p><strong>鎖存（latch）</strong>係最簡單嘅記憶形式：輸出可以「鎖定」喺 0 或 1；即使原本令佢改變嘅輸入已經撤走，狀態仍然保持。多數屬<strong>電平觸發</strong>（Enable＝1 期間跟住輸入變）。</p>\n<p><strong>正反器（flip-flop）</strong>多數屬<strong>邊緣觸發</strong>：只喺時鐘上升沿或下降沿嗰一下先取樣，其餘時間保持 Q。</p>\n<figure class=\"gate-fig\">\n  <img src=\"assets/c7_latch_vs_ff.png\" alt=\"鎖存器跟住 CLK 高電平；正反器只喺邊緣取樣\">\n  <div class=\"gate-meta\">左邊 Latch 喺 CLK＝1 期間透明；右邊 FF 只喺上升沿更新 Q。</div>\n</figure>\n<div class=\"koujue\">口訣：Latch 跟住電平；FF 等「邊沿一刻」。</div>\n",
       "practice": {
         "type": "mcq",
         "prompt": "邊項最能形容邊緣觸發正反器？",
@@ -3265,8 +3296,8 @@
         "explain": "邊緣觸發：只喺上升或下降沿取樣；電平觸發先會喺 CLK＝1 期間透明。"
       },
       "support": {
-        "definition": "Latch≈電平；FF≈邊緣。",
-        "example": "D-FF 喺上升沿鎖入 D。",
+        "definition": "鎖存＝鎖定 0／1（多屬電平）；正反器＝多屬邊緣觸發先更新。",
+        "example": "輸入撤走之後，鎖存仍然保持先前輸出。",
         "tip": "透明期＝鎖存特徵。",
         "guidedHints": [
           "「一刻」更新定「一段時間」跟住？",
@@ -3310,10 +3341,10 @@
       "id": "c7-d",
       "chapter": 7,
       "nav": "7.3 D 正反器",
-      "title": "D：資料鎖存",
+      "title": "D 型觸發器：D／CLK／Q",
       "pill": "D-FF",
       "live": true,
-      "teach": "\n<p><strong>D 正反器</strong>：喺觸發沿把輸入 D 抄到 Q（下一狀態 Q⁺＝D）。</p>\n<ul>\n  <li>用途：暫存器位元、同步輸入、延遲一個時鐘</li>\n  <li>避免咗 SR 嘅 11 禁忌（D 同 <span class=\"obar\">D</span> 成對驅動時）</li>\n</ul>\n<figure class=\"gate-fig\">\n  <img src=\"assets/c7_d.png\" alt=\"D 正反器：時鐘沿把 D 載入 Q，Q⁺＝D\">\n  <div class=\"gate-meta\">邊緣觸發：下一狀態 Q⁺＝D。</div>\n</figure>\n<div class=\"koujue\">口訣：D-FF＝「拍一下，記住 D」。</div>\n",
+      "teach": "\n<p><strong>D 型觸發器（D-type flip-flop）</strong>係常用嘅 1-bit 記憶單元。「D」代表資料（Data）。三個主要接腳：</p>\n<ul>\n  <li><strong>D</strong>：想儲存嘅嗰位（0 或 1）</li>\n  <li><strong>CLK</strong>：決定「幾時」把 D 讀入</li>\n  <li><strong>Q</strong>：已經記住嘅輸出；多數仲有 <span class=\"obar\">Q</span>（Q 嘅相反：Q＝1 則 <span class=\"obar\">Q</span>＝0）</li>\n</ul>\n<p>喺有效時鐘沿（多數係上升沿 0→1），把 D 抄到 Q（下一狀態 Q⁺＝D）。沿以外，D 點變都唔會改 Q，直至下一次有效沿。</p>\n<ul>\n  <li>用途：暫存器位元、同步輸入、延遲一個時鐘</li>\n  <li>避免咗 SR 嘅 11 禁忌</li>\n</ul>\n<figure class=\"gate-fig\">\n  <img src=\"assets/c7_d.png\" alt=\"D 正反器：時鐘沿把 D 載入 Q，Q⁺＝D\">\n  <div class=\"gate-meta\">邊緣觸發：下一狀態 Q⁺＝D；CLK 沿以外保持 Q。</div>\n</figure>\n<div class=\"koujue\">口訣：D-FF＝「拍一下，記住 D」。</div>\n",
       "practice": {
         "type": "mcq",
         "prompt": "邊緣觸發 D-FF，喺有效時鐘沿之後 Q 等於？",
@@ -3327,9 +3358,9 @@
         "explain": "特性：Q⁺＝D。"
       },
       "support": {
-        "definition": "Q⁺＝D。",
-        "example": "暫存 1 bit。",
-        "tip": "每拍更新一次。",
+        "definition": "D＝要存嘅位；CLK＝幾時讀；Q＝已記住嘅輸出（Q⁺＝D）。",
+        "example": "上升沿時 D＝1 → Q 變 1；之後 D 改做 0，Q 仍係 1，直至下一有效沿。",
+        "tip": "無 CLK 沿就唔會更新；<span class=\"obar\">Q</span> 係 Q 嘅相反。",
         "guidedHints": [
           "D-FF 記住邊個信號？",
           "輸入腳 D。",
@@ -3462,6 +3493,37 @@
       }
     },
     {
+      "id": "c7-cmos",
+      "chapter": 7,
+      "nav": "7.8 CMOS",
+      "title": "CMOS 邏輯系列",
+      "pill": "CMOS",
+      "live": true,
+      "teach": "\n<p>實驗室同產品砌鎖存、正反器或計數器時，常用現成集成電路。課程常提及嘅一種邏輯系列係 <strong>CMOS</strong>。</p>\n<ul>\n  <li>靜態耗電量好低</li>\n  <li>工作電壓範圍較寬</li>\n  <li>適合計算機、電子錶等靠電池嘅便攜裝置</li>\n</ul>\n<div class=\"tip\">用 CMOS 晶片做實驗，要核對供應電壓；未用嘅輸入唔好懸空，以免誤觸發。</div>\n",
+      "practice": {
+        "type": "mcq",
+        "prompt": "便攜電子鐘、計算機常用 CMOS，主要因為？",
+        "choices": [
+          "一定要 12 V 先可以工作",
+          "耗電低，而且工作電壓範圍較寬",
+          "只可以用嚟做組合邏輯，唔可以做正反器",
+          "CMOS 唔需要電源"
+        ],
+        "answer": 1,
+        "explain": "CMOS 靜態耗電低、電壓範圍寬，啱電池驅動嘅裝置。"
+      },
+      "support": {
+        "definition": "CMOS：常用邏輯系列，耗電低、電壓範圍寬。",
+        "example": "電子錶、計算機等電池裝置常用 CMOS 晶片。",
+        "tip": "實驗時留意電壓同未用輸入。",
+        "guidedHints": [
+          "便攜裝置最驚咩？電量。",
+          "邊種系列以低耗電見稱？",
+          "答案係耗電低、電壓範圍寬。"
+        ]
+      }
+    },
+    {
       "id": "c8-state-clk",
       "chapter": 8,
       "nav": "8.1 狀態同時鐘",
@@ -3493,9 +3555,40 @@
       }
     },
     {
+      "id": "c8-ripple",
+      "chapter": 8,
+      "nav": "8.2 漣波計數器",
+      "title": "漣波計數器：n 隻 FF 有 2ⁿ 態",
+      "pill": "漣波",
+      "live": true,
+      "teach": "\n<p><strong>漣波計數器（ripple counter）</strong>係一種<strong>異步</strong>計數器。把多個正反器（課堂常用 D 型，接成每到時鐘沿就翻轉）串聯，<strong>前一級嘅輸出做後一級嘅時鐘</strong>。第一級一變，先傳到第二級、再傳到第三級，好似水波一層層傳開，所以叫漣波。</p>\n<ul>\n  <li>每一級把脈衝頻率除以 2</li>\n  <li>n 隻正反器可以表示 <strong>2<sup>n</sup></strong> 個唔同狀態，計數範圍由 0 到 2<sup>n</sup>−1</li>\n  <li>例：1 隻 → 2 態（0、1）；2 隻 → 4 態（00 至 11，即 0 至 3）；3 隻 → 8 態（000 至 111，即 0 至 7）</li>\n</ul>\n<p>同<strong>同步計數器</strong>嘅分別：同步係所有正反器共用同一個 CLK；漣波則各級時鐘唔同，高位會稍遲先更新。</p>\n<div class=\"tip\">示意圖稍後補：三個 D 型觸發器串聯，前級 Q 接後級 CLK。</div>\n",
+      "practice": {
+        "type": "mcq",
+        "prompt": "由 3 隻正反器組成嘅漣波計數器，可以表示幾多個唔同狀態？",
+        "choices": [
+          "3",
+          "6",
+          "8",
+          "9"
+        ],
+        "answer": 2,
+        "explain": "n＝3 → 2³＝8 個狀態，由 0 數到 7。"
+      },
+      "support": {
+        "definition": "漣波計數：前級輸出做後級時鐘；n 隻 FF → 2ⁿ 態（0 至 2ⁿ−1）。",
+        "example": "3 隻 FF → 8 態（000–111）。",
+        "tip": "漣波係異步；同步計數器先至係全部共用同一個 CLK。",
+        "guidedHints": [
+          "公式係 2 的 n 次方。",
+          "n＝3。",
+          "2³＝8。"
+        ]
+      }
+    },
+    {
       "id": "c8-counter",
       "chapter": 8,
-      "nav": "8.2 同步計數器",
+      "nav": "8.3 同步計數器",
       "title": "計數器概念",
       "pill": "計數",
       "live": true,
@@ -3526,7 +3619,7 @@
     {
       "id": "c8-mod",
       "chapter": 8,
-      "nav": "8.3 模數",
+      "nav": "8.4 模數",
       "title": "模 n 同位元數",
       "pill": "模 n",
       "live": true,
@@ -3557,7 +3650,7 @@
     {
       "id": "c8-shift",
       "chapter": 8,
-      "nav": "8.4 移位暫存器",
+      "nav": "8.5 移位暫存器",
       "title": "Shift register",
       "pill": "移位",
       "live": true,
@@ -3588,7 +3681,7 @@
     {
       "id": "c8-fsm",
       "chapter": 8,
-      "nav": "8.5 簡單狀態機",
+      "nav": "8.6 簡單狀態機",
       "title": "少數狀態表",
       "pill": "FSM",
       "live": true,
@@ -3619,7 +3712,7 @@
     {
       "id": "c8-reg-vs-cnt",
       "chapter": 8,
-      "nav": "8.6 暫存 vs 計數",
+      "nav": "8.7 暫存 vs 計數",
       "title": "兩者點分",
       "pill": "對照",
       "live": true,
@@ -3650,11 +3743,11 @@
     {
       "id": "c8-quiz",
       "chapter": 8,
-      "nav": "8.7 綜合小測",
+      "nav": "8.8 綜合小測",
       "title": "循序邏輯小測",
       "pill": "小測",
       "live": true,
-      "teach": "\n<p>溫習：狀態／時鐘、同步計數、模數、移位、簡單 FSM。</p>\n",
+      "teach": "\n<p>溫習：狀態／時鐘、漣波同同步計數、模數、移位、簡單 FSM、CMOS。</p>\n",
       "practice": {
         "type": "mcq",
         "prompt": "下列邊句正確？",
