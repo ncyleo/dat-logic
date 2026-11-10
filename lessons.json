@@ -1,5 +1,5 @@
 {
-  "version": 2,
+  "version": 8,
   "titleZh": "數位邏輯自學 · 三欄（DAT）",
   "uiNoteZh": "校本自製示意圖 · DAT",
   "chapters": [
@@ -30,26 +30,26 @@
     {
       "n": 5,
       "name": "數字系統",
-      "live": false,
-      "soon": true
+      "live": true,
+      "soon": false
     },
     {
       "n": 6,
       "name": "組合邏輯",
-      "live": false,
-      "soon": true
+      "live": true,
+      "soon": false
     },
     {
       "n": 7,
       "name": "正反器",
-      "live": false,
-      "soon": true
+      "live": true,
+      "soon": false
     },
     {
       "n": 8,
       "name": "循序邏輯",
-      "live": false,
-      "soon": true
+      "live": true,
+      "soon": false
     }
   ],
   "lessons": [
@@ -60,12 +60,17 @@
       "title": "數位邏輯學習地圖",
       "pill": "總覽",
       "live": true,
-      "teach": "\n<p>呢個係 DAT「可程式邏輯設計實習」用嘅<strong>離線三欄自學</strong>：左目錄、中教學＋練習、右「定義 · 範例 · 提示」。</p>\n<div class=\"tip\"><strong>已上線：</strong>第 1–4 章（概念、基本閘、布林／De Morgan、SOP／POS／代數／K-map、成果9 選閘）。第 5–8 章預告中。</div>\n<p>建議路線：地圖 → 第 1 章 → 第 2 章閘 → 第 3 章定律 → 第 4 章化簡／K-map／選閘。</p>\n",
+      "teach": "\n<p>呢個係 DAT「可程式邏輯設計實習」用嘅<strong>離線三欄自學</strong>：左目錄、中教學＋練習、右「定義 · 範例 · 提示」。</p>\n<div class=\"tip\"><strong>已上線：</strong>第 1–8 章（概念 → 閘 → 布林／De Morgan → 化簡／K-map → 數字系統 → 組合邏輯 → 正反器 → 循序邏輯）。</div>\n<p>建議路線：地圖 → 第 1–2 章打底 → 第 3–4 章化簡 → 第 5 章進位制 → 第 6 章組合電路 → 第 7–8 章記憶／計數。</p>\n",
       "practice": null,
       "support": {
         "definition": "左目錄揀課；中欄短講＋練習；右欄定義／範例／逐步解鎖引導提示。",
-        "example": "試開「2.1 AND」：撳「提示」睇右欄點解鎖。",
-        "tip": "第 3 章有「16條定律一覽」，11／13 成對記。"
+        "example": "試開「5.1 二進制權重」或「6.2 半加器」練轉換同真值表。",
+        "tip": "第 5–8 章已開；地圖可自由跳章。",
+        "guidedHints": [
+          "想練進位制 → 第 5 章；想練半加／MUX → 第 6 章。",
+          "正反器同計數器喺第 7–8 章。",
+          "未學閘之前，建議先完成第 2 章星號。"
+        ]
       }
     },
     {
@@ -2705,67 +2710,972 @@
       }
     },
     {
-      "id": "c5-stub",
+      "id": "c5-weight",
       "chapter": 5,
-      "nav": "5 · 即將推出",
-      "title": "第 5 章：數字系統（預告）",
-      "pill": "預告",
-      "live": false,
-      "soon": true,
-      "teach": "<p>二進制／十六進制轉換、BCD 等。完整練習下一輪補。</p><div class=\"tip\">而家可自由溫習第 1–4 章；地圖可睇本章預告。</div>",
-      "practice": null,
+      "nav": "5.1 二進制權重",
+      "title": "二進制位權：1、2、4、8…",
+      "pill": "權重",
+      "live": true,
+      "teach": "\n<p><strong>二進制（binary）</strong>每一位都有<strong>位權（weight）</strong>：由右（LSB）起係 2<sup>0</sup>、2<sup>1</sup>、2<sup>2</sup>…即 1、2、4、8、16…</p>\n<ul>\n  <li>某位係 <strong>1</strong> → 把該位權加落總和</li>\n  <li>某位係 <strong>0</strong> → 該位唔貢獻</li>\n</ul>\n<table class=\"mini\">\n  <tr><th>位</th><td>b<sub>3</sub></td><td>b<sub>2</sub></td><td>b<sub>1</sub></td><td>b<sub>0</sub></td></tr>\n  <tr><th>權</th><td>8</td><td>4</td><td>2</td><td>1</td></tr>\n  <tr><th>例 1101</th><td>1</td><td>1</td><td>0</td><td>1</td></tr>\n</table>\n<p>1101<sub>2</sub>＝8＋4＋0＋1＝<strong>13<sub>10</sub></strong>。</p>\n<figure class=\"gate-fig\">\n  <img src=\"assets/c5_weights.png\" alt=\"二進制位權：1101₂＝8＋4＋0＋1＝13₁₀\">\n  <div class=\"gate-meta\">例：1101₂ 只把為 1 嘅位權加起（8＋4＋1）＝13₁₀。</div>\n</figure>\n<div class=\"koujue\">口訣：由右數 1-2-4-8，有 1 就加權。</div>\n",
+      "practice": {
+        "type": "mcq",
+        "prompt": "二進制 1010₂ 嘅十進制值係？",
+        "choices": [
+          "8",
+          "10",
+          "12",
+          "14"
+        ],
+        "answer": 1,
+        "explain": "權：8＋0＋2＋0＝10。即 1010₂＝10₁₀。"
+      },
       "support": {
-        "definition": "二進制／十六進制轉換、BCD 等。完整練習下一輪補。",
-        "example": "內容稍後上線。",
-        "tip": "建議先完成第 1–4 章星號練習。"
+        "definition": "二進制每位權係 2ⁿ（右起 n＝0）。",
+        "example": "1101₂＝8＋4＋1＝13₁₀。",
+        "tip": "由 LSB 起記 1、2、4、8…",
+        "guidedHints": [
+          "先寫出四位權重：8、4、2、1。",
+          "邊位係 1 就加邊個權。",
+          "1010 → 8＋2＝10。"
+        ]
       }
     },
     {
-      "id": "c6-stub",
+      "id": "c5-dec2bin",
+      "chapter": 5,
+      "nav": "5.2 十→二轉換",
+      "title": "十進制轉二進制（連除 2）",
+      "pill": "十→二",
+      "live": true,
+      "teach": "\n<p>把十進制整數轉二進制，常用<strong>連除 2 取餘</strong>：</p>\n<ol>\n  <li>除以 2，記<strong>餘數</strong>（0 或 1）</li>\n  <li>商再除 2，直至商＝0</li>\n  <li>餘數由<strong>後寫到前</strong>（最後一個餘數係 MSB）</li>\n</ol>\n<p>例：13 → 13÷2＝6…1；6÷2＝3…0；3÷2＝1…1；1÷2＝0…1 → <strong>1101₂</strong>。</p>\n<figure class=\"gate-fig\">\n  <img src=\"assets/c5_dec2bin.png\" alt=\"十進制轉二進制：13 連除 2，餘數由下而上讀出 1101\">\n  <div class=\"gate-meta\">13 連除 2 取餘，由下而上讀 → 1101₂。</div>\n</figure>\n<div class=\"tip\">驗算：用位權加返應等於原本十進制。</div>\n",
+      "practice": {
+        "type": "mcq",
+        "prompt": "用連除 2，25₁₀ 轉成二進制係？",
+        "choices": [
+          "11001₂",
+          "10101₂",
+          "11010₂",
+          "10011₂"
+        ],
+        "answer": 0,
+        "explain": "25→12…1；12→6…0；6→3…0；3→1…1；1→0…1 → 11001₂。驗：16＋8＋1＝25。"
+      },
+      "support": {
+        "definition": "連除 2，餘數由後向前排。",
+        "example": "13→1101₂。",
+        "tip": "最後餘數＝最高位（MSB）。",
+        "guidedHints": [
+          "每次除 2 只記餘數 0／1。",
+          "餘數順序要「倒轉」拼。",
+          "25 嘅餘數串係 1,0,0,1,1 → 11001。"
+        ]
+      }
+    },
+    {
+      "id": "c5-bin2dec",
+      "chapter": 5,
+      "nav": "5.3 二→十轉換",
+      "title": "二進制轉十進制（權重加）",
+      "pill": "二→十",
+      "live": true,
+      "teach": "\n<p>把二進制轉十進制：<strong>各位 × 位權再加總</strong>。</p>\n<p>例：1110₂＝8＋4＋2＋0＝<strong>14₁₀</strong>。</p>\n<p>亦可用「倍增法」：由左起，累積×2 再加下一位——結果相同。</p>\n<div class=\"koujue\">口訣：見 1 就加權，見 0 跳過。</div>\n",
+      "practice": {
+        "type": "mcq",
+        "prompt": "101101₂ 轉十進制係？",
+        "choices": [
+          "41",
+          "45",
+          "53",
+          "37"
+        ],
+        "answer": 1,
+        "explain": "32＋0＋8＋4＋0＋1＝45。"
+      },
+      "support": {
+        "definition": "Σ（位值 × 2ⁿ）。",
+        "example": "1110₂＝14₁₀。",
+        "tip": "先標權重再加，較少計錯。",
+        "guidedHints": [
+          "六位權：32、16、8、4、2、1。",
+          "101101 → 32＋8＋4＋1。",
+          "加總＝45。"
+        ]
+      }
+    },
+    {
+      "id": "c5-hex",
+      "chapter": 5,
+      "nav": "5.4 二↔十六",
+      "title": "二進制同十六進制互轉",
+      "pill": "十六進制",
+      "live": true,
+      "teach": "\n<p><strong>十六進制（hex）</strong>用 0–9 同 A–F（10–15）。因為 16＝2⁴，<strong>每 4 個二進位＝1 個 hex 位</strong>。</p>\n<ul>\n  <li>二→十六：由右每 4 位一組，不足補 0，再查表</li>\n  <li>十六→二：每位換成 4 位二進制</li>\n</ul>\n<table class=\"mini\">\n  <tr><th>十</th><td>10</td><td>11</td><td>12</td><td>13</td><td>14</td><td>15</td></tr>\n  <tr><th>hex</th><td>A</td><td>B</td><td>C</td><td>D</td><td>E</td><td>F</td></tr>\n  <tr><th>二</th><td>1010</td><td>1011</td><td>1100</td><td>1101</td><td>1110</td><td>1111</td></tr>\n</table>\n<p>例：1101 1110₂ → D E → <strong>DE₁₆</strong>。</p>\n<figure class=\"gate-fig\">\n  <img src=\"assets/c5_hex.png\" alt=\"十六進制四位一組：1101 1010 → DA\">\n  <div class=\"gate-meta\">由右每 4 位一組；圖例高位 nibble 1101＝D，低位 1010＝A，所以 1101 1010₂＝DA₁₆。</div>\n</figure>\n",
+      "practice": {
+        "type": "mcq",
+        "prompt": "二進制 1011 0110₂ 嘅十六進制係？",
+        "choices": [
+          "B6₁₆",
+          "A6₁₆",
+          "C6₁₆",
+          "B5₁₆"
+        ],
+        "answer": 0,
+        "explain": "1011＝B，0110＝6 → B6₁₆。"
+      },
+      "support": {
+        "definition": "4 個二進位 ↔ 1 個 hex 位。",
+        "example": "11011110₂＝DE₁₆。",
+        "tip": "分組由右起，左邊不足補 0。",
+        "guidedHints": [
+          "先由右切成 4 位一組。",
+          "1011＝11＝B；0110＝6。",
+          "合埋就係 B6。"
+        ]
+      }
+    },
+    {
+      "id": "c5-bcd",
+      "chapter": 5,
+      "nav": "5.5 BCD 概念",
+      "title": "BCD：每位十進制用 4 位二進制",
+      "pill": "BCD",
+      "live": true,
+      "teach": "\n<p><strong>BCD（Binary-Coded Decimal）</strong>把<strong>每一位十進制數字</strong>各自編成 4 位二進制（0–9 → 0000–1001）。</p>\n<ul>\n  <li>例：25₁₀ 嘅 BCD＝0010 0101（唔係純二進 11001）</li>\n  <li>1010–1111 喺 BCD <strong>唔合法</strong>（超過 9）</li>\n</ul>\n<figure class=\"gate-fig\">\n  <img src=\"assets/c5_bcd.png\" alt=\"BCD：59 → 0101 1001，唔等同普通二進制 111011\">\n  <div class=\"gate-meta\">圖例 59 → BCD 0101 1001；普通二進制係 111011，唔好混淆。</div>\n</figure>\n<div class=\"tip\">BCD 方便顯示七段，但運算要比純二進制多處理「校正」。</div>\n",
+      "practice": {
+        "type": "mcq",
+        "prompt": "十進制 39 用 BCD 編碼係？",
+        "choices": [
+          "0011 1001",
+          "100111",
+          "00111001₂（純二進）",
+          "111001"
+        ],
+        "answer": 0,
+        "explain": "3→0011，9→1001 → 0011 1001。純二進 39＝100111₂，唔係 BCD。"
+      },
+      "support": {
+        "definition": "每位十進數字 → 4 位二進（0–9）。",
+        "example": "25 → 0010 0101。",
+        "tip": "BCD ≠ 整個數嘅純二進制。",
+        "guidedHints": [
+          "分開「十位」同「個位」各自編碼。",
+          "3＝0011，9＝1001。",
+          "串起就係 0011 1001。"
+        ]
+      }
+    },
+    {
+      "id": "c5-bitbyte",
+      "chapter": 5,
+      "nav": "5.6 位元／位元組",
+      "title": "bit、byte 同常見倍數",
+      "pill": "位元",
+      "live": true,
+      "teach": "\n<p><strong>位元（bit）</strong>＝最小資訊單位，取值 0 或 1。<strong>位元組（byte）</strong>通常＝8 bit。</p>\n<ul>\n  <li>n bit 無號整數可表示 0 … 2ⁿ−1（例如 8 bit → 0–255）</li>\n  <li>常見：1 KB＝1024 B（二進慣用）；儲存／傳輸亦會講 Kb、Mb</li>\n</ul>\n<div class=\"koujue\">口訣：8 bit 一 byte；多 1 bit，範圍約加倍。</div>\n",
+      "practice": {
+        "type": "mcq",
+        "prompt": "一個 byte 通常有幾多 bit？",
+        "choices": [
+          "4",
+          "8",
+          "10",
+          "16"
+        ],
+        "answer": 1,
+        "explain": "慣例 1 byte＝8 bit。"
+      },
+      "support": {
+        "definition": "bit＝0／1；byte≈8 bit。",
+        "example": "8 bit 無號：0–255。",
+        "tip": "2⁸＝256 種組合。",
+        "guidedHints": [
+          "題目問「通常」幾個 bit 組成 byte。",
+          "課堂標準答案係 8。",
+          "唔好同 10 進制「字節」搞亂。"
+        ]
+      }
+    },
+    {
+      "id": "c5-quiz",
+      "chapter": 5,
+      "nav": "5.7 小測：轉換",
+      "title": "數字系統綜合小測",
+      "pill": "小測",
+      "live": true,
+      "teach": "\n<p>溫習：權重加總、連除 2、4 位一組轉 hex、BCD 同純二進分別。</p>\n<div class=\"tip\">做題前先用權重或分組驗一次，減少「倒轉餘數」錯。</div>\n",
+      "practice": {
+        "type": "mcq",
+        "prompt": "下列邊組正確？",
+        "choices": [
+          "13₁₀＝1101₂ 且 BCD(13)＝0001 0011",
+          "13₁₀＝1011₂",
+          "FF₁₆＝255₁₀ 但 1111 1111₂≠255₁₀",
+          "BCD 可以用 1100 表示十進制 12 嘅「個位」"
+        ],
+        "answer": 0,
+        "explain": "13＝1101₂；BCD 每位分開：1→0001、3→0011。FF₁₆＝255＝11111111₂。BCD 個位只到 1001。"
+      },
+      "support": {
+        "definition": "綜合：二進／hex／BCD。",
+        "example": "13＝1101₂；BCD 0001 0011。",
+        "tip": "BCD 非法碼 1010–1111。",
+        "guidedHints": [
+          "先核對 13 嘅純二進係咪 1101。",
+          "再核對 BCD 係「逐位」而非成數。",
+          "A 選項兩句都啱。"
+        ]
+      }
+    },
+    {
+      "id": "c6-combo-vs-seq",
       "chapter": 6,
-      "nav": "6 · 即將推出",
-      "title": "第 6 章：組合邏輯（預告）",
-      "pill": "預告",
-      "live": false,
-      "soon": true,
-      "teach": "<p>半加器、全加器、解碼器、多工器。成果9 選閘已喺第 4 章先練。</p><div class=\"tip\">而家可自由溫習第 1–4 章；地圖可睇本章預告。</div>",
-      "practice": null,
+      "nav": "6.1 組合 vs 循序",
+      "title": "組合邏輯同循序邏輯分別",
+      "pill": "分類",
+      "live": true,
+      "teach": "\n<p><strong>組合邏輯（combinational）</strong>：輸出<strong>只取決於當下輸入</strong>，無記憶。</p>\n<p><strong>循序邏輯（sequential）</strong>：輸出取決於輸入<strong>同內部狀態</strong>（有記憶／時鐘）。</p>\n<ul>\n  <li>組合例：閘網路、半加器、MUX、解碼器</li>\n  <li>循序例：正反器、計數器、暫存器</li>\n</ul>\n<div class=\"koujue\">口訣：組合「即加即出」；循序「有記性」。</div>\n",
+      "practice": {
+        "type": "mcq",
+        "prompt": "下列邊項一定係組合邏輯？",
+        "choices": [
+          "D 正反器",
+          "只有 AND／OR／NOT 組成、無回授記憶嘅電路",
+          "同步計數器",
+          "移位暫存器"
+        ],
+        "answer": 1,
+        "explain": "無記憶／狀態嘅純閘網路屬組合；正反器、計數、移位屬循序。"
+      },
       "support": {
-        "definition": "半加器、全加器、解碼器、多工器。成果9 選閘已喺第 4 章先練。",
-        "example": "內容稍後上線。",
-        "tip": "建議先完成第 1–4 章星號練習。"
+        "definition": "組合＝f(輸入)；循序＝f(輸入, 狀態)。",
+        "example": "半加器＝組合；JK＝循序。",
+        "tip": "有無「記住上一次」係分界。",
+        "guidedHints": [
+          "題目邊項「無記憶」？",
+          "正反器／計數器都有狀態。",
+          "剩純閘網路嗰項。"
+        ]
       }
     },
     {
-      "id": "c7-stub",
+      "id": "c6-half",
+      "chapter": 6,
+      "nav": "6.2 半加器",
+      "title": "半加器：Sum 同 Carry",
+      "pill": "半加",
+      "live": true,
+      "teach": "\n<p><strong>半加器（half adder）</strong>把兩個 1-bit（A、B）相加，產生：</p>\n<ul>\n  <li><strong>Sum S</strong>＝A XOR B</li>\n  <li><strong>Carry C</strong>＝A AND B</li>\n</ul>\n<table class=\"mini\">\n  <tr><th>A</th><th>B</th><th>S</th><th>C</th></tr>\n  <tr><td>0</td><td>0</td><td>0</td><td>0</td></tr>\n  <tr><td>0</td><td>1</td><td>1</td><td>0</td></tr>\n  <tr><td>1</td><td>0</td><td>1</td><td>0</td></tr>\n  <tr><td>1</td><td>1</td><td>0</td><td>1</td></tr>\n</table>\n<p>「半」＝<strong>唔處理低位來嘅進位</strong>。</p>\n<figure class=\"gate-fig\">\n  <img src=\"assets/ha_xor_and.png\" alt=\"半加器：Sum＝XOR，Carry＝AND\">\n  <div class=\"gate-meta\">常見實作：S 用 XOR，C 用 AND。</div>\n</figure>\n<figure class=\"gate-fig\">\n  <img src=\"assets/ha_kmap_sc.png\" alt=\"半加器 Sum 與 Carry 的 K-map\">\n  <div class=\"gate-meta\">K-map：S 對應 XOR 圖樣；C 只喺 AB＝11 一格。</div>\n</figure>\n",
+      "practice": {
+        "type": "truth",
+        "prompt": "填半加器 Sum S（先唔理 Carry）：",
+        "inputs": [
+          "A",
+          "B"
+        ],
+        "rows": [
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            0
+          ],
+          [
+            1,
+            1
+          ]
+        ],
+        "answers": [
+          0,
+          1,
+          1,
+          0
+        ],
+        "explain": "S＝A⊕B：相同為 0，相異為 1。"
+      },
+      "support": {
+        "definition": "HA：S＝A⊕B，C＝A·B。",
+        "example": "1＋1 → S＝0，C＝1。對照圖：XOR＋AND 同 K-map。",
+        "tip": "半加器無 Cin；先記 S＝XOR、C＝AND。",
+        "guidedHints": [
+          "Sum 係 XOR 行為。",
+          "相同輸入 → S＝0。",
+          "行列：00→0，01→1，10→1，11→0。"
+        ]
+      }
+    },
+    {
+      "id": "c6-half-carry",
+      "chapter": 6,
+      "nav": "6.3 半加進位",
+      "title": "半加器 Carry 真值表",
+      "pill": "Carry",
+      "live": true,
+      "teach": "\n<p>半加器進位 <strong>C＝A·B</strong>：只有兩位都係 1 先會「進位去高位」。</p>\n<p>對照：日常生活「1＋1＝2」寫成二進就係 S＝0、C＝1。</p>\n<figure class=\"gate-fig\">\n  <img src=\"assets/ha_nand_only.png\" alt=\"半加器 NAND-only 實作\">\n  <div class=\"gate-meta\">純 NAND 實作：5 個 NAND（4 個砌 XOR 得出 S，第 5 個把 NAND(A,B) 短接反相得出 C）。課堂常見實作仍係 XOR＋AND。</div>\n</figure>\n",
+      "practice": {
+        "type": "truth",
+        "prompt": "填半加器 Carry C：",
+        "inputs": [
+          "A",
+          "B"
+        ],
+        "rows": [
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            0
+          ],
+          [
+            1,
+            1
+          ]
+        ],
+        "answers": [
+          0,
+          0,
+          0,
+          1
+        ],
+        "explain": "C＝AND：只有 11 先係 1。"
+      },
+      "support": {
+        "definition": "Carry＝AND。",
+        "example": "唯獨 A＝B＝1 時 C＝1。",
+        "tip": "C 同 AND 一樣；圖示亦可見 NAND-only 另一種砌法。",
+        "guidedHints": [
+          "進位幾時發生？",
+          "兩個 1 相加。",
+          "所以答案同 AND。"
+        ]
+      }
+    },
+    {
+      "id": "c6-full",
+      "chapter": 6,
+      "nav": "6.4 全加器",
+      "title": "全加器：加埋 Cin",
+      "pill": "全加",
+      "live": true,
+      "teach": "\n<p><strong>全加器（full adder）</strong>有三個輸入：A、B、<strong>Cin</strong>（低位進位），輸出 Sum、Cout。</p>\n<ul>\n  <li>S＝A ⊕ B ⊕ Cin</li>\n  <li>Cout＝多數決（至少兩個 1）＝AB＋BCin＋ACin</li>\n</ul>\n<p>多位元加法器＝多個全加器<strong>串聯</strong>（ripple carry）。</p>\n<figure class=\"gate-fig\">\n  <img src=\"assets/fa_truth.png\" alt=\"全加器真值表\">\n  <div class=\"gate-meta\">三輸入真值表：逐行睇 S 同 Cout。</div>\n</figure>\n<figure class=\"gate-fig\">\n  <img src=\"assets/fa_kmap_sc.png\" alt=\"全加器 Sum／Cout 的 K-map\">\n  <div class=\"gate-meta\">K-map 圈組可對照 Cout＝AB＋BCin＋ACin。</div>\n</figure>\n<figure class=\"gate-fig\">\n  <img src=\"assets/fa_gi_pi.png\" alt=\"全加器 Gi／Pi 電路\">\n  <div class=\"gate-meta\">Generate／Propagate（Gi／Pi）睇法，方便理解進位鏈。</div>\n</figure>\n<div class=\"tip\">半加器＋半加器可以砌成全加器（其中一個處理 Cin）。</div>\n",
+      "practice": {
+        "type": "mcq",
+        "prompt": "全加器比半加器多咗邊個輸入？",
+        "choices": [
+          "Clock",
+          "Cin（低位進位）",
+          "Reset",
+          "Enable 專用腳（必須）"
+        ],
+        "answer": 1,
+        "explain": "全加器要處理低位來嘅 Cin；半加器無。"
+      },
+      "support": {
+        "definition": "FA：三輸入 A、B、Cin。",
+        "example": "S＝A⊕B⊕Cin；見真值表同電路圖。",
+        "tip": "多位加法靠 FA 串聯；對照真值表、K-map 同 Gi／Pi 圖。",
+        "guidedHints": [
+          "「全」係因為處理進位入。",
+          "對照半加器缺咩。",
+          "答案係 Cin。"
+        ]
+      }
+    },
+    {
+      "id": "c6-decoder",
+      "chapter": 6,
+      "nav": "6.5 解碼器",
+      "title": "n-to-2ⁿ 解碼器",
+      "pill": "解碼",
+      "live": true,
+      "teach": "\n<p><strong>解碼器（decoder）</strong>：n 條選擇線 → 最多 2ⁿ 條輸出，通常<strong>一次只啟動一條</strong>（one-hot）。</p>\n<ul>\n  <li>2-to-4：輸入 00／01／10／11 → 分別點亮 Y0–Y3</li>\n  <li>用途：位址解碼、七段驅動前級、指令解碼概念</li>\n</ul>\n<figure class=\"gate-fig\">\n  <img src=\"assets/c6_decoder.png\" alt=\"2-to-4 解碼器：A1A0＝10 時只有 Y2＝1（one-hot）\">\n  <div class=\"gate-meta\">2-to-4：輸入當二進編號；A1A0＝10 只點亮 Y2。</div>\n</figure>\n<div class=\"koujue\">口訣：解碼＝「二進地址 → 揀邊條線」。</div>\n",
+      "practice": {
+        "type": "mcq",
+        "prompt": "2-to-4 解碼器，輸入 AB＝10（A 高位）時，通常點亮邊條輸出？",
+        "choices": [
+          "Y0",
+          "Y1",
+          "Y2",
+          "Y3"
+        ],
+        "answer": 2,
+        "explain": "10₂＝2 → 啟動 Y2（由 Y0 起計）。"
+      },
+      "support": {
+        "definition": "n 輸入 → 2ⁿ 輸出（one-hot）。",
+        "example": "2-to-4：10 → Y2。",
+        "tip": "輸入當二進編號。",
+        "guidedHints": [
+          "把 AB 當二進數。",
+          "10₂＝2。",
+          "對應 Y2。"
+        ]
+      }
+    },
+    {
+      "id": "c6-mux",
+      "chapter": 6,
+      "nav": "6.6 多工器",
+      "title": "MUX：多揀一",
+      "pill": "MUX",
+      "live": true,
+      "teach": "\n<p><strong>多工器 MUX</strong>：多條資料輸入，用選擇線<strong>揀一條</strong>送到輸出。</p>\n<ul>\n  <li>2-to-1：1 條 Sel；4-to-1：2 條 Sel</li>\n  <li>好似波段掣：Sel 決定聽邊個台</li>\n</ul>\n<p>同解碼器對偶：解碼「開邊路」；MUX「送邊路資料」。</p>\n<figure class=\"gate-fig\">\n  <img src=\"assets/c6_mux.png\" alt=\"4-to-1 多工器：S1S0＝10 時輸出 Y＝I2\">\n  <div class=\"gate-meta\">4-to-1 用兩條選擇線；圖例 S1S0＝10 → Y＝I2。</div>\n</figure>\n",
+      "practice": {
+        "type": "mcq",
+        "prompt": "4-to-1 MUX 需要幾多條選擇線？",
+        "choices": [
+          "1",
+          "2",
+          "4",
+          "8"
+        ],
+        "answer": 1,
+        "explain": "4＝2² → 需要 2 條選擇線。"
+      },
+      "support": {
+        "definition": "MUX：Sel 揀邊條資料出。",
+        "example": "2ⁿ-to-1 要 n 條 Sel。",
+        "tip": "4-to-1 → 2 Sel。",
+        "guidedHints": [
+          "輸出路數＝2^(Sel 數)。",
+          "4＝2²。",
+          "所以 Sel＝2。"
+        ]
+      }
+    },
+    {
+      "id": "c6-encoder",
+      "chapter": 6,
+      "nav": "6.7 編碼器簡介",
+      "title": "編碼器：多線 → 二進碼",
+      "pill": "編碼",
+      "live": true,
+      "teach": "\n<p><strong>編碼器（encoder）</strong>大致係解碼器反向：多條輸入（常 one-hot）→ 較少位嘅二進編碼。</p>\n<ul>\n  <li>4-to-2：Y1／Y2／Y3／Y0 之一為 1 → 輸出 01／10／11／00</li>\n  <li><strong>優先編碼器</strong>：多個輸入同時為 1 時，輸出優先級最高嗰個編號</li>\n</ul>\n<figure class=\"gate-fig\">\n  <img src=\"assets/c6_encoder.png\" alt=\"4-to-2 編碼器：只有 Y2＝1 時輸出 10\">\n  <div class=\"gate-meta\">解碼器相反：四條輸入一次只有一條係 1，編成兩位輸出。圖例 Y2＝1 → A1A0＝10。</div>\n</figure>\n<div class=\"tip\">鍵盤掃描、中斷優先常用優先編碼概念。</div>\n",
+      "practice": {
+        "type": "mcq",
+        "prompt": "同「解碼器」功能最相反嘅係？",
+        "choices": [
+          "只係 OR 閘",
+          "編碼器",
+          "只有振盪器",
+          "穩壓器"
+        ],
+        "answer": 1,
+        "explain": "解碼：二進→多線；編碼：多線→二進。"
+      },
+      "support": {
+        "definition": "編碼≈解碼反向。",
+        "example": "4-to-2 編碼器。",
+        "tip": "優先編碼處理同時多個 1。",
+        "guidedHints": [
+          "邊個把「多線收成二進」？",
+          "唔係電源／振盪。",
+          "編碼器。"
+        ]
+      }
+    },
+    {
+      "id": "c6-design-add",
+      "chapter": 6,
+      "nav": "6.8 設計：兩 bit 加",
+      "title": "情境：要 Sum 同進位",
+      "pill": "設計",
+      "live": true,
+      "teach": "\n<p>課堂任務：用已學閘砌「兩位元相加、要顯示本位同進位」。</p>\n",
+      "practice": {
+        "type": "design",
+        "scenario": "要設計 1-bit 半加：輸入 A、B；要 Sum 同 Carry。",
+        "steps": [
+          {
+            "kind": "mcq",
+            "prompt": "Sum 應選邊種閘？",
+            "choices": [
+              "AND",
+              "OR",
+              "XOR",
+              "NOR"
+            ],
+            "answer": 2
+          },
+          {
+            "kind": "mcq",
+            "prompt": "Carry 應選邊種閘？",
+            "choices": [
+              "XOR",
+              "AND",
+              "NOT",
+              "XNOR"
+            ],
+            "answer": 1
+          },
+          {
+            "kind": "mcq",
+            "prompt": "正確描述係？",
+            "choices": [
+              "S＝A＋B，C＝A⊕B",
+              "S＝A⊕B，C＝A·B",
+              "S＝A·B，C＝A＋B",
+              "只需要一隻 OR"
+            ],
+            "answer": 1
+          }
+        ],
+        "explain": "半加器：S＝XOR，C＝AND。"
+      },
+      "support": {
+        "definition": "HA＝XOR＋AND。",
+        "example": "S 相異為 1；C 同時 1。",
+        "tip": "唔好用 OR 當 Sum。",
+        "guidedHints": [
+          "Sum 要「相同為 0」→ XOR。",
+          "Carry 要「兩個都 1」→ AND。",
+          "對應第二、三步。"
+        ]
+      }
+    },
+    {
+      "id": "c7-latch-ff",
       "chapter": 7,
-      "nav": "7 · 即將推出",
-      "title": "第 7 章：正反器（預告）",
-      "pill": "預告",
-      "live": false,
-      "soon": true,
-      "teach": "<p>SR／D／JK 正反器、鎖存與邊緣觸發。</p><div class=\"tip\">而家可自由溫習第 1–4 章；地圖可睇本章預告。</div>",
-      "practice": null,
+      "nav": "7.1 鎖存 vs 正反器",
+      "title": "Latch 同 Flip-flop 分別",
+      "pill": "記憶",
+      "live": true,
+      "teach": "\n<p>兩者都可<strong>記住 1 bit</strong>，但觸發方式不同：</p>\n<ul>\n  <li><strong>鎖存 Latch</strong>：多屬<strong>電平觸發</strong>（Enable＝1 期間跟住輸入變）</li>\n  <li><strong>正反器 Flip-flop</strong>：多屬<strong>邊緣觸發</strong>（只喺時鐘上升／下降沿取樣）</li>\n</ul>\n<figure class=\"gate-fig\">\n  <img src=\"assets/c7_latch_vs_ff.png\" alt=\"鎖存器跟住 CLK 高電平；正反器只喺邊緣取樣\">\n  <div class=\"gate-meta\">左邊 Latch 喺 CLK＝1 期間透明；右邊 FF 只喺上升沿更新 Q。</div>\n</figure>\n<div class=\"koujue\">口訣：Latch 跟住电平；FF 等「邊沿一刻」。</div>\n",
+      "practice": {
+        "type": "mcq",
+        "prompt": "邊項最能形容邊緣觸發正反器？",
+        "choices": [
+          "只要 CLK＝1 就一路跟 D",
+          "只喺 CLK 邊緣更新輸出",
+          "完全唔使時鐘",
+          "輸出永遠＝輸入"
+        ],
+        "answer": 1,
+        "explain": "邊緣觸發：只喺上升或下降沿取樣；電平觸發先會喺 CLK＝1 期間透明。"
+      },
       "support": {
-        "definition": "SR／D／JK 正反器、鎖存與邊緣觸發。",
-        "example": "內容稍後上線。",
-        "tip": "建議先完成第 1–4 章星號練習。"
+        "definition": "Latch≈電平；FF≈邊緣。",
+        "example": "D-FF 喺上升沿鎖入 D。",
+        "tip": "透明期＝鎖存特徵。",
+        "guidedHints": [
+          "「一刻」更新定「一段時間」跟住？",
+          "正反器強調邊緣。",
+          "揀「只喺邊緣更新」。"
+        ]
       }
     },
     {
-      "id": "c8-stub",
-      "chapter": 8,
-      "nav": "8 · 即將推出",
-      "title": "第 8 章：循序邏輯（預告）",
-      "pill": "預告",
-      "live": false,
-      "soon": true,
-      "teach": "<p>計數器、暫存器、簡單狀態機。</p><div class=\"tip\">而家可自由溫習第 1–4 章；地圖可睇本章預告。</div>",
-      "practice": null,
+      "id": "c7-sr",
+      "chapter": 7,
+      "nav": "7.2 SR 正反器",
+      "title": "SR：Set／Reset",
+      "pill": "SR",
+      "live": true,
+      "teach": "\n<p><strong>SR 正反器</strong>（或 SR 鎖存）輸入 S（Set）、R（Reset）：</p>\n<ul>\n  <li>S＝1,R＝0 → Q＝1</li>\n  <li>S＝0,R＝1 → Q＝0</li>\n  <li>S＝R＝0 → 保持</li>\n  <li>S＝R＝1 → <strong>禁止／不定</strong>（基本 NOR／NAND 結構會有問題）</li>\n</ul>\n<figure class=\"gate-fig\">\n  <img src=\"assets/c7_sr.png\" alt=\"SR：置位／復位／保持；S＝R＝1 禁止\">\n  <div class=\"gate-meta\">S＝1,R＝0 置 1；S＝0,R＝1 置 0；00 保持；11 禁止。</div>\n</figure>\n<div class=\"tip\">實際設計避免 S＝R＝1；可用閘約束或改用 D／JK。</div>\n",
+      "practice": {
+        "type": "mcq",
+        "prompt": "基本 SR，S＝0、R＝0 時輸出？",
+        "choices": [
+          "一定變 1",
+          "一定變 0",
+          "保持原狀態",
+          "必定禁止態"
+        ],
+        "answer": 2,
+        "explain": "S＝R＝0 係 hold；S＝R＝1 先係問題態。"
+      },
       "support": {
-        "definition": "計數器、暫存器、簡單狀態機。",
-        "example": "內容稍後上線。",
-        "tip": "建議先完成第 1–4 章星號練習。"
+        "definition": "SR：置位／復位／保持；11 禁忌。",
+        "example": "00→hold。",
+        "tip": "記得禁止態。",
+        "guidedHints": [
+          "冇 Set 冇 Reset 會點？",
+          "唔會強迫改 Q。",
+          "保持。"
+        ]
+      }
+    },
+    {
+      "id": "c7-d",
+      "chapter": 7,
+      "nav": "7.3 D 正反器",
+      "title": "D：資料鎖存",
+      "pill": "D-FF",
+      "live": true,
+      "teach": "\n<p><strong>D 正反器</strong>：喺觸發沿把輸入 D 抄到 Q（下一狀態 Q⁺＝D）。</p>\n<ul>\n  <li>用途：暫存器位元、同步輸入、延遲一個時鐘</li>\n  <li>避免咗 SR 嘅 11 禁忌（D 同 <span class=\"obar\">D</span> 成對驅動時）</li>\n</ul>\n<figure class=\"gate-fig\">\n  <img src=\"assets/c7_d.png\" alt=\"D 正反器：時鐘沿把 D 載入 Q，Q⁺＝D\">\n  <div class=\"gate-meta\">邊緣觸發：下一狀態 Q⁺＝D。</div>\n</figure>\n<div class=\"koujue\">口訣：D-FF＝「拍一下，記住 D」。</div>\n",
+      "practice": {
+        "type": "mcq",
+        "prompt": "邊緣觸發 D-FF，喺有效時鐘沿之後 Q 等於？",
+        "choices": [
+          "上一拍嘅 Q 永遠唔變",
+          "該沿當下嘅 D",
+          "一定係 0",
+          "S 同 R 嘅 XOR"
+        ],
+        "answer": 1,
+        "explain": "特性：Q⁺＝D。"
+      },
+      "support": {
+        "definition": "Q⁺＝D。",
+        "example": "暫存 1 bit。",
+        "tip": "每拍更新一次。",
+        "guidedHints": [
+          "D-FF 記住邊個信號？",
+          "輸入腳 D。",
+          "答案係該沿嘅 D。"
+        ]
+      }
+    },
+    {
+      "id": "c7-jk",
+      "chapter": 7,
+      "nav": "7.4 JK 正反器",
+      "title": "JK：可切換",
+      "pill": "JK",
+      "live": true,
+      "teach": "\n<p><strong>JK 正反器</strong>可看成改良 SR：</p>\n<ul>\n  <li>J＝1,K＝0 → 置 1</li>\n  <li>J＝0,K＝1 → 置 0</li>\n  <li>J＝K＝0 → 保持</li>\n  <li>J＝K＝1 → <strong>Toggle</strong>（Q 反相）——解決 SR 嘅 11 問題</li>\n</ul>\n<figure class=\"gate-fig\">\n  <img src=\"assets/c7_jk.png\" alt=\"JK 正反器：J＝K＝1 時每個時鐘沿切換（toggle）\">\n  <div class=\"gate-meta\">00 保持、10 置 1、01 置 0；11 則 Q⁺＝Q 的反相。</div>\n</figure>\n",
+      "practice": {
+        "type": "mcq",
+        "prompt": "JK 正反器喺 J＝K＝1（邊緣觸發）時會？",
+        "choices": [
+          "禁止態崩潰",
+          "保持",
+          "Q 變反（toggle）",
+          "一定變 0"
+        ],
+        "answer": 2,
+        "explain": "JK 嘅 11＝切換；唔同基本 SR 嘅禁止態。"
+      },
+      "support": {
+        "definition": "JK：11＝toggle。",
+        "example": "00 hold；10 set；01 reset。",
+        "tip": "計數器常用 toggle。",
+        "guidedHints": [
+          "JK 對 11 點處理？",
+          "唔係禁止，而係反相。",
+          "toggle。"
+        ]
+      }
+    },
+    {
+      "id": "c7-edge",
+      "chapter": 7,
+      "nav": "7.5 邊緣觸發",
+      "title": "上升沿／下降沿",
+      "pill": "時鐘",
+      "live": true,
+      "teach": "\n<p><strong>邊緣觸發</strong>只喺時鐘<strong>轉變瞬間</strong>有效：</p>\n<ul>\n  <li>上升沿（↑）：0→1</li>\n  <li>下降沿（↓）：1→0</li>\n</ul>\n<p>符號：三角時鐘口；有氣泡多數表示下降沿觸發。</p>\n<figure class=\"gate-fig\">\n  <img src=\"assets/c7_edge.png\" alt=\"同一條 CLK 波：向上箭咀係上升沿，向下箭咀係下降沿\">\n  <div class=\"gate-meta\">上升沿＝0→1，下降沿＝1→0；同步系統多數統一用同一邊緣。</div>\n</figure>\n<div class=\"tip\">同步系統多數元件用<strong>同一邊緣</strong>，避免競態混亂。</div>\n",
+      "practice": {
+        "type": "mcq",
+        "prompt": "符號有時鐘三角＋氣泡，通常表示？",
+        "choices": [
+          "電平觸發且高電平有效",
+          "下降沿觸發",
+          "無時鐘異步專用",
+          "一定係 SR 禁止態"
+        ],
+        "answer": 1,
+        "explain": "氣泡喺時鐘輸入常表示低態／下降沿觸發。"
+      },
+      "support": {
+        "definition": "↑／↓ 邊緣取樣。",
+        "example": "氣泡≈下降沿。",
+        "tip": "同步系統統一邊緣。",
+        "guidedHints": [
+          "氣泡喺 CLK 代表咩？",
+          "低態有效或下降沿。",
+          "揀下降沿。"
+        ]
+      }
+    },
+    {
+      "id": "c7-char",
+      "chapter": 7,
+      "nav": "7.6 特性表",
+      "title": "下一狀態點睇表",
+      "pill": "特性",
+      "live": true,
+      "teach": "\n<p><strong>特性表</strong>列出當前輸入同當前 Q，得出<strong>下一狀態 Q⁺</strong>。</p>\n<p>D-FF 好簡單：Q⁺＝D。JK 要睇 J、K、Q 組合（11 時 Q⁺＝非 Q（反相））。</p>\n",
+      "practice": {
+        "type": "mcq",
+        "prompt": "D-FF 特性：若 D＝0，觸發後 Q⁺？",
+        "choices": [
+          "1",
+          "0",
+          "等於舊 Q 一定",
+          "隨機"
+        ],
+        "answer": 1,
+        "explain": "Q⁺＝D＝0。"
+      },
+      "support": {
+        "definition": "特性表→Q⁺。",
+        "example": "D：Q⁺＝D。",
+        "tip": "JK：11 → Q⁺＝非 Q。",
+        "guidedHints": [
+          "D-FF 下一態跟邊個？",
+          "跟 D。",
+          "D＝0 → Q⁺＝0。"
+        ]
+      }
+    },
+    {
+      "id": "c7-race",
+      "chapter": 7,
+      "nav": "7.7 競態簡說",
+      "title": "點解要同步／避免 race",
+      "pill": "競態",
+      "live": true,
+      "teach": "\n<p><strong>競態（race）</strong>：多條路徑延遲不同，令輸出短暫出現錯誤值，甚至令異步電路進入錯狀態。</p>\n<ul>\n  <li>緩解：同步設計、統一時鐘邊緣、滿足 setup／hold、避免 SR＝11</li>\n  <li>鎖存「透明期」長更容易傳入毛刺</li>\n</ul>\n<div class=\"tip\">中學層次：記住「同時變、路徑快慢唔同 → 可能閃錯一下」。</div>\n",
+      "practice": {
+        "type": "mcq",
+        "prompt": "下列邊項較能減少同步邏輯入面嘅競態問題？",
+        "choices": [
+          "亂用多個無關時鐘域亂交叉",
+          "同一邊緣觸發、滿足時序約束",
+          "故意令 SR 長期＝11",
+          "完全唔要時鐘、全異步回授"
+        ],
+        "answer": 1,
+        "explain": "同步＋同一邊緣＋setup/hold 係課堂重點防護。"
+      },
+      "support": {
+        "definition": "race＝路徑快慢爭先。",
+        "example": "同步邊緣較穩。",
+        "tip": "避免非法輸入。",
+        "guidedHints": [
+          "邊項講「同一邊緣＋時序」？",
+          "唔係 SR＝11。",
+          "第二項。"
+        ]
+      }
+    },
+    {
+      "id": "c8-state-clk",
+      "chapter": 8,
+      "nav": "8.1 狀態同時鐘",
+      "title": "循序系統基本元素",
+      "pill": "狀態",
+      "live": true,
+      "teach": "\n<p>循序系統＝<strong>組合邏輯＋記憶元件</strong>，由<strong>時鐘</strong>推進時間步：</p>\n<ul>\n  <li><strong>狀態</strong>：正反器／暫存器而家記住嘅值</li>\n  <li>每個有效時鐘沿：狀態可能轉去「下一狀態」</li>\n</ul>\n<div class=\"koujue\">口訣：時鐘＝節拍器；狀態＝而家企喺邊格。</div>\n",
+      "practice": {
+        "type": "mcq",
+        "prompt": "同步循序電路「狀態更新」通常發生喺？",
+        "choices": [
+          "任意模擬雜訊瞬間",
+          "有效時鐘邊緣",
+          "只係電源關閉時",
+          "只係重置鍵彈起後永遠唔再變"
+        ],
+        "answer": 1,
+        "explain": "同步設計喺時鐘邊緣更新狀態。"
+      },
+      "support": {
+        "definition": "狀態＋時鐘推進。",
+        "example": "FF 組成狀態暫存。",
+        "tip": "同步＝跟邊緣。",
+        "guidedHints": [
+          "邊個時刻改狀態？",
+          "有效 CLK 邊緣。",
+          "揀第二項。"
+        ]
+      }
+    },
+    {
+      "id": "c8-counter",
+      "chapter": 8,
+      "nav": "8.2 同步計數器",
+      "title": "計數器概念",
+      "pill": "計數",
+      "live": true,
+      "teach": "\n<p><strong>計數器</strong>按時鐘把狀態當二進（或模 n）遞增／遞減。</p>\n<ul>\n  <li><strong>同步計數器</strong>：所有 FF 共用同一時鐘</li>\n  <li>模 4：狀態 00→01→10→11→00…</li>\n  <li>JK 全接 1 可做 T（toggle）位元砌計數</li>\n</ul>\n<figure class=\"gate-fig\">\n  <img src=\"assets/c8_counter.png\" alt=\"3 位元同步計數器：Q2 Q1 Q0 由 000 數到 111，共用同一 CLK\">\n  <div class=\"gate-meta\">三個正反器共用 CLK；000→111 之後下一拍回到 000（模 8）。</div>\n</figure>\n",
+      "practice": {
+        "type": "mcq",
+        "prompt": "模 4 同步上數計數器，而家係 10₂，下一個時鐘後係？",
+        "choices": [
+          "11₂",
+          "00₂",
+          "01₂",
+          "10₂ 不變"
+        ],
+        "answer": 0,
+        "explain": "上數：10→11；再下一拍先返 00。"
+      },
+      "support": {
+        "definition": "同步計數：同 CLK。",
+        "example": "模 4：00–11 循環。",
+        "tip": "10 下一態 11。",
+        "guidedHints": [
+          "上數＋1。",
+          "10₂＋1＝11₂。",
+          "未溢位。"
+        ]
+      }
+    },
+    {
+      "id": "c8-mod",
+      "chapter": 8,
+      "nav": "8.3 模數",
+      "title": "模 n 同位元數",
+      "pill": "模 n",
+      "live": true,
+      "teach": "\n<p>n 個相異狀態嘅計數器叫<strong>模 n</strong>。用 k 隻 FF，最多 2ᵏ 態，所以模 n 要 2ᵏ ≥ n。</p>\n<p>例：模 10（十進計數）至少要 4 隻 FF（16≥10），再用邏輯喺 9 之後清 0。</p>\n",
+      "practice": {
+        "type": "mcq",
+        "prompt": "要做模 8 計數，最少要幾多隻正反器？",
+        "choices": [
+          "2",
+          "3",
+          "8",
+          "16"
+        ],
+        "answer": 1,
+        "explain": "2³＝8 → 最少 3 隻。"
+      },
+      "support": {
+        "definition": "2ᵏ ≥ 模數。",
+        "example": "模 8 → 3 FF。",
+        "tip": "模 10 → 至少 4。",
+        "guidedHints": [
+          "8＝2 嘅幾次方？",
+          "2³＝8。",
+          "3 隻。"
+        ]
+      }
+    },
+    {
+      "id": "c8-shift",
+      "chapter": 8,
+      "nav": "8.4 移位暫存器",
+      "title": "Shift register",
+      "pill": "移位",
+      "live": true,
+      "teach": "\n<p><strong>移位暫存器</strong>：一串 D-FF，每拍把資料向左或向右移一格。</p>\n<ul>\n  <li>串入並出（SIPO）、並入串出（PISO）等模式</li>\n  <li>用途：延遲線、序列傳輸、簡易乘法（左移×2）概念</li>\n</ul>\n<figure class=\"gate-fig\">\n  <img src=\"assets/c8_shift.png\" alt=\"4 位元右移暫存器：1011 右移一位（左邊補 0）→ 0101\">\n  <div class=\"gate-meta\">每個 CLK，所有位向右移一格；圖例 1011 → 0101。</div>\n</figure>\n<div class=\"tip\">4-bit 右移：b3b2b1b0 → 0 b3 b2 b1（視輸入位）。</div>\n",
+      "practice": {
+        "type": "mcq",
+        "prompt": "4-bit 暫存器而家係 0101，同步左移 1 位（右補 0）後係？",
+        "choices": [
+          "1010",
+          "0010",
+          "0101",
+          "1011"
+        ],
+        "answer": 0,
+        "explain": "左移：0101 → 1010。"
+      },
+      "support": {
+        "definition": "移位＝每拍搬一格。",
+        "example": "0101 左移 → 1010。",
+        "tip": "左移≈×2（無溢位時）。",
+        "guidedHints": [
+          "每位向左一格，右邊補 0。",
+          "最高位 0 移走；1 變成新最高。",
+          "結果 1010。"
+        ]
+      }
+    },
+    {
+      "id": "c8-fsm",
+      "chapter": 8,
+      "nav": "8.5 簡單狀態機",
+      "title": "少數狀態表",
+      "pill": "FSM",
+      "live": true,
+      "teach": "\n<p><strong>有限狀態機 FSM</strong>：用狀態表／圖描述「而家狀態＋輸入 → 下一狀態＋輸出」。</p>\n<table class=\"mini\">\n  <tr><th>而家</th><th>輸入 X</th><th>下一</th><th>輸出 Z</th></tr>\n  <tr><td>S0</td><td>0</td><td>S0</td><td>0</td></tr>\n  <tr><td>S0</td><td>1</td><td>S1</td><td>0</td></tr>\n  <tr><td>S1</td><td>0</td><td>S0</td><td>0</td></tr>\n  <tr><td>S1</td><td>1</td><td>S1</td><td>1</td></tr>\n</table>\n<p>上表意思：連續見到 X＝1 就輸出 1（示意）。</p>\n<figure class=\"gate-fig\">\n  <img src=\"assets/c8_fsm.png\" alt=\"3 態狀態機：圓圈係狀態，箭咀係轉換；每個轉換都喺 CLK 沿發生\">\n  <div class=\"gate-meta\">圖例 S0／S1／S2：X＝1 去下一態，X＝0 留原態；轉換都要等 CLK。</div>\n</figure>\n",
+      "practice": {
+        "type": "mcq",
+        "prompt": "上表：而家 S0、X＝1，下一狀態係？",
+        "choices": [
+          "S0",
+          "S1",
+          "S2",
+          "保持唔變一定"
+        ],
+        "answer": 1,
+        "explain": "S0＋X＝1 → S1。"
+      },
+      "support": {
+        "definition": "FSM＝狀態表／圖。",
+        "example": "而家＋輸入→下一＋輸出。",
+        "tip": "少數狀態先易手算。",
+        "guidedHints": [
+          "睇 S0 列、X＝1 行。",
+          "下一欄寫 S1。",
+          "揀 S1。"
+        ]
+      }
+    },
+    {
+      "id": "c8-reg-vs-cnt",
+      "chapter": 8,
+      "nav": "8.6 暫存 vs 計數",
+      "title": "兩者點分",
+      "pill": "對照",
+      "live": true,
+      "teach": "\n<p>快速對照：</p>\n<ul>\n  <li><strong>暫存器</strong>：載入／保持／移位資料</li>\n  <li><strong>計數器</strong>：按固定序列行狀態（上數／下數／模 n）</li>\n</ul>\n<p>兩者都用 FF；分別喺<strong>下一態邏輯</strong>點設計。</p>\n",
+      "practice": {
+        "type": "mcq",
+        "prompt": "要把一組資料「搬位傳送」而唔係按 0,1,2…數，優先用？",
+        "choices": [
+          "模 n 上數計數器",
+          "移位／載入暫存器",
+          "只有半加器",
+          "解碼器代替記憶"
+        ],
+        "answer": 1,
+        "explain": "搬位／載入係暫存器功能；計數器跟固定數序。"
+      },
+      "support": {
+        "definition": "暫存載入移位；計數跟序列。",
+        "example": "都用 FF。",
+        "tip": "下一態邏輯唔同。",
+        "guidedHints": [
+          "題目要「搬位傳送」。",
+          "唔係 0,1,2 數。",
+          "移位暫存器。"
+        ]
+      }
+    },
+    {
+      "id": "c8-quiz",
+      "chapter": 8,
+      "nav": "8.7 綜合小測",
+      "title": "循序邏輯小測",
+      "pill": "小測",
+      "live": true,
+      "teach": "\n<p>溫習：狀態／時鐘、同步計數、模數、移位、簡單 FSM。</p>\n",
+      "practice": {
+        "type": "mcq",
+        "prompt": "下列邊句正確？",
+        "choices": [
+          "組合邏輯輸出依賴內部狀態",
+          "模 5 計數最少 3 隻 FF（因為 2³＝8≥5）",
+          "D-FF 唔可以組成暫存器",
+          "同步計數器每個 FF 一定要用唔同時鐘"
+        ],
+        "answer": 1,
+        "explain": "2²＝4＜5，所以模 5 至少 3 FF。組合無狀態；暫存器常用 D-FF；同步＝同時鐘。"
+      },
+      "support": {
+        "definition": "綜合第 7–8 章。",
+        "example": "模 n → 2ᵏ≥n。",
+        "tip": "同步共用 CLK。",
+        "guidedHints": [
+          "模 5 要唔少過幾多態空間？",
+          "4 唔夠，要 8。",
+          "3 FF。"
+        ]
       }
     }
   ]
