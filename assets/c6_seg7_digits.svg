@@ -1,0 +1,148 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1100" height="820" viewBox="0 0 1100 820" role="img">
+<title>七段數字 0 至 9 段圖</title>
+<desc>每個數字嘅 DCBA 同亮着嘅段</desc>
+<rect width="1100" height="820" fill="#ffffff"/>
+<text x="550.0" y="40.0" fill="#1e3a5f" font-size="26" font-weight="700" text-anchor="middle" font-family="WenQuanYi Micro Hei, Microsoft JhengHei, sans-serif">數字 0–9：邊啲段亮</text>
+<text x="550.0" y="68.0" fill="#64748b" font-size="15" font-weight="500" text-anchor="middle" font-family="WenQuanYi Micro Hei, Microsoft JhengHei, sans-serif">1＝亮（共陰、高態有效）。D 最高位。本課 6 有頂橫 a，9 有底橫 d。</text>
+<rect x="40" y="92" width="200" height="340" rx="14" fill="#f8fafc" stroke="#e2e8f0"/>
+<g transform="translate(86,106) scale(0.92)">
+<polygon points="37.4,8.0 82.6,8.0 90.0,16.0 82.6,24.0 37.4,24.0 30.0,16.0" fill="#e11d48" stroke="#9f1239" stroke-width="1.7" stroke-linejoin="round"/>
+<polygon points="100.0,28.0 108.0,35.4 108.0,84.6 100.0,92.0 92.0,84.6 92.0,35.4" fill="#e11d48" stroke="#9f1239" stroke-width="1.7" stroke-linejoin="round"/>
+<polygon points="100.0,112.0 108.0,119.4 108.0,168.6 100.0,176.0 92.0,168.6 92.0,119.4" fill="#e11d48" stroke="#9f1239" stroke-width="1.7" stroke-linejoin="round"/>
+<polygon points="37.4,180.0 82.6,180.0 90.0,188.0 82.6,196.0 37.4,196.0 30.0,188.0" fill="#e11d48" stroke="#9f1239" stroke-width="1.7" stroke-linejoin="round"/>
+<polygon points="20.0,112.0 28.0,119.4 28.0,168.6 20.0,176.0 12.0,168.6 12.0,119.4" fill="#e11d48" stroke="#9f1239" stroke-width="1.7" stroke-linejoin="round"/>
+<polygon points="20.0,28.0 28.0,35.4 28.0,84.6 20.0,92.0 12.0,84.6 12.0,35.4" fill="#e11d48" stroke="#9f1239" stroke-width="1.7" stroke-linejoin="round"/>
+<polygon points="37.4,94.0 82.6,94.0 90.0,102.0 82.6,110.0 37.4,110.0 30.0,102.0" fill="#f1f5f9" stroke="#94a3b8" stroke-width="1.7" stroke-linejoin="round"/>
+</g>
+<text x="140.0" y="318.0" fill="#0f172a" font-size="26" font-weight="700" text-anchor="middle" font-family="WenQuanYi Micro Hei, Microsoft JhengHei, sans-serif">0</text>
+<text x="140.0" y="344.0" fill="#94a3b8" font-size="15" font-weight="600" text-anchor="middle" font-family="JetBrains Mono, DejaVu Sans Mono, ui-monospace, monospace">D C B A</text>
+<text x="140.0" y="368.0" fill="#1e3a8a" font-size="15" font-weight="700" text-anchor="middle" font-family="JetBrains Mono, DejaVu Sans Mono, ui-monospace, monospace">0 0 0 0</text>
+<text x="140.0" y="396.0" fill="#9f1239" font-size="15" font-weight="700" text-anchor="middle" font-family="JetBrains Mono, DejaVu Sans Mono, ui-monospace, monospace">a b c d e f</text>
+<rect x="256" y="92" width="200" height="340" rx="14" fill="#f8fafc" stroke="#e2e8f0"/>
+<g transform="translate(302,106) scale(0.92)">
+<polygon points="37.4,8.0 82.6,8.0 90.0,16.0 82.6,24.0 37.4,24.0 30.0,16.0" fill="#f1f5f9" stroke="#94a3b8" stroke-width="1.7" stroke-linejoin="round"/>
+<polygon points="100.0,28.0 108.0,35.4 108.0,84.6 100.0,92.0 92.0,84.6 92.0,35.4" fill="#e11d48" stroke="#9f1239" stroke-width="1.7" stroke-linejoin="round"/>
+<polygon points="100.0,112.0 108.0,119.4 108.0,168.6 100.0,176.0 92.0,168.6 92.0,119.4" fill="#e11d48" stroke="#9f1239" stroke-width="1.7" stroke-linejoin="round"/>
+<polygon points="37.4,180.0 82.6,180.0 90.0,188.0 82.6,196.0 37.4,196.0 30.0,188.0" fill="#f1f5f9" stroke="#94a3b8" stroke-width="1.7" stroke-linejoin="round"/>
+<polygon points="20.0,112.0 28.0,119.4 28.0,168.6 20.0,176.0 12.0,168.6 12.0,119.4" fill="#f1f5f9" stroke="#94a3b8" stroke-width="1.7" stroke-linejoin="round"/>
+<polygon points="20.0,28.0 28.0,35.4 28.0,84.6 20.0,92.0 12.0,84.6 12.0,35.4" fill="#f1f5f9" stroke="#94a3b8" stroke-width="1.7" stroke-linejoin="round"/>
+<polygon points="37.4,94.0 82.6,94.0 90.0,102.0 82.6,110.0 37.4,110.0 30.0,102.0" fill="#f1f5f9" stroke="#94a3b8" stroke-width="1.7" stroke-linejoin="round"/>
+</g>
+<text x="356.0" y="318.0" fill="#0f172a" font-size="26" font-weight="700" text-anchor="middle" font-family="WenQuanYi Micro Hei, Microsoft JhengHei, sans-serif">1</text>
+<text x="356.0" y="344.0" fill="#94a3b8" font-size="15" font-weight="600" text-anchor="middle" font-family="JetBrains Mono, DejaVu Sans Mono, ui-monospace, monospace">D C B A</text>
+<text x="356.0" y="368.0" fill="#1e3a8a" font-size="15" font-weight="700" text-anchor="middle" font-family="JetBrains Mono, DejaVu Sans Mono, ui-monospace, monospace">0 0 0 1</text>
+<text x="356.0" y="396.0" fill="#9f1239" font-size="15" font-weight="700" text-anchor="middle" font-family="JetBrains Mono, DejaVu Sans Mono, ui-monospace, monospace">b c</text>
+<rect x="472" y="92" width="200" height="340" rx="14" fill="#f8fafc" stroke="#e2e8f0"/>
+<g transform="translate(518,106) scale(0.92)">
+<polygon points="37.4,8.0 82.6,8.0 90.0,16.0 82.6,24.0 37.4,24.0 30.0,16.0" fill="#e11d48" stroke="#9f1239" stroke-width="1.7" stroke-linejoin="round"/>
+<polygon points="100.0,28.0 108.0,35.4 108.0,84.6 100.0,92.0 92.0,84.6 92.0,35.4" fill="#e11d48" stroke="#9f1239" stroke-width="1.7" stroke-linejoin="round"/>
+<polygon points="100.0,112.0 108.0,119.4 108.0,168.6 100.0,176.0 92.0,168.6 92.0,119.4" fill="#f1f5f9" stroke="#94a3b8" stroke-width="1.7" stroke-linejoin="round"/>
+<polygon points="37.4,180.0 82.6,180.0 90.0,188.0 82.6,196.0 37.4,196.0 30.0,188.0" fill="#e11d48" stroke="#9f1239" stroke-width="1.7" stroke-linejoin="round"/>
+<polygon points="20.0,112.0 28.0,119.4 28.0,168.6 20.0,176.0 12.0,168.6 12.0,119.4" fill="#e11d48" stroke="#9f1239" stroke-width="1.7" stroke-linejoin="round"/>
+<polygon points="20.0,28.0 28.0,35.4 28.0,84.6 20.0,92.0 12.0,84.6 12.0,35.4" fill="#f1f5f9" stroke="#94a3b8" stroke-width="1.7" stroke-linejoin="round"/>
+<polygon points="37.4,94.0 82.6,94.0 90.0,102.0 82.6,110.0 37.4,110.0 30.0,102.0" fill="#e11d48" stroke="#9f1239" stroke-width="1.7" stroke-linejoin="round"/>
+</g>
+<text x="572.0" y="318.0" fill="#0f172a" font-size="26" font-weight="700" text-anchor="middle" font-family="WenQuanYi Micro Hei, Microsoft JhengHei, sans-serif">2</text>
+<text x="572.0" y="344.0" fill="#94a3b8" font-size="15" font-weight="600" text-anchor="middle" font-family="JetBrains Mono, DejaVu Sans Mono, ui-monospace, monospace">D C B A</text>
+<text x="572.0" y="368.0" fill="#1e3a8a" font-size="15" font-weight="700" text-anchor="middle" font-family="JetBrains Mono, DejaVu Sans Mono, ui-monospace, monospace">0 0 1 0</text>
+<text x="572.0" y="396.0" fill="#9f1239" font-size="15" font-weight="700" text-anchor="middle" font-family="JetBrains Mono, DejaVu Sans Mono, ui-monospace, monospace">a b d e g</text>
+<rect x="688" y="92" width="200" height="340" rx="14" fill="#f8fafc" stroke="#e2e8f0"/>
+<g transform="translate(734,106) scale(0.92)">
+<polygon points="37.4,8.0 82.6,8.0 90.0,16.0 82.6,24.0 37.4,24.0 30.0,16.0" fill="#e11d48" stroke="#9f1239" stroke-width="1.7" stroke-linejoin="round"/>
+<polygon points="100.0,28.0 108.0,35.4 108.0,84.6 100.0,92.0 92.0,84.6 92.0,35.4" fill="#e11d48" stroke="#9f1239" stroke-width="1.7" stroke-linejoin="round"/>
+<polygon points="100.0,112.0 108.0,119.4 108.0,168.6 100.0,176.0 92.0,168.6 92.0,119.4" fill="#e11d48" stroke="#9f1239" stroke-width="1.7" stroke-linejoin="round"/>
+<polygon points="37.4,180.0 82.6,180.0 90.0,188.0 82.6,196.0 37.4,196.0 30.0,188.0" fill="#e11d48" stroke="#9f1239" stroke-width="1.7" stroke-linejoin="round"/>
+<polygon points="20.0,112.0 28.0,119.4 28.0,168.6 20.0,176.0 12.0,168.6 12.0,119.4" fill="#f1f5f9" stroke="#94a3b8" stroke-width="1.7" stroke-linejoin="round"/>
+<polygon points="20.0,28.0 28.0,35.4 28.0,84.6 20.0,92.0 12.0,84.6 12.0,35.4" fill="#f1f5f9" stroke="#94a3b8" stroke-width="1.7" stroke-linejoin="round"/>
+<polygon points="37.4,94.0 82.6,94.0 90.0,102.0 82.6,110.0 37.4,110.0 30.0,102.0" fill="#e11d48" stroke="#9f1239" stroke-width="1.7" stroke-linejoin="round"/>
+</g>
+<text x="788.0" y="318.0" fill="#0f172a" font-size="26" font-weight="700" text-anchor="middle" font-family="WenQuanYi Micro Hei, Microsoft JhengHei, sans-serif">3</text>
+<text x="788.0" y="344.0" fill="#94a3b8" font-size="15" font-weight="600" text-anchor="middle" font-family="JetBrains Mono, DejaVu Sans Mono, ui-monospace, monospace">D C B A</text>
+<text x="788.0" y="368.0" fill="#1e3a8a" font-size="15" font-weight="700" text-anchor="middle" font-family="JetBrains Mono, DejaVu Sans Mono, ui-monospace, monospace">0 0 1 1</text>
+<text x="788.0" y="396.0" fill="#9f1239" font-size="15" font-weight="700" text-anchor="middle" font-family="JetBrains Mono, DejaVu Sans Mono, ui-monospace, monospace">a b c d g</text>
+<rect x="904" y="92" width="200" height="340" rx="14" fill="#f8fafc" stroke="#e2e8f0"/>
+<g transform="translate(950,106) scale(0.92)">
+<polygon points="37.4,8.0 82.6,8.0 90.0,16.0 82.6,24.0 37.4,24.0 30.0,16.0" fill="#f1f5f9" stroke="#94a3b8" stroke-width="1.7" stroke-linejoin="round"/>
+<polygon points="100.0,28.0 108.0,35.4 108.0,84.6 100.0,92.0 92.0,84.6 92.0,35.4" fill="#e11d48" stroke="#9f1239" stroke-width="1.7" stroke-linejoin="round"/>
+<polygon points="100.0,112.0 108.0,119.4 108.0,168.6 100.0,176.0 92.0,168.6 92.0,119.4" fill="#e11d48" stroke="#9f1239" stroke-width="1.7" stroke-linejoin="round"/>
+<polygon points="37.4,180.0 82.6,180.0 90.0,188.0 82.6,196.0 37.4,196.0 30.0,188.0" fill="#f1f5f9" stroke="#94a3b8" stroke-width="1.7" stroke-linejoin="round"/>
+<polygon points="20.0,112.0 28.0,119.4 28.0,168.6 20.0,176.0 12.0,168.6 12.0,119.4" fill="#f1f5f9" stroke="#94a3b8" stroke-width="1.7" stroke-linejoin="round"/>
+<polygon points="20.0,28.0 28.0,35.4 28.0,84.6 20.0,92.0 12.0,84.6 12.0,35.4" fill="#e11d48" stroke="#9f1239" stroke-width="1.7" stroke-linejoin="round"/>
+<polygon points="37.4,94.0 82.6,94.0 90.0,102.0 82.6,110.0 37.4,110.0 30.0,102.0" fill="#e11d48" stroke="#9f1239" stroke-width="1.7" stroke-linejoin="round"/>
+</g>
+<text x="1004.0" y="318.0" fill="#0f172a" font-size="26" font-weight="700" text-anchor="middle" font-family="WenQuanYi Micro Hei, Microsoft JhengHei, sans-serif">4</text>
+<text x="1004.0" y="344.0" fill="#94a3b8" font-size="15" font-weight="600" text-anchor="middle" font-family="JetBrains Mono, DejaVu Sans Mono, ui-monospace, monospace">D C B A</text>
+<text x="1004.0" y="368.0" fill="#1e3a8a" font-size="15" font-weight="700" text-anchor="middle" font-family="JetBrains Mono, DejaVu Sans Mono, ui-monospace, monospace">0 1 0 0</text>
+<text x="1004.0" y="396.0" fill="#9f1239" font-size="15" font-weight="700" text-anchor="middle" font-family="JetBrains Mono, DejaVu Sans Mono, ui-monospace, monospace">b c f g</text>
+<rect x="40" y="450" width="200" height="340" rx="14" fill="#f8fafc" stroke="#e2e8f0"/>
+<g transform="translate(86,464) scale(0.92)">
+<polygon points="37.4,8.0 82.6,8.0 90.0,16.0 82.6,24.0 37.4,24.0 30.0,16.0" fill="#e11d48" stroke="#9f1239" stroke-width="1.7" stroke-linejoin="round"/>
+<polygon points="100.0,28.0 108.0,35.4 108.0,84.6 100.0,92.0 92.0,84.6 92.0,35.4" fill="#f1f5f9" stroke="#94a3b8" stroke-width="1.7" stroke-linejoin="round"/>
+<polygon points="100.0,112.0 108.0,119.4 108.0,168.6 100.0,176.0 92.0,168.6 92.0,119.4" fill="#e11d48" stroke="#9f1239" stroke-width="1.7" stroke-linejoin="round"/>
+<polygon points="37.4,180.0 82.6,180.0 90.0,188.0 82.6,196.0 37.4,196.0 30.0,188.0" fill="#e11d48" stroke="#9f1239" stroke-width="1.7" stroke-linejoin="round"/>
+<polygon points="20.0,112.0 28.0,119.4 28.0,168.6 20.0,176.0 12.0,168.6 12.0,119.4" fill="#f1f5f9" stroke="#94a3b8" stroke-width="1.7" stroke-linejoin="round"/>
+<polygon points="20.0,28.0 28.0,35.4 28.0,84.6 20.0,92.0 12.0,84.6 12.0,35.4" fill="#e11d48" stroke="#9f1239" stroke-width="1.7" stroke-linejoin="round"/>
+<polygon points="37.4,94.0 82.6,94.0 90.0,102.0 82.6,110.0 37.4,110.0 30.0,102.0" fill="#e11d48" stroke="#9f1239" stroke-width="1.7" stroke-linejoin="round"/>
+</g>
+<text x="140.0" y="676.0" fill="#0f172a" font-size="26" font-weight="700" text-anchor="middle" font-family="WenQuanYi Micro Hei, Microsoft JhengHei, sans-serif">5</text>
+<text x="140.0" y="702.0" fill="#94a3b8" font-size="15" font-weight="600" text-anchor="middle" font-family="JetBrains Mono, DejaVu Sans Mono, ui-monospace, monospace">D C B A</text>
+<text x="140.0" y="726.0" fill="#1e3a8a" font-size="15" font-weight="700" text-anchor="middle" font-family="JetBrains Mono, DejaVu Sans Mono, ui-monospace, monospace">0 1 0 1</text>
+<text x="140.0" y="754.0" fill="#9f1239" font-size="15" font-weight="700" text-anchor="middle" font-family="JetBrains Mono, DejaVu Sans Mono, ui-monospace, monospace">a c d f g</text>
+<rect x="256" y="450" width="200" height="340" rx="14" fill="#f8fafc" stroke="#e2e8f0"/>
+<g transform="translate(302,464) scale(0.92)">
+<polygon points="37.4,8.0 82.6,8.0 90.0,16.0 82.6,24.0 37.4,24.0 30.0,16.0" fill="#e11d48" stroke="#9f1239" stroke-width="1.7" stroke-linejoin="round"/>
+<polygon points="100.0,28.0 108.0,35.4 108.0,84.6 100.0,92.0 92.0,84.6 92.0,35.4" fill="#f1f5f9" stroke="#94a3b8" stroke-width="1.7" stroke-linejoin="round"/>
+<polygon points="100.0,112.0 108.0,119.4 108.0,168.6 100.0,176.0 92.0,168.6 92.0,119.4" fill="#e11d48" stroke="#9f1239" stroke-width="1.7" stroke-linejoin="round"/>
+<polygon points="37.4,180.0 82.6,180.0 90.0,188.0 82.6,196.0 37.4,196.0 30.0,188.0" fill="#e11d48" stroke="#9f1239" stroke-width="1.7" stroke-linejoin="round"/>
+<polygon points="20.0,112.0 28.0,119.4 28.0,168.6 20.0,176.0 12.0,168.6 12.0,119.4" fill="#e11d48" stroke="#9f1239" stroke-width="1.7" stroke-linejoin="round"/>
+<polygon points="20.0,28.0 28.0,35.4 28.0,84.6 20.0,92.0 12.0,84.6 12.0,35.4" fill="#e11d48" stroke="#9f1239" stroke-width="1.7" stroke-linejoin="round"/>
+<polygon points="37.4,94.0 82.6,94.0 90.0,102.0 82.6,110.0 37.4,110.0 30.0,102.0" fill="#e11d48" stroke="#9f1239" stroke-width="1.7" stroke-linejoin="round"/>
+</g>
+<text x="356.0" y="676.0" fill="#0f172a" font-size="26" font-weight="700" text-anchor="middle" font-family="WenQuanYi Micro Hei, Microsoft JhengHei, sans-serif">6</text>
+<text x="356.0" y="702.0" fill="#94a3b8" font-size="15" font-weight="600" text-anchor="middle" font-family="JetBrains Mono, DejaVu Sans Mono, ui-monospace, monospace">D C B A</text>
+<text x="356.0" y="726.0" fill="#1e3a8a" font-size="15" font-weight="700" text-anchor="middle" font-family="JetBrains Mono, DejaVu Sans Mono, ui-monospace, monospace">0 1 1 0</text>
+<text x="356.0" y="754.0" fill="#9f1239" font-size="15" font-weight="700" text-anchor="middle" font-family="JetBrains Mono, DejaVu Sans Mono, ui-monospace, monospace">a c d e f g</text>
+<rect x="472" y="450" width="200" height="340" rx="14" fill="#f8fafc" stroke="#e2e8f0"/>
+<g transform="translate(518,464) scale(0.92)">
+<polygon points="37.4,8.0 82.6,8.0 90.0,16.0 82.6,24.0 37.4,24.0 30.0,16.0" fill="#e11d48" stroke="#9f1239" stroke-width="1.7" stroke-linejoin="round"/>
+<polygon points="100.0,28.0 108.0,35.4 108.0,84.6 100.0,92.0 92.0,84.6 92.0,35.4" fill="#e11d48" stroke="#9f1239" stroke-width="1.7" stroke-linejoin="round"/>
+<polygon points="100.0,112.0 108.0,119.4 108.0,168.6 100.0,176.0 92.0,168.6 92.0,119.4" fill="#e11d48" stroke="#9f1239" stroke-width="1.7" stroke-linejoin="round"/>
+<polygon points="37.4,180.0 82.6,180.0 90.0,188.0 82.6,196.0 37.4,196.0 30.0,188.0" fill="#f1f5f9" stroke="#94a3b8" stroke-width="1.7" stroke-linejoin="round"/>
+<polygon points="20.0,112.0 28.0,119.4 28.0,168.6 20.0,176.0 12.0,168.6 12.0,119.4" fill="#f1f5f9" stroke="#94a3b8" stroke-width="1.7" stroke-linejoin="round"/>
+<polygon points="20.0,28.0 28.0,35.4 28.0,84.6 20.0,92.0 12.0,84.6 12.0,35.4" fill="#f1f5f9" stroke="#94a3b8" stroke-width="1.7" stroke-linejoin="round"/>
+<polygon points="37.4,94.0 82.6,94.0 90.0,102.0 82.6,110.0 37.4,110.0 30.0,102.0" fill="#f1f5f9" stroke="#94a3b8" stroke-width="1.7" stroke-linejoin="round"/>
+</g>
+<text x="572.0" y="676.0" fill="#0f172a" font-size="26" font-weight="700" text-anchor="middle" font-family="WenQuanYi Micro Hei, Microsoft JhengHei, sans-serif">7</text>
+<text x="572.0" y="702.0" fill="#94a3b8" font-size="15" font-weight="600" text-anchor="middle" font-family="JetBrains Mono, DejaVu Sans Mono, ui-monospace, monospace">D C B A</text>
+<text x="572.0" y="726.0" fill="#1e3a8a" font-size="15" font-weight="700" text-anchor="middle" font-family="JetBrains Mono, DejaVu Sans Mono, ui-monospace, monospace">0 1 1 1</text>
+<text x="572.0" y="754.0" fill="#9f1239" font-size="15" font-weight="700" text-anchor="middle" font-family="JetBrains Mono, DejaVu Sans Mono, ui-monospace, monospace">a b c</text>
+<rect x="688" y="450" width="200" height="340" rx="14" fill="#f8fafc" stroke="#e2e8f0"/>
+<g transform="translate(734,464) scale(0.92)">
+<polygon points="37.4,8.0 82.6,8.0 90.0,16.0 82.6,24.0 37.4,24.0 30.0,16.0" fill="#e11d48" stroke="#9f1239" stroke-width="1.7" stroke-linejoin="round"/>
+<polygon points="100.0,28.0 108.0,35.4 108.0,84.6 100.0,92.0 92.0,84.6 92.0,35.4" fill="#e11d48" stroke="#9f1239" stroke-width="1.7" stroke-linejoin="round"/>
+<polygon points="100.0,112.0 108.0,119.4 108.0,168.6 100.0,176.0 92.0,168.6 92.0,119.4" fill="#e11d48" stroke="#9f1239" stroke-width="1.7" stroke-linejoin="round"/>
+<polygon points="37.4,180.0 82.6,180.0 90.0,188.0 82.6,196.0 37.4,196.0 30.0,188.0" fill="#e11d48" stroke="#9f1239" stroke-width="1.7" stroke-linejoin="round"/>
+<polygon points="20.0,112.0 28.0,119.4 28.0,168.6 20.0,176.0 12.0,168.6 12.0,119.4" fill="#e11d48" stroke="#9f1239" stroke-width="1.7" stroke-linejoin="round"/>
+<polygon points="20.0,28.0 28.0,35.4 28.0,84.6 20.0,92.0 12.0,84.6 12.0,35.4" fill="#e11d48" stroke="#9f1239" stroke-width="1.7" stroke-linejoin="round"/>
+<polygon points="37.4,94.0 82.6,94.0 90.0,102.0 82.6,110.0 37.4,110.0 30.0,102.0" fill="#e11d48" stroke="#9f1239" stroke-width="1.7" stroke-linejoin="round"/>
+</g>
+<text x="788.0" y="676.0" fill="#0f172a" font-size="26" font-weight="700" text-anchor="middle" font-family="WenQuanYi Micro Hei, Microsoft JhengHei, sans-serif">8</text>
+<text x="788.0" y="702.0" fill="#94a3b8" font-size="15" font-weight="600" text-anchor="middle" font-family="JetBrains Mono, DejaVu Sans Mono, ui-monospace, monospace">D C B A</text>
+<text x="788.0" y="726.0" fill="#1e3a8a" font-size="15" font-weight="700" text-anchor="middle" font-family="JetBrains Mono, DejaVu Sans Mono, ui-monospace, monospace">1 0 0 0</text>
+<text x="788.0" y="754.0" fill="#9f1239" font-size="15" font-weight="700" text-anchor="middle" font-family="JetBrains Mono, DejaVu Sans Mono, ui-monospace, monospace">a b c d e f g</text>
+<rect x="904" y="450" width="200" height="340" rx="14" fill="#f8fafc" stroke="#e2e8f0"/>
+<g transform="translate(950,464) scale(0.92)">
+<polygon points="37.4,8.0 82.6,8.0 90.0,16.0 82.6,24.0 37.4,24.0 30.0,16.0" fill="#e11d48" stroke="#9f1239" stroke-width="1.7" stroke-linejoin="round"/>
+<polygon points="100.0,28.0 108.0,35.4 108.0,84.6 100.0,92.0 92.0,84.6 92.0,35.4" fill="#e11d48" stroke="#9f1239" stroke-width="1.7" stroke-linejoin="round"/>
+<polygon points="100.0,112.0 108.0,119.4 108.0,168.6 100.0,176.0 92.0,168.6 92.0,119.4" fill="#e11d48" stroke="#9f1239" stroke-width="1.7" stroke-linejoin="round"/>
+<polygon points="37.4,180.0 82.6,180.0 90.0,188.0 82.6,196.0 37.4,196.0 30.0,188.0" fill="#e11d48" stroke="#9f1239" stroke-width="1.7" stroke-linejoin="round"/>
+<polygon points="20.0,112.0 28.0,119.4 28.0,168.6 20.0,176.0 12.0,168.6 12.0,119.4" fill="#f1f5f9" stroke="#94a3b8" stroke-width="1.7" stroke-linejoin="round"/>
+<polygon points="20.0,28.0 28.0,35.4 28.0,84.6 20.0,92.0 12.0,84.6 12.0,35.4" fill="#e11d48" stroke="#9f1239" stroke-width="1.7" stroke-linejoin="round"/>
+<polygon points="37.4,94.0 82.6,94.0 90.0,102.0 82.6,110.0 37.4,110.0 30.0,102.0" fill="#e11d48" stroke="#9f1239" stroke-width="1.7" stroke-linejoin="round"/>
+</g>
+<text x="1004.0" y="676.0" fill="#0f172a" font-size="26" font-weight="700" text-anchor="middle" font-family="WenQuanYi Micro Hei, Microsoft JhengHei, sans-serif">9</text>
+<text x="1004.0" y="702.0" fill="#94a3b8" font-size="15" font-weight="600" text-anchor="middle" font-family="JetBrains Mono, DejaVu Sans Mono, ui-monospace, monospace">D C B A</text>
+<text x="1004.0" y="726.0" fill="#1e3a8a" font-size="15" font-weight="700" text-anchor="middle" font-family="JetBrains Mono, DejaVu Sans Mono, ui-monospace, monospace">1 0 0 1</text>
+<text x="1004.0" y="754.0" fill="#9f1239" font-size="15" font-weight="700" text-anchor="middle" font-family="JetBrains Mono, DejaVu Sans Mono, ui-monospace, monospace">a b c d f g</text>
+<text x="550.0" y="798.0" fill="#64748b" font-size="14" font-weight="500" text-anchor="middle" font-family="WenQuanYi Micro Hei, Microsoft JhengHei, sans-serif">1010–1111 係非 BCD，唔係十進數字 0–9。本課唔為佢哋畫另一套字形。</text>
+</svg>

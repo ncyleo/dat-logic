@@ -1,5 +1,5 @@
 {
-  "version": 14,
+  "version": 15,
   "titleZh": "數位邏輯自學 · 三欄（DAT）",
   "uiNoteZh": "校本自製示意圖 · DAT",
   "chapters": [
@@ -3423,6 +3423,66 @@
           "Sum 要「相同為 0」→ XOR。",
           "Carry 要「兩個都 1」→ AND。",
           "對應第二、三步。"
+        ]
+      }
+    },
+    {
+      "id": "c6-seg7",
+      "chapter": 6,
+      "nav": "6.10 七段解碼器",
+      "title": "七段解碼器：BCD 點亮 a–g",
+      "pill": "七段",
+      "live": true,
+      "teach": "\n<p>電子鐘、計分板、計算機個位，好多時用一粒<strong>七段顯示器（seven-segment display）</strong>砌出 0–9。七條可以獨立亮或者暗嘅筆劃，名叫 <span class=\"kw\">a</span> 至 <span class=\"kw\">g</span>。</p>\n\n<p class=\"sec\"><strong>段 a–g 點標</strong></p>\n<p>標準標籤由頂橫起，順時針行：<strong>a</strong> 頂橫、<strong>b</strong> 右上、<strong>c</strong> 右下、<strong>d</strong> 底橫，跟住 <strong>e</strong> 左下、<strong>f</strong> 左上，中間橫係 <strong>g</strong>。</p>\n<figure class=\"fig\">\n  <img src=\"assets/c6_seg7_labels.svg\" alt=\"七段顯示器標準標籤：a 頂橫、b 右上、c 右下、d 底橫、e 左下、f 左上、g 中橫\">\n  <div class=\"gate-meta\">字母寫喺每一段入面。右下灰點係小數點 dp，本課唔當重點，解碼輸出只計 a–g。</div>\n</figure>\n\n<p class=\"sec\"><strong>共陰同共陽</strong></p>\n<p>每一段係一粒 LED。七粒可以<strong>陰極接埋</strong>，或者<strong>陽極接埋</strong>。接法決定輸出 0 定 1 先會亮。</p>\n<figure class=\"fig\">\n  <img src=\"assets/c6_seg7_polarity.svg\" alt=\"共陰輸出 1 段先亮；共陽輸出 0 段先亮\">\n  <div class=\"gate-meta\">左：共陰，陰極接 0 V，段輸入 1 先亮。右：共陽，陽極接正，段輸入 0 先亮。</div>\n</figure>\n<ul>\n  <li><strong>共陰（common cathode）</strong>：各段陰極一齊接 0 V。解碼器輸出 <strong>1</strong>（高電位接到陽極）先有電流，段先亮。輸出 0 就暗。</li>\n  <li><strong>共陽（common anode）</strong>：各段陽極一齊接正電源。解碼器輸出 <strong>0</strong>（陰極被拉低）先有電流，段先亮。輸出 1 就暗。</li>\n</ul>\n<div class=\"tip\">兩邊嘅「亮」剛剛相反。下面嘅表同布林式用 <strong>1＝亮</strong>（共陰、高態有效）。接到共陽，把要亮嗰啲段再取反。</div>\n\n<p class=\"sec\"><strong>BCD 至七段解碼器</strong></p>\n<p>呢粒係<strong>解碼器</strong>：輸入一組碼，輸出一個圖案。本課輸入係 4 位 <strong>BCD</strong>，寫成 <span class=\"kw\">DCBA</span>，而且全程用同一套約定：</p>\n<ul>\n  <li><strong>D</strong> 最高位，權重 8</li>\n  <li><strong>C</strong> 權重 4；<strong>B</strong> 權重 2</li>\n  <li><strong>A</strong> 最低位，權重 1</li>\n</ul>\n<p>輸出係七條段線 a–g，而唔係 16 條 one-hot 線。<strong>0000–1001</strong> 對應十進數字 0–9。<strong>1010–1111 唔係十進數字</strong>，本課叫 <strong>非 BCD</strong>，唔再畫成字母。</p>\n<figure class=\"fig\">\n  <img src=\"assets/c6_seg7_block.svg\" alt=\"BCD 七段解碼器方塊：D C B A 入，a 至 g 出，D 係最高位\">\n  <div class=\"gate-meta\">D 在最上。例：DCBA＝0101 係數字 5，亮 a、c、d、f、g。</div>\n</figure>\n<p>下表 <strong>1＝亮</strong>。本課 6 有頂橫 a，9 有底橫 d。有啲晶片字型會省去呢兩條尾，考試見到圖就跟圖。</p>\n<div class=\"table-scroll\">\n<table class=\"truth-demo wide\">\n<thead><tr><th>數字</th><th>D</th><th>C</th><th>B</th><th>A</th><th>a</th><th>b</th><th>c</th><th>d</th><th>e</th><th>f</th><th>g</th></tr></thead>\n<tbody>\n<tr><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td class=\"f\">1</td><td class=\"f\">1</td><td class=\"f\">1</td><td class=\"f\">1</td><td class=\"f\">1</td><td class=\"f\">1</td><td>0</td></tr>\n<tr><td>1</td><td>0</td><td>0</td><td>0</td><td>1</td><td>0</td><td class=\"f\">1</td><td class=\"f\">1</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>\n<tr><td>2</td><td>0</td><td>0</td><td>1</td><td>0</td><td class=\"f\">1</td><td class=\"f\">1</td><td>0</td><td class=\"f\">1</td><td class=\"f\">1</td><td>0</td><td class=\"f\">1</td></tr>\n<tr><td>3</td><td>0</td><td>0</td><td>1</td><td>1</td><td class=\"f\">1</td><td class=\"f\">1</td><td class=\"f\">1</td><td class=\"f\">1</td><td>0</td><td>0</td><td class=\"f\">1</td></tr>\n<tr><td>4</td><td>0</td><td>1</td><td>0</td><td>0</td><td>0</td><td class=\"f\">1</td><td class=\"f\">1</td><td>0</td><td>0</td><td class=\"f\">1</td><td class=\"f\">1</td></tr>\n<tr><td>5</td><td>0</td><td>1</td><td>0</td><td>1</td><td class=\"f\">1</td><td>0</td><td class=\"f\">1</td><td class=\"f\">1</td><td>0</td><td class=\"f\">1</td><td class=\"f\">1</td></tr>\n<tr><td>6</td><td>0</td><td>1</td><td>1</td><td>0</td><td class=\"f\">1</td><td>0</td><td class=\"f\">1</td><td class=\"f\">1</td><td class=\"f\">1</td><td class=\"f\">1</td><td class=\"f\">1</td></tr>\n<tr><td>7</td><td>0</td><td>1</td><td>1</td><td>1</td><td class=\"f\">1</td><td class=\"f\">1</td><td class=\"f\">1</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>\n<tr><td>8</td><td>1</td><td>0</td><td>0</td><td>0</td><td class=\"f\">1</td><td class=\"f\">1</td><td class=\"f\">1</td><td class=\"f\">1</td><td class=\"f\">1</td><td class=\"f\">1</td><td class=\"f\">1</td></tr>\n<tr><td>9</td><td>1</td><td>0</td><td>0</td><td>1</td><td class=\"f\">1</td><td class=\"f\">1</td><td class=\"f\">1</td><td class=\"f\">1</td><td>0</td><td class=\"f\">1</td><td class=\"f\">1</td></tr>\n</tbody>\n</table>\n</div>\n<figure class=\"fig\">\n  <img src=\"assets/c6_seg7_digits.svg\" alt=\"數字 0 至 9 嘅七段圖，每格有 DCBA 同亮着嘅段\">\n  <div class=\"gate-meta\">紅段＝亮，灰段＝暗。每格 D C B A 喺數字下面、位元上面。</div>\n</figure>\n\n<div id=\"seg7Lab\" class=\"seg7-lab\"><p class=\"try-note\">七段即時示範會喺呢度顯示。</p></div>\n\n<p class=\"sec\"><strong>其中兩段嘅布林式</strong></p>\n<p>每段都可以寫成布林式。非 BCD（1010–1111）唔係十進數字，化簡時當 X（可 0 可 1），式先至可以收短。下面兩條都係 <strong>1＝亮</strong>，只保證數字 0–9 啱。</p>\n<div class=\"formula\">\n  a ＝ D ＋ B ＋ <span class=\"obar\">C</span>·<span class=\"obar\">A</span> ＋ C·A<br>\n  c ＝ C ＋ A ＋ <span class=\"obar\">B</span>\n</div>\n<p>段 a：D 或 B 已經亮；或者 C 同 A 一齊係 0；或者 C 同 A 一齊係 1。橫線各自只蓋一個字母，<span class=\"obar\">C</span>·<span class=\"obar\">A</span> 係「非 C 與非 A」。數字 1（0001）同 4（0100）三項都係 0，所以 a 暗。</p>\n<p>段 c 喺 0–9 入面只得數字 2 係暗，所以寫成 C 或 A 或非 B。</p>\n<div class=\"tip\">短式用咗非 BCD 做 X，唔代表 1010–1111 有一個規定字形。接到共陽之前，要把「1＝亮」再取反。</div>\n\n<p class=\"sec\"><strong>扣返 6.6：仍然係解碼器</strong></p>\n<p>6.6 嘅解碼器：k 條輸入，最多 2<sup>k</sup> 條輸出，平常一次只得一條係 1。七段解碼器同一類嘢——用輸入碼揀輸出圖案——但輸出係 a–g 嘅<strong>字形</strong>，可以同時亮幾段。4 位輸入本來有 16 種碼，呢課只用 0000–1001 做 0–9，其餘叫非 BCD。所以佢係解碼器嘅一個專門款，仍然屬第 6 章組合邏輯，唔使開新章。</p>\n<div class=\"koujue\">口訣：DCBA，D 最大；共陰 1 亮，共陽 0 亮；1010 起係非 BCD。</div>\n",
+      "practice": {
+        "type": "design",
+        "scenario": "跟本課約定：DCBA，D 係最高位；1＝亮。答下面三題。",
+        "okText": "三題全對！★",
+        "steps": [
+          {
+            "kind": "mcq",
+            "prompt": "數字 2（DCBA＝0010）亮邊啲段？",
+            "choices": [
+              "a、b、d、e、g",
+              "b、c",
+              "a、b、c、d、e、f（g 暗）",
+              "a、b、c"
+            ],
+            "answer": 0
+          },
+          {
+            "kind": "mcq",
+            "prompt": "共陽（common anode）七段，某一段要亮，解碼器嗰條段輸出應該係？",
+            "choices": [
+              "0（低電位，陰極被拉低）",
+              "1（同共陰一樣，高電位先亮）",
+              "一定要有時鐘沿",
+              "輸出可以懸空"
+            ],
+            "answer": 0
+          },
+          {
+            "kind": "mcq",
+            "prompt": "本課段 a（1＝亮；非 BCD 當 X）邊句啱？",
+            "choices": [
+              "a ＝ D 或 B，或「C 同 A 一齊係 0」，或「C 同 A 一齊係 1」",
+              "a 只在 D＝1 先亮",
+              "a 只在 A＝1 先亮",
+              "1010 係十進數字 10，一定要亮成字母 A"
+            ],
+            "answer": 0
+          }
+        ],
+        "explain": "2 亮 a、b、d、e、g。共陽輸出 0 先亮。段 a＝D＋B＋（C、A 同為 0）＋（C、A 同為 1）。1010–1111 係非 BCD，本課唔當十進數字。"
+      },
+      "support": {
+        "definition": "七段 a–g。本課 DCBA：D 權重 8、A 權重 1。共陰輸出 1 亮，共陽輸出 0 亮。0–9 有字形；1010–1111 係非 BCD。",
+        "example": "DCBA＝0010 → 數字 2，亮 a b d e g。段 c 只喺數字 2 暗。",
+        "tip": "1＝亮先至用中欄兩條式。接到共陽要再取反。",
+        "guidedHints": [
+          "數字 2 中間有橫 g；右下 c 同左上 f 係暗。",
+          "共陽：陽極已經接正。陰極要去到邊個電位先有電流？",
+          "段 a 喺數字 1 同 4 要係 0。邊句先包括「C、A 同為 0」同「C、A 同為 1」？"
         ]
       }
     },

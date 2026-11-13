@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="980" height="560" viewBox="0 0 980 560" role="img">
+<title>BCD 至七段解碼器方塊</title>
+<desc>輸入 D C B A，D 為最高位；輸出 a 至 g</desc>
+<rect width="980" height="560" fill="#ffffff"/>
+<text x="490.0" y="40.0" fill="#1e3a5f" font-size="26" font-weight="700" text-anchor="middle" font-family="WenQuanYi Micro Hei, Microsoft JhengHei, sans-serif">BCD 七段解碼器</text>
+<text x="490.0" y="68.0" fill="#64748b" font-size="15" font-weight="500" text-anchor="middle" font-family="WenQuanYi Micro Hei, Microsoft JhengHei, sans-serif">4 位 BCD 入，7 條段線出。本課 D 係最高位（權重 8），A 係最低位（權重 1）。</text>
+<polygon points="250,150 560,78 560,470 250,398" fill="#e8f1fa" stroke="#1e3a5f" stroke-width="2.4"/>
+<text x="400.0" y="250.0" fill="#1e3a5f" font-size="20" font-weight="700" text-anchor="middle" font-family="WenQuanYi Micro Hei, Microsoft JhengHei, sans-serif">BCD → 7 段</text>
+<text x="400.0" y="278.0" fill="#1e3a5f" font-size="20" font-weight="700" text-anchor="middle" font-family="WenQuanYi Micro Hei, Microsoft JhengHei, sans-serif">解碼器</text>
+<line x1="168" y1="176" x2="250" y2="176" stroke="#6d28d9" stroke-width="2.3" stroke-linecap="round"/>
+<text x="158.0" y="182.0" fill="#6d28d9" font-size="20" font-weight="700" text-anchor="end" font-family="JetBrains Mono, DejaVu Sans Mono, ui-monospace, monospace">D</text>
+<text x="96.0" y="182.0" fill="#64748b" font-size="14" font-weight="600" text-anchor="end" font-family="JetBrains Mono, DejaVu Sans Mono, ui-monospace, monospace">8</text>
+<line x1="168" y1="246" x2="250" y2="246" stroke="#1d4ed8" stroke-width="2.3" stroke-linecap="round"/>
+<text x="158.0" y="252.0" fill="#1d4ed8" font-size="20" font-weight="700" text-anchor="end" font-family="JetBrains Mono, DejaVu Sans Mono, ui-monospace, monospace">C</text>
+<text x="96.0" y="252.0" fill="#64748b" font-size="14" font-weight="600" text-anchor="end" font-family="JetBrains Mono, DejaVu Sans Mono, ui-monospace, monospace">4</text>
+<line x1="168" y1="316" x2="250" y2="316" stroke="#047857" stroke-width="2.3" stroke-linecap="round"/>
+<text x="158.0" y="322.0" fill="#047857" font-size="20" font-weight="700" text-anchor="end" font-family="JetBrains Mono, DejaVu Sans Mono, ui-monospace, monospace">B</text>
+<text x="96.0" y="322.0" fill="#64748b" font-size="14" font-weight="600" text-anchor="end" font-family="JetBrains Mono, DejaVu Sans Mono, ui-monospace, monospace">2</text>
+<line x1="168" y1="386" x2="250" y2="386" stroke="#b45309" stroke-width="2.3" stroke-linecap="round"/>
+<text x="158.0" y="392.0" fill="#b45309" font-size="20" font-weight="700" text-anchor="end" font-family="JetBrains Mono, DejaVu Sans Mono, ui-monospace, monospace">A</text>
+<text x="96.0" y="392.0" fill="#64748b" font-size="14" font-weight="600" text-anchor="end" font-family="JetBrains Mono, DejaVu Sans Mono, ui-monospace, monospace">1</text>
+<text x="96.0" y="148.0" fill="#94a3b8" font-size="13" font-weight="600" text-anchor="end" font-family="WenQuanYi Micro Hei, Microsoft JhengHei, sans-serif">權重</text>
+<line x1="560" y1="108" x2="620" y2="108" stroke="#334155" stroke-width="2.3" stroke-linecap="round"/>
+<text x="632.0" y="114.0" fill="#1e3a5f" font-size="18" font-weight="700" text-anchor="start" font-family="JetBrains Mono, DejaVu Sans Mono, ui-monospace, monospace">a</text>
+<line x1="560" y1="160" x2="620" y2="160" stroke="#334155" stroke-width="2.3" stroke-linecap="round"/>
+<text x="632.0" y="166.0" fill="#1e3a5f" font-size="18" font-weight="700" text-anchor="start" font-family="JetBrains Mono, DejaVu Sans Mono, ui-monospace, monospace">b</text>
+<line x1="560" y1="212" x2="620" y2="212" stroke="#334155" stroke-width="2.3" stroke-linecap="round"/>
+<text x="632.0" y="218.0" fill="#1e3a5f" font-size="18" font-weight="700" text-anchor="start" font-family="JetBrains Mono, DejaVu Sans Mono, ui-monospace, monospace">c</text>
+<line x1="560" y1="264" x2="620" y2="264" stroke="#334155" stroke-width="2.3" stroke-linecap="round"/>
+<text x="632.0" y="270.0" fill="#1e3a5f" font-size="18" font-weight="700" text-anchor="start" font-family="JetBrains Mono, DejaVu Sans Mono, ui-monospace, monospace">d</text>
+<line x1="560" y1="316" x2="620" y2="316" stroke="#334155" stroke-width="2.3" stroke-linecap="round"/>
+<text x="632.0" y="322.0" fill="#1e3a5f" font-size="18" font-weight="700" text-anchor="start" font-family="JetBrains Mono, DejaVu Sans Mono, ui-monospace, monospace">e</text>
+<line x1="560" y1="368" x2="620" y2="368" stroke="#334155" stroke-width="2.3" stroke-linecap="round"/>
+<text x="632.0" y="374.0" fill="#1e3a5f" font-size="18" font-weight="700" text-anchor="start" font-family="JetBrains Mono, DejaVu Sans Mono, ui-monospace, monospace">f</text>
+<line x1="560" y1="420" x2="620" y2="420" stroke="#334155" stroke-width="2.3" stroke-linecap="round"/>
+<text x="632.0" y="426.0" fill="#1e3a5f" font-size="18" font-weight="700" text-anchor="start" font-family="JetBrains Mono, DejaVu Sans Mono, ui-monospace, monospace">g</text>
+<g transform="translate(760,150) scale(0.72)">
+<polygon points="37.4,8.0 82.6,8.0 90.0,16.0 82.6,24.0 37.4,24.0 30.0,16.0" fill="#e11d48" stroke="#9f1239" stroke-width="1.7" stroke-linejoin="round"/>
+<polygon points="100.0,28.0 108.0,35.4 108.0,84.6 100.0,92.0 92.0,84.6 92.0,35.4" fill="#f1f5f9" stroke="#94a3b8" stroke-width="1.7" stroke-linejoin="round"/>
+<polygon points="100.0,112.0 108.0,119.4 108.0,168.6 100.0,176.0 92.0,168.6 92.0,119.4" fill="#e11d48" stroke="#9f1239" stroke-width="1.7" stroke-linejoin="round"/>
+<polygon points="37.4,180.0 82.6,180.0 90.0,188.0 82.6,196.0 37.4,196.0 30.0,188.0" fill="#e11d48" stroke="#9f1239" stroke-width="1.7" stroke-linejoin="round"/>
+<polygon points="20.0,112.0 28.0,119.4 28.0,168.6 20.0,176.0 12.0,168.6 12.0,119.4" fill="#f1f5f9" stroke="#94a3b8" stroke-width="1.7" stroke-linejoin="round"/>
+<polygon points="20.0,28.0 28.0,35.4 28.0,84.6 20.0,92.0 12.0,84.6 12.0,35.4" fill="#e11d48" stroke="#9f1239" stroke-width="1.7" stroke-linejoin="round"/>
+<polygon points="37.4,94.0 82.6,94.0 90.0,102.0 82.6,110.0 37.4,110.0 30.0,102.0" fill="#e11d48" stroke="#9f1239" stroke-width="1.7" stroke-linejoin="round"/>
+</g>
+<text x="808.0" y="330.0" fill="#64748b" font-size="14" font-weight="600" text-anchor="middle" font-family="WenQuanYi Micro Hei, Microsoft JhengHei, sans-serif">例</text>
+<text x="808.0" y="356.0" fill="#1e3a8a" font-size="18" font-weight="700" text-anchor="middle" font-family="JetBrains Mono, DejaVu Sans Mono, ui-monospace, monospace">0101</text>
+<text x="808.0" y="382.0" fill="#9f1239" font-size="16" font-weight="700" text-anchor="middle" font-family="WenQuanYi Micro Hei, Microsoft JhengHei, sans-serif">數字 5</text>
+<text x="490.0" y="518.0" fill="#64748b" font-size="14" font-weight="500" text-anchor="middle" font-family="WenQuanYi Micro Hei, Microsoft JhengHei, sans-serif">0000–1001 → 數字 0–9 嘅段圖案。1010–1111 唔係十進數字，本課叫非 BCD，唔畫字形。</text>
+<text x="490.0" y="542.0" fill="#64748b" font-size="14" font-weight="500" text-anchor="middle" font-family="WenQuanYi Micro Hei, Microsoft JhengHei, sans-serif">例：DCBA＝0101，D 在左，即數字 5，亮 a、c、d、f、g。</text>
+</svg>

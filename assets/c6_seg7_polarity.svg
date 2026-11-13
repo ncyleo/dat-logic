@@ -1,0 +1,69 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1080" height="680" viewBox="0 0 1080 680" role="img">
+<title>共陰同共陽七段極性</title>
+<desc>共陰輸出 1 段亮；共陽輸出 0 段亮</desc>
+<rect width="1080" height="680" fill="#ffffff"/>
+<text x="540.0" y="38.0" fill="#1e3a5f" font-size="26" font-weight="700" text-anchor="middle" font-family="WenQuanYi Micro Hei, Microsoft JhengHei, sans-serif">共陰同共陽：邊個電位先令段亮</text>
+<text x="540.0" y="66.0" fill="#64748b" font-size="15" font-weight="500" text-anchor="middle" font-family="WenQuanYi Micro Hei, Microsoft JhengHei, sans-serif">同一粒 LED。分別只係公共腳接邊極，所以「亮」對應嘅 0／1 相反。</text>
+<rect x="28" y="88" width="496" height="520" rx="16" fill="#f8fafc" stroke="#e2e8f0"/>
+<rect x="28" y="88" width="496" height="10" rx="5" fill="#047857"/>
+<text x="276.0" y="128.0" fill="#047857" font-size="20" font-weight="700" text-anchor="middle" font-family="WenQuanYi Micro Hei, Microsoft JhengHei, sans-serif">共陰  common cathode</text>
+<text x="276.0" y="154.0" fill="#64748b" font-size="14" font-weight="500" text-anchor="middle" font-family="WenQuanYi Micro Hei, Microsoft JhengHei, sans-serif">陰極接埋去 0 V</text>
+<g transform="translate(56,178) scale(0.92)">
+<polygon points="37.4,8.0 82.6,8.0 90.0,16.0 82.6,24.0 37.4,24.0 30.0,16.0" fill="#e11d48" stroke="#9f1239" stroke-width="1.7" stroke-linejoin="round"/>
+<polygon points="100.0,28.0 108.0,35.4 108.0,84.6 100.0,92.0 92.0,84.6 92.0,35.4" fill="#f1f5f9" stroke="#94a3b8" stroke-width="1.7" stroke-linejoin="round"/>
+<polygon points="100.0,112.0 108.0,119.4 108.0,168.6 100.0,176.0 92.0,168.6 92.0,119.4" fill="#f1f5f9" stroke="#94a3b8" stroke-width="1.7" stroke-linejoin="round"/>
+<polygon points="37.4,180.0 82.6,180.0 90.0,188.0 82.6,196.0 37.4,196.0 30.0,188.0" fill="#f1f5f9" stroke="#94a3b8" stroke-width="1.7" stroke-linejoin="round"/>
+<polygon points="20.0,112.0 28.0,119.4 28.0,168.6 20.0,176.0 12.0,168.6 12.0,119.4" fill="#f1f5f9" stroke="#94a3b8" stroke-width="1.7" stroke-linejoin="round"/>
+<polygon points="20.0,28.0 28.0,35.4 28.0,84.6 20.0,92.0 12.0,84.6 12.0,35.4" fill="#f1f5f9" stroke="#94a3b8" stroke-width="1.7" stroke-linejoin="round"/>
+<polygon points="37.4,94.0 82.6,94.0 90.0,102.0 82.6,110.0 37.4,110.0 30.0,102.0" fill="#f1f5f9" stroke="#94a3b8" stroke-width="1.7" stroke-linejoin="round"/>
+</g>
+<text x="114.0" y="392.0" fill="#9f1239" font-size="15" font-weight="700" text-anchor="middle" font-family="WenQuanYi Micro Hei, Microsoft JhengHei, sans-serif">段 a 亮</text>
+<rect x="300" y="188" width="56" height="36" rx="8" fill="#dbeafe" stroke="#1d4ed8" stroke-width="2"/>
+<text x="328.0" y="212.0" fill="#1d4ed8" font-size="20" font-weight="700" text-anchor="middle" font-family="JetBrains Mono, DejaVu Sans Mono, ui-monospace, monospace">1</text>
+<text x="368.0" y="212.0" fill="#1e3a8a" font-size="14" font-weight="700" text-anchor="start" font-family="WenQuanYi Micro Hei, Microsoft JhengHei, sans-serif">解碼器 a</text>
+<line x1="328" y1="224" x2="328" y2="248" stroke="#334155" stroke-width="2.2"/>
+<polygon points="312.0,248.0 344.0,248.0 328.0,274.0" fill="#fff7ed" stroke="#c2410c" stroke-width="2.2"/>
+<line x1="310.0" y1="280.0" x2="346.0" y2="280.0" stroke="#c2410c" stroke-width="2.4" stroke-linecap="round"/>
+<text x="356.0" y="270.0" fill="#c2410c" font-size="14" font-weight="800" text-anchor="start" font-family="JetBrains Mono, DejaVu Sans Mono, ui-monospace, monospace">LED</text>
+<line x1="328" y1="280" x2="328" y2="316" stroke="#334155" stroke-width="2.2"/>
+<line x1="306" y1="316" x2="350" y2="316" stroke="#0f172a" stroke-width="2.4"/>
+<line x1="314" y1="323" x2="342" y2="323" stroke="#0f172a" stroke-width="2.2"/>
+<line x1="321" y1="330" x2="335" y2="330" stroke="#0f172a" stroke-width="2"/>
+<text x="328.0" y="352.0" fill="#0f172a" font-size="14" font-weight="700" text-anchor="middle" font-family="WenQuanYi Micro Hei, Microsoft JhengHei, sans-serif">公共陰極  0 V</text>
+<rect x="52" y="470" width="210" height="42" rx="10" fill="#fee2e2" stroke="#fecaca"/>
+<text x="157.0" y="497.0" fill="#9f1239" font-size="16" font-weight="700" text-anchor="middle" font-family="WenQuanYi Micro Hei, Microsoft JhengHei, sans-serif">輸出 1 → 亮</text>
+<rect x="276" y="470" width="220" height="42" rx="10" fill="#f1f5f9" stroke="#e2e8f0"/>
+<text x="386.0" y="497.0" fill="#475569" font-size="16" font-weight="700" text-anchor="middle" font-family="WenQuanYi Micro Hei, Microsoft JhengHei, sans-serif">輸出 0 → 暗</text>
+<text x="276.0" y="546.0" fill="#334155" font-size="14" font-weight="500" text-anchor="middle" font-family="WenQuanYi Micro Hei, Microsoft JhengHei, sans-serif">高電位入陽極，電流落到公共陰極。</text>
+<rect x="556" y="88" width="496" height="520" rx="16" fill="#f8fafc" stroke="#e2e8f0"/>
+<rect x="556" y="88" width="496" height="10" rx="5" fill="#b45309"/>
+<text x="804.0" y="128.0" fill="#b45309" font-size="20" font-weight="700" text-anchor="middle" font-family="WenQuanYi Micro Hei, Microsoft JhengHei, sans-serif">共陽  common anode</text>
+<text x="804.0" y="154.0" fill="#64748b" font-size="14" font-weight="500" text-anchor="middle" font-family="WenQuanYi Micro Hei, Microsoft JhengHei, sans-serif">陽極接埋去 +V</text>
+<g transform="translate(584,178) scale(0.92)">
+<polygon points="37.4,8.0 82.6,8.0 90.0,16.0 82.6,24.0 37.4,24.0 30.0,16.0" fill="#e11d48" stroke="#9f1239" stroke-width="1.7" stroke-linejoin="round"/>
+<polygon points="100.0,28.0 108.0,35.4 108.0,84.6 100.0,92.0 92.0,84.6 92.0,35.4" fill="#f1f5f9" stroke="#94a3b8" stroke-width="1.7" stroke-linejoin="round"/>
+<polygon points="100.0,112.0 108.0,119.4 108.0,168.6 100.0,176.0 92.0,168.6 92.0,119.4" fill="#f1f5f9" stroke="#94a3b8" stroke-width="1.7" stroke-linejoin="round"/>
+<polygon points="37.4,180.0 82.6,180.0 90.0,188.0 82.6,196.0 37.4,196.0 30.0,188.0" fill="#f1f5f9" stroke="#94a3b8" stroke-width="1.7" stroke-linejoin="round"/>
+<polygon points="20.0,112.0 28.0,119.4 28.0,168.6 20.0,176.0 12.0,168.6 12.0,119.4" fill="#f1f5f9" stroke="#94a3b8" stroke-width="1.7" stroke-linejoin="round"/>
+<polygon points="20.0,28.0 28.0,35.4 28.0,84.6 20.0,92.0 12.0,84.6 12.0,35.4" fill="#f1f5f9" stroke="#94a3b8" stroke-width="1.7" stroke-linejoin="round"/>
+<polygon points="37.4,94.0 82.6,94.0 90.0,102.0 82.6,110.0 37.4,110.0 30.0,102.0" fill="#f1f5f9" stroke="#94a3b8" stroke-width="1.7" stroke-linejoin="round"/>
+</g>
+<text x="642.0" y="392.0" fill="#9f1239" font-size="15" font-weight="700" text-anchor="middle" font-family="WenQuanYi Micro Hei, Microsoft JhengHei, sans-serif">段 a 亮</text>
+<line x1="820" y1="196" x2="892" y2="196" stroke="#b45309" stroke-width="3"/>
+<text x="856.0" y="188.0" fill="#b45309" font-size="16" font-weight="700" text-anchor="middle" font-family="JetBrains Mono, DejaVu Sans Mono, ui-monospace, monospace">+V</text>
+<text x="904.0" y="200.0" fill="#b45309" font-size="14" font-weight="700" text-anchor="start" font-family="WenQuanYi Micro Hei, Microsoft JhengHei, sans-serif">公共陽極</text>
+<line x1="856" y1="196" x2="856" y2="236" stroke="#334155" stroke-width="2.2"/>
+<polygon points="840.0,236.0 872.0,236.0 856.0,262.0" fill="#fff7ed" stroke="#c2410c" stroke-width="2.2"/>
+<line x1="838.0" y1="268.0" x2="874.0" y2="268.0" stroke="#c2410c" stroke-width="2.4" stroke-linecap="round"/>
+<text x="884.0" y="258.0" fill="#c2410c" font-size="14" font-weight="800" text-anchor="start" font-family="JetBrains Mono, DejaVu Sans Mono, ui-monospace, monospace">LED</text>
+<line x1="856" y1="268" x2="856" y2="296" stroke="#334155" stroke-width="2.2"/>
+<rect x="828" y="296" width="56" height="36" rx="8" fill="#ffedd5" stroke="#b45309" stroke-width="2"/>
+<text x="856.0" y="320.0" fill="#b45309" font-size="20" font-weight="700" text-anchor="middle" font-family="JetBrains Mono, DejaVu Sans Mono, ui-monospace, monospace">0</text>
+<text x="896.0" y="320.0" fill="#9a3412" font-size="14" font-weight="700" text-anchor="start" font-family="WenQuanYi Micro Hei, Microsoft JhengHei, sans-serif">解碼器 a</text>
+<rect x="580" y="470" width="210" height="42" rx="10" fill="#fee2e2" stroke="#fecaca"/>
+<text x="685.0" y="497.0" fill="#9f1239" font-size="16" font-weight="700" text-anchor="middle" font-family="WenQuanYi Micro Hei, Microsoft JhengHei, sans-serif">輸出 0 → 亮</text>
+<rect x="804" y="470" width="220" height="42" rx="10" fill="#f1f5f9" stroke="#e2e8f0"/>
+<text x="914.0" y="497.0" fill="#475569" font-size="16" font-weight="700" text-anchor="middle" font-family="WenQuanYi Micro Hei, Microsoft JhengHei, sans-serif">輸出 1 → 暗</text>
+<text x="804.0" y="546.0" fill="#334155" font-size="14" font-weight="500" text-anchor="middle" font-family="WenQuanYi Micro Hei, Microsoft JhengHei, sans-serif">公共陽極已經接正，陰極拉到 0 先有電流。</text>
+<text x="540.0" y="652.0" fill="#64748b" font-size="14" font-weight="500" text-anchor="middle" font-family="WenQuanYi Micro Hei, Microsoft JhengHei, sans-serif">下面課文嘅表同布林式用「1＝亮」（共陰、高態有效）。接到共陽，要亮嘅段再取反。</text>
+</svg>
