@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="860" height="520" viewBox="0 0 860 520" role="img">
+<title>3-to-8 解碼器方塊圖</title>
+<desc>I2 I1 I0 輸入，O0 至 O7 輸出</desc>
+<rect width="860" height="520" fill="#ffffff"/>
+<text x="430.0" y="36.0" fill="#1e3a5f" font-size="26" font-weight="700" text-anchor="middle" font-family="WenQuanYi Micro Hei, Microsoft JhengHei, sans-serif">3-to-8 解碼器方塊</text>
+<text x="430.0" y="62.0" fill="#64748b" font-size="15" font-weight="500" text-anchor="middle" font-family="WenQuanYi Micro Hei, Microsoft JhengHei, sans-serif">三條輸入，八條輸出；I2 係最高位，每次只得一個 O 係 1</text>
+<polygon points="230.0,136.0 480.0,100.0 480.0,460.0 230.0,424.0" fill="#e8f1fa" stroke="#1e3a5f" stroke-width="2.4"/>
+<text x="370.0" y="268.0" fill="#1e3a5f" font-size="16" font-weight="700" text-anchor="middle" font-family="WenQuanYi Micro Hei, Microsoft JhengHei, sans-serif">3-to-8</text>
+<text x="370.0" y="292.0" fill="#1e3a5f" font-size="16" font-weight="700" text-anchor="middle" font-family="WenQuanYi Micro Hei, Microsoft JhengHei, sans-serif">解碼器</text>
+<line x1="160.0" y1="136.0" x2="230.0" y2="136.0" stroke="#6d28d9" stroke-width="2.25" stroke-linecap="round"/>
+<text x="152.0" y="141.0" fill="#6d28d9" font-size="18" font-weight="700" text-anchor="end" font-family="JetBrains Mono, DejaVu Sans Mono, ui-monospace, monospace">I2</text>
+<line x1="160.0" y1="280.0" x2="230.0" y2="280.0" stroke="#1d4ed8" stroke-width="2.25" stroke-linecap="round"/>
+<text x="152.0" y="285.0" fill="#1d4ed8" font-size="18" font-weight="700" text-anchor="end" font-family="JetBrains Mono, DejaVu Sans Mono, ui-monospace, monospace">I1</text>
+<line x1="160.0" y1="424.0" x2="230.0" y2="424.0" stroke="#047857" stroke-width="2.25" stroke-linecap="round"/>
+<text x="152.0" y="429.0" fill="#047857" font-size="18" font-weight="700" text-anchor="end" font-family="JetBrains Mono, DejaVu Sans Mono, ui-monospace, monospace">I0</text>
+<line x1="480.0" y1="118.0" x2="526.0" y2="118.0" stroke="#334155" stroke-width="2.25" stroke-linecap="round"/>
+<text x="536.0" y="123.0" fill="#1e3a5f" font-size="16" font-weight="700" text-anchor="start" font-family="JetBrains Mono, DejaVu Sans Mono, ui-monospace, monospace">O0</text>
+<line x1="480.0" y1="164.3" x2="526.0" y2="164.3" stroke="#334155" stroke-width="2.25" stroke-linecap="round"/>
+<text x="536.0" y="169.3" fill="#1e3a5f" font-size="16" font-weight="700" text-anchor="start" font-family="JetBrains Mono, DejaVu Sans Mono, ui-monospace, monospace">O1</text>
+<line x1="480.0" y1="210.6" x2="526.0" y2="210.6" stroke="#334155" stroke-width="2.25" stroke-linecap="round"/>
+<text x="536.0" y="215.6" fill="#1e3a5f" font-size="16" font-weight="700" text-anchor="start" font-family="JetBrains Mono, DejaVu Sans Mono, ui-monospace, monospace">O2</text>
+<line x1="480.0" y1="256.9" x2="526.0" y2="256.9" stroke="#334155" stroke-width="2.25" stroke-linecap="round"/>
+<text x="536.0" y="261.9" fill="#1e3a5f" font-size="16" font-weight="700" text-anchor="start" font-family="JetBrains Mono, DejaVu Sans Mono, ui-monospace, monospace">O3</text>
+<line x1="480.0" y1="303.1" x2="526.0" y2="303.1" stroke="#334155" stroke-width="2.25" stroke-linecap="round"/>
+<text x="536.0" y="308.1" fill="#1e3a5f" font-size="16" font-weight="700" text-anchor="start" font-family="JetBrains Mono, DejaVu Sans Mono, ui-monospace, monospace">O4</text>
+<line x1="480.0" y1="349.4" x2="526.0" y2="349.4" stroke="#334155" stroke-width="2.25" stroke-linecap="round"/>
+<text x="536.0" y="354.4" fill="#1e3a5f" font-size="16" font-weight="700" text-anchor="start" font-family="JetBrains Mono, DejaVu Sans Mono, ui-monospace, monospace">O5</text>
+<line x1="480.0" y1="395.7" x2="526.0" y2="395.7" stroke="#334155" stroke-width="2.25" stroke-linecap="round"/>
+<text x="536.0" y="400.7" fill="#1e3a5f" font-size="16" font-weight="700" text-anchor="start" font-family="JetBrains Mono, DejaVu Sans Mono, ui-monospace, monospace">O6</text>
+<line x1="480.0" y1="442.0" x2="526.0" y2="442.0" stroke="#334155" stroke-width="2.25" stroke-linecap="round"/>
+<text x="536.0" y="447.0" fill="#1e3a5f" font-size="16" font-weight="700" text-anchor="start" font-family="JetBrains Mono, DejaVu Sans Mono, ui-monospace, monospace">O7</text>
+<text x="430.0" y="492.0" fill="#64748b" font-size="14" font-weight="500" text-anchor="middle" font-family="WenQuanYi Micro Hei, Microsoft JhengHei, sans-serif">輸入 000 只點亮 O0（最上）；111 只點亮 O7（最下）。</text>
+</svg>
