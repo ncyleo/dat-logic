@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="920" height="560" viewBox="0 0 920 560" role="img">
+<title>七段顯示器標準標籤 a 至 g</title>
+<desc>a 頂橫、b 右上、c 右下、d 底橫、e 左下、f 左上、g 中橫；dp 只作附註</desc>
+<rect width="920" height="560" fill="#ffffff"/>
+<text x="460.0" y="40.0" fill="#1e3a5f" font-size="26" font-weight="700" text-anchor="middle" font-family="WenQuanYi Micro Hei, Microsoft JhengHei, sans-serif">七段顯示器：段 a–g</text>
+<text x="460.0" y="68.0" fill="#64748b" font-size="15" font-weight="500" text-anchor="middle" font-family="WenQuanYi Micro Hei, Microsoft JhengHei, sans-serif">標準標籤。順時針 a → b → c → d → e → f，中間係 g。dp 只係附加。</text>
+<g transform="translate(78,96) scale(1.82)">
+<polygon points="37.4,8.0 82.6,8.0 90.0,16.0 82.6,24.0 37.4,24.0 30.0,16.0" fill="#dbeafe" stroke="#1d4ed8" stroke-width="2.2" stroke-linejoin="round"/>
+<polygon points="100.0,28.0 108.0,35.4 108.0,84.6 100.0,92.0 92.0,84.6 92.0,35.4" fill="#dbeafe" stroke="#1d4ed8" stroke-width="2.2" stroke-linejoin="round"/>
+<polygon points="100.0,112.0 108.0,119.4 108.0,168.6 100.0,176.0 92.0,168.6 92.0,119.4" fill="#dbeafe" stroke="#1d4ed8" stroke-width="2.2" stroke-linejoin="round"/>
+<polygon points="37.4,180.0 82.6,180.0 90.0,188.0 82.6,196.0 37.4,196.0 30.0,188.0" fill="#dbeafe" stroke="#1d4ed8" stroke-width="2.2" stroke-linejoin="round"/>
+<polygon points="20.0,112.0 28.0,119.4 28.0,168.6 20.0,176.0 12.0,168.6 12.0,119.4" fill="#dbeafe" stroke="#1d4ed8" stroke-width="2.2" stroke-linejoin="round"/>
+<polygon points="20.0,28.0 28.0,35.4 28.0,84.6 20.0,92.0 12.0,84.6 12.0,35.4" fill="#dbeafe" stroke="#1d4ed8" stroke-width="2.2" stroke-linejoin="round"/>
+<polygon points="37.4,94.0 82.6,94.0 90.0,102.0 82.6,110.0 37.4,110.0 30.0,102.0" fill="#dbeafe" stroke="#1d4ed8" stroke-width="2.2" stroke-linejoin="round"/>
+<text x="60.0" y="20.0" fill="#1e3a8a" font-size="13" font-weight="800" text-anchor="middle" font-family="JetBrains Mono, DejaVu Sans Mono, ui-monospace, monospace">a</text>
+<text x="100.0" y="64.0" fill="#1e3a8a" font-size="13" font-weight="800" text-anchor="middle" font-family="JetBrains Mono, DejaVu Sans Mono, ui-monospace, monospace">b</text>
+<text x="100.0" y="148.0" fill="#1e3a8a" font-size="13" font-weight="800" text-anchor="middle" font-family="JetBrains Mono, DejaVu Sans Mono, ui-monospace, monospace">c</text>
+<text x="60.0" y="192.0" fill="#1e3a8a" font-size="13" font-weight="800" text-anchor="middle" font-family="JetBrains Mono, DejaVu Sans Mono, ui-monospace, monospace">d</text>
+<text x="20.0" y="148.0" fill="#1e3a8a" font-size="13" font-weight="800" text-anchor="middle" font-family="JetBrains Mono, DejaVu Sans Mono, ui-monospace, monospace">e</text>
+<text x="20.0" y="64.0" fill="#1e3a8a" font-size="13" font-weight="800" text-anchor="middle" font-family="JetBrains Mono, DejaVu Sans Mono, ui-monospace, monospace">f</text>
+<text x="60.0" y="106.0" fill="#1e3a8a" font-size="13" font-weight="800" text-anchor="middle" font-family="JetBrains Mono, DejaVu Sans Mono, ui-monospace, monospace">g</text>
+<circle cx="124" cy="192" r="6" fill="#e2e8f0" stroke="#94a3b8" stroke-width="1.6"/>
+</g>
+<text x="332.0" y="454.0" fill="#94a3b8" font-size="15" font-weight="700" text-anchor="start" font-family="JetBrains Mono, DejaVu Sans Mono, ui-monospace, monospace">dp</text>
+<rect x="520" y="118" width="360" height="390" rx="14" fill="#f8fafc" stroke="#e2e8f0"/>
+<rect x="544" y="142" width="36" height="32" rx="8" fill="#dbeafe"/>
+<text x="562.0" y="164.0" fill="#1d4ed8" font-size="16" font-weight="800" text-anchor="middle" font-family="JetBrains Mono, DejaVu Sans Mono, ui-monospace, monospace">a</text>
+<text x="596.0" y="164.0" fill="#1e3a5f" font-size="18" font-weight="700" text-anchor="start" font-family="WenQuanYi Micro Hei, Microsoft JhengHei, sans-serif">頂橫</text>
+<rect x="544" y="186" width="36" height="32" rx="8" fill="#dbeafe"/>
+<text x="562.0" y="208.0" fill="#1d4ed8" font-size="16" font-weight="800" text-anchor="middle" font-family="JetBrains Mono, DejaVu Sans Mono, ui-monospace, monospace">b</text>
+<text x="596.0" y="208.0" fill="#1e3a5f" font-size="18" font-weight="700" text-anchor="start" font-family="WenQuanYi Micro Hei, Microsoft JhengHei, sans-serif">右上豎</text>
+<rect x="544" y="230" width="36" height="32" rx="8" fill="#dbeafe"/>
+<text x="562.0" y="252.0" fill="#1d4ed8" font-size="16" font-weight="800" text-anchor="middle" font-family="JetBrains Mono, DejaVu Sans Mono, ui-monospace, monospace">c</text>
+<text x="596.0" y="252.0" fill="#1e3a5f" font-size="18" font-weight="700" text-anchor="start" font-family="WenQuanYi Micro Hei, Microsoft JhengHei, sans-serif">右下豎</text>
+<rect x="544" y="274" width="36" height="32" rx="8" fill="#dbeafe"/>
+<text x="562.0" y="296.0" fill="#1d4ed8" font-size="16" font-weight="800" text-anchor="middle" font-family="JetBrains Mono, DejaVu Sans Mono, ui-monospace, monospace">d</text>
+<text x="596.0" y="296.0" fill="#1e3a5f" font-size="18" font-weight="700" text-anchor="start" font-family="WenQuanYi Micro Hei, Microsoft JhengHei, sans-serif">底橫</text>
+<rect x="544" y="318" width="36" height="32" rx="8" fill="#dbeafe"/>
+<text x="562.0" y="340.0" fill="#1d4ed8" font-size="16" font-weight="800" text-anchor="middle" font-family="JetBrains Mono, DejaVu Sans Mono, ui-monospace, monospace">e</text>
+<text x="596.0" y="340.0" fill="#1e3a5f" font-size="18" font-weight="700" text-anchor="start" font-family="WenQuanYi Micro Hei, Microsoft JhengHei, sans-serif">左下豎</text>
+<rect x="544" y="362" width="36" height="32" rx="8" fill="#dbeafe"/>
+<text x="562.0" y="384.0" fill="#1d4ed8" font-size="16" font-weight="800" text-anchor="middle" font-family="JetBrains Mono, DejaVu Sans Mono, ui-monospace, monospace">f</text>
+<text x="596.0" y="384.0" fill="#1e3a5f" font-size="18" font-weight="700" text-anchor="start" font-family="WenQuanYi Micro Hei, Microsoft JhengHei, sans-serif">左上豎</text>
+<rect x="544" y="406" width="36" height="32" rx="8" fill="#dbeafe"/>
+<text x="562.0" y="428.0" fill="#1d4ed8" font-size="16" font-weight="800" text-anchor="middle" font-family="JetBrains Mono, DejaVu Sans Mono, ui-monospace, monospace">g</text>
+<text x="596.0" y="428.0" fill="#1e3a5f" font-size="18" font-weight="700" text-anchor="start" font-family="WenQuanYi Micro Hei, Microsoft JhengHei, sans-serif">中橫</text>
+<rect x="544" y="450" width="36" height="32" rx="8" fill="#e2e8f0"/>
+<text x="562.0" y="472.0" fill="#64748b" font-size="16" font-weight="800" text-anchor="middle" font-family="JetBrains Mono, DejaVu Sans Mono, ui-monospace, monospace">dp</text>
+<text x="596.0" y="472.0" fill="#1e3a5f" font-size="18" font-weight="700" text-anchor="start" font-family="WenQuanYi Micro Hei, Microsoft JhengHei, sans-serif">小數點（本課唔當重點）</text>
+<text x="460.0" y="536.0" fill="#64748b" font-size="14" font-weight="500" text-anchor="middle" font-family="WenQuanYi Micro Hei, Microsoft JhengHei, sans-serif">字母寫喺每一段入面。右下灰點係 dp，本課解碼輸出只計 a–g。</text>
+</svg>

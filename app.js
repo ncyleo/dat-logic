@@ -1403,7 +1403,7 @@
         });
         practiceChecked = true;
         if (allOk) {
-          status.textContent = '選閘解題全對！★';
+          status.textContent = pr.okText || '選閘解題全對！★';
           status.className = 'status ok';
           markDone(lesson.id);
         } else {
@@ -1551,6 +1551,152 @@
   }
 
 
+  /* 6.10：撳數字或 BCD 位，即時更新七段 a–g。1＝亮；1010–1111 本課唔定義字形。 */
+  var SEG7_PAT = {
+    0: 'abcdef', 1: 'bc', 2: 'abdeg', 3: 'abcdg', 4: 'bcfg',
+    5: 'acdfg', 6: 'acdefg', 7: 'abc', 8: 'abcdefg', 9: 'abcdfg'
+  };
+  var SEG7_GEOM = {
+    a: ['h', 30, 8, 60, 16],
+    b: ['v', 92, 28, 16, 64],
+    c: ['v', 92, 112, 16, 64],
+    d: ['h', 30, 180, 60, 16],
+    e: ['v', 12, 112, 16, 64],
+    f: ['v', 12, 28, 16, 64],
+    g: ['h', 30, 94, 60, 16]
+  };
+  var SEG7_LABS = {
+    a: [60, 4, 'middle'],
+    f: [2, 64, 'end'],
+    b: [118, 64, 'start'],
+    g: [118, 108, 'start'],
+    e: [2, 152, 'end'],
+    c: [118, 152, 'start'],
+    d: [60, 208, 'middle']
+  };
+
+  function seg7Pts(kind, x, y, w, h) {
+    var t = (kind === 'h' ? h : w) * 0.46;
+    var p = kind === 'h'
+      ? [[x + t, y], [x + w - t, y], [x + w, y + h / 2], [x + w - t, y + h], [x + t, y + h], [x, y + h / 2]]
+      : [[x + w / 2, y], [x + w, y + t], [x + w, y + h - t], [x + w / 2, y + h], [x, y + h - t], [x, y + t]];
+    return p.map(function (q) { return q[0].toFixed(1) + ',' + q[1].toFixed(1); }).join(' ');
+  }
+
+  function mountSeg7() {
+    var root = $('seg7Lab');
+    if (!root) return;
+    var code = 0;
+    var svg = '<svg viewBox="-18 -8 158 230" role="img" aria-label="七段顯示">';
+    'abcdefg'.split('').forEach(function (name) {
+      var g = SEG7_GEOM[name];
+      svg += '<polygon class="seg off" data-seg="' + name + '" stroke-linejoin="round" points="' +
+        seg7Pts(g[0], g[1], g[2], g[3], g[4]) + '"/>';
+    });
+    'abcdefg'.split('').forEach(function (name) {
+      var lab = SEG7_LABS[name];
+      svg += '<text class="seg-lab" data-seg="' + name + '" x="' + lab[0] + '" y="' + lab[1] +
+        '" text-anchor="' + lab[2] + '" font-size="14" font-weight="800">' + name + '</text>';
+    });
+    svg += '</svg>';
+
+    var digits = '';
+    for (var n = 0; n <= 9; n++) {
+      digits += '<button type="button" class="seg7-digit" data-digit="' + n + '" aria-label="數字 ' + n + '">' + n + '</button>';
+    }
+    var bits = '';
+    ['D', 'C', 'B', 'A'].forEach(function (name, i) {
+      bits += '<button type="button" class="seg7-bit off" data-bit="' + i + '" aria-pressed="false" aria-label="' + name + '">' +
+        '<span class="bn">' + name + '</span><span class="bv">0</span></button>';
+    });
+    var chips = '';
+    'abcdefg'.split('').forEach(function (name) {
+      chips += '<span data-chip="' + name + '">' + name + ' 0</span>';
+    });
+
+    root.innerHTML =
+      '<h3>自己撳 · 七段即時</h3>' +
+      '<p class="try-note">撳 0–9，或者逐粒撳 D、C、B、A（D 係最高位）。字形同 a–g 即時更新。本課 1＝亮。</p>' +
+      '<div class="seg7-grid">' +
+        '<div class="seg7-screen">' + svg +
+          '<div class="seg7-readout" id="seg7Read" aria-live="polite"></div>' +
+        '</div>' +
+        '<div>' +
+          '<div class="seg7-lab-label">十進數字 0–9</div>' +
+          '<div class="seg7-digits">' + digits + '</div>' +
+          '<div class="seg7-lab-label">BCD 位（撳一下翻轉）</div>' +
+          '<div class="seg7-weights"><span>8</span><span>4</span><span>2</span><span>1</span></div>' +
+          '<div class="seg7-bits">' + bits + '</div>' +
+          '<div class="seg7-lab-label">段輸出 a–g</div>' +
+          '<div class="seg7-segrow">' + chips + '</div>' +
+          '<p class="seg7-hint">1010–1111 係非 BCD。本課唔定義字形，示範保持全暗，等你見到唔係 0–9。</p>' +
+        '</div>' +
+      '</div>';
+
+    function paint() {
+      var valid = code >= 0 && code <= 9;
+      var lit = valid ? SEG7_PAT[code] : '';
+      root.querySelectorAll('polygon.seg').forEach(function (el) {
+        var on = lit.indexOf(el.getAttribute('data-seg')) >= 0;
+        el.setAttribute('class', 'seg ' + (on ? 'on' : 'off'));
+      });
+      root.querySelectorAll('text.seg-lab').forEach(function (el) {
+        var on = lit.indexOf(el.getAttribute('data-seg')) >= 0;
+        el.setAttribute('class', 'seg-lab' + (on ? ' on' : ''));
+      });
+      root.querySelectorAll('.seg7-digit').forEach(function (btn) {
+        btn.classList.toggle('active', valid && +btn.getAttribute('data-digit') === code);
+      });
+      root.querySelectorAll('.seg7-bit').forEach(function (btn) {
+        var i = +btn.getAttribute('data-bit');
+        var bit = (code >> (3 - i)) & 1;
+        btn.querySelector('.bv').textContent = String(bit);
+        btn.classList.toggle('on', bit === 1);
+        btn.classList.toggle('off', bit === 0);
+        btn.setAttribute('aria-pressed', bit === 1 ? 'true' : 'false');
+      });
+      root.querySelectorAll('[data-chip]').forEach(function (el) {
+        var name = el.getAttribute('data-chip');
+        el.classList.remove('lit', 'off', 'na');
+        if (!valid) {
+          el.classList.add('na');
+          el.textContent = name + ' —';
+        } else if (lit.indexOf(name) >= 0) {
+          el.classList.add('lit');
+          el.textContent = name + ' 1';
+        } else {
+          el.classList.add('off');
+          el.textContent = name + ' 0';
+        }
+      });
+      var bitsTxt = [3, 2, 1, 0].map(function (shift) { return (code >> shift) & 1; }).join(' ');
+      var read = $('seg7Read');
+      if (!read) return;
+      if (valid) {
+        read.innerHTML = '<div class="seg7-labs">D C B A</div><div class="seg7-bits-text">' + bitsTxt +
+          '</div><div class="seg7-dec">十進 ' + code + '</div>';
+      } else {
+        read.innerHTML = '<div class="seg7-labs">D C B A</div><div class="seg7-bits-text">' + bitsTxt +
+          '</div><div class="seg7-dec na">非 BCD</div>';
+      }
+    }
+
+    root.querySelectorAll('.seg7-digit').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        code = +btn.getAttribute('data-digit');
+        paint();
+      });
+    });
+    root.querySelectorAll('.seg7-bit').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        var i = +btn.getAttribute('data-bit');
+        code = code ^ (1 << (3 - i));
+        paint();
+      });
+    });
+    paint();
+  }
+
   function showLesson(id) {
     currentId = id;
     hintStep = 0;
@@ -1603,6 +1749,7 @@
     if (lesson.live && lesson.practice) bindPractice(lesson);
     renderSupport(lesson);
     if (lesson.practice && lesson.practice.type === 'tt-live') ttLiveUpdatePanel();
+    mountSeg7();
 
     const goPrev = $('prevLesson');
     if (goPrev) goPrev.addEventListener('click', () => {
