@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="880" height="320" viewBox="0 0 880 320" role="img">
+<title>段 c 對答案：C、A 同非 B 入 OR</title>
+<desc>段 c。C 同 A 直接入 OR，B 經反相器。輸出 c。</desc>
+<rect width="880" height="320" fill="#ffffff"/>
+<text x="440.0" y="32.0" fill="#1e3a5f" font-size="22" font-weight="700" text-anchor="middle" font-family="WenQuanYi Micro Hei, Microsoft JhengHei, sans-serif">段 c 對答案</text>
+<text x="440.0" y="56.0" fill="#64748b" font-size="14" font-weight="500" text-anchor="middle" font-family="WenQuanYi Micro Hei, Microsoft JhengHei, sans-serif">練習對完先睇。C、A 直入 OR，B 先取非。</text>
+<path d="M 500.0,84.0 C 563.9,154.4 563.9,189.6 500.0,260.0 C 598.7,233.6 656.8,196.6 680.0,172.0 C 656.8,147.4 598.7,110.4 500.0,84.0 Z" fill="#ecfdf5" stroke="#047857" stroke-width="2.3"/>
+<text x="568.0" y="178.0" fill="#047857" font-size="15" font-weight="700" text-anchor="middle" font-family="WenQuanYi Micro Hei, Microsoft JhengHei, sans-serif">OR</text>
+<text x="64.0" y="118.0" fill="#1d4ed8" font-size="22" font-weight="700" text-anchor="end" font-family="JetBrains Mono, DejaVu Sans Mono, ui-monospace, monospace">C</text>
+<line x1="80.0" y1="112.0" x2="524.5" y2="112.0" stroke="#1d4ed8" stroke-width="2.3" stroke-linecap="round"/>
+<text x="64.0" y="178.0" fill="#b45309" font-size="22" font-weight="700" text-anchor="end" font-family="JetBrains Mono, DejaVu Sans Mono, ui-monospace, monospace">A</text>
+<line x1="80.0" y1="172.0" x2="549.1" y2="172.0" stroke="#b45309" stroke-width="2.3" stroke-linecap="round"/>
+<text x="64.0" y="242.0" fill="#047857" font-size="22" font-weight="700" text-anchor="end" font-family="JetBrains Mono, DejaVu Sans Mono, ui-monospace, monospace">B</text>
+<polygon points="148.0,221.0 148.0,251.0 174.0,236.0" fill="#eff6ff" stroke="#047857" stroke-width="2"/><circle cx="180.5" cy="236.0" r="5.5" fill="#ffffff" stroke="#047857" stroke-width="2"/>
+<line x1="80.0" y1="236.0" x2="148.0" y2="236.0" stroke="#047857" stroke-width="2.3" stroke-linecap="round"/>
+<line x1="186.0" y1="236.0" x2="521.5" y2="236.0" stroke="#047857" stroke-width="2.3" stroke-linecap="round"/>
+<text x="198.0" y="222.0" fill="#047857" font-size="16" font-weight="700" text-anchor="start" font-family="JetBrains Mono, DejaVu Sans Mono, ui-monospace, monospace" textLength="9.60" lengthAdjust="spacingAndGlyphs">B</text>
+<line x1="199.0" y1="206.6" x2="206.6" y2="206.6" stroke="#047857" stroke-width="1.8" stroke-linecap="round"/>
+<line x1="680.0" y1="172.0" x2="702.0" y2="172.0" stroke="#e11d48" stroke-width="2.6" stroke-linecap="round"/>
+<text x="710.0" y="180.0" fill="#e11d48" font-size="26" font-weight="700" text-anchor="start" font-family="JetBrains Mono, DejaVu Sans Mono, ui-monospace, monospace">c</text>
+<text x="365.3" y="304.0" fill="#1e3a8a" font-size="20" font-weight="700" text-anchor="start" font-family="JetBrains Mono, DejaVu Sans Mono, ui-monospace, monospace" textLength="12.00" lengthAdjust="spacingAndGlyphs">c</text>
+<text x="383.7" y="304.0" fill="#1e3a8a" font-size="20" font-weight="700" text-anchor="start" font-family="JetBrains Mono, DejaVu Sans Mono, ui-monospace, monospace" textLength="21.00" lengthAdjust="spacingAndGlyphs">＝</text>
+<text x="411.1" y="304.0" fill="#1e3a8a" font-size="20" font-weight="700" text-anchor="start" font-family="JetBrains Mono, DejaVu Sans Mono, ui-monospace, monospace" textLength="12.00" lengthAdjust="spacingAndGlyphs">C</text>
+<text x="429.5" y="304.0" fill="#1e3a8a" font-size="20" font-weight="700" text-anchor="start" font-family="JetBrains Mono, DejaVu Sans Mono, ui-monospace, monospace" textLength="21.00" lengthAdjust="spacingAndGlyphs">＋</text>
+<text x="456.9" y="304.0" fill="#1e3a8a" font-size="20" font-weight="700" text-anchor="start" font-family="JetBrains Mono, DejaVu Sans Mono, ui-monospace, monospace" textLength="12.00" lengthAdjust="spacingAndGlyphs">A</text>
+<text x="475.3" y="304.0" fill="#1e3a8a" font-size="20" font-weight="700" text-anchor="start" font-family="JetBrains Mono, DejaVu Sans Mono, ui-monospace, monospace" textLength="21.00" lengthAdjust="spacingAndGlyphs">＋</text>
+<text x="502.7" y="304.0" fill="#1e3a8a" font-size="20" font-weight="700" text-anchor="start" font-family="JetBrains Mono, DejaVu Sans Mono, ui-monospace, monospace" textLength="12.00" lengthAdjust="spacingAndGlyphs">B</text>
+<line x1="503.9" y1="284.8" x2="513.5" y2="284.8" stroke="#1e3a8a" stroke-width="2.2" stroke-linecap="round"/>
+</svg>

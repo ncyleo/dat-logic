@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1080" height="600" viewBox="0 0 1080 600" role="img">
+<title>段 a 邏輯閘：兩隻 AND 再入四輸入 OR</title>
+<desc>輸入 D、C、B、A。C 同 A 各有反相器。非 C 與非 A 一隻 AND，C 與 A 另一隻 AND，四路 OR 輸出 a。</desc>
+<rect width="1080" height="600" fill="#ffffff"/>
+<text x="540.0" y="34.0" fill="#1e3a5f" font-size="26" font-weight="700" text-anchor="middle" font-family="WenQuanYi Micro Hei, Microsoft JhengHei, sans-serif">段 a 嘅邏輯閘</text>
+<text x="540.0" y="60.0" fill="#64748b" font-size="15" font-weight="500" text-anchor="middle" font-family="WenQuanYi Micro Hei, Microsoft JhengHei, sans-serif">D、B 直入 OR。非 C 與非 A、C 與 A 各經一隻 AND。</text>
+<rect x="128" y="154.0" width="390" height="150.0" rx="12" fill="#f8fafc" stroke="#e2e8f0"/>
+<rect x="128" y="318.0" width="390" height="150.0" rx="12" fill="#f8fafc" stroke="#e2e8f0"/>
+<path d="M 730.0,100.0 C 790.3,271.2 790.3,356.8 730.0,528.0 C 823.2,463.8 878.1,373.9 900.0,314.0 C 878.1,254.1 823.2,164.2 730.0,100.0 Z" fill="#ecfdf5" stroke="#047857" stroke-width="2.3"/>
+<text x="792.0" y="320.0" fill="#047857" font-size="16" font-weight="700" text-anchor="middle" font-family="WenQuanYi Micro Hei, Microsoft JhengHei, sans-serif">OR</text>
+<path d="M 430.0,172.0 h 16 a 57.0,57.0 0 0 1 0,114.0 h -16 z" fill="#fff7ed" stroke="#c2410c" stroke-width="2.2"/>
+<path d="M 430.0,336.0 h 16 a 57.0,57.0 0 0 1 0,114.0 h -16 z" fill="#fff7ed" stroke="#c2410c" stroke-width="2.2"/>
+<polygon points="168.0,181.0 168.0,211.0 194.0,196.0" fill="#eff6ff" stroke="#1d4ed8" stroke-width="2"/><circle cx="200.5" cy="196.0" r="5.5" fill="#ffffff" stroke="#1d4ed8" stroke-width="2"/>
+<polygon points="168.0,247.0 168.0,277.0 194.0,262.0" fill="#eff6ff" stroke="#b45309" stroke-width="2"/><circle cx="200.5" cy="262.0" r="5.5" fill="#ffffff" stroke="#b45309" stroke-width="2"/>
+<text x="78.0" y="124.0" fill="#6d28d9" font-size="22" font-weight="700" text-anchor="end" font-family="JetBrains Mono, DejaVu Sans Mono, ui-monospace, monospace">D</text>
+<line x1="92.0" y1="118.0" x2="737.4" y2="118.0" stroke="#6d28d9" stroke-width="2.3" stroke-linecap="round"/>
+<text x="78.0" y="514.0" fill="#047857" font-size="22" font-weight="700" text-anchor="end" font-family="JetBrains Mono, DejaVu Sans Mono, ui-monospace, monospace">B</text>
+<line x1="92.0" y1="508.0" x2="738.1" y2="508.0" stroke="#047857" stroke-width="2.3" stroke-linecap="round"/>
+<text x="78.0" y="202.0" fill="#1d4ed8" font-size="22" font-weight="700" text-anchor="end" font-family="JetBrains Mono, DejaVu Sans Mono, ui-monospace, monospace">C</text>
+<line x1="92.0" y1="196.0" x2="168.0" y2="196.0" stroke="#1d4ed8" stroke-width="2.3" stroke-linecap="round"/>
+<line x1="206.0" y1="196.0" x2="430.0" y2="196.0" stroke="#1d4ed8" stroke-width="2.3" stroke-linecap="round"/>
+<text x="78.0" y="268.0" fill="#b45309" font-size="22" font-weight="700" text-anchor="end" font-family="JetBrains Mono, DejaVu Sans Mono, ui-monospace, monospace">A</text>
+<line x1="92.0" y1="262.0" x2="168.0" y2="262.0" stroke="#b45309" stroke-width="2.3" stroke-linecap="round"/>
+<line x1="206.0" y1="262.0" x2="430.0" y2="262.0" stroke="#b45309" stroke-width="2.3" stroke-linecap="round"/>
+<text x="78.0" y="366.0" fill="#1d4ed8" font-size="22" font-weight="700" text-anchor="end" font-family="JetBrains Mono, DejaVu Sans Mono, ui-monospace, monospace">C</text>
+<line x1="92.0" y1="360.0" x2="430.0" y2="360.0" stroke="#1d4ed8" stroke-width="2.3" stroke-linecap="round"/>
+<text x="78.0" y="432.0" fill="#b45309" font-size="22" font-weight="700" text-anchor="end" font-family="JetBrains Mono, DejaVu Sans Mono, ui-monospace, monospace">A</text>
+<line x1="92.0" y1="426.0" x2="430.0" y2="426.0" stroke="#b45309" stroke-width="2.3" stroke-linecap="round"/>
+<line x1="503.0" y1="229.0" x2="768.0" y2="229.0" stroke="#1e3a5f" stroke-width="2.3" stroke-linecap="round"/>
+<line x1="503.0" y1="393.0" x2="769.1" y2="393.0" stroke="#1e3a5f" stroke-width="2.3" stroke-linecap="round"/>
+<text x="519.0" y="219.0" fill="#1e3a8a" font-size="16" font-weight="700" text-anchor="start" font-family="JetBrains Mono, DejaVu Sans Mono, ui-monospace, monospace" textLength="9.60" lengthAdjust="spacingAndGlyphs">C</text>
+<line x1="520.0" y1="203.6" x2="527.6" y2="203.6" stroke="#1e3a8a" stroke-width="1.8" stroke-linecap="round"/>
+<text x="528.6" y="219.0" fill="#1e3a8a" font-size="16" font-weight="700" text-anchor="start" font-family="JetBrains Mono, DejaVu Sans Mono, ui-monospace, monospace" textLength="9.60" lengthAdjust="spacingAndGlyphs">·</text>
+<text x="538.2" y="219.0" fill="#1e3a8a" font-size="16" font-weight="700" text-anchor="start" font-family="JetBrains Mono, DejaVu Sans Mono, ui-monospace, monospace" textLength="9.60" lengthAdjust="spacingAndGlyphs">A</text>
+<line x1="539.2" y1="203.6" x2="546.8" y2="203.6" stroke="#1e3a8a" stroke-width="1.8" stroke-linecap="round"/>
+<text x="519.0" y="383.0" fill="#1e3a8a" font-size="16" font-weight="700" text-anchor="start" font-family="JetBrains Mono, DejaVu Sans Mono, ui-monospace, monospace" textLength="9.60" lengthAdjust="spacingAndGlyphs">C</text>
+<text x="528.6" y="383.0" fill="#1e3a8a" font-size="16" font-weight="700" text-anchor="start" font-family="JetBrains Mono, DejaVu Sans Mono, ui-monospace, monospace" textLength="9.60" lengthAdjust="spacingAndGlyphs">·</text>
+<text x="538.2" y="383.0" fill="#1e3a8a" font-size="16" font-weight="700" text-anchor="start" font-family="JetBrains Mono, DejaVu Sans Mono, ui-monospace, monospace" textLength="9.60" lengthAdjust="spacingAndGlyphs">A</text>
+<text x="216.0" y="184.0" fill="#1d4ed8" font-size="14" font-weight="700" text-anchor="start" font-family="JetBrains Mono, DejaVu Sans Mono, ui-monospace, monospace" textLength="8.40" lengthAdjust="spacingAndGlyphs">C</text>
+<line x1="216.8" y1="170.6" x2="223.6" y2="170.6" stroke="#1d4ed8" stroke-width="1.7" stroke-linecap="round"/>
+<text x="216.0" y="250.0" fill="#b45309" font-size="14" font-weight="700" text-anchor="start" font-family="JetBrains Mono, DejaVu Sans Mono, ui-monospace, monospace" textLength="8.40" lengthAdjust="spacingAndGlyphs">A</text>
+<line x1="216.8" y1="236.6" x2="223.6" y2="236.6" stroke="#b45309" stroke-width="1.7" stroke-linecap="round"/>
+<line x1="900.0" y1="314.0" x2="928.0" y2="314.0" stroke="#e11d48" stroke-width="2.6" stroke-linecap="round"/>
+<text x="936.0" y="322.0" fill="#e11d48" font-size="26" font-weight="700" text-anchor="start" font-family="JetBrains Mono, DejaVu Sans Mono, ui-monospace, monospace">a</text>
+<text x="36.0" y="572.0" fill="#64748b" font-size="14" font-weight="500" text-anchor="start" font-family="WenQuanYi Micro Hei, Microsoft JhengHei, sans-serif">C、A 各畫兩次，對住兩項；實際輸入仍然係 D、C、B、A 四條。D 權 8，A 權 1。</text>
+</svg>
