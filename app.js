@@ -19,12 +19,17 @@
   /** Convert prime Boolean complement (A', (AB＋CD)') to continuous top-bar HTML. Input must already be HTML-escaped (or trusted text without raw <>&). */
   function primeToObar(s) {
     s = String(s == null ? '' : s);
+    // English "don't" is not a complement. Hold the apostrophe so "don't care" stays a word.
+    s = s.replace(/([Dd]on)'t/g, '$1\u0001t');
     let out = '';
     let i = 0;
     const n = s.length;
     while (i < n) {
       const ch = s[i];
-      if (ch === '(') {
+      if (ch === '\u0001') {
+        out += "'";
+        i++;
+      } else if (ch === '(') {
         let depth = 1;
         let j = i + 1;
         while (j < n && depth > 0) {
@@ -1106,7 +1111,9 @@
         body += '</tr>';
       }
       body += '</tbody></table>';
-      body += '<p class="kmap-hint">撳格：? → 0 → 1。軸標已用 Gray code。</p>';
+      body += '<p class="kmap-hint">' + (kmapPracticeAllowsX(pr)
+        ? '撳格：? → 0 → 1 → X。軸標已用 Gray code。'
+        : '撳格：? → 0 → 1。軸標已用 Gray code。') + '</p>';
       if (pr.readChoices && pr.readChoices.length) {
         body += '<p class="try-note" style="margin-top:.75rem">' + boolHtml(pr.readPrompt || '化簡後 F 係？') + '</p>';
         body += '<div class="mcq-opts" id="kmapReadOpts">';
@@ -1168,7 +1175,26 @@
     return body;
   }
 
-  function bindBitButtons(selector) {
+  function kmapAnswerIsX(expected) {
+    return expected === 'X' || expected === 'x';
+  }
+
+  /** Don't-care maps: answers contain "X", or practice.allowX is set. */
+  function kmapPracticeAllowsX(pr) {
+    if (!pr) return false;
+    if (pr.allowX) return true;
+    return (pr.answers || []).some(kmapAnswerIsX);
+  }
+
+  /** Match a filled cell. Never coerce "X" through unary +. */
+  function kmapCellMatch(val, expected) {
+    if (kmapAnswerIsX(expected)) return val === 'X';
+    if (val === '' || val === 'X' || val == null) return false;
+    return +val === expected;
+  }
+
+  function bindBitButtons(selector, opts) {
+    const allowX = !!(opts && opts.allowX);
     document.querySelectorAll(selector).forEach(btn => {
       btn.addEventListener('click', () => {
         if (practiceChecked) return;
@@ -1176,11 +1202,13 @@
         let next = '';
         if (cur === '') next = '0';
         else if (cur === '0') next = '1';
+        else if (allowX && cur === '1') next = 'X';
         else next = '';
         btn.setAttribute('data-val', next);
         btn.textContent = next === '' ? '?' : next;
         btn.classList.toggle('on', next === '1');
         btn.classList.toggle('off', next === '0');
+        btn.classList.toggle('x', next === 'X');
       });
     });
   }
@@ -1212,7 +1240,7 @@
     practiceChecked = false;
     const maxHints = ((lesson.support && lesson.support.guidedHints) || []).length || 3;
 
-    if (pr.type === 'kmap') bindBitButtons('#kmapGrid button.kbit');
+    if (pr.type === 'kmap') bindBitButtons('#kmapGrid button.kbit', { allowX: kmapPracticeAllowsX(pr) });
     if (pr.type === 'truth') bindBitButtons('#ttFill button.bit');
     if (pr.type === 'design') {
       bindBitButtons('.design-step button.bit');
@@ -1286,7 +1314,7 @@
           if (val === '') {
             allFilled = false; fillOk = false; td.classList.add('cell-miss');
             btn.textContent = '?→' + pr.answers[i];
-          } else if (+val === pr.answers[i]) {
+          } else if (kmapCellMatch(val, pr.answers[i])) {
             td.classList.add('cell-ok');
           } else {
             fillOk = false; td.classList.add('cell-bad');
@@ -1316,7 +1344,9 @@
         }
         practiceChecked = true;
         if (!allFilled) {
-          status.textContent = '有格未填（黃色）。已標出應填值。';
+          status.textContent = kmapPracticeAllowsX(pr)
+            ? '有格未填（黃色）。無關項要填 X。已標出應填值。'
+            : '有格未填（黃色）。已標出應填值。';
           status.className = 'status info';
         } else if (fillOk && readOk) {
           status.textContent = 'K-map 全對！★';

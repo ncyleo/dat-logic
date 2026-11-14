@@ -1,5 +1,5 @@
 {
-  "version": 13,
+  "version": 14,
   "titleZh": "數位邏輯自學 · 三欄（DAT）",
   "uiNoteZh": "校本自製示意圖 · DAT",
   "chapters": [
@@ -2324,6 +2324,156 @@
       }
     },
     {
+      "id": "c4-kmap-dcare",
+      "chapter": 4,
+      "nav": "4.24 don't care／無關項",
+      "title": "K-map 嘅 don't care（無關項）",
+      "pill": "無關項",
+      "live": true,
+      "teach": "\n<p><strong>don't care（無關項）</strong>喺 K-map 入面寫 <span class=\"kw\">X</span>。意思係：嗰組輸入<strong>永遠唔會出現</strong>，或者輸出係 0 定 1 都<strong>冇所謂</strong>。</p>\n<p>式入面咁寫（SOP）：</p>\n<div class=\"formula\">F＝Σm(…)＋d(…)　　或　　F＝Σm(…)＋Σd(…)</div>\n<p>d(…) 只係式嘅記法。填格時，don't care 寫 <strong>X</strong>，唔好寫 d。</p>\n<ul>\n  <li>F＝1 → 填 <strong>1</strong></li>\n  <li>F＝0 → 填 <strong>0</strong></li>\n  <li>don't care → 填 <strong>X</strong></li>\n</ul>\n<p><strong>圈組規則：</strong></p>\n<ul>\n  <li>每一個 <strong>1</strong> 都要入至少一個圈</li>\n  <li><strong>X</strong> 可以當 1，但只限佢幫你圈大一個合法組（1、2、4、8…格；相鄰，包括捲邊）</li>\n  <li><strong>X</strong> 幫唔到，就當 0，唔使理</li>\n  <li>唔好圈 <strong>0</strong></li>\n  <li>唔好圈一個入面得 X、一個 1 都冇嘅組（冇用）</li>\n</ul>\n<p class=\"sec\"><strong>例：三變數</strong></p>\n<p>z＝Σm(5, 6, 7)＋d(3, 4)。組合 011、100 永不出現，所以 m<sub>3</sub>、m<sub>4</sub> 係 X；m<sub>5</sub>、m<sub>6</sub>、m<sub>7</sub> 係 1；其餘係 0。</p>\n<table class=\"kmap-teach\">\n  <thead><tr><th></th><th>BC＝00</th><th>01</th><th>11</th><th>10</th></tr></thead>\n  <tbody>\n    <tr><th>A＝0</th><td>0</td><td>0</td><td class=\"x\">X</td><td>0</td></tr>\n    <tr><th>A＝1</th><td class=\"gx\">X</td><td class=\"g1\">1</td><td class=\"g1\">1</td><td class=\"g1\">1</td></tr>\n  </tbody>\n</table>\n<figure class=\"fig\">\n  <img src=\"assets/c4_kmap_dcare_3var.svg\" alt=\"三變數 K-map：底行四格圈成 z 等於 A，m3 嘅 X 唔入圈\">\n  <div class=\"gate-meta\">把 m4 嘅 X 當 1，底行四格讀出 A。m3 嘅 X 留低當 0。</div>\n</figure>\n<p>底行 B、C 都有變，只剩 <span class=\"kw\">A</span>，所以 z＝A。m<sub>3</sub> 加進去都唔會更短。如果唔用 m<sub>4</sub>，就要寫長啲，例如 z＝AB＋AC。</p>\n<div class=\"koujue\">口訣：X 幫到圈大先當 1；幫唔到就當 0。有 1 先圈，淨係 X 唔圈，0 永唔圈。</div>\n",
+      "practice": {
+        "type": "kmap",
+        "allowX": true,
+        "prompt": "z＝Σm(5, 6, 7)＋d(3, 4)。填入三變數 2×4 K-map（Gray：00 01 11 10），再揀最簡式。無關項填 X。",
+        "rows": 2,
+        "cols": 4,
+        "rowLabels": [
+          "A＝0",
+          "A＝1"
+        ],
+        "colLabels": [
+          "BC＝00",
+          "01",
+          "11",
+          "10"
+        ],
+        "cellIds": [
+          "m0",
+          "m1",
+          "m3",
+          "m2",
+          "m4",
+          "m5",
+          "m7",
+          "m6"
+        ],
+        "answers": [
+          0,
+          0,
+          "X",
+          0,
+          "X",
+          1,
+          1,
+          1
+        ],
+        "readPrompt": "化簡後 z 係？",
+        "readChoices": [
+          "z＝AB＋AC",
+          "z＝A",
+          "z＝1",
+          "z＝A＋BC"
+        ],
+        "readAnswer": 1,
+        "explain": "顯示次序 m0,m1,m3,m2 | m4,m5,m7,m6。m3、m4＝X；m5、m6、m7＝1。把 m4 當 1，底行四格消 B、C → z＝A。m3 幫唔到，留作 0。唔用 m4 就要 z＝AB＋AC，更長。唔好為咗 m3 寫成 z＝A＋BC，亦唔係 z＝1。"
+      },
+      "support": {
+        "definition": "don't care（無關項）寫做 X：嗰組輸入永不出現，或者輸出 0／1 都冇所謂。式寫 F＝Σm(…)＋d(…) 或 F＝Σm(…)＋Σd(…)。格入面填 X，唔填 d。",
+        "example": "z＝Σm(5,6,7)＋d(3,4)。把 m4 當 1，底行四格 → z＝A。m3 留作 0。唔用 m4 就要 z＝AB＋AC。",
+        "tip": "X 幫到圈大先當 1；幫唔到就當 0。有 1 先圈，淨係 X 唔圈，0 永唔圈。",
+        "fig": "assets/c4_kmap_dcare_3var.svg",
+        "guidedHints": [
+          "Σm 嘅編號填 1，d(…) 填 X，其餘填 0。呢題邊兩格係 X？",
+          "X 只在幫到圈成更大合法組先當 1。底行可唔可以一齊圈？",
+          "m3 嗰個 X 圈入去，式會唔會更短？"
+        ]
+      }
+    },
+    {
+      "id": "c4-kmap-dcare2",
+      "chapter": 4,
+      "nav": "4.24b 四變數 don't care",
+      "title": "四變數 don't care：用 X 圈大",
+      "pill": "四變數",
+      "live": true,
+      "teach": "\n<p>四變數照用 4.18 嘅軸：列 <strong>AB</strong>、行 <strong>CD</strong>，Gray 都係 00、01、11、10。規則同 4.24：每個 1 要圈到；X 幫到圈大先當 1，否則當 0；唔圈 0；淨係 X 唔圈。</p>\n<p class=\"sec\"><strong>例：Y＝Σm(7, 8, 9)＋d(10, 11, 12, 13, 14, 15)</strong></p>\n<p>Y＝1 喺 0111、1000、1001（m<sub>7</sub>、m<sub>8</sub>、m<sub>9</sub>）。1010–1111（m<sub>10</sub>–m<sub>15</sub>）係 X。0000–0110 係 0。</p>\n<table class=\"kmap-teach\">\n  <thead><tr><th></th><th>CD＝00</th><th>01</th><th>11</th><th>10</th></tr></thead>\n  <tbody>\n    <tr><th>AB＝00</th><td>0</td><td>0</td><td>0</td><td>0</td></tr>\n    <tr><th>01</th><td>0</td><td>0</td><td class=\"g1\">1</td><td>0</td></tr>\n    <tr><th>11</th><td class=\"x\">X</td><td class=\"x\">X</td><td class=\"x\">X</td><td class=\"x\">X</td></tr>\n    <tr><th>10</th><td class=\"g1\">1</td><td class=\"g1\">1</td><td class=\"x\">X</td><td class=\"x\">X</td></tr>\n  </tbody>\n</table>\n<figure class=\"fig\">\n  <img src=\"assets/c4_kmap_dcare_4var.svg\" alt=\"四變數 K-map：唔用 X 得較長式，用 X 後 Y 等於 A 加 BCD\">\n  <div class=\"gate-meta\">唔用 X：A<span class=\"obar\">B</span><span class=\"obar\">C</span>＋<span class=\"obar\">A</span>BCD。用 X：A＋BCD。</div>\n</figure>\n<p><strong>唔用 X</strong>（當全部係 0）：m<sub>8</sub>、m<sub>9</sub> 係 A<span class=\"obar\">B</span><span class=\"obar\">C</span>（1000 同 1001，D 有變）；m<sub>7</sub> 單格係 <span class=\"obar\">A</span>BCD。</p>\n<div class=\"formula\">Y＝A<span class=\"obar\">B</span><span class=\"obar\">C</span>＋<span class=\"obar\">A</span>BCD</div>\n<p>m<sub>8</sub>＝1000、m<sub>9</sub>＝1001 係 A、<span class=\"obar\">B</span>、<span class=\"obar\">C</span>，唔係 <span class=\"obar\">A</span>、B、<span class=\"obar\">C</span>。</p>\n<p><strong>用 X</strong>：AB＝10 同 11 兩行八格都係 1 或 X，圈成 A。m<sub>7</sub> 同 m<sub>15</sub>（X 當 1）喺 CD＝11 相鄰，讀出 BCD。每個 1 都有圈。唯一最簡 SOP：</p>\n<div class=\"formula\">Y＝A＋BCD</div>\n<p class=\"sec\"><strong>再一例</strong></p>\n<p>F＝Σm(1, 3, 4, 7, 11)＋d(5, 12, 13, 14, 15)。三個圈：<span class=\"obar\">A</span>D（m<sub>1</sub>、m<sub>3</sub>、m<sub>5</sub>、m<sub>7</sub>）、B<span class=\"obar\">C</span>（m<sub>4</sub>、m<sub>5</sub>、m<sub>12</sub>、m<sub>13</sub>）、CD（m<sub>3</sub>、m<sub>7</sub>、m<sub>15</sub>、m<sub>11</sub>）。</p>\n<figure class=\"fig\">\n  <img src=\"assets/c4_kmap_dcare_f.svg\" alt=\"四變數 K-map 三個圈：A 補 D、B C 補、CD\">\n  <div class=\"gate-meta\">F＝<span class=\"obar\">A</span>D＋B<span class=\"obar\">C</span>＋CD。AB＝11 嗰行全係 X，唔好自己圈。</div>\n</figure>\n<div class=\"formula\">F＝<span class=\"obar\">A</span>D＋B<span class=\"obar\">C</span>＋CD</div>\n<p>AB＝11 嗰行（m<sub>12</sub>–m<sub>15</sub>）全係 X，唔好自己圈成一組；只把幫到 1 嘅 X 圈入去。m<sub>14</sub> 用唔着。</p>\n<p class=\"sec\"><strong>應用</strong></p>\n<p>BCD 七段只顯示 0–9。四位輸入可以去到 0–15，所以 <strong>10–15（1010–1111）可以當 X</strong>，段方程式因而縮短。呢課唔展開成個七段。</p>\n<p>頂段 a 喺數字 0、2、3、5、6、7、8、9 亮（1 同 4 唔亮）。若變數係 ABCD、A＝MSB（權 8），利用 X 可以寫成一行：</p>\n<div class=\"formula\">a＝A＋C＋BD＋<span class=\"obar\">B</span><span class=\"obar\">D</span></div>\n<p>呢套係 ABCD（A 係最高位）。同 6.10 七段用嘅 DCBA（D 係最高位）唔同，唔好對調。</p>\n<div class=\"koujue\">口訣：先蓋齊所有 1；X 只係工具，用完要更短，否則當 0。</div>\n",
+      "practice": {
+        "type": "kmap",
+        "allowX": true,
+        "prompt": "Y＝Σm(7, 8, 9)＋d(10, 11, 12, 13, 14, 15)。填入 4×4 K-map，再揀最簡 SOP。無關項填 X。",
+        "rows": 4,
+        "cols": 4,
+        "rowLabels": [
+          "AB＝00",
+          "01",
+          "11",
+          "10"
+        ],
+        "colLabels": [
+          "CD＝00",
+          "01",
+          "11",
+          "10"
+        ],
+        "cellIds": [
+          "m0",
+          "m1",
+          "m3",
+          "m2",
+          "m4",
+          "m5",
+          "m7",
+          "m6",
+          "m12",
+          "m13",
+          "m15",
+          "m14",
+          "m8",
+          "m9",
+          "m11",
+          "m10"
+        ],
+        "answers": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          1,
+          0,
+          "X",
+          "X",
+          "X",
+          "X",
+          1,
+          1,
+          "X",
+          "X"
+        ],
+        "readPrompt": "化簡後 Y 係？",
+        "readChoices": [
+          "A'BCD＋AB'C'",
+          "A＋B",
+          "A＋BCD",
+          "BCD"
+        ],
+        "readAnswer": 2,
+        "explain": "唔用 X：m8、m9＝AB'C'，m7＝A'BCD。用 X：AB＝10 同 11 圈成 A；m7 同 m15 圈成 BCD。最簡 Y＝A＋BCD。A＋B 同單獨 BCD 都未蓋齊所有 1。"
+      },
+      "support": {
+        "definition": "四變數 don't care 一樣：1 必圈，X 可選，0 唔圈，淨 X 唔圈。用咗 X 通常可以圈大、項更少。",
+        "example": "Y＝Σm(7,8,9)＋d(10,11,12,13,14,15)。唔用 X：A'BCD＋AB'C'。用 X：Y＝A＋BCD。另一例 F＝Σm(1,3,4,7,11)＋d(5,12,13,14,15)＝A'D＋BC'＋CD。",
+        "tip": "先蓋齊所有 1；X 只係工具，用完要更短，否則當 0。",
+        "fig": "assets/c4_kmap_dcare_4var.svg",
+        "guidedHints": [
+          "先填 1、0、X。m7、m8、m9 係 1；m10 至 m15 係 X。",
+          "AB＝10 同 11 兩行如果用埋 X，讀出邊一個變數？",
+          "m7 未入 A 嗰圈。佢同邊一格 X 相鄰，先可以消走 A？"
+        ]
+      }
+    },
+    {
       "id": "c4-design-intro",
       "chapter": 4,
       "nav": "4.25 成果9 選閘入門",
@@ -2685,7 +2835,7 @@
       "title": "第 4 章小綜合：SOP／代數／K-map",
       "pill": "綜合",
       "live": true,
-      "teach": "\n<p>綜合第 4 章三條線＋成果9：</p>\n<ul>\n  <li><strong>SOP／POS：</strong>1→Σm，0→ΠM</li>\n  <li><strong>代數：</strong>吸收、分配、刪 0、共識</li>\n  <li><strong>K-map：</strong>2×2／2×4／4×4 填格＋圈組</li>\n  <li><strong>選閘：</strong>同時→AND；任一→OR；唔同→XOR；禁止同時→NAND</li>\n</ul>\n",
+      "teach": "\n<p>綜合第 4 章三條線＋成果9：</p>\n<ul>\n  <li><strong>SOP／POS：</strong>1→Σm，0→ΠM</li>\n  <li><strong>代數：</strong>吸收、分配、刪 0、共識</li>\n  <li><strong>K-map：</strong>2×2／2×4／4×4 填格＋圈組</li>\n  <li><strong>選閘：</strong>同時→AND；任一→OR；唔同→XOR；禁止同時→NAND</li>\n</ul>\n<p>K-map 亦包括 don't care（無關項），格入面寫 X。</p>\n",
       "practice": {
         "type": "mcq",
         "prompt": "關於第 4 章，邊句正確？",

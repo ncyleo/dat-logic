@@ -1,0 +1,170 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1040" height="540" viewBox="0 0 1040 540" role="img">
+<title>四變數 K-map：唔用 X 同用 X</title>
+<desc>唔用 X 得 AB 補 C 補加 A 補 BCD。用 X 後最簡係 A 加 BCD。</desc>
+<rect width="1040" height="540" fill="#ffffff"/>
+<text x="520.0" y="34.0" fill="#1e3a5f" font-size="24" font-weight="700" text-anchor="middle" font-family="WenQuanYi Micro Hei, Microsoft JhengHei, sans-serif">四變數無關項：Y＝Σm(7, 8, 9)＋d(10–15)</text>
+<text x="520.0" y="60.0" fill="#64748b" font-size="15" font-weight="500" text-anchor="middle" font-family="WenQuanYi Micro Hei, Microsoft JhengHei, sans-serif">同一張圖。左：X 當 0。右：X 幫到圈大先當 1。</text>
+<text x="208.0" y="84.0" fill="#c2410c" font-size="16" font-weight="700" text-anchor="middle" font-family="WenQuanYi Micro Hei, Microsoft JhengHei, sans-serif">唔用 X</text>
+<rect x="30.0" y="100.0" width="70.0" height="46.0" rx="0" fill="#f1f5f9" stroke="#64748b" stroke-width="1.4"/>
+<text x="92.0" y="115.0" fill="#64748b" font-size="12" font-weight="700" text-anchor="end" font-family="JetBrains Mono, DejaVu Sans Mono, ui-monospace, monospace">CD</text>
+<text x="38.0" y="138.0" fill="#64748b" font-size="12" font-weight="700" text-anchor="start" font-family="JetBrains Mono, DejaVu Sans Mono, ui-monospace, monospace">AB</text>
+<line x1="38.0" y1="128.0" x2="92.0" y2="120.0" stroke="#94a3b8" stroke-width="1.1" stroke-linecap="round"/>
+<rect x="100.0" y="100.0" width="54.0" height="46.0" rx="0" fill="#e2e8f0" stroke="#64748b" stroke-width="1.4"/>
+<text x="127.0" y="128.0" fill="#1e3a5f" font-size="14" font-weight="700" text-anchor="middle" font-family="JetBrains Mono, DejaVu Sans Mono, ui-monospace, monospace">00</text>
+<rect x="154.0" y="100.0" width="54.0" height="46.0" rx="0" fill="#e2e8f0" stroke="#64748b" stroke-width="1.4"/>
+<text x="181.0" y="128.0" fill="#1e3a5f" font-size="14" font-weight="700" text-anchor="middle" font-family="JetBrains Mono, DejaVu Sans Mono, ui-monospace, monospace">01</text>
+<rect x="208.0" y="100.0" width="54.0" height="46.0" rx="0" fill="#e2e8f0" stroke="#64748b" stroke-width="1.4"/>
+<text x="235.0" y="128.0" fill="#1e3a5f" font-size="14" font-weight="700" text-anchor="middle" font-family="JetBrains Mono, DejaVu Sans Mono, ui-monospace, monospace">11</text>
+<rect x="262.0" y="100.0" width="54.0" height="46.0" rx="0" fill="#e2e8f0" stroke="#64748b" stroke-width="1.4"/>
+<text x="289.0" y="128.0" fill="#1e3a5f" font-size="14" font-weight="700" text-anchor="middle" font-family="JetBrains Mono, DejaVu Sans Mono, ui-monospace, monospace">10</text>
+<rect x="30.0" y="146.0" width="70.0" height="50.0" rx="0" fill="#e2e8f0" stroke="#64748b" stroke-width="1.4"/>
+<text x="65.0" y="176.0" fill="#1e3a5f" font-size="14" font-weight="700" text-anchor="middle" font-family="JetBrains Mono, DejaVu Sans Mono, ui-monospace, monospace">00</text>
+<rect x="100.0" y="146.0" width="54.0" height="50.0" rx="0" fill="#f8fafc" stroke="#64748b" stroke-width="1.4"/>
+<text x="105.0" y="159.0" fill="#94a3b8" font-size="10" font-weight="600" text-anchor="start" font-family="JetBrains Mono, DejaVu Sans Mono, ui-monospace, monospace">m0</text>
+<text x="127.0" y="179.0" fill="#64748b" font-size="22" font-weight="700" text-anchor="middle" font-family="JetBrains Mono, DejaVu Sans Mono, ui-monospace, monospace">0</text>
+<rect x="154.0" y="146.0" width="54.0" height="50.0" rx="0" fill="#f8fafc" stroke="#64748b" stroke-width="1.4"/>
+<text x="159.0" y="159.0" fill="#94a3b8" font-size="10" font-weight="600" text-anchor="start" font-family="JetBrains Mono, DejaVu Sans Mono, ui-monospace, monospace">m1</text>
+<text x="181.0" y="179.0" fill="#64748b" font-size="22" font-weight="700" text-anchor="middle" font-family="JetBrains Mono, DejaVu Sans Mono, ui-monospace, monospace">0</text>
+<rect x="208.0" y="146.0" width="54.0" height="50.0" rx="0" fill="#f8fafc" stroke="#64748b" stroke-width="1.4"/>
+<text x="213.0" y="159.0" fill="#94a3b8" font-size="10" font-weight="600" text-anchor="start" font-family="JetBrains Mono, DejaVu Sans Mono, ui-monospace, monospace">m3</text>
+<text x="235.0" y="179.0" fill="#64748b" font-size="22" font-weight="700" text-anchor="middle" font-family="JetBrains Mono, DejaVu Sans Mono, ui-monospace, monospace">0</text>
+<rect x="262.0" y="146.0" width="54.0" height="50.0" rx="0" fill="#f8fafc" stroke="#64748b" stroke-width="1.4"/>
+<text x="267.0" y="159.0" fill="#94a3b8" font-size="10" font-weight="600" text-anchor="start" font-family="JetBrains Mono, DejaVu Sans Mono, ui-monospace, monospace">m2</text>
+<text x="289.0" y="179.0" fill="#64748b" font-size="22" font-weight="700" text-anchor="middle" font-family="JetBrains Mono, DejaVu Sans Mono, ui-monospace, monospace">0</text>
+<rect x="30.0" y="196.0" width="70.0" height="50.0" rx="0" fill="#e2e8f0" stroke="#64748b" stroke-width="1.4"/>
+<text x="65.0" y="226.0" fill="#1e3a5f" font-size="14" font-weight="700" text-anchor="middle" font-family="JetBrains Mono, DejaVu Sans Mono, ui-monospace, monospace">01</text>
+<rect x="100.0" y="196.0" width="54.0" height="50.0" rx="0" fill="#f8fafc" stroke="#64748b" stroke-width="1.4"/>
+<text x="105.0" y="209.0" fill="#94a3b8" font-size="10" font-weight="600" text-anchor="start" font-family="JetBrains Mono, DejaVu Sans Mono, ui-monospace, monospace">m4</text>
+<text x="127.0" y="229.0" fill="#64748b" font-size="22" font-weight="700" text-anchor="middle" font-family="JetBrains Mono, DejaVu Sans Mono, ui-monospace, monospace">0</text>
+<rect x="154.0" y="196.0" width="54.0" height="50.0" rx="0" fill="#f8fafc" stroke="#64748b" stroke-width="1.4"/>
+<text x="159.0" y="209.0" fill="#94a3b8" font-size="10" font-weight="600" text-anchor="start" font-family="JetBrains Mono, DejaVu Sans Mono, ui-monospace, monospace">m5</text>
+<text x="181.0" y="229.0" fill="#64748b" font-size="22" font-weight="700" text-anchor="middle" font-family="JetBrains Mono, DejaVu Sans Mono, ui-monospace, monospace">0</text>
+<rect x="208.0" y="196.0" width="54.0" height="50.0" rx="0" fill="#dbeafe" stroke="#64748b" stroke-width="1.4"/>
+<text x="213.0" y="209.0" fill="#94a3b8" font-size="10" font-weight="600" text-anchor="start" font-family="JetBrains Mono, DejaVu Sans Mono, ui-monospace, monospace">m7</text>
+<text x="235.0" y="229.0" fill="#1e40af" font-size="22" font-weight="700" text-anchor="middle" font-family="JetBrains Mono, DejaVu Sans Mono, ui-monospace, monospace">1</text>
+<rect x="262.0" y="196.0" width="54.0" height="50.0" rx="0" fill="#f8fafc" stroke="#64748b" stroke-width="1.4"/>
+<text x="267.0" y="209.0" fill="#94a3b8" font-size="10" font-weight="600" text-anchor="start" font-family="JetBrains Mono, DejaVu Sans Mono, ui-monospace, monospace">m6</text>
+<text x="289.0" y="229.0" fill="#64748b" font-size="22" font-weight="700" text-anchor="middle" font-family="JetBrains Mono, DejaVu Sans Mono, ui-monospace, monospace">0</text>
+<rect x="30.0" y="246.0" width="70.0" height="50.0" rx="0" fill="#e2e8f0" stroke="#64748b" stroke-width="1.4"/>
+<text x="65.0" y="276.0" fill="#1e3a5f" font-size="14" font-weight="700" text-anchor="middle" font-family="JetBrains Mono, DejaVu Sans Mono, ui-monospace, monospace">11</text>
+<rect x="100.0" y="246.0" width="54.0" height="50.0" rx="0" fill="#ede9fe" stroke="#64748b" stroke-width="1.4"/>
+<text x="105.0" y="259.0" fill="#94a3b8" font-size="10" font-weight="600" text-anchor="start" font-family="JetBrains Mono, DejaVu Sans Mono, ui-monospace, monospace">m12</text>
+<text x="127.0" y="279.0" fill="#5b21b6" font-size="22" font-weight="700" text-anchor="middle" font-family="JetBrains Mono, DejaVu Sans Mono, ui-monospace, monospace">X</text>
+<rect x="154.0" y="246.0" width="54.0" height="50.0" rx="0" fill="#ede9fe" stroke="#64748b" stroke-width="1.4"/>
+<text x="159.0" y="259.0" fill="#94a3b8" font-size="10" font-weight="600" text-anchor="start" font-family="JetBrains Mono, DejaVu Sans Mono, ui-monospace, monospace">m13</text>
+<text x="181.0" y="279.0" fill="#5b21b6" font-size="22" font-weight="700" text-anchor="middle" font-family="JetBrains Mono, DejaVu Sans Mono, ui-monospace, monospace">X</text>
+<rect x="208.0" y="246.0" width="54.0" height="50.0" rx="0" fill="#ede9fe" stroke="#64748b" stroke-width="1.4"/>
+<text x="213.0" y="259.0" fill="#94a3b8" font-size="10" font-weight="600" text-anchor="start" font-family="JetBrains Mono, DejaVu Sans Mono, ui-monospace, monospace">m15</text>
+<text x="235.0" y="279.0" fill="#5b21b6" font-size="22" font-weight="700" text-anchor="middle" font-family="JetBrains Mono, DejaVu Sans Mono, ui-monospace, monospace">X</text>
+<rect x="262.0" y="246.0" width="54.0" height="50.0" rx="0" fill="#ede9fe" stroke="#64748b" stroke-width="1.4"/>
+<text x="267.0" y="259.0" fill="#94a3b8" font-size="10" font-weight="600" text-anchor="start" font-family="JetBrains Mono, DejaVu Sans Mono, ui-monospace, monospace">m14</text>
+<text x="289.0" y="279.0" fill="#5b21b6" font-size="22" font-weight="700" text-anchor="middle" font-family="JetBrains Mono, DejaVu Sans Mono, ui-monospace, monospace">X</text>
+<rect x="30.0" y="296.0" width="70.0" height="50.0" rx="0" fill="#e2e8f0" stroke="#64748b" stroke-width="1.4"/>
+<text x="65.0" y="326.0" fill="#1e3a5f" font-size="14" font-weight="700" text-anchor="middle" font-family="JetBrains Mono, DejaVu Sans Mono, ui-monospace, monospace">10</text>
+<rect x="100.0" y="296.0" width="54.0" height="50.0" rx="0" fill="#dbeafe" stroke="#64748b" stroke-width="1.4"/>
+<text x="105.0" y="309.0" fill="#94a3b8" font-size="10" font-weight="600" text-anchor="start" font-family="JetBrains Mono, DejaVu Sans Mono, ui-monospace, monospace">m8</text>
+<text x="127.0" y="329.0" fill="#1e40af" font-size="22" font-weight="700" text-anchor="middle" font-family="JetBrains Mono, DejaVu Sans Mono, ui-monospace, monospace">1</text>
+<rect x="154.0" y="296.0" width="54.0" height="50.0" rx="0" fill="#dbeafe" stroke="#64748b" stroke-width="1.4"/>
+<text x="159.0" y="309.0" fill="#94a3b8" font-size="10" font-weight="600" text-anchor="start" font-family="JetBrains Mono, DejaVu Sans Mono, ui-monospace, monospace">m9</text>
+<text x="181.0" y="329.0" fill="#1e40af" font-size="22" font-weight="700" text-anchor="middle" font-family="JetBrains Mono, DejaVu Sans Mono, ui-monospace, monospace">1</text>
+<rect x="208.0" y="296.0" width="54.0" height="50.0" rx="0" fill="#ede9fe" stroke="#64748b" stroke-width="1.4"/>
+<text x="213.0" y="309.0" fill="#94a3b8" font-size="10" font-weight="600" text-anchor="start" font-family="JetBrains Mono, DejaVu Sans Mono, ui-monospace, monospace">m11</text>
+<text x="235.0" y="329.0" fill="#5b21b6" font-size="22" font-weight="700" text-anchor="middle" font-family="JetBrains Mono, DejaVu Sans Mono, ui-monospace, monospace">X</text>
+<rect x="262.0" y="296.0" width="54.0" height="50.0" rx="0" fill="#ede9fe" stroke="#64748b" stroke-width="1.4"/>
+<text x="267.0" y="309.0" fill="#94a3b8" font-size="10" font-weight="600" text-anchor="start" font-family="JetBrains Mono, DejaVu Sans Mono, ui-monospace, monospace">m10</text>
+<text x="289.0" y="329.0" fill="#5b21b6" font-size="22" font-weight="700" text-anchor="middle" font-family="JetBrains Mono, DejaVu Sans Mono, ui-monospace, monospace">X</text>
+<rect x="203.0" y="191.0" width="64.0" height="60.0" rx="18" fill="none" stroke="#1d4ed8" stroke-width="2.6"/>
+<rect x="95.0" y="291.0" width="118.0" height="60.0" rx="16" fill="none" stroke="#c2410c" stroke-width="2.6"/>
+<text x="698.0" y="84.0" fill="#1d4ed8" font-size="16" font-weight="700" text-anchor="middle" font-family="WenQuanYi Micro Hei, Microsoft JhengHei, sans-serif">用 X</text>
+<rect x="520.0" y="100.0" width="70.0" height="46.0" rx="0" fill="#f1f5f9" stroke="#64748b" stroke-width="1.4"/>
+<text x="582.0" y="115.0" fill="#64748b" font-size="12" font-weight="700" text-anchor="end" font-family="JetBrains Mono, DejaVu Sans Mono, ui-monospace, monospace">CD</text>
+<text x="528.0" y="138.0" fill="#64748b" font-size="12" font-weight="700" text-anchor="start" font-family="JetBrains Mono, DejaVu Sans Mono, ui-monospace, monospace">AB</text>
+<line x1="528.0" y1="128.0" x2="582.0" y2="120.0" stroke="#94a3b8" stroke-width="1.1" stroke-linecap="round"/>
+<rect x="590.0" y="100.0" width="54.0" height="46.0" rx="0" fill="#e2e8f0" stroke="#64748b" stroke-width="1.4"/>
+<text x="617.0" y="128.0" fill="#1e3a5f" font-size="14" font-weight="700" text-anchor="middle" font-family="JetBrains Mono, DejaVu Sans Mono, ui-monospace, monospace">00</text>
+<rect x="644.0" y="100.0" width="54.0" height="46.0" rx="0" fill="#e2e8f0" stroke="#64748b" stroke-width="1.4"/>
+<text x="671.0" y="128.0" fill="#1e3a5f" font-size="14" font-weight="700" text-anchor="middle" font-family="JetBrains Mono, DejaVu Sans Mono, ui-monospace, monospace">01</text>
+<rect x="698.0" y="100.0" width="54.0" height="46.0" rx="0" fill="#e2e8f0" stroke="#64748b" stroke-width="1.4"/>
+<text x="725.0" y="128.0" fill="#1e3a5f" font-size="14" font-weight="700" text-anchor="middle" font-family="JetBrains Mono, DejaVu Sans Mono, ui-monospace, monospace">11</text>
+<rect x="752.0" y="100.0" width="54.0" height="46.0" rx="0" fill="#e2e8f0" stroke="#64748b" stroke-width="1.4"/>
+<text x="779.0" y="128.0" fill="#1e3a5f" font-size="14" font-weight="700" text-anchor="middle" font-family="JetBrains Mono, DejaVu Sans Mono, ui-monospace, monospace">10</text>
+<rect x="520.0" y="146.0" width="70.0" height="50.0" rx="0" fill="#e2e8f0" stroke="#64748b" stroke-width="1.4"/>
+<text x="555.0" y="176.0" fill="#1e3a5f" font-size="14" font-weight="700" text-anchor="middle" font-family="JetBrains Mono, DejaVu Sans Mono, ui-monospace, monospace">00</text>
+<rect x="590.0" y="146.0" width="54.0" height="50.0" rx="0" fill="#f8fafc" stroke="#64748b" stroke-width="1.4"/>
+<text x="595.0" y="159.0" fill="#94a3b8" font-size="10" font-weight="600" text-anchor="start" font-family="JetBrains Mono, DejaVu Sans Mono, ui-monospace, monospace">m0</text>
+<text x="617.0" y="179.0" fill="#64748b" font-size="22" font-weight="700" text-anchor="middle" font-family="JetBrains Mono, DejaVu Sans Mono, ui-monospace, monospace">0</text>
+<rect x="644.0" y="146.0" width="54.0" height="50.0" rx="0" fill="#f8fafc" stroke="#64748b" stroke-width="1.4"/>
+<text x="649.0" y="159.0" fill="#94a3b8" font-size="10" font-weight="600" text-anchor="start" font-family="JetBrains Mono, DejaVu Sans Mono, ui-monospace, monospace">m1</text>
+<text x="671.0" y="179.0" fill="#64748b" font-size="22" font-weight="700" text-anchor="middle" font-family="JetBrains Mono, DejaVu Sans Mono, ui-monospace, monospace">0</text>
+<rect x="698.0" y="146.0" width="54.0" height="50.0" rx="0" fill="#f8fafc" stroke="#64748b" stroke-width="1.4"/>
+<text x="703.0" y="159.0" fill="#94a3b8" font-size="10" font-weight="600" text-anchor="start" font-family="JetBrains Mono, DejaVu Sans Mono, ui-monospace, monospace">m3</text>
+<text x="725.0" y="179.0" fill="#64748b" font-size="22" font-weight="700" text-anchor="middle" font-family="JetBrains Mono, DejaVu Sans Mono, ui-monospace, monospace">0</text>
+<rect x="752.0" y="146.0" width="54.0" height="50.0" rx="0" fill="#f8fafc" stroke="#64748b" stroke-width="1.4"/>
+<text x="757.0" y="159.0" fill="#94a3b8" font-size="10" font-weight="600" text-anchor="start" font-family="JetBrains Mono, DejaVu Sans Mono, ui-monospace, monospace">m2</text>
+<text x="779.0" y="179.0" fill="#64748b" font-size="22" font-weight="700" text-anchor="middle" font-family="JetBrains Mono, DejaVu Sans Mono, ui-monospace, monospace">0</text>
+<rect x="520.0" y="196.0" width="70.0" height="50.0" rx="0" fill="#e2e8f0" stroke="#64748b" stroke-width="1.4"/>
+<text x="555.0" y="226.0" fill="#1e3a5f" font-size="14" font-weight="700" text-anchor="middle" font-family="JetBrains Mono, DejaVu Sans Mono, ui-monospace, monospace">01</text>
+<rect x="590.0" y="196.0" width="54.0" height="50.0" rx="0" fill="#f8fafc" stroke="#64748b" stroke-width="1.4"/>
+<text x="595.0" y="209.0" fill="#94a3b8" font-size="10" font-weight="600" text-anchor="start" font-family="JetBrains Mono, DejaVu Sans Mono, ui-monospace, monospace">m4</text>
+<text x="617.0" y="229.0" fill="#64748b" font-size="22" font-weight="700" text-anchor="middle" font-family="JetBrains Mono, DejaVu Sans Mono, ui-monospace, monospace">0</text>
+<rect x="644.0" y="196.0" width="54.0" height="50.0" rx="0" fill="#f8fafc" stroke="#64748b" stroke-width="1.4"/>
+<text x="649.0" y="209.0" fill="#94a3b8" font-size="10" font-weight="600" text-anchor="start" font-family="JetBrains Mono, DejaVu Sans Mono, ui-monospace, monospace">m5</text>
+<text x="671.0" y="229.0" fill="#64748b" font-size="22" font-weight="700" text-anchor="middle" font-family="JetBrains Mono, DejaVu Sans Mono, ui-monospace, monospace">0</text>
+<rect x="698.0" y="196.0" width="54.0" height="50.0" rx="0" fill="#dbeafe" stroke="#64748b" stroke-width="1.4"/>
+<text x="703.0" y="209.0" fill="#94a3b8" font-size="10" font-weight="600" text-anchor="start" font-family="JetBrains Mono, DejaVu Sans Mono, ui-monospace, monospace">m7</text>
+<text x="725.0" y="229.0" fill="#1e40af" font-size="22" font-weight="700" text-anchor="middle" font-family="JetBrains Mono, DejaVu Sans Mono, ui-monospace, monospace">1</text>
+<rect x="752.0" y="196.0" width="54.0" height="50.0" rx="0" fill="#f8fafc" stroke="#64748b" stroke-width="1.4"/>
+<text x="757.0" y="209.0" fill="#94a3b8" font-size="10" font-weight="600" text-anchor="start" font-family="JetBrains Mono, DejaVu Sans Mono, ui-monospace, monospace">m6</text>
+<text x="779.0" y="229.0" fill="#64748b" font-size="22" font-weight="700" text-anchor="middle" font-family="JetBrains Mono, DejaVu Sans Mono, ui-monospace, monospace">0</text>
+<rect x="520.0" y="246.0" width="70.0" height="50.0" rx="0" fill="#e2e8f0" stroke="#64748b" stroke-width="1.4"/>
+<text x="555.0" y="276.0" fill="#1e3a5f" font-size="14" font-weight="700" text-anchor="middle" font-family="JetBrains Mono, DejaVu Sans Mono, ui-monospace, monospace">11</text>
+<rect x="590.0" y="246.0" width="54.0" height="50.0" rx="0" fill="#ede9fe" stroke="#64748b" stroke-width="1.4"/>
+<text x="595.0" y="259.0" fill="#94a3b8" font-size="10" font-weight="600" text-anchor="start" font-family="JetBrains Mono, DejaVu Sans Mono, ui-monospace, monospace">m12</text>
+<text x="617.0" y="279.0" fill="#5b21b6" font-size="22" font-weight="700" text-anchor="middle" font-family="JetBrains Mono, DejaVu Sans Mono, ui-monospace, monospace">X</text>
+<rect x="644.0" y="246.0" width="54.0" height="50.0" rx="0" fill="#ede9fe" stroke="#64748b" stroke-width="1.4"/>
+<text x="649.0" y="259.0" fill="#94a3b8" font-size="10" font-weight="600" text-anchor="start" font-family="JetBrains Mono, DejaVu Sans Mono, ui-monospace, monospace">m13</text>
+<text x="671.0" y="279.0" fill="#5b21b6" font-size="22" font-weight="700" text-anchor="middle" font-family="JetBrains Mono, DejaVu Sans Mono, ui-monospace, monospace">X</text>
+<rect x="698.0" y="246.0" width="54.0" height="50.0" rx="0" fill="#ede9fe" stroke="#64748b" stroke-width="1.4"/>
+<text x="703.0" y="259.0" fill="#94a3b8" font-size="10" font-weight="600" text-anchor="start" font-family="JetBrains Mono, DejaVu Sans Mono, ui-monospace, monospace">m15</text>
+<text x="725.0" y="279.0" fill="#5b21b6" font-size="22" font-weight="700" text-anchor="middle" font-family="JetBrains Mono, DejaVu Sans Mono, ui-monospace, monospace">X</text>
+<rect x="752.0" y="246.0" width="54.0" height="50.0" rx="0" fill="#ede9fe" stroke="#64748b" stroke-width="1.4"/>
+<text x="757.0" y="259.0" fill="#94a3b8" font-size="10" font-weight="600" text-anchor="start" font-family="JetBrains Mono, DejaVu Sans Mono, ui-monospace, monospace">m14</text>
+<text x="779.0" y="279.0" fill="#5b21b6" font-size="22" font-weight="700" text-anchor="middle" font-family="JetBrains Mono, DejaVu Sans Mono, ui-monospace, monospace">X</text>
+<rect x="520.0" y="296.0" width="70.0" height="50.0" rx="0" fill="#e2e8f0" stroke="#64748b" stroke-width="1.4"/>
+<text x="555.0" y="326.0" fill="#1e3a5f" font-size="14" font-weight="700" text-anchor="middle" font-family="JetBrains Mono, DejaVu Sans Mono, ui-monospace, monospace">10</text>
+<rect x="590.0" y="296.0" width="54.0" height="50.0" rx="0" fill="#dbeafe" stroke="#64748b" stroke-width="1.4"/>
+<text x="595.0" y="309.0" fill="#94a3b8" font-size="10" font-weight="600" text-anchor="start" font-family="JetBrains Mono, DejaVu Sans Mono, ui-monospace, monospace">m8</text>
+<text x="617.0" y="329.0" fill="#1e40af" font-size="22" font-weight="700" text-anchor="middle" font-family="JetBrains Mono, DejaVu Sans Mono, ui-monospace, monospace">1</text>
+<rect x="644.0" y="296.0" width="54.0" height="50.0" rx="0" fill="#dbeafe" stroke="#64748b" stroke-width="1.4"/>
+<text x="649.0" y="309.0" fill="#94a3b8" font-size="10" font-weight="600" text-anchor="start" font-family="JetBrains Mono, DejaVu Sans Mono, ui-monospace, monospace">m9</text>
+<text x="671.0" y="329.0" fill="#1e40af" font-size="22" font-weight="700" text-anchor="middle" font-family="JetBrains Mono, DejaVu Sans Mono, ui-monospace, monospace">1</text>
+<rect x="698.0" y="296.0" width="54.0" height="50.0" rx="0" fill="#ede9fe" stroke="#64748b" stroke-width="1.4"/>
+<text x="703.0" y="309.0" fill="#94a3b8" font-size="10" font-weight="600" text-anchor="start" font-family="JetBrains Mono, DejaVu Sans Mono, ui-monospace, monospace">m11</text>
+<text x="725.0" y="329.0" fill="#5b21b6" font-size="22" font-weight="700" text-anchor="middle" font-family="JetBrains Mono, DejaVu Sans Mono, ui-monospace, monospace">X</text>
+<rect x="752.0" y="296.0" width="54.0" height="50.0" rx="0" fill="#ede9fe" stroke="#64748b" stroke-width="1.4"/>
+<text x="757.0" y="309.0" fill="#94a3b8" font-size="10" font-weight="600" text-anchor="start" font-family="JetBrains Mono, DejaVu Sans Mono, ui-monospace, monospace">m10</text>
+<text x="779.0" y="329.0" fill="#5b21b6" font-size="22" font-weight="700" text-anchor="middle" font-family="JetBrains Mono, DejaVu Sans Mono, ui-monospace, monospace">X</text>
+<rect x="584.0" y="240.0" width="228.0" height="112.0" rx="18" fill="none" stroke="#1d4ed8" stroke-width="3"/>
+<rect x="695.0" y="193.0" width="60.0" height="106.0" rx="16" fill="none" stroke="#047857" stroke-width="2.6"/>
+<text x="30.0" y="376.0" fill="#64748b" font-size="13" font-weight="600" text-anchor="start" font-family="WenQuanYi Micro Hei, Microsoft JhengHei, sans-serif">較長</text>
+<text x="30.0" y="404.0" fill="#1e3a8a" font-size="18" font-weight="700" text-anchor="start" font-family="JetBrains Mono, DejaVu Sans Mono, ui-monospace, monospace" textLength="22.32" lengthAdjust="spacingAndGlyphs">Y＝</text>
+<text x="52.3" y="404.0" fill="#1e3a8a" font-size="18" font-weight="700" text-anchor="start" font-family="JetBrains Mono, DejaVu Sans Mono, ui-monospace, monospace" textLength="11.16" lengthAdjust="spacingAndGlyphs">A</text>
+<text x="63.5" y="404.0" fill="#1e3a8a" font-size="18" font-weight="700" text-anchor="start" font-family="JetBrains Mono, DejaVu Sans Mono, ui-monospace, monospace" textLength="12.6" lengthAdjust="spacingAndGlyphs">B</text>
+<line x1="63.9" y1="386.7" x2="75.7" y2="386.7" stroke="#1e3a8a" stroke-width="2.0" stroke-linecap="round"/>
+<text x="76.1" y="404.0" fill="#1e3a8a" font-size="18" font-weight="700" text-anchor="start" font-family="JetBrains Mono, DejaVu Sans Mono, ui-monospace, monospace" textLength="12.6" lengthAdjust="spacingAndGlyphs">C</text>
+<line x1="76.5" y1="386.7" x2="88.3" y2="386.7" stroke="#1e3a8a" stroke-width="2.0" stroke-linecap="round"/>
+<text x="88.7" y="404.0" fill="#1e3a8a" font-size="18" font-weight="700" text-anchor="start" font-family="JetBrains Mono, DejaVu Sans Mono, ui-monospace, monospace" textLength="18.900000000000002" lengthAdjust="spacingAndGlyphs">＋</text>
+<text x="107.6" y="404.0" fill="#1e3a8a" font-size="18" font-weight="700" text-anchor="start" font-family="JetBrains Mono, DejaVu Sans Mono, ui-monospace, monospace" textLength="12.6" lengthAdjust="spacingAndGlyphs">A</text>
+<line x1="108.0" y1="386.7" x2="119.8" y2="386.7" stroke="#1e3a8a" stroke-width="2.0" stroke-linecap="round"/>
+<text x="120.2" y="404.0" fill="#1e3a8a" font-size="18" font-weight="700" text-anchor="start" font-family="JetBrains Mono, DejaVu Sans Mono, ui-monospace, monospace" textLength="33.480000000000004" lengthAdjust="spacingAndGlyphs">BCD</text>
+<text x="30.0" y="432.0" fill="#64748b" font-size="13" font-weight="500" text-anchor="start" font-family="WenQuanYi Micro Hei, Microsoft JhengHei, sans-serif">m8、m9：B 同 C 有橫線</text>
+<text x="30.0" y="452.0" fill="#c2410c" font-size="13" font-weight="600" text-anchor="start" font-family="WenQuanYi Micro Hei, Microsoft JhengHei, sans-serif">唔好讀成 A 有橫線、B 冇橫線</text>
+<text x="520.0" y="376.0" fill="#64748b" font-size="13" font-weight="600" text-anchor="start" font-family="WenQuanYi Micro Hei, Microsoft JhengHei, sans-serif">最簡</text>
+<text x="520.0" y="404.0" fill="#1e3a8a" font-size="18" font-weight="700" text-anchor="start" font-family="JetBrains Mono, DejaVu Sans Mono, ui-monospace, monospace" textLength="22.32" lengthAdjust="spacingAndGlyphs">Y＝</text>
+<text x="542.3" y="404.0" fill="#1e3a8a" font-size="18" font-weight="700" text-anchor="start" font-family="JetBrains Mono, DejaVu Sans Mono, ui-monospace, monospace" textLength="11.16" lengthAdjust="spacingAndGlyphs">A</text>
+<text x="553.5" y="404.0" fill="#1e3a8a" font-size="18" font-weight="700" text-anchor="start" font-family="JetBrains Mono, DejaVu Sans Mono, ui-monospace, monospace" textLength="18.900000000000002" lengthAdjust="spacingAndGlyphs">＋</text>
+<text x="572.4" y="404.0" fill="#1e3a8a" font-size="18" font-weight="700" text-anchor="start" font-family="JetBrains Mono, DejaVu Sans Mono, ui-monospace, monospace" textLength="33.480000000000004" lengthAdjust="spacingAndGlyphs">BCD</text>
+<text x="520.0" y="432.0" fill="#1d4ed8" font-size="13" font-weight="600" text-anchor="start" font-family="WenQuanYi Micro Hei, Microsoft JhengHei, sans-serif">藍圈＝A（底兩行）</text>
+<text x="520.0" y="452.0" fill="#047857" font-size="13" font-weight="600" text-anchor="start" font-family="WenQuanYi Micro Hei, Microsoft JhengHei, sans-serif">綠圈＝BCD（m7 同 m15）</text>
+<text x="520.0" y="518.0" fill="#64748b" font-size="14" font-weight="500" text-anchor="middle" font-family="WenQuanYi Micro Hei, Microsoft JhengHei, sans-serif">每個 1 都要有圈。X 唔幫到手就當 0，唔好淨係圈 X。</text>
+</svg>
