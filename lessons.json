@@ -1,5 +1,5 @@
 {
-  "version": 12,
+  "version": 13,
   "titleZh": "數位邏輯自學 · 三欄（DAT）",
   "uiNoteZh": "校本自製示意圖 · DAT",
   "chapters": [
@@ -3099,7 +3099,7 @@
       "title": "十進位加法器：BCD 加法同應用",
       "pill": "十進加",
       "live": true,
-      "teach": "\n<p><strong>十進位加法器（decimal adder）</strong>用來把兩個十進數字（0–9）相加，得出個位同進位，方便直接對應日常用嘅十進制。</p>\n<p>常見實作係 <strong>BCD 加法</strong>：每位十進數字用 4 位二進制（0000–1001）表示，先用 4-bit 二元加法器（四個全加器）相加；若和大於 9，或呢一組產生進位，就要再加 6（0110）做 <strong>BCD 校正</strong>，結果先至係合法十進數字。</p>\n<p>例：7＋8＝15</p>\n<ul>\n  <li>BCD：0111＋1000＝1111（等於 15，但大過 9，唔係合法 BCD）</li>\n  <li>再加 0110 → 1 0101，即進位 1、個位 5，正正係 15<sub>10</sub></li>\n</ul>\n<p>多位十進數就把多個十進位加法器串聯，低位進位入高位。</p>\n<p><strong>應用：</strong>電子計算機、收銀機、電子鐘同計分板、電子秤／儀表讀數（常再接 BCD 七段顯示）。</p>\n<div class=\"tip\">記住：純二進加法同 BCD 加法唔相同；超過 9 就要加 6 校正。</div>\n",
+      "teach": "\n<p><strong>十進位加法器（decimal adder）</strong>用來把兩個十進數字（0–9）相加，得出個位同進位，方便直接對應日常用嘅十進制。</p>\n<p>常見實作係 <strong>BCD 加法</strong>：每位十進數字用 4 位二進制（0000–1001）表示，先用 4-bit 二元加法器（四個全加器）相加；若和大於 9，或呢一組產生進位，就要再加 6（0110）做 <strong>BCD 校正</strong>，結果先至係合法十進數字。</p>\n<p>例：7＋8＝15</p>\n<ul>\n  <li>BCD：0111＋1000＝1111（等於 15，但大過 9，唔係合法 BCD）</li>\n  <li>再加 0110 → 1 0101，即進位 1、個位 5，正正係 15<sub>10</sub></li>\n</ul>\n<figure class=\"fig\">\n  <img src=\"assets/c6_decimal_add.png\" alt=\"十進位加法器 BCD 校正：7＋8＝15，4-bit 加法得 1111，再加 0110 得進位 1、個位 5\">\n  <div class=\"gate-meta\">7＋8＝15：先加出 1111，再加 0110 校正得進位 1、個位 5。</div>\n</figure>\n<p>多位十進數就把多個十進位加法器串聯，低位進位入高位。</p>\n<p><strong>應用：</strong>電子計算機、收銀機、電子鐘同計分板、電子秤／儀表讀數（常再接 BCD 七段顯示）。</p>\n<div class=\"tip\">記住：純二進加法同 BCD 加法唔相同；超過 9 就要加 6 校正。</div>\n",
       "practice": {
         "type": "mcq",
         "prompt": "用 BCD 做 7＋8，得出 1111 之後，點解通常再加 0110（即 6）？",
@@ -3115,7 +3115,8 @@
       "support": {
         "definition": "十進位加法器：用 BCD 加兩個 0–9；和＞9 或有進位就要加 6 校正。",
         "example": "7＋8：0111＋1000＝1111，再＋0110 → 1 0101。",
-        "tip": "應用常見於計算機、電子鐘、收銀同儀表顯示。",
+        "tip": "應用常見於計算機、電子鐘、收銀同儀表顯示；中欄圖見 7＋8＝15 嘅 BCD 校正。",
+        "fig": "assets/c6_decimal_add.png",
         "guidedHints": [
           "1111 等於十幾？係唔係合法 BCD？",
           "BCD 只可以用 0000–1001 代表 0–9。",
@@ -3561,7 +3562,7 @@
       "title": "漣波計數器：n 隻 FF 有 2ⁿ 態",
       "pill": "漣波",
       "live": true,
-      "teach": "\n<p><strong>漣波計數器（ripple counter）</strong>係一種<strong>異步</strong>計數器。把多個正反器（課堂常用 D 型，接成每到時鐘沿就翻轉）串聯，<strong>前一級嘅輸出做後一級嘅時鐘</strong>。第一級一變，先傳到第二級、再傳到第三級，好似水波一層層傳開，所以叫漣波。</p>\n<ul>\n  <li>每一級把脈衝頻率除以 2</li>\n  <li>n 隻正反器可以表示 <strong>2<sup>n</sup></strong> 個唔同狀態，計數範圍由 0 到 2<sup>n</sup>−1</li>\n  <li>例：1 隻 → 2 態（0、1）；2 隻 → 4 態（00 至 11，即 0 至 3）；3 隻 → 8 態（000 至 111，即 0 至 7）</li>\n</ul>\n<p>同<strong>同步計數器</strong>嘅分別：同步係所有正反器共用同一個 CLK；漣波則各級時鐘唔同，高位會稍遲先更新。</p>\n<div class=\"tip\">示意圖稍後補：三個 D 型觸發器串聯，前級 Q 接後級 CLK。</div>\n",
+      "teach": "\n<p><strong>漣波計數器（ripple counter）</strong>係一種<strong>異步</strong>計數器。把多個正反器（課堂常用 D 型，接成每到時鐘沿就翻轉）串聯，<strong>前一級嘅輸出做後一級嘅時鐘</strong>。第一級一變，先傳到第二級、再傳到第三級，好似水波一層層傳開，所以叫漣波。</p>\n<ul>\n  <li>每一級把脈衝頻率除以 2</li>\n  <li>n 隻正反器可以表示 <strong>2<sup>n</sup></strong> 個唔同狀態，計數範圍由 0 到 2<sup>n</sup>−1</li>\n  <li>例：1 隻 → 2 態（0、1）；2 隻 → 4 態（00 至 11，即 0 至 3）；3 隻 → 8 態（000 至 111，即 0 至 7）</li>\n</ul>\n<p>同<strong>同步計數器</strong>嘅分別：同步係所有正反器共用同一個 CLK；漣波則各級時鐘唔同，高位會稍遲先更新。</p>\n<figure class=\"fig\">\n  <img src=\"assets/c8_ripple.png\" alt=\"3 位元異步漣波計數器：三個 D 型觸發器，前級 Q 接後級時鐘，D 接有上劃線的 Q，下降沿由 000 數到 111\">\n  <div class=\"gate-meta\">下降沿觸發；每級 D 接返 <span class=\"obar\">Q</span>，前級 Q 做後級 CLK，由 000 數到 111。</div>\n</figure>\n<div class=\"tip\">下降沿觸發：D＝<span class=\"obar\">Q</span>，每個時鐘沿翻轉一次；前一級 Q 做後一級 CLK；Q2 Q1 Q0 由 000 數到 111。</div>\n",
       "practice": {
         "type": "mcq",
         "prompt": "由 3 隻正反器組成嘅漣波計數器，可以表示幾多個唔同狀態？",
@@ -3578,6 +3579,7 @@
         "definition": "漣波計數：前級輸出做後級時鐘；n 隻 FF → 2ⁿ 態（0 至 2ⁿ−1）。",
         "example": "3 隻 FF → 8 態（000–111）。",
         "tip": "漣波係異步；同步計數器先至係全部共用同一個 CLK。",
+        "fig": "assets/c8_ripple.png",
         "guidedHints": [
           "公式係 2 的 n 次方。",
           "n＝3。",
