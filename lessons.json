@@ -1,5 +1,5 @@
 {
-  "version": 11,
+  "version": 12,
   "titleZh": "數位邏輯自學 · 三欄（DAT）",
   "uiNoteZh": "校本自製示意圖 · DAT",
   "chapters": [
@@ -3313,7 +3313,7 @@
       "title": "SR：Set／Reset",
       "pill": "SR",
       "live": true,
-      "teach": "\n<p><strong>SR 正反器</strong>（或 SR 鎖存）輸入 S（Set）、R（Reset）：</p>\n<ul>\n  <li>S＝1,R＝0 → Q＝1</li>\n  <li>S＝0,R＝1 → Q＝0</li>\n  <li>S＝R＝0 → 保持</li>\n  <li>S＝R＝1 → <strong>禁止／不定</strong>（基本 NOR／NAND 結構會有問題）</li>\n</ul>\n<figure class=\"gate-fig\">\n  <img src=\"assets/c7_sr.png\" alt=\"SR：置位／復位／保持；S＝R＝1 禁止\">\n  <div class=\"gate-meta\">S＝1,R＝0 置 1；S＝0,R＝1 置 0；00 保持；11 禁止。</div>\n</figure>\n<div class=\"tip\">實際設計避免 S＝R＝1；可用閘約束或改用 D／JK。</div>\n",
+      "teach": "\n<p><strong>SR 正反器</strong>（或 SR 鎖存）輸入 S（Set）、R（Reset）：</p>\n<ul>\n  <li>S＝1,R＝0 → Q＝1</li>\n  <li>S＝0,R＝1 → Q＝0</li>\n  <li>S＝R＝0 → 保持</li>\n  <li>S＝R＝1 → <strong>禁止／不定</strong>（基本 NOR／NAND 結構會有問題）</li>\n</ul>\n<figure class=\"gate-fig\">\n  <img src=\"assets/c7_sr.png\" alt=\"SR：置位／復位／保持；S＝R＝1 禁止\">\n  <div class=\"gate-meta\">S＝1,R＝0 置 1；S＝0,R＝1 置 0；00 保持；11 禁止。</div>\n</figure>\n<div class=\"tip\">實際設計避免 S＝R＝1；可用閘約束或改用 D／JK。</div>\n\n<p>最簡單可以用兩隻 <strong>NOR 交叉耦合</strong>砌一個 SR 鎖存（用 NAND 都得，不過 0／1 嘅角色會掉轉，下面再講）。NOR 只要有一個輸入係 1，輸出就一定係 0，所以兩條腳唔好調亂：</p>\n<ul>\n  <li><strong>R（RESET）</strong>入出 Q 嗰隻 NOR。R＝1，Q 就被逼去 0。</li>\n  <li><strong>S（SET）</strong>入出 <span class=\"obar\">Q</span> 嗰隻。S＝1，<span class=\"obar\">Q</span> 變 0，Q 就變 1。</li>\n  <li>S＝0、R＝0 → 冇人逼佢，<strong>保持</strong>。</li>\n  <li>S＝1、R＝1 → 兩個輸出都係 0，唔再一正一反。<strong>禁止</strong>，唔好用。</li>\n</ul>\n<figure class=\"fig\">\n  <img src=\"assets/c7_sr_nor.svg\" alt=\"兩隻 NOR 交叉耦合：R 入出 Q 嗰隻，S 入出有上劃線 Q 嗰隻\">\n  <div class=\"gate-meta\">左邊係方塊符號（S 在上、Q 在上）。右邊拆開做 NOR：R 入出 Q 嗰隻，S 入出另一隻。00 保持，11 禁止。</div>\n</figure>\n<p>有啲筆記會叫 latch 做「觸發器」。喺呢度，<strong>鎖存（latch，又寫閂鎖）</strong>係跟電平；<strong>正反器</strong>先係跟邊沿（見 7.1）。上面嘅 NOR 電路係鎖存，唔好當佢做正反器。</p>\n\n<p class=\"sec\"><strong>延伸：D 鎖存（D-latch）</strong></p>\n<p>D 鎖存就係 SR 鎖存前面加兩隻 AND 同一隻 NOT：令 S＝D·E、R＝（非 D）·E。E（有時寫 C）係 enable。E＝1 嗰陣係<strong>透明</strong>，Q 跟住 D；E＝0 就當 S、R 都係 0，保持。因為 R 總係非 D，所以行唔到 S＝R＝1。</p>\n<p>呢個仍然係電平鎖存。7.3 嘅 D 正反器只喺時鐘邊沿抄一次：enable 一路係 1 嗰陣，D 鎖存會一路跟 D，兩者唔同。</p>\n<figure class=\"fig\">\n  <img src=\"assets/c7_d_latch.svg\" alt=\"D 鎖存：D 同 E 經 AND 得出 S，非 D 同 E 得出 R，再入交叉耦合 NOR\">\n  <div class=\"gate-meta\">S 入出 <span class=\"obar\">Q</span> 嗰隻 NOR，R 入出 Q 嗰隻。E＝1 先放行。</div>\n</figure>\n<table class=\"truth-demo\">\n  <thead><tr><th>E／C</th><th>D</th><th>Q<sub>next</sub></th><th>註解</th></tr></thead>\n  <tbody>\n    <tr><td>0</td><td>X</td><td class=\"f\">保持</td><td>Q 不變</td></tr>\n    <tr><td>1</td><td>0</td><td class=\"f\">0</td><td>重設</td></tr>\n    <tr><td>1</td><td>1</td><td class=\"f\">1</td><td>設定</td></tr>\n  </tbody>\n</table>\n\n<p class=\"sec\"><strong>四隻 NAND，加一條 enable</strong></p>\n<p>同一個 SR 可以用四隻 NAND 砌：左邊兩隻等 C＝1 先放行 S、R，右邊兩隻交叉耦合記住個位。C＝0，無論 S、R 係 0 定 1，都係保持。可參考 HKDSE 2018 Paper 2D Q12(c)。</p>\n<p>NAND 版嘅禁止態同 NOR <strong>唔同</strong>：C＝1 而且 S＝R＝1 時，Q 同 <span class=\"obar\">Q</span> 都係 <strong>1</strong>（NOR 版先係兩個都 0）。呢個組合都唔好用。</p>\n<figure class=\"fig\">\n  <img src=\"assets/c7_gated_sr_nand.svg\" alt=\"四隻 NAND 的 SR 鎖存：C 控制 S 同 R 係咪放行\">\n  <div class=\"gate-meta\">C＝0 保持。C＝1、S＝1、R＝0 → Q＝1；S＝0、R＝1 → Q＝0；S＝R＝1 → 兩個輸出都係 1。</div>\n</figure>\n<div class=\"table-scroll\">\n<table class=\"truth-demo wide\">\n  <thead><tr><th>C</th><th>S</th><th>R</th><th>Q<sub>next</sub></th><th><span class=\"obar\">Q</span></th></tr></thead>\n  <tbody>\n    <tr><td>0</td><td>X</td><td>X</td><td class=\"f\">保持</td><td class=\"f\">保持</td></tr>\n    <tr><td>1</td><td>0</td><td>0</td><td class=\"f\">保持</td><td class=\"f\">保持</td></tr>\n    <tr><td>1</td><td>0</td><td>1</td><td class=\"f\">0</td><td class=\"f\">1</td></tr>\n    <tr><td>1</td><td>1</td><td>0</td><td class=\"f\">1</td><td class=\"f\">0</td></tr>\n    <tr><td>1</td><td>1</td><td>1</td><td class=\"f\">1（禁止）</td><td class=\"f\">1（禁止）</td></tr>\n  </tbody>\n</table>\n</div>\n<p>再加一隻 NOT，D 直入上面、非 D 入下面，就變成有 C 嘅 D 鎖存。C＝1 時 Q 跟 D；C＝0 保持。</p>\n<figure class=\"fig\">\n  <img src=\"assets/c7_gated_d_nand.svg\" alt=\"四隻 NAND 加一隻 NOT，變成有 C 的 D 鎖存\">\n  <div class=\"gate-meta\">可參考 HKDSE 2018 Paper 2D Q12(c)。C＝1 時 Q 跟 D。</div>\n</figure>\n",
       "practice": {
         "type": "mcq",
         "prompt": "基本 SR，S＝0、R＝0 時輸出？",
@@ -3329,7 +3329,7 @@
       "support": {
         "definition": "SR：置位／復位／保持；11 禁忌。",
         "example": "00→hold。",
-        "tip": "記得禁止態。",
+        "tip": "00 保持、11 禁止。NOR 版 11 令兩個輸出都係 0；有 C 嘅 NAND 版，C＝1 且 S＝R＝1 令兩個輸出都係 1。",
         "guidedHints": [
           "冇 Set 冇 Reset 會點？",
           "唔會強迫改 Q。",

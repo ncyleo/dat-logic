@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1040" height="520" viewBox="0 0 1040 520" role="img">
+<title>交叉耦合 NOR 的 SR 鎖存</title>
+<desc>兩隻 NOR 交叉耦合。R 入出 Q 嗰隻，S 入出有上劃線 Q 嗰隻。00 保持，11 禁止。</desc>
+<rect width="1040" height="520" fill="#ffffff"/>
+<text x="520.0" y="36.0" fill="#1e3a5f" font-size="26" font-weight="700" text-anchor="middle" font-family="WenQuanYi Micro Hei, Microsoft JhengHei, sans-serif">交叉耦合 NOR 的 SR 鎖存</text>
+<text x="520.0" y="62.0" fill="#64748b" font-size="15" font-weight="500" text-anchor="middle" font-family="WenQuanYi Micro Hei, Microsoft JhengHei, sans-serif">R 入出 Q 嗰隻 NOR；S 入出另一隻。S＝R＝0 保持，S＝R＝1 禁止。</text>
+<rect x="28" y="88" width="250" height="390" rx="12" fill="#f8fafc" stroke="#e2e8f0"/>
+<text x="520.0" y="502.0" fill="#64748b" font-size="14" font-weight="500" text-anchor="middle" font-family="WenQuanYi Micro Hei, Microsoft JhengHei, sans-serif">NOR 有一個輸入係 1，輸出就係 0。R＝1 逼 Q＝0；S＝1 逼另一輸出＝0，Q 就變 1。</text>
+<path d="M 56.0,193.0 L 92.0,193.0" fill="none" stroke="#334155" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M 56.0,281.2 L 92.0,281.2" fill="none" stroke="#334155" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M 232.0,193.0 L 268.0,193.0" fill="none" stroke="#334155" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M 232.0,281.2 L 268.0,281.2" fill="none" stroke="#334155" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M 372.0,146.6 L 696.0,146.6" fill="none" stroke="#1d4ed8" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M 372.0,357.4 L 696.0,357.4" fill="none" stroke="#c2410c" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M 770.1,157.0 L 994.0,157.0" fill="none" stroke="#334155" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M 770.1,347.0 L 994.0,347.0" fill="none" stroke="#334155" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M 818.1,157.0 L 818.1,298.0 L 636.0,298.0 L 636.0,336.6 L 696.0,336.6" fill="none" stroke="#334155" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M 866.1,347.0 L 866.1,206.0" fill="none" stroke="#334155" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M 596.0,206.0 H 810.1 A 8.0,8.0 0 0 0 826.1,206.0 H 866.1" fill="none" stroke="#334155" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M 596.0,206.0 L 596.0,167.4 L 696.0,167.4" fill="none" stroke="#334155" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"/>
+<rect x="92.0" y="130.0" width="140.0" height="210.0" rx="4" fill="#ffffff" stroke="#1e3a5f" stroke-width="2.4"/>
+<path d="M 680.0,128.0 C 703.4,128.0 725.2,131.5 758.0,157.0 C 725.2,182.5 703.4,186.0 680.0,186.0 C 695.6,175.6 695.6,138.4 680.0,128.0 Z" fill="#ecfdf5" stroke="#047857" stroke-width="2"/>
+<circle cx="763.9" cy="157.0" r="6.2" fill="#ffffff" stroke="#047857" stroke-width="2"/>
+<path d="M 680.0,318.0 C 703.4,318.0 725.2,321.5 758.0,347.0 C 725.2,372.5 703.4,376.0 680.0,376.0 C 695.6,365.6 695.6,328.4 680.0,318.0 Z" fill="#ecfdf5" stroke="#047857" stroke-width="2"/>
+<circle cx="763.9" cy="347.0" r="6.2" fill="#ffffff" stroke="#047857" stroke-width="2"/>
+<circle cx="360.0" cy="146.6" r="5.2" fill="#1d4ed8"/>
+<circle cx="360.0" cy="357.4" r="5.2" fill="#c2410c"/>
+<circle cx="818.1" cy="157.0" r="4.6" fill="#334155"/>
+<circle cx="866.1" cy="347.0" r="4.6" fill="#334155"/>
+<text x="162.0" y="243.0" fill="#1e3a5f" font-size="28" font-weight="700" text-anchor="middle" font-family="JetBrains Mono, DejaVu Sans Mono, ui-monospace, monospace">SR</text>
+<text x="46.0" y="199.0" fill="#1e3a5f" font-size="18" font-weight="700" text-anchor="end" font-family="JetBrains Mono, DejaVu Sans Mono, ui-monospace, monospace">S</text>
+<text x="46.0" y="287.2" fill="#1e3a5f" font-size="18" font-weight="700" text-anchor="end" font-family="JetBrains Mono, DejaVu Sans Mono, ui-monospace, monospace">R</text>
+<text x="276.0" y="199.0" fill="#1e3a5f" font-size="18" font-weight="700" text-anchor="start" font-family="JetBrains Mono, DejaVu Sans Mono, ui-monospace, monospace">Q</text>
+<text x="276.0" y="288.2" fill="#1e3a5f" font-size="20" font-weight="700" text-anchor="start" font-family="JetBrains Mono, DejaVu Sans Mono, ui-monospace, monospace">Q</text>
+<line x1="276.00" y1="271.47" x2="288.00" y2="271.47" stroke="#1e3a5f" stroke-width="2.05" stroke-linecap="butt"/>
+<text x="162.0" y="372.0" fill="#64748b" font-size="15" font-weight="500" text-anchor="middle" font-family="WenQuanYi Micro Hei, Microsoft JhengHei, sans-serif">SR 鎖存符號</text>
+<text x="162.0" y="396.0" fill="#64748b" font-size="13" font-weight="500" text-anchor="middle" font-family="WenQuanYi Micro Hei, Microsoft JhengHei, sans-serif">符號：S 在上，Q 在上</text>
+<text x="712.8" y="120.0" fill="#047857" font-size="13" font-weight="700" text-anchor="middle" font-family="JetBrains Mono, DejaVu Sans Mono, ui-monospace, monospace">NOR</text>
+<text x="712.8" y="310.0" fill="#047857" font-size="13" font-weight="700" text-anchor="middle" font-family="JetBrains Mono, DejaVu Sans Mono, ui-monospace, monospace">NOR</text>
+<text x="348.0" y="152.6" fill="#1d4ed8" font-size="20" font-weight="700" text-anchor="end" font-family="JetBrains Mono, DejaVu Sans Mono, ui-monospace, monospace">R</text>
+<text x="348.0" y="170.6" fill="#1d4ed8" font-size="12" font-weight="600" text-anchor="end" font-family="JetBrains Mono, DejaVu Sans Mono, ui-monospace, monospace">RESET</text>
+<text x="348.0" y="363.4" fill="#c2410c" font-size="20" font-weight="700" text-anchor="end" font-family="JetBrains Mono, DejaVu Sans Mono, ui-monospace, monospace">S</text>
+<text x="348.0" y="381.4" fill="#c2410c" font-size="12" font-weight="600" text-anchor="end" font-family="JetBrains Mono, DejaVu Sans Mono, ui-monospace, monospace">SET</text>
+<text x="1000.0" y="164.0" fill="#1e3a5f" font-size="22" font-weight="700" text-anchor="start" font-family="JetBrains Mono, DejaVu Sans Mono, ui-monospace, monospace">Q</text>
+<text x="1000.0" y="354.0" fill="#1e3a5f" font-size="22" font-weight="700" text-anchor="start" font-family="JetBrains Mono, DejaVu Sans Mono, ui-monospace, monospace">Q</text>
+<line x1="1000.00" y1="335.60" x2="1013.20" y2="335.60" stroke="#1e3a5f" stroke-width="2.05" stroke-linecap="butt"/>
+</svg>
