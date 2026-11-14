@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1020" height="540" viewBox="0 0 1020 540" role="img">
+<title>四隻 NAND 的 SR 鎖存（有 C）</title>
+<desc>C 入左邊兩隻 NAND。C＝0 保持。C＝1 且 S＝R＝1 時兩個輸出都係 1。</desc>
+<rect width="1020" height="540" fill="#ffffff"/>
+<text x="510.0" y="36.0" fill="#1e3a5f" font-size="26" font-weight="700" text-anchor="middle" font-family="WenQuanYi Micro Hei, Microsoft JhengHei, sans-serif">有 enable（C）的 NAND SR 鎖存</text>
+<text x="510.0" y="62.0" fill="#64748b" font-size="15" font-weight="500" text-anchor="middle" font-family="WenQuanYi Micro Hei, Microsoft JhengHei, sans-serif">四隻 NAND。C＝0 保持；C＝1 且 S＝R＝1 時，Q 同另一輸出都係 1。</text>
+<text x="510.0" y="522.0" fill="#64748b" font-size="14" font-weight="500" text-anchor="middle" font-family="WenQuanYi Micro Hei, Microsoft JhengHei, sans-serif">C＝0：左邊兩隻 NAND 出 1，右邊保持。C＝1、S＝R＝1：Q 同另一輸出都係 1，禁止。</text>
+<path d="M 76.0,135.4 L 258.0,135.4" fill="none" stroke="#c2410c" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M 76.0,358.6 L 258.0,358.6" fill="none" stroke="#1d4ed8" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M 76.0,247.0 L 150.0,247.0" fill="none" stroke="#047857" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M 150.0,247.0 L 150.0,158.6 L 258.0,158.6" fill="none" stroke="#047857" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M 150.0,247.0 L 150.0,335.4 L 258.0,335.4" fill="none" stroke="#047857" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M 308.8,147.0 L 648.0,147.0" fill="none" stroke="#334155" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M 308.8,347.0 L 648.0,347.0" fill="none" stroke="#334155" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M 698.8,158.6 L 984.0,158.6" fill="none" stroke="#334155" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M 698.8,335.4 L 984.0,335.4" fill="none" stroke="#334155" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M 746.8,158.6 L 746.8,286.4 L 596.0,286.4 L 596.0,323.8 L 648.0,323.8" fill="none" stroke="#334155" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M 794.8,335.4 L 794.8,207.6" fill="none" stroke="#334155" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M 556.0,207.6 H 738.8 A 8.0,8.0 0 0 0 754.8,207.6 H 794.8" fill="none" stroke="#334155" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M 556.0,207.6 L 556.0,170.2 L 648.0,170.2" fill="none" stroke="#334155" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M 250.0,118.0 h18.0 a29.0,29.0 0 0 1 0,58.0 h-18.0 z" fill="#fff7ed" stroke="#c2410c" stroke-width="2"/>
+<circle cx="302.6" cy="147.0" r="6.2" fill="#ffffff" stroke="#c2410c" stroke-width="2"/>
+<path d="M 250.0,318.0 h18.0 a29.0,29.0 0 0 1 0,58.0 h-18.0 z" fill="#fff7ed" stroke="#c2410c" stroke-width="2"/>
+<circle cx="302.6" cy="347.0" r="6.2" fill="#ffffff" stroke="#c2410c" stroke-width="2"/>
+<path d="M 640.0,129.6 h18.0 a29.0,29.0 0 0 1 0,58.0 h-18.0 z" fill="#fff7ed" stroke="#c2410c" stroke-width="2"/>
+<circle cx="692.6" cy="158.6" r="6.2" fill="#ffffff" stroke="#c2410c" stroke-width="2"/>
+<path d="M 640.0,306.4 h18.0 a29.0,29.0 0 0 1 0,58.0 h-18.0 z" fill="#fff7ed" stroke="#c2410c" stroke-width="2"/>
+<circle cx="692.6" cy="335.4" r="6.2" fill="#ffffff" stroke="#c2410c" stroke-width="2"/>
+<circle cx="64.0" cy="135.4" r="5.2" fill="#c2410c"/>
+<circle cx="64.0" cy="358.6" r="5.2" fill="#1d4ed8"/>
+<circle cx="64.0" cy="247.0" r="5.2" fill="#047857"/>
+<circle cx="150.0" cy="247.0" r="4.6" fill="#047857"/>
+<circle cx="746.8" cy="158.6" r="4.6" fill="#334155"/>
+<circle cx="794.8" cy="335.4" r="4.6" fill="#334155"/>
+<text x="52.0" y="141.4" fill="#c2410c" font-size="20" font-weight="700" text-anchor="end" font-family="JetBrains Mono, DejaVu Sans Mono, ui-monospace, monospace">S</text>
+<text x="52.0" y="364.6" fill="#1d4ed8" font-size="20" font-weight="700" text-anchor="end" font-family="JetBrains Mono, DejaVu Sans Mono, ui-monospace, monospace">R</text>
+<text x="52.0" y="253.0" fill="#047857" font-size="20" font-weight="700" text-anchor="end" font-family="JetBrains Mono, DejaVu Sans Mono, ui-monospace, monospace">C</text>
+<text x="990.0" y="165.6" fill="#1e3a5f" font-size="22" font-weight="700" text-anchor="start" font-family="JetBrains Mono, DejaVu Sans Mono, ui-monospace, monospace">Q</text>
+<text x="990.0" y="342.4" fill="#1e3a5f" font-size="22" font-weight="700" text-anchor="start" font-family="JetBrains Mono, DejaVu Sans Mono, ui-monospace, monospace">Q</text>
+<line x1="990.00" y1="324.00" x2="1003.20" y2="324.00" stroke="#1e3a5f" stroke-width="2.05" stroke-linecap="butt"/>
+</svg>

@@ -1,0 +1,60 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="560" viewBox="0 0 1120 560" role="img">
+<title>D 鎖存：AND、NOT 再入 NOR SR</title>
+<desc>上面 AND 出 S＝D·E，入出有上劃線 Q 的 NOR。下面 AND 出 R＝非 D·E，入出 Q 的 NOR。</desc>
+<rect width="1120" height="560" fill="#ffffff"/>
+<text x="560.0" y="36.0" fill="#1e3a5f" font-size="26" font-weight="700" text-anchor="middle" font-family="WenQuanYi Micro Hei, Microsoft JhengHei, sans-serif">D 鎖存（D-latch）</text>
+<text x="560.0" y="62.0" fill="#64748b" font-size="15" font-weight="500" text-anchor="middle" font-family="WenQuanYi Micro Hei, Microsoft JhengHei, sans-serif">enable（E 或 C）＝1 時 Q 跟 D；＝0 就保持。S＝D·E，R＝（非 D）·E。</text>
+<rect x="22" y="86" width="200" height="250" rx="12" fill="#f8fafc" stroke="#e2e8f0"/>
+<text x="560.0" y="542.0" fill="#64748b" font-size="14" font-weight="500" text-anchor="middle" font-family="WenQuanYi Micro Hei, Microsoft JhengHei, sans-serif">E＝0，兩隻 AND 出 0，即 S＝R＝0，保持。E＝1 時 Q 跟 D。</text>
+<path d="M 32.0,155.0 L 68.0,155.0" fill="none" stroke="#334155" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M 32.0,232.3 L 68.0,232.3" fill="none" stroke="#334155" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M 184.0,155.0 L 220.0,155.0" fill="none" stroke="#334155" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M 184.0,232.3 L 220.0,232.3" fill="none" stroke="#334155" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M 280.0,129.4 L 478.0,129.4" fill="none" stroke="#6d28d9" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M 310.0,129.4 L 310.0,347.4 L 330.0,347.4" fill="none" stroke="#6d28d9" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M 370.8,347.4 L 478.0,347.4" fill="none" stroke="#1d4ed8" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M 280.0,261.6 L 420.0,261.6" fill="none" stroke="#047857" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M 420.0,261.6 L 420.0,152.6 L 478.0,152.6" fill="none" stroke="#047857" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M 420.0,261.6 L 420.0,370.6 L 478.0,370.6" fill="none" stroke="#047857" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M 517.0,141.0 L 535.0,141.0 L 680.0,141.0 L 680.0,367.4 L 846.0,367.4" fill="none" stroke="#c2410c" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M 517.0,359.0 L 535.0,359.0 L 730.0,359.0 L 730.0,126.6 L 846.0,126.6" fill="none" stroke="#1d4ed8" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M 920.1,137.0 L 1084.0,137.0" fill="none" stroke="#334155" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M 920.1,357.0 L 1084.0,357.0" fill="none" stroke="#334155" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M 968.1,137.0 L 968.1,308.0 L 786.0,308.0 L 786.0,346.6 L 846.0,346.6" fill="none" stroke="#334155" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M 1016.1,357.0 L 1016.1,186.0" fill="none" stroke="#334155" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M 746.0,186.0 H 960.1 A 8.0,8.0 0 0 0 976.1,186.0 H 1016.1" fill="none" stroke="#334155" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M 746.0,186.0 L 746.0,147.4 L 846.0,147.4" fill="none" stroke="#334155" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"/>
+<rect x="68.0" y="108.0" width="116.0" height="168.0" rx="4" fill="#ffffff" stroke="#1e3a5f" stroke-width="2.4"/>
+<path d="M 470.0,112.0 h18.0 a29.0,29.0 0 0 1 0,58.0 h-18.0 z" fill="#fff7ed" stroke="#c2410c" stroke-width="2"/>
+<path d="M 470.0,330.0 h18.0 a29.0,29.0 0 0 1 0,58.0 h-18.0 z" fill="#fff7ed" stroke="#c2410c" stroke-width="2"/>
+<polygon points="330.0,327.4 330.0,367.4 360.0,347.4" fill="#eff6ff" stroke="#1d4ed8" stroke-width="2" stroke-linejoin="round"/>
+<circle cx="365.2" cy="347.4" r="5.6" fill="#ffffff" stroke="#1d4ed8" stroke-width="2"/>
+<path d="M 830.0,108.0 C 853.4,108.0 875.2,111.5 908.0,137.0 C 875.2,162.5 853.4,166.0 830.0,166.0 C 845.6,155.6 845.6,118.4 830.0,108.0 Z" fill="#ecfdf5" stroke="#047857" stroke-width="2"/>
+<circle cx="913.9" cy="137.0" r="6.2" fill="#ffffff" stroke="#047857" stroke-width="2"/>
+<path d="M 830.0,328.0 C 853.4,328.0 875.2,331.5 908.0,357.0 C 875.2,382.5 853.4,386.0 830.0,386.0 C 845.6,375.6 845.6,338.4 830.0,328.0 Z" fill="#ecfdf5" stroke="#047857" stroke-width="2"/>
+<circle cx="913.9" cy="357.0" r="6.2" fill="#ffffff" stroke="#047857" stroke-width="2"/>
+<circle cx="268.0" cy="129.4" r="5.2" fill="#6d28d9"/>
+<circle cx="310.0" cy="129.4" r="4.6" fill="#6d28d9"/>
+<circle cx="268.0" cy="261.6" r="5.2" fill="#047857"/>
+<circle cx="420.0" cy="261.6" r="4.6" fill="#047857"/>
+<circle cx="968.1" cy="137.0" r="4.6" fill="#334155"/>
+<circle cx="1016.1" cy="357.0" r="4.6" fill="#334155"/>
+<text x="126.0" y="200.0" fill="#1e3a5f" font-size="28" font-weight="700" text-anchor="middle" font-family="JetBrains Mono, DejaVu Sans Mono, ui-monospace, monospace">D</text>
+<text x="22.0" y="161.0" fill="#1e3a5f" font-size="18" font-weight="700" text-anchor="end" font-family="JetBrains Mono, DejaVu Sans Mono, ui-monospace, monospace">D</text>
+<text x="22.0" y="238.3" fill="#1e3a5f" font-size="18" font-weight="700" text-anchor="end" font-family="JetBrains Mono, DejaVu Sans Mono, ui-monospace, monospace">E</text>
+<text x="228.0" y="161.0" fill="#1e3a5f" font-size="18" font-weight="700" text-anchor="start" font-family="JetBrains Mono, DejaVu Sans Mono, ui-monospace, monospace">Q</text>
+<text x="228.0" y="239.3" fill="#1e3a5f" font-size="20" font-weight="700" text-anchor="start" font-family="JetBrains Mono, DejaVu Sans Mono, ui-monospace, monospace">Q</text>
+<line x1="228.00" y1="222.59" x2="240.00" y2="222.59" stroke="#1e3a5f" stroke-width="2.05" stroke-linecap="butt"/>
+<text x="126.0" y="304.0" fill="#64748b" font-size="14" font-weight="500" text-anchor="middle" font-family="WenQuanYi Micro Hei, Microsoft JhengHei, sans-serif">D 鎖存符號</text>
+<text x="256.0" y="135.4" fill="#6d28d9" font-size="20" font-weight="700" text-anchor="end" font-family="JetBrains Mono, DejaVu Sans Mono, ui-monospace, monospace">D</text>
+<text x="374.8" y="335.4" fill="#1d4ed8" font-size="16" font-weight="700" text-anchor="start" font-family="JetBrains Mono, DejaVu Sans Mono, ui-monospace, monospace">D</text>
+<line x1="374.80" y1="322.02" x2="384.40" y2="322.02" stroke="#1d4ed8" stroke-width="2.05" stroke-linecap="butt"/>
+<text x="256.0" y="267.6" fill="#047857" font-size="20" font-weight="700" text-anchor="end" font-family="JetBrains Mono, DejaVu Sans Mono, ui-monospace, monospace">E</text>
+<text x="862.8" y="100.0" fill="#047857" font-size="13" font-weight="700" text-anchor="middle" font-family="JetBrains Mono, DejaVu Sans Mono, ui-monospace, monospace">NOR</text>
+<text x="862.8" y="320.0" fill="#047857" font-size="13" font-weight="700" text-anchor="middle" font-family="JetBrains Mono, DejaVu Sans Mono, ui-monospace, monospace">NOR</text>
+<text x="523.0" y="133.0" fill="#c2410c" font-size="16" font-weight="700" text-anchor="start" font-family="JetBrains Mono, DejaVu Sans Mono, ui-monospace, monospace">S</text>
+<text x="523.0" y="351.0" fill="#1d4ed8" font-size="16" font-weight="700" text-anchor="start" font-family="JetBrains Mono, DejaVu Sans Mono, ui-monospace, monospace">R</text>
+<text x="1090.0" y="144.0" fill="#1e3a5f" font-size="22" font-weight="700" text-anchor="start" font-family="JetBrains Mono, DejaVu Sans Mono, ui-monospace, monospace">Q</text>
+<text x="1090.0" y="364.0" fill="#1e3a5f" font-size="22" font-weight="700" text-anchor="start" font-family="JetBrains Mono, DejaVu Sans Mono, ui-monospace, monospace">Q</text>
+<line x1="1090.00" y1="345.60" x2="1103.20" y2="345.60" stroke="#1e3a5f" stroke-width="2.05" stroke-linecap="butt"/>
+</svg>
