@@ -1,5 +1,5 @@
 {
-  "version": 16,
+  "version": 17,
   "titleZh": "數位邏輯自學 · 三欄（DAT）",
   "uiNoteZh": "校本自製示意圖 · DAT",
   "chapters": [
@@ -3483,6 +3483,90 @@
           "數字 2 中間有橫 g；右下 c 同左上 f 係暗。",
           "共陽：陽極已經接正。陰極要去到邊個電位先有電流？",
           "段 a 喺數字 1 同 4 要係 0。邊句先包括「C、A 同為 0」同「C、A 同為 1」？"
+        ]
+      }
+    },
+    {
+      "id": "c6-seg7-gates",
+      "chapter": 6,
+      "nav": "6.10b 七段：K-map 到邏輯閘",
+      "title": "段 a：由 K-map 砌邏輯閘",
+      "pill": "七段閘",
+      "live": true,
+      "teach": "\n<p>6.10 已經寫低段 a 同段 c 嘅短式，但未展示 K-map 點樣圈，亦未畫邏輯閘。呢課用段 <span class=\"kw\">a</span> 行一次：真值表 → 有 X 嘅 K-map → 圈組 → 官方 SOP → AND-OR 閘。段 c 留喺下面練習；圈法同短式呢度唔寫。</p>\n\n<p class=\"sec\"><strong>約定同 6.10 一樣</strong></p>\n<ul>\n  <li>輸入寫 <span class=\"kw\">DCBA</span>。<strong>D</strong> 最高位，權重 8；<strong>C</strong> 權重 4；<strong>B</strong> 權重 2；<strong>A</strong> 最低位，權重 1。</li>\n  <li><strong>1＝亮</strong>（共陰、高態有效）。</li>\n  <li>1010–1111 係非 BCD，填 <strong>X</strong>（4.24 嘅 don't care）。X 可當 0 或 1 嚟圈大；短式只保證數字 0–9 啱。</li>\n</ul>\n\n<p class=\"sec\"><strong>軸係列 DC、行 BA</strong></p>\n<p>4.18 列係 AB、行係 CD，A 係最高位。呢課 D 先至係最高位，所以字母跟 6.10，唔好改用第 4 章嗰套。呢度<strong>列 DC、行 BA</strong>，Gray 仍然係 00、01、11、10，十六格擺位同 4.18 一樣。格號 m＝8D＋4C＋2B＋A。00 同 10 喺對面邊相鄰，可以捲邊圈。</p>\n\n<p class=\"sec\"><strong>段 a 真值表</strong></p>\n<p>段 a 喺數字 0、2、3、5、6、7、8、9 亮，數字 1 同 4 暗。</p>\n<table class=\"truth-demo\">\n<thead><tr><th>數字</th><th>D</th><th>C</th><th>B</th><th>A</th><th>m</th><th>a</th></tr></thead>\n<tbody>\n<tr><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>m0</td><td class=\"f\">1</td></tr>\n<tr><td>1</td><td>0</td><td>0</td><td>0</td><td>1</td><td>m1</td><td>0</td></tr>\n<tr><td>2</td><td>0</td><td>0</td><td>1</td><td>0</td><td>m2</td><td class=\"f\">1</td></tr>\n<tr><td>3</td><td>0</td><td>0</td><td>1</td><td>1</td><td>m3</td><td class=\"f\">1</td></tr>\n<tr><td>4</td><td>0</td><td>1</td><td>0</td><td>0</td><td>m4</td><td>0</td></tr>\n<tr><td>5</td><td>0</td><td>1</td><td>0</td><td>1</td><td>m5</td><td class=\"f\">1</td></tr>\n<tr><td>6</td><td>0</td><td>1</td><td>1</td><td>0</td><td>m6</td><td class=\"f\">1</td></tr>\n<tr><td>7</td><td>0</td><td>1</td><td>1</td><td>1</td><td>m7</td><td class=\"f\">1</td></tr>\n<tr><td>8</td><td>1</td><td>0</td><td>0</td><td>0</td><td>m8</td><td class=\"f\">1</td></tr>\n<tr><td>9</td><td>1</td><td>0</td><td>0</td><td>1</td><td>m9</td><td class=\"f\">1</td></tr>\n</tbody>\n</table>\n<p>數字 1＝0001＝m1，數字 4＝0100＝m4，呢兩格係 0。m10–m15（1010–1111）係 X，表入面唔再逐行寫。</p>\n\n<p class=\"sec\"><strong>填入 K-map</strong></p>\n<p>列由上到下 DC＝00、01、11、10；行由左到右 BA＝00、01、11、10。</p>\n<table class=\"kmap-teach\">\n<thead><tr><th></th><th>BA＝00</th><th>01</th><th>11</th><th>10</th></tr></thead>\n<tbody>\n<tr><th>DC＝00</th><td>1</td><td>0</td><td>1</td><td>1</td></tr>\n<tr><th>01</th><td>0</td><td>1</td><td>1</td><td>1</td></tr>\n<tr><th>11</th><td class=\"x\">X</td><td class=\"x\">X</td><td class=\"x\">X</td><td class=\"x\">X</td></tr>\n<tr><th>10</th><td>1</td><td>1</td><td class=\"x\">X</td><td class=\"x\">X</td></tr>\n</tbody>\n</table>\n\n<p class=\"sec\"><strong>四個圈</strong></p>\n<p>規則同 4.24：每個 1 要圈到；X 幫到圈大先當 1，否則當 0；唔圈 0；淨係 X 唔圈。</p>\n<ul>\n  <li><strong>D</strong>：DC＝10 同 DC＝11 兩行，八格都係 1 或 X。C 有變，讀出 D。</li>\n  <li><strong>B</strong>：BA＝11 同 BA＝10 兩行，八格都係 1 或 X。A 有變，讀出 B。</li>\n  <li><strong><span class=\"obar\">C</span>·<span class=\"obar\">A</span></strong>：四角捲邊。DC 係 00 或 10，BA 係 00 或 10，即 m0、m2、m8、m10。D 同 B 有變，C 同 A 都係 0。</li>\n  <li><strong>C·A</strong>：DC 係 01 或 11，而且 BA 係 01 或 11，即 m5、m7、m13、m15 一塊四格。D 同 B 有變，C 同 A 都係 1。</li>\n</ul>\n<p>m1 同 m4 兩個 0 唔入任何圈。八個 1 每個至少入一個圈。淨係 D＋B 蓋唔到 m0（數字 0）同 m5（數字 5），所以兩項 AND 都要留。</p>\n<figure class=\"fig\">\n  <img src=\"assets/c6_seg7_a_kmap.svg\" alt=\"段 a 的 K-map：列 DC、行 BA，四個圈分別是 D、B、非 C 與非 A、C 與 A\">\n  <div class=\"gate-meta\">藍＝D，綠＝B，橙四角同一組＝<span class=\"obar\">C</span>·<span class=\"obar\">A</span>，紫＝C·A。</div>\n</figure>\n<div class=\"formula\">a ＝ D ＋ B ＋ <span class=\"obar\">C</span>·<span class=\"obar\">A</span> ＋ C·A</div>\n<p>呢條就係 6.10 段 a 嘅官方短式。橫線各自只蓋一個字母：<span class=\"obar\">C</span>·<span class=\"obar\">A</span> 係「非 C 與非 A」。</p>\n\n<p class=\"sec\"><strong>砌成邏輯閘</strong></p>\n<p>SOP 先做 AND，再做 OR。<span class=\"obar\">C</span> 同 <span class=\"obar\">A</span> 各經一隻 NOT，入一隻 2 輸入 AND。C 同 A 唔取非，入另一隻 2 輸入 AND。D 同 B 直入四輸入 OR。四路一齊 OR，輸出就係 a。</p>\n<figure class=\"fig\">\n  <img src=\"assets/c6_seg7_a_gates.svg\" alt=\"段 a 的邏輯閘：C 與 A 各有反相器，兩隻二輸入 AND，再入四輸入 OR，輸出 a\">\n  <div class=\"gate-meta\">C、A 各畫兩次，方便對住兩項；實際輸入仍然係 D、C、B、A 四條。</div>\n</figure>\n\n<p>段 c 用同一套軸同 X。0–9 入面只得數字 2（m2）係暗。圈組同短式自己做下面嘅練習。</p>\n<div class=\"koujue\">口訣：列 DC、行 BA；每個 1 要有圈；X 只幫圈大；0 唔圈，淨 X 都唔圈。</div>\n",
+      "practice": {
+        "type": "kmap",
+        "allowX": true,
+        "prompt": "段 c（1＝亮）。列 DC、行 BA，約定同 6.10。數字 0–9 只得 2 係 0；1010–1111 填 X。填完再揀最簡 SOP。",
+        "rows": 4,
+        "cols": 4,
+        "rowLabels": [
+          "DC＝00",
+          "01",
+          "11",
+          "10"
+        ],
+        "colLabels": [
+          "BA＝00",
+          "01",
+          "11",
+          "10"
+        ],
+        "cellIds": [
+          "m0",
+          "m1",
+          "m3",
+          "m2",
+          "m4",
+          "m5",
+          "m7",
+          "m6",
+          "m12",
+          "m13",
+          "m15",
+          "m14",
+          "m8",
+          "m9",
+          "m11",
+          "m10"
+        ],
+        "answers": [
+          1,
+          1,
+          1,
+          0,
+          1,
+          1,
+          1,
+          1,
+          "X",
+          "X",
+          "X",
+          "X",
+          1,
+          1,
+          "X",
+          "X"
+        ],
+        "readPrompt": "段 c 最簡 SOP 係？",
+        "readChoices": [
+          "C＋A＋B",
+          "C'＋A'＋B",
+          "C＋A＋B'",
+          "A'·B（當 1010 係十進數字 10）"
+        ],
+        "readAnswer": 2,
+        "explain": "段 c 在 0–9 只得 m2（數字 2，DCBA＝0010）係 0。三個八格圈：C（DC＝01 同 11）、A（BA＝01 同 11）、B'（BA＝00 同 01）。最簡 c＝C＋A＋B'。C＋A＋B 漏咗 B 嘅非，數字 2 會錯亮。1010–1111 係 X，唔係十進數字。閘：C 同 A 直入 OR，B 先經 NOT，三路 OR 出 c。"
+      },
+      "support": {
+        "definition": "段 a、段 c 都用 6.10 約定：DCBA，D 權重 8，1＝亮，1010–1111 係 X。K-map 列 DC、行 BA，格位同 4.18 一樣，但 D 先係最高位。m＝8D＋4C＋2B＋A。",
+        "example": "段 a 四個圈：D（DC＝10 同 11）、B（BA＝11 同 10）、C'·A'（四角 m0、m2、m8、m10）、C·A（m5、m7、m13、m15）。a＝D＋B＋C'·A'＋C·A。段 c 三個八格圈：C、A、B'，所以 c＝C＋A＋B'。上圖係段 c：B 取非後同 C、A 一齊 OR。",
+        "tip": "每個 1 要圈到；X 只係幫到圈大先當 1；唔圈 0；淨係 X 唔圈。",
+        "fig": "assets/c6_seg7_c_gates.svg",
+        "guidedHints": [
+          "段 c 喺 0–9 只得一個數字係暗。係邊個數字？對應邊一格 m？1010–1111 填咩？",
+          "DC＝01 同 11 兩行，連埋 X，邊一個變數一路係 1？",
+          "m2 係 0，唔可以圈到。BA＝10 係 B＝1。邊兩行先全部係 B＝0？"
         ]
       }
     },
