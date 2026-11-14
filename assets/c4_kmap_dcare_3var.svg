@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="980" height="500" viewBox="0 0 980 500" role="img">
+<title>三變數 K-map：把 X 當 1 圈出 z＝A</title>
+<desc>底行四格含 m4 嘅 X，讀出 z＝A。m3 嘅 X 唔入圈。</desc>
+<rect width="980" height="500" fill="#ffffff"/>
+<text x="490.0" y="36.0" fill="#1e3a5f" font-size="26" font-weight="700" text-anchor="middle" font-family="WenQuanYi Micro Hei, Microsoft JhengHei, sans-serif">三變數無關項（X）</text>
+<text x="490.0" y="62.0" fill="#64748b" font-size="15" font-weight="500" text-anchor="middle" font-family="WenQuanYi Micro Hei, Microsoft JhengHei, sans-serif">z＝Σm(5, 6, 7)＋d(3, 4)。X 幫到圈大先當 1。</text>
+<rect x="24.0" y="102.0" width="84.0" height="48.0" rx="0" fill="#f1f5f9" stroke="#64748b" stroke-width="1.4"/>
+<text x="100.0" y="117.0" fill="#64748b" font-size="12" font-weight="700" text-anchor="end" font-family="JetBrains Mono, DejaVu Sans Mono, ui-monospace, monospace">BC</text>
+<text x="32.0" y="142.0" fill="#64748b" font-size="12" font-weight="700" text-anchor="start" font-family="JetBrains Mono, DejaVu Sans Mono, ui-monospace, monospace">A</text>
+<line x1="32.0" y1="132.0" x2="100.0" y2="122.0" stroke="#94a3b8" stroke-width="1.1" stroke-linecap="round"/>
+<rect x="108.0" y="102.0" width="78.0" height="48.0" rx="0" fill="#e2e8f0" stroke="#64748b" stroke-width="1.4"/>
+<text x="147.0" y="131.0" fill="#1e3a5f" font-size="14" font-weight="700" text-anchor="middle" font-family="JetBrains Mono, DejaVu Sans Mono, ui-monospace, monospace">00</text>
+<rect x="186.0" y="102.0" width="78.0" height="48.0" rx="0" fill="#e2e8f0" stroke="#64748b" stroke-width="1.4"/>
+<text x="225.0" y="131.0" fill="#1e3a5f" font-size="14" font-weight="700" text-anchor="middle" font-family="JetBrains Mono, DejaVu Sans Mono, ui-monospace, monospace">01</text>
+<rect x="264.0" y="102.0" width="78.0" height="48.0" rx="0" fill="#e2e8f0" stroke="#64748b" stroke-width="1.4"/>
+<text x="303.0" y="131.0" fill="#1e3a5f" font-size="14" font-weight="700" text-anchor="middle" font-family="JetBrains Mono, DejaVu Sans Mono, ui-monospace, monospace">11</text>
+<rect x="342.0" y="102.0" width="78.0" height="48.0" rx="0" fill="#e2e8f0" stroke="#64748b" stroke-width="1.4"/>
+<text x="381.0" y="131.0" fill="#1e3a5f" font-size="14" font-weight="700" text-anchor="middle" font-family="JetBrains Mono, DejaVu Sans Mono, ui-monospace, monospace">10</text>
+<rect x="24.0" y="150.0" width="84.0" height="72.0" rx="0" fill="#e2e8f0" stroke="#64748b" stroke-width="1.4"/>
+<text x="66.0" y="191.0" fill="#1e3a5f" font-size="14" font-weight="700" text-anchor="middle" font-family="JetBrains Mono, DejaVu Sans Mono, ui-monospace, monospace">0</text>
+<rect x="108.0" y="150.0" width="78.0" height="72.0" rx="0" fill="#f8fafc" stroke="#64748b" stroke-width="1.4"/>
+<text x="113.0" y="163.0" fill="#94a3b8" font-size="10" font-weight="600" text-anchor="start" font-family="JetBrains Mono, DejaVu Sans Mono, ui-monospace, monospace">m0</text>
+<text x="147.0" y="194.0" fill="#64748b" font-size="22" font-weight="700" text-anchor="middle" font-family="JetBrains Mono, DejaVu Sans Mono, ui-monospace, monospace">0</text>
+<rect x="186.0" y="150.0" width="78.0" height="72.0" rx="0" fill="#f8fafc" stroke="#64748b" stroke-width="1.4"/>
+<text x="191.0" y="163.0" fill="#94a3b8" font-size="10" font-weight="600" text-anchor="start" font-family="JetBrains Mono, DejaVu Sans Mono, ui-monospace, monospace">m1</text>
+<text x="225.0" y="194.0" fill="#64748b" font-size="22" font-weight="700" text-anchor="middle" font-family="JetBrains Mono, DejaVu Sans Mono, ui-monospace, monospace">0</text>
+<rect x="264.0" y="150.0" width="78.0" height="72.0" rx="0" fill="#ede9fe" stroke="#64748b" stroke-width="1.4"/>
+<text x="269.0" y="163.0" fill="#94a3b8" font-size="10" font-weight="600" text-anchor="start" font-family="JetBrains Mono, DejaVu Sans Mono, ui-monospace, monospace">m3</text>
+<text x="303.0" y="194.0" fill="#5b21b6" font-size="22" font-weight="700" text-anchor="middle" font-family="JetBrains Mono, DejaVu Sans Mono, ui-monospace, monospace">X</text>
+<rect x="342.0" y="150.0" width="78.0" height="72.0" rx="0" fill="#f8fafc" stroke="#64748b" stroke-width="1.4"/>
+<text x="347.0" y="163.0" fill="#94a3b8" font-size="10" font-weight="600" text-anchor="start" font-family="JetBrains Mono, DejaVu Sans Mono, ui-monospace, monospace">m2</text>
+<text x="381.0" y="194.0" fill="#64748b" font-size="22" font-weight="700" text-anchor="middle" font-family="JetBrains Mono, DejaVu Sans Mono, ui-monospace, monospace">0</text>
+<rect x="24.0" y="222.0" width="84.0" height="72.0" rx="0" fill="#e2e8f0" stroke="#64748b" stroke-width="1.4"/>
+<text x="66.0" y="263.0" fill="#1e3a5f" font-size="14" font-weight="700" text-anchor="middle" font-family="JetBrains Mono, DejaVu Sans Mono, ui-monospace, monospace">1</text>
+<rect x="108.0" y="222.0" width="78.0" height="72.0" rx="0" fill="#ede9fe" stroke="#64748b" stroke-width="1.4"/>
+<text x="113.0" y="235.0" fill="#94a3b8" font-size="10" font-weight="600" text-anchor="start" font-family="JetBrains Mono, DejaVu Sans Mono, ui-monospace, monospace">m4</text>
+<text x="147.0" y="266.0" fill="#5b21b6" font-size="22" font-weight="700" text-anchor="middle" font-family="JetBrains Mono, DejaVu Sans Mono, ui-monospace, monospace">X</text>
+<rect x="186.0" y="222.0" width="78.0" height="72.0" rx="0" fill="#dbeafe" stroke="#64748b" stroke-width="1.4"/>
+<text x="191.0" y="235.0" fill="#94a3b8" font-size="10" font-weight="600" text-anchor="start" font-family="JetBrains Mono, DejaVu Sans Mono, ui-monospace, monospace">m5</text>
+<text x="225.0" y="266.0" fill="#1e40af" font-size="22" font-weight="700" text-anchor="middle" font-family="JetBrains Mono, DejaVu Sans Mono, ui-monospace, monospace">1</text>
+<rect x="264.0" y="222.0" width="78.0" height="72.0" rx="0" fill="#dbeafe" stroke="#64748b" stroke-width="1.4"/>
+<text x="269.0" y="235.0" fill="#94a3b8" font-size="10" font-weight="600" text-anchor="start" font-family="JetBrains Mono, DejaVu Sans Mono, ui-monospace, monospace">m7</text>
+<text x="303.0" y="266.0" fill="#1e40af" font-size="22" font-weight="700" text-anchor="middle" font-family="JetBrains Mono, DejaVu Sans Mono, ui-monospace, monospace">1</text>
+<rect x="342.0" y="222.0" width="78.0" height="72.0" rx="0" fill="#dbeafe" stroke="#64748b" stroke-width="1.4"/>
+<text x="347.0" y="235.0" fill="#94a3b8" font-size="10" font-weight="600" text-anchor="start" font-family="JetBrains Mono, DejaVu Sans Mono, ui-monospace, monospace">m6</text>
+<text x="381.0" y="266.0" fill="#1e40af" font-size="22" font-weight="700" text-anchor="middle" font-family="JetBrains Mono, DejaVu Sans Mono, ui-monospace, monospace">1</text>
+<rect x="102.0" y="216.0" width="324.0" height="84.0" rx="26" fill="none" stroke="#1d4ed8" stroke-width="3"/>
+<text x="438.0" y="264.0" fill="#1d4ed8" font-size="20" font-weight="700" text-anchor="start" font-family="JetBrains Mono, DejaVu Sans Mono, ui-monospace, monospace">z＝A</text>
+<rect x="560.0" y="118.0" width="390.0" height="300.0" rx="12" fill="#f8fafc" stroke="#e2e8f0" stroke-width="1.4"/>
+<text x="580.0" y="152.0" fill="#1e3a5f" font-size="18" font-weight="700" text-anchor="start" font-family="WenQuanYi Micro Hei, Microsoft JhengHei, sans-serif">點圈</text>
+<text x="580.0" y="186.0" fill="#334155" font-size="15" font-weight="500" text-anchor="start" font-family="WenQuanYi Micro Hei, Microsoft JhengHei, sans-serif">·  1 一定要圈到：m5、m6、m7</text>
+<text x="580.0" y="218.0" fill="#334155" font-size="15" font-weight="500" text-anchor="start" font-family="WenQuanYi Micro Hei, Microsoft JhengHei, sans-serif">·  m4 嘅 X 令底行變成 4 格 → 當 1</text>
+<text x="580.0" y="250.0" fill="#334155" font-size="15" font-weight="500" text-anchor="start" font-family="WenQuanYi Micro Hei, Microsoft JhengHei, sans-serif">·  B、C 有變，只剩 A</text>
+<text x="580.0" y="282.0" fill="#334155" font-size="15" font-weight="500" text-anchor="start" font-family="WenQuanYi Micro Hei, Microsoft JhengHei, sans-serif">·  m3 嘅 X 幫唔到 → 當 0，唔圈</text>
+<text x="580.0" y="314.0" fill="#334155" font-size="15" font-weight="500" text-anchor="start" font-family="WenQuanYi Micro Hei, Microsoft JhengHei, sans-serif">·  唔好圈 0，亦唔好淨係圈 X</text>
+<text x="490.0" y="470.0" fill="#64748b" font-size="14" font-weight="500" text-anchor="middle" font-family="WenQuanYi Micro Hei, Microsoft JhengHei, sans-serif">唔用 m4 就要寫長啲，例如 z＝AB＋AC。</text>
+</svg>
