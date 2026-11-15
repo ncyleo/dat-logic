@@ -1,5 +1,5 @@
 {
-  "version": 16,
+  "version": 19,
   "titleZh": "數位邏輯自學 · 三欄（DAT）",
   "uiNoteZh": "校本自製示意圖 · DAT",
   "chapters": [
@@ -2987,30 +2987,71 @@
       "id": "c5-bcd",
       "chapter": 5,
       "nav": "5.5 BCD 概念",
-      "title": "BCD：每位十進制用 4 位二進制",
+      "title": "BCD 碼（8421）：二進位十進碼",
       "pill": "BCD",
       "live": true,
-      "teach": "\n<p><strong>BCD（Binary-Coded Decimal）</strong>把<strong>每一位十進制數字</strong>各自編成 4 位二進制（0–9 → 0000–1001）。</p>\n<ul>\n  <li>例：25₁₀ 嘅 BCD＝0010 0101（唔係純二進 11001）</li>\n  <li>1010–1111 喺 BCD <strong>唔合法</strong>（超過 9）</li>\n</ul>\n<figure class=\"gate-fig\">\n  <img src=\"assets/c5_bcd.png\" alt=\"BCD：59 → 0101 1001，唔等同普通二進制 111011\">\n  <div class=\"gate-meta\">圖例 59 → BCD 0101 1001；普通二進制係 111011，唔好混淆。</div>\n</figure>\n<div class=\"tip\">BCD 方便顯示七段，但運算要比純二進制多處理「校正」。</div>\n",
+      "teach": "\n<p><strong>BCD 碼（Binary Coded Decimal）</strong>即係<strong>二進位十進碼</strong>。佢用 <strong>4 個位元（bit）</strong>表示一個十進位嘅數，所以又常按佢嘅權值叫做 <strong>8421 碼</strong>（四個位元權重係 8、4、2、1）。</p>\n<p>簡單講，就係用二進位嘅符號嚟表示十進位數值嘅數碼，稱之為 BCD 碼。</p>\n\n<p class=\"sec\"><strong>10 組符號</strong></p>\n<p>8421 碼一共只有 <strong>10 組符號</strong>，對住十進數字 0–9。下表頂列係權重；由左至右讀四個位元，就係嗰個數字嘅碼。</p>\n<div class=\"table-scroll\">\n<table class=\"mini\">\n  <tr>\n    <th rowspan=\"2\">十進</th>\n    <th colspan=\"4\">位元權重</th>\n    <th rowspan=\"2\">8421 碼</th>\n  </tr>\n  <tr><th>8</th><th>4</th><th>2</th><th>1</th></tr>\n  <tr><th>0</th><td>0</td><td>0</td><td>0</td><td>0</td><td>0000</td></tr>\n  <tr><th>1</th><td>0</td><td>0</td><td>0</td><td>1</td><td>0001</td></tr>\n  <tr><th>2</th><td>0</td><td>0</td><td>1</td><td>0</td><td>0010</td></tr>\n  <tr><th>3</th><td>0</td><td>0</td><td>1</td><td>1</td><td>0011</td></tr>\n  <tr><th>4</th><td>0</td><td>1</td><td>0</td><td>0</td><td>0100</td></tr>\n  <tr><th>5</th><td>0</td><td>1</td><td>0</td><td>1</td><td>0101</td></tr>\n  <tr><th>6</th><td>0</td><td>1</td><td>1</td><td>0</td><td>0110</td></tr>\n  <tr><th>7</th><td>0</td><td>1</td><td>1</td><td>1</td><td>0111</td></tr>\n  <tr><th>8</th><td>1</td><td>0</td><td>0</td><td>0</td><td>1000</td></tr>\n  <tr><th>9</th><td>1</td><td>0</td><td>0</td><td>1</td><td>1001</td></tr>\n</table>\n</div>\n<p>即 0→0000、1→0001、2→0010、3→0011、4→0100、5→0101、6→0110、7→0111、8→1000、9→1001。例如 <strong>9 → 1001＝8＋0＋0＋1</strong>。</p>\n<p>1010–1111 唔喺呢 10 組符號入面（權值已經超過 9），所以<strong>唔係合法 8421 BCD 碼</strong>。</p>\n\n<p class=\"sec\"><strong>2 位數 BCD 碼</strong></p>\n<p>兩位十進數：十位、個位<strong>各自</strong>轉成自己嗰組 4 位元，兩組中間留一格空。</p>\n<div class=\"table-scroll\">\n<table class=\"mini\">\n  <tr><th>十進</th><th>2 位數 BCD 碼</th><th>十進</th><th>2 位數 BCD 碼</th></tr>\n  <tr><td>00</td><td style=\"white-space:nowrap\">0000 0000</td><td>10</td><td style=\"white-space:nowrap\">0001 0000</td></tr>\n  <tr><td>01</td><td style=\"white-space:nowrap\">0000 0001</td><td>19</td><td style=\"white-space:nowrap\">0001 1001</td></tr>\n  <tr><td>02</td><td style=\"white-space:nowrap\">0000 0010</td><td>20</td><td style=\"white-space:nowrap\">0010 0000</td></tr>\n  <tr><td>03</td><td style=\"white-space:nowrap\">0000 0011</td><td>90</td><td style=\"white-space:nowrap\">1001 0000</td></tr>\n  <tr><td>09</td><td style=\"white-space:nowrap\">0000 1001</td><td>99</td><td style=\"white-space:nowrap\">1001 1001</td></tr>\n</table>\n</div>\n<p>所以 25₁₀ 嘅 BCD＝<strong>0010 0101</strong>（2→0010、5→0101），而唔係成個數嘅純二進 11001₂。</p>\n\n<p class=\"sec\"><strong>3 位數 BCD 碼</strong></p>\n<p>三位同樣：百位、十位、個位各轉 4 位元，組與組之間留空。</p>\n<div class=\"table-scroll\">\n<table class=\"mini\">\n  <tr><th>十進</th><th>3 位數 BCD 碼</th><th>十進</th><th>3 位數 BCD 碼</th></tr>\n  <tr><td>000</td><td style=\"white-space:nowrap\">0000 0000 0000</td><td>100</td><td style=\"white-space:nowrap\">0001 0000 0000</td></tr>\n  <tr><td>001</td><td style=\"white-space:nowrap\">0000 0000 0001</td><td>199</td><td style=\"white-space:nowrap\">0001 1001 1001</td></tr>\n  <tr><td>009</td><td style=\"white-space:nowrap\">0000 0000 1001</td><td>200</td><td style=\"white-space:nowrap\">0010 0000 0000</td></tr>\n  <tr><td>010</td><td style=\"white-space:nowrap\">0000 0001 0000</td><td>900</td><td style=\"white-space:nowrap\">1001 0000 0000</td></tr>\n  <tr><td>099</td><td style=\"white-space:nowrap\">0000 1001 1001</td><td>999</td><td style=\"white-space:nowrap\">1001 1001 1001</td></tr>\n</table>\n</div>\n\n<p class=\"sec\"><strong>n 位數 BCD 碼</strong></p>\n<p>將每一位十進位嘅位數轉換成 4 位元之 BCD 碼即可，以此類推。</p>\n<div class=\"koujue\">口訣：每位十進數字各轉 4 位；權重記住 8-4-2-1；只得 10 組符號。</div>\n\n<p>BCD 碼<strong>唔等於</strong>成個數嘅純二進編碼。下圖用 59 再對一次：逐位 BCD 係 0101 1001，成個數嘅普通二進制係 111011₂。</p>\n<figure class=\"fig\">\n  <img src=\"assets/c5_bcd.png\" alt=\"BCD：59 → 0101 1001，唔等同普通二進制 111011\">\n  <div class=\"gate-meta\">圖例：59 逐位編成 8421 BCD 0101 1001；普通二進制係 111011，兩者唔同。</div>\n</figure>\n<div class=\"tip\">BCD 方便之後接七段顯示（第 6 章）。做 BCD 加法時，和超過 9 要再做校正。</div>\n",
       "practice": {
-        "type": "mcq",
-        "prompt": "十進制 39 用 BCD 編碼係？",
-        "choices": [
-          "0011 1001",
-          "100111",
-          "00111001₂（純二進）",
-          "111001"
+        "type": "design",
+        "scenario": "跟住 8421 表，逐位編碼，並分清合法 BCD 同純二進。",
+        "okText": "BCD 四題全對！★",
+        "steps": [
+          {
+            "kind": "mcq",
+            "prompt": "十進制 47 嘅 2 位數 BCD 碼係？",
+            "choices": [
+              "0100 0111",
+              "0111 0100",
+              "101111（純二進）",
+              "0100 0011"
+            ],
+            "answer": 0
+          },
+          {
+            "kind": "mcq",
+            "prompt": "十進制 258 嘅 3 位數 BCD 碼係？",
+            "choices": [
+              "0010 0101 1000",
+              "100000010（純二進）",
+              "0010 0101 0100",
+              "0010 1000 0101"
+            ],
+            "answer": 0
+          },
+          {
+            "kind": "mcq",
+            "prompt": "1100 係咪合法嘅 8421 BCD 碼？",
+            "choices": [
+              "唔係。1100 唔喺 0–9 嗰 10 組符號入面",
+              "係，1100 代表十進制 12",
+              "係，1100 代表十進制 6",
+              "係，四個位元任何組合都合法"
+            ],
+            "answer": 0
+          },
+          {
+            "kind": "mcq",
+            "prompt": "十進制 39 用 BCD 編碼係？",
+            "choices": [
+              "0011 1001",
+              "100111",
+              "00111001₂（純二進）",
+              "111001"
+            ],
+            "answer": 0
+          }
         ],
-        "answer": 0,
-        "explain": "3→0011，9→1001 → 0011 1001。純二進 39＝100111₂，唔係 BCD。"
+        "explain": "47：4→0100、7→0111 → 0100 0111（純二進 47＝101111₂）。258：2→0010、5→0101、8→1000 → 0010 0101 1000。1100＝8＋4＝12，超過 9，唔係 10 組符號。39：3→0011、9→1001 → 0011 1001；純二進 39＝100111₂。"
       },
       "support": {
-        "definition": "每位十進數字 → 4 位二進（0–9）。",
-        "example": "25 → 0010 0101。",
-        "tip": "BCD ≠ 整個數嘅純二進制。",
+        "definition": "BCD 碼（Binary Coded Decimal）即二進位十進碼，又叫 8421 碼：每位十進數字各轉 4 位，權重 8、4、2、1。只用 0000–1001 共 10 組符號。",
+        "example": "2 位數 25：2→0010、5→0101，所以 0010 0101。純二進 25＝11001₂，唔係 BCD。",
+        "tip": "BCD ≠ 成個數嘅純二進制。1010–1111 唔合法。方便七段顯示；加法超過 9 要校正。",
         "guidedHints": [
-          "分開「十位」同「個位」各自編碼。",
-          "3＝0011，9＝1001。",
-          "串起就係 0011 1001。"
+          "2 位數：十位、個位係咪各自對 10 組符號，中間留空？",
+          "3 位數係咪同樣逐位，百、十、個各轉 4 位？",
+          "1100 用 8421 權重加起係幾多？有冇喺 0000–1001？",
+          "39 嘅 BCD 係逐位定係成個數嘅純二進？"
         ]
       }
     },
