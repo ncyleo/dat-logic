@@ -1,5 +1,5 @@
 {
-  "version": 16,
+  "version": 21,
   "titleZh": "數位邏輯自學 · 三欄（DAT）",
   "uiNoteZh": "校本自製示意圖 · DAT",
   "chapters": [
@@ -3493,69 +3493,67 @@
       "title": "Latch 同 Flip-flop 分別",
       "pill": "記憶",
       "live": true,
-      "teach": "\n<p>兩者都可<strong>記住 1 bit</strong>，但觸發方式不同。</p>\n<p><strong>鎖存（latch）</strong>係最簡單嘅記憶形式：輸出可以「鎖定」喺 0 或 1；即使原本令佢改變嘅輸入已經撤走，狀態仍然保持。多數屬<strong>電平觸發</strong>（Enable＝1 期間跟住輸入變）。</p>\n<p><strong>正反器（flip-flop）</strong>多數屬<strong>邊緣觸發</strong>：只喺時鐘上升沿或下降沿嗰一下先取樣，其餘時間保持 Q。</p>\n<figure class=\"gate-fig\">\n  <img src=\"assets/c7_latch_vs_ff.png\" alt=\"鎖存器跟住 CLK 高電平；正反器只喺邊緣取樣\">\n  <div class=\"gate-meta\">左邊 Latch 喺 CLK＝1 期間透明；右邊 FF 只喺上升沿更新 Q。</div>\n</figure>\n<div class=\"koujue\">口訣：Latch 跟住電平；FF 等「邊沿一刻」。</div>\n",
+      "teach": "\n<p>兩者都可<strong>記住 1 bit</strong>，但觸發方式不同。</p>\n<p><strong>鎖存（latch）</strong>係最簡單嘅記憶形式：輸出可以「鎖定」喺 0 或 1；即使原本令佢改變嘅輸入已經撤走，狀態仍然保持。多數屬<strong>電平觸發</strong>（Enable＝1 期間跟住輸入變）。</p>\n<p><strong>正反器（flip-flop）</strong>多數屬<strong>邊緣觸發</strong>：只喺時鐘上升沿或下降沿嗰一下先取樣，其餘時間保持 Q。</p>\n<figure class=\"gate-fig\">\n  <img src=\"assets/c7_latch_vs_ff.png\" alt=\"鎖存器跟住 CLK 高電平；正反器只喺邊緣取樣\">\n  <div class=\"gate-meta\">左邊 Latch 喺 CLK＝1 期間透明；右邊 FF 只喺上升沿更新 Q。</div>\n</figure>\n<div class=\"koujue\">口訣：Latch 跟住電平；FF 等「邊沿一刻」。</div>\n\n<p class=\"sec\"><strong>特性比較</strong></p>\n<p>Latch 同 Flip-flop 可以睇下面三項：</p>\n<table class=\"mini\">\n  <tr><th></th><th>Latch</th><th>Flip-flop</th></tr>\n  <tr><th>邏輯閘數量</th><td>較少</td><td>較多</td></tr>\n  <tr><th>可寫入時間</th><td>較長</td><td>較短</td></tr>\n  <tr><th>輸出穩定性</th><td>較不穩定</td><td>較穩定</td></tr>\n</table>\n\n<p class=\"sec\"><strong>Latch（鎖存器）</strong></p>\n<p>Latch 跟電平。Enable＝1 嗰陣，輸入會直接傳到輸出，呢段叫<strong>透明</strong>（通透）。Enable 變做 0，先把當時嘅數據鎖住，之後就<strong>保持（Hold）</strong>。</p>\n<ul>\n  <li><strong>優點：</strong>電路佔用面積細、用嘅邏輯閘少、速度快。</li>\n  <li><strong>缺點：</strong>只要 Enable 有效，輸入嘅干擾、脈衝或者毛刺（glitch）都會傳到輸出，容易造成競態（race）。靜態時序分析（STA）都較難處理。競態喺 7.8 再講。</li>\n</ul>\n\n<p class=\"sec\"><strong>Flip-flop（正反器，又叫觸發器）</strong></p>\n<p>正反器跟時鐘邊沿（Clock Edge）：上升沿係 0→1，下降沿係 1→0。兩個邊沿之間，輸入點變都唔會改輸出。</p>\n<p>入面通常用兩個 Latch 前後串住，即係主從（Master-Slave）。</p>\n<ul>\n  <li><strong>優點：</strong>動作穩定、抗干擾、唔怕毛刺，時序較易控制，係同步電路設計嘅核心。</li>\n  <li><strong>缺點：</strong>電晶體較多、面積較大、功耗稍高。</li>\n</ul>\n",
       "practice": {
-        "type": "mcq",
-        "prompt": "邊項最能形容邊緣觸發正反器？",
-        "choices": [
-          "只要 CLK＝1 就一路跟 D",
-          "只喺 CLK 邊緣更新輸出",
-          "完全唔使時鐘",
-          "輸出永遠＝輸入"
+        "type": "design",
+        "scenario": "跟中欄嘅觸發方式同比較表，答下面三題。",
+        "okText": "三題全對！★",
+        "steps": [
+          {
+            "kind": "mcq",
+            "prompt": "邊項最能形容邊緣觸發正反器？",
+            "choices": [
+              "只要 CLK＝1 就一路跟 D",
+              "只喺 CLK 邊緣更新輸出",
+              "完全唔使時鐘",
+              "輸出永遠＝輸入"
+            ],
+            "answer": 1
+          },
+          {
+            "kind": "mcq",
+            "prompt": "比較表入面，邊項輸出較穩定？",
+            "choices": [
+              "Latch",
+              "Flip-flop",
+              "兩者一樣穩定",
+              "兩者輸出都唔穩定"
+            ],
+            "answer": 1
+          },
+          {
+            "kind": "mcq",
+            "prompt": "Latch 嘅可寫入時間較長定較短？",
+            "choices": [
+              "較長",
+              "較短",
+              "同 Flip-flop 一樣長",
+              "完全唔可以寫入"
+            ],
+            "answer": 0
+          }
         ],
-        "answer": 1,
-        "explain": "邊緣觸發：只喺上升或下降沿取樣；電平觸發先會喺 CLK＝1 期間透明。"
+        "explain": "邊緣觸發正反器只喺 CLK 邊緣更新輸出。比較表：Flip-flop 輸出較穩定；Latch 可寫入時間較長。"
       },
       "support": {
-        "definition": "鎖存＝鎖定 0／1（多屬電平）；正反器＝多屬邊緣觸發先更新。",
-        "example": "輸入撤走之後，鎖存仍然保持先前輸出。",
-        "tip": "透明期＝鎖存特徵。",
+        "definition": "鎖存跟電平，正反器跟邊沿。兩者都記住 1 bit。比較時睇邏輯閘數量、可寫入時間、輸出穩定性。",
+        "example": "Enable＝1，鎖存透明，輸入直接去輸出；Enable＝0 就 Hold。",
+        "tip": "口訣：Latch 跟電平；FF 等邊沿一刻。三項比較睇中欄表。",
         "guidedHints": [
-          "「一刻」更新定「一段時間」跟住？",
-          "正反器強調邊緣。",
-          "揀「只喺邊緣更新」。"
-        ]
-      }
-    },
-    {
-      "id": "c7-d",
-      "chapter": 7,
-      "nav": "7.2 D 正反器",
-      "title": "D 型觸發器：D／CLK／Q",
-      "pill": "D-FF",
-      "live": true,
-      "teach": "\n<p><strong>D 型觸發器（D-type flip-flop）</strong>係常用嘅 1-bit 記憶單元。「D」代表資料（Data）。三個主要接腳：</p>\n<ul>\n  <li><strong>D</strong>：想儲存嘅嗰位（0 或 1）</li>\n  <li><strong>CLK</strong>：決定「幾時」把 D 讀入</li>\n  <li><strong>Q</strong>：已經記住嘅輸出；多數仲有 <span class=\"obar\">Q</span>（Q 嘅相反：Q＝1 則 <span class=\"obar\">Q</span>＝0）</li>\n</ul>\n<p>喺有效時鐘沿（多數係上升沿 0→1），把 D 抄到 Q（下一狀態 Q⁺＝D）。沿以外，D 點變都唔會改 Q，直至下一次有效沿。</p>\n<ul>\n  <li>用途：暫存器位元、同步輸入、延遲一個時鐘</li>\n  <li>只要一條 D 線，唔使分開 Set／Reset；D 同非 D 永遠相反，唔會同時要求置 1 又置 0。（7.3 會見到基本 SR 有呢個 11 禁忌。）</li>\n</ul>\n<figure class=\"gate-fig\">\n  <img src=\"assets/c7_d.png\" alt=\"D 正反器：時鐘沿把 D 載入 Q，Q⁺＝D\">\n  <div class=\"gate-meta\">邊緣觸發：下一狀態 Q⁺＝D；CLK 沿以外保持 Q。</div>\n</figure>\n<div class=\"koujue\">口訣：D-FF＝「拍一下，記住 D」。</div>\n",
-      "practice": {
-        "type": "mcq",
-        "prompt": "邊緣觸發 D-FF，喺有效時鐘沿之後 Q 等於？",
-        "choices": [
-          "上一拍嘅 Q 永遠唔變",
-          "該沿當下嘅 D",
-          "一定係 0",
-          "S 同 R 嘅 XOR"
-        ],
-        "answer": 1,
-        "explain": "特性：Q⁺＝D。"
-      },
-      "support": {
-        "definition": "D＝要存嘅位；CLK＝幾時讀；Q＝已記住嘅輸出（Q⁺＝D）。",
-        "example": "上升沿時 D＝1 → Q 變 1；之後 D 改做 0，Q 仍係 1，直至下一有效沿。",
-        "tip": "無 CLK 沿就唔會更新；<span class=\"obar\">Q</span> 係 Q 嘅相反。",
-        "guidedHints": [
-          "D-FF 記住邊個信號？",
-          "輸入腳 D。",
-          "答案係該沿嘅 D。"
+          "正反器係跟住成段高電平，定係等邊沿嗰一下？",
+          "睇比較表「輸出穩定性」一行，邊一欄寫得穩啲？",
+          "睇比較表「可寫入時間」，Latch 嗰格係長定短？"
         ]
       }
     },
     {
       "id": "c7-sr",
       "chapter": 7,
-      "nav": "7.3 SR 正反器",
+      "nav": "7.2 SR 正反器",
       "title": "SR：Set／Reset",
       "pill": "SR",
       "live": true,
-      "teach": "\n<p><strong>SR 正反器</strong>（或 SR 鎖存）輸入 S（Set）、R（Reset）：</p>\n<ul>\n  <li>S＝1,R＝0 → Q＝1</li>\n  <li>S＝0,R＝1 → Q＝0</li>\n  <li>S＝R＝0 → 保持</li>\n  <li>S＝R＝1 → <strong>禁止／不定</strong>（基本 NOR／NAND 結構會有問題）</li>\n</ul>\n<figure class=\"gate-fig\">\n  <img src=\"assets/c7_sr.png\" alt=\"SR：置位／復位／保持；S＝R＝1 禁止\">\n  <div class=\"gate-meta\">S＝1,R＝0 置 1；S＝0,R＝1 置 0；00 保持；11 禁止。</div>\n</figure>\n<div class=\"tip\">實際設計避免 S＝R＝1；可用閘約束或改用 D／JK。</div>\n\n<p>最簡單可以用兩隻 <strong>NOR 交叉耦合</strong>砌一個 SR 鎖存（用 NAND 都得，不過 0／1 嘅角色會掉轉，下面再講）。NOR 只要有一個輸入係 1，輸出就一定係 0，所以兩條腳唔好調亂：</p>\n<ul>\n  <li><strong>R（RESET）</strong>入出 Q 嗰隻 NOR。R＝1，Q 就被逼去 0。</li>\n  <li><strong>S（SET）</strong>入出 <span class=\"obar\">Q</span> 嗰隻。S＝1，<span class=\"obar\">Q</span> 變 0，Q 就變 1。</li>\n  <li>S＝0、R＝0 → 冇人逼佢，<strong>保持</strong>。</li>\n  <li>S＝1、R＝1 → 兩個輸出都係 0，唔再一正一反。<strong>禁止</strong>，唔好用。</li>\n</ul>\n<figure class=\"fig\">\n  <img src=\"assets/c7_sr_nor.svg\" alt=\"兩隻 NOR 交叉耦合：R 入出 Q 嗰隻，S 入出有上劃線 Q 嗰隻\">\n  <div class=\"gate-meta\">左邊係方塊符號（S 在上、Q 在上）。右邊拆開做 NOR：R 入出 Q 嗰隻，S 入出另一隻。00 保持，11 禁止。</div>\n</figure>\n<p>有啲筆記會叫 latch 做「觸發器」。喺呢度，<strong>鎖存（latch，又寫閂鎖）</strong>係跟電平；<strong>正反器</strong>先係跟邊沿（見 7.1）。上面嘅 NOR 電路係鎖存，唔好當佢做正反器。</p>\n\n<p class=\"sec\"><strong>延伸：D 鎖存（D-latch）</strong></p>\n<p>D 鎖存就係 SR 鎖存前面加兩隻 AND 同一隻 NOT：令 S＝D·E、R＝（非 D）·E。E（有時寫 C）係 enable。E＝1 嗰陣係<strong>透明</strong>，Q 跟住 D；E＝0 就當 S、R 都係 0，保持。因為 R 總係非 D，所以行唔到 S＝R＝1。</p>\n<p>呢個仍然係電平鎖存。7.2 嘅 D 正反器只喺時鐘邊沿抄一次：enable 一路係 1 嗰陣，D 鎖存會一路跟 D，兩者唔同。</p>\n<figure class=\"fig\">\n  <img src=\"assets/c7_d_latch.svg\" alt=\"D 鎖存：D 同 E 經 AND 得出 S，非 D 同 E 得出 R，再入交叉耦合 NOR\">\n  <div class=\"gate-meta\">S 入出 <span class=\"obar\">Q</span> 嗰隻 NOR，R 入出 Q 嗰隻。E＝1 先放行。</div>\n</figure>\n<table class=\"truth-demo\">\n  <thead><tr><th>E／C</th><th>D</th><th>Q<sub>next</sub></th><th>註解</th></tr></thead>\n  <tbody>\n    <tr><td>0</td><td>X</td><td class=\"f\">保持</td><td>Q 不變</td></tr>\n    <tr><td>1</td><td>0</td><td class=\"f\">0</td><td>重設</td></tr>\n    <tr><td>1</td><td>1</td><td class=\"f\">1</td><td>設定</td></tr>\n  </tbody>\n</table>\n\n<p class=\"sec\"><strong>四隻 NAND，加一條 enable</strong></p>\n<p>同一個 SR 可以用四隻 NAND 砌：左邊兩隻等 C＝1 先放行 S、R，右邊兩隻交叉耦合記住個位。C＝0，無論 S、R 係 0 定 1，都係保持。可參考 HKDSE 2018 Paper 2D Q12(c)。</p>\n<p>NAND 版嘅禁止態同 NOR <strong>唔同</strong>：C＝1 而且 S＝R＝1 時，Q 同 <span class=\"obar\">Q</span> 都係 <strong>1</strong>（NOR 版先係兩個都 0）。呢個組合都唔好用。</p>\n<figure class=\"fig\">\n  <img src=\"assets/c7_gated_sr_nand.svg\" alt=\"四隻 NAND 的 SR 鎖存：C 控制 S 同 R 係咪放行\">\n  <div class=\"gate-meta\">C＝0 保持。C＝1、S＝1、R＝0 → Q＝1；S＝0、R＝1 → Q＝0；S＝R＝1 → 兩個輸出都係 1。</div>\n</figure>\n<div class=\"table-scroll\">\n<table class=\"truth-demo wide\">\n  <thead><tr><th>C</th><th>S</th><th>R</th><th>Q<sub>next</sub></th><th><span class=\"obar\">Q</span></th></tr></thead>\n  <tbody>\n    <tr><td>0</td><td>X</td><td>X</td><td class=\"f\">保持</td><td class=\"f\">保持</td></tr>\n    <tr><td>1</td><td>0</td><td>0</td><td class=\"f\">保持</td><td class=\"f\">保持</td></tr>\n    <tr><td>1</td><td>0</td><td>1</td><td class=\"f\">0</td><td class=\"f\">1</td></tr>\n    <tr><td>1</td><td>1</td><td>0</td><td class=\"f\">1</td><td class=\"f\">0</td></tr>\n    <tr><td>1</td><td>1</td><td>1</td><td class=\"f\">1（禁止）</td><td class=\"f\">1（禁止）</td></tr>\n  </tbody>\n</table>\n</div>\n<p>再加一隻 NOT，D 直入上面、非 D 入下面，就變成有 C 嘅 D 鎖存。C＝1 時 Q 跟 D；C＝0 保持。</p>\n<figure class=\"fig\">\n  <img src=\"assets/c7_gated_d_nand.svg\" alt=\"四隻 NAND 加一隻 NOT，變成有 C 的 D 鎖存\">\n  <div class=\"gate-meta\">可參考 HKDSE 2018 Paper 2D Q12(c)。C＝1 時 Q 跟 D。</div>\n</figure>\n",
+      "teach": "\n<p><strong>SR 正反器</strong>（或 SR 鎖存）輸入 S（Set）、R（Reset）：</p>\n<ul>\n  <li>S＝1,R＝0 → Q＝1</li>\n  <li>S＝0,R＝1 → Q＝0</li>\n  <li>S＝R＝0 → 保持</li>\n  <li>S＝R＝1 → <strong>禁止／不定</strong>（基本 NOR／NAND 結構會有問題）</li>\n</ul>\n<figure class=\"gate-fig\">\n  <img src=\"assets/c7_sr.png\" alt=\"SR：置位／復位／保持；S＝R＝1 禁止\">\n  <div class=\"gate-meta\">S＝1,R＝0 置 1；S＝0,R＝1 置 0；00 保持；11 禁止。</div>\n</figure>\n<div class=\"tip\">實際設計避免 S＝R＝1；可用閘約束或改用 D／JK。</div>\n\n<p>最簡單可以用兩隻 <strong>NOR 交叉耦合</strong>砌一個 SR 鎖存（用 NAND 都得，不過 0／1 嘅角色會掉轉，下面再講）。NOR 只要有一個輸入係 1，輸出就一定係 0，所以兩條腳唔好調亂：</p>\n<ul>\n  <li><strong>R（RESET）</strong>入出 Q 嗰隻 NOR。R＝1，Q 就被逼去 0。</li>\n  <li><strong>S（SET）</strong>入出 <span class=\"obar\">Q</span> 嗰隻。S＝1，<span class=\"obar\">Q</span> 變 0，Q 就變 1。</li>\n  <li>S＝0、R＝0 → 冇人逼佢，<strong>保持</strong>。</li>\n  <li>S＝1、R＝1 → 兩個輸出都係 0，唔再一正一反。<strong>禁止</strong>，唔好用。</li>\n</ul>\n<figure class=\"fig\">\n  <img src=\"assets/c7_sr_nor.svg\" alt=\"兩隻 NOR 交叉耦合：R 入出 Q 嗰隻，S 入出有上劃線 Q 嗰隻\">\n  <div class=\"gate-meta\">左邊係方塊符號（S 在上、Q 在上）。右邊拆開做 NOR：R 入出 Q 嗰隻，S 入出另一隻。00 保持，11 禁止。</div>\n</figure>\n<p>有啲筆記會叫 latch 做「觸發器」。喺呢度，<strong>鎖存（latch，又寫閂鎖）</strong>係跟電平；<strong>正反器</strong>先係跟邊沿（見 7.1）。上面嘅 NOR 電路係鎖存，唔好當佢做正反器。</p>\n\n<p class=\"sec\"><strong>延伸：D 鎖存（D-latch）</strong></p>\n<p>D 鎖存就係 SR 鎖存前面加兩隻 AND 同一隻 NOT：令 S＝D·E、R＝（非 D）·E。E（有時寫 C）係 enable。E＝1 嗰陣係<strong>透明</strong>，Q 跟住 D；E＝0 就當 S、R 都係 0，保持。因為 R 總係非 D，所以行唔到 S＝R＝1。</p>\n<p>呢個仍然係電平鎖存。7.3 嘅 D 正反器只喺時鐘邊沿抄一次：enable 一路係 1 嗰陣，D 鎖存會一路跟 D，兩者唔同。</p>\n<figure class=\"fig\">\n  <img src=\"assets/c7_d_latch.svg\" alt=\"D 鎖存：D 同 E 經 AND 得出 S，非 D 同 E 得出 R，再入交叉耦合 NOR\">\n  <div class=\"gate-meta\">S 入出 <span class=\"obar\">Q</span> 嗰隻 NOR，R 入出 Q 嗰隻。E＝1 先放行。</div>\n</figure>\n<table class=\"truth-demo\">\n  <thead><tr><th>E／C</th><th>D</th><th>Q<sub>next</sub></th><th>註解</th></tr></thead>\n  <tbody>\n    <tr><td>0</td><td>X</td><td class=\"f\">保持</td><td>Q 不變</td></tr>\n    <tr><td>1</td><td>0</td><td class=\"f\">0</td><td>重設</td></tr>\n    <tr><td>1</td><td>1</td><td class=\"f\">1</td><td>設定</td></tr>\n  </tbody>\n</table>\n\n<p class=\"sec\"><strong>四隻 NAND，加一條 enable</strong></p>\n<p>同一個 SR 可以用四隻 NAND 砌：左邊兩隻等 C＝1 先放行 S、R，右邊兩隻交叉耦合記住個位。C＝0，無論 S、R 係 0 定 1，都係保持。可參考 HKDSE 2018 Paper 2D Q12(c)。</p>\n<p>NAND 版嘅禁止態同 NOR <strong>唔同</strong>：C＝1 而且 S＝R＝1 時，Q 同 <span class=\"obar\">Q</span> 都係 <strong>1</strong>（NOR 版先係兩個都 0）。呢個組合都唔好用。</p>\n<figure class=\"fig\">\n  <img src=\"assets/c7_gated_sr_nand.svg\" alt=\"四隻 NAND 的 SR 鎖存：C 控制 S 同 R 係咪放行\">\n  <div class=\"gate-meta\">C＝0 保持。C＝1、S＝1、R＝0 → Q＝1；S＝0、R＝1 → Q＝0；S＝R＝1 → 兩個輸出都係 1。</div>\n</figure>\n<div class=\"table-scroll\">\n<table class=\"truth-demo wide\">\n  <thead><tr><th>C</th><th>S</th><th>R</th><th>Q<sub>next</sub></th><th><span class=\"obar\">Q</span></th></tr></thead>\n  <tbody>\n    <tr><td>0</td><td>X</td><td>X</td><td class=\"f\">保持</td><td class=\"f\">保持</td></tr>\n    <tr><td>1</td><td>0</td><td>0</td><td class=\"f\">保持</td><td class=\"f\">保持</td></tr>\n    <tr><td>1</td><td>0</td><td>1</td><td class=\"f\">0</td><td class=\"f\">1</td></tr>\n    <tr><td>1</td><td>1</td><td>0</td><td class=\"f\">1</td><td class=\"f\">0</td></tr>\n    <tr><td>1</td><td>1</td><td>1</td><td class=\"f\">1（禁止）</td><td class=\"f\">1（禁止）</td></tr>\n  </tbody>\n</table>\n</div>\n<p>再加一隻 NOT，D 直入上面、非 D 入下面，就變成有 C 嘅 D 鎖存。C＝1 時 Q 跟 D；C＝0 保持。</p>\n<figure class=\"fig\">\n  <img src=\"assets/c7_gated_d_nand.svg\" alt=\"四隻 NAND 加一隻 NOT，變成有 C 的 D 鎖存\">\n  <div class=\"gate-meta\">可參考 HKDSE 2018 Paper 2D Q12(c)。C＝1 時 Q 跟 D。</div>\n</figure>\n\n<p class=\"sec\"><strong>D 鎖存電路行為</strong></p>\n<p>四隻 NAND 加一隻 NOT，就係呢個 D 鎖存。En＝1 透明，Q 跟住 D。En＝0 一定保持頭先嘅 Q，之後 D 點變都唔會改到佢。</p>\n<figure class=\"fig\">\n  <img src=\"assets/c7_d_latch_d0.png\" alt=\"En＝1、D＝0：NAND D 鎖存寫入 0，A＝1、B＝0，Q＝0\">\n  <div class=\"gate-meta\">En＝1、D＝0：寫入 0。A＝1、B＝0，交叉耦合鎖住 Q＝0（<span class=\"obar\">Q</span>＝1）。</div>\n</figure>\n<figure class=\"fig\">\n  <img src=\"assets/c7_d_latch_d1.png\" alt=\"En＝1、D＝1：NAND D 鎖存寫入 1，A＝0、B＝1，Q＝1\">\n  <div class=\"gate-meta\">En＝1、D＝1：寫入 1。A＝0、B＝1，交叉耦合鎖住 Q＝1（<span class=\"obar\">Q</span>＝0）。</div>\n</figure>\n<p>圖右邊功能表，En＝0 兩行都係「保持」。En＝0 係記住先前嘅 Q，唔係一條「D＝1 就出 1」嘅規則。如果一個例子寫完 1 之後 En 變 0、Q 仍然係 1，嗰個 1 只係頭先寫入嘅結果。</p>\n<figure class=\"fig\">\n  <img src=\"assets/c7_d_latch_wave.png\" alt=\"D 鎖存時序四段：寫入、維持 0、寫入、維持 1\">\n  <div class=\"gate-meta\">四段：寫入、維持 0、寫入、維持 1。寫入時 Q 跟 D。維持時 En＝0，D 可以變，Q 保持先前嗰個值；最後一段維持 1，係因為頭先寫入咗 1。</div>\n</figure>\n<p class=\"sec\"><strong>邊緣觸發 SR 正反器</strong></p>\n<p>上面 NOR／NAND 電路係<strong>鎖存</strong>，跟電平，唔好當佢做正反器。下面先係跟邊沿嘅 <strong>SR 正反器</strong>：只喺有效時鐘沿先更新（預設上升沿 0→1）。兩個沿之間，S、R 點變，Q 都保持不變。</p>\n<p>上升沿真值表（下一狀態寫 Q⁺）：</p>\n<div class=\"table-scroll\">\n<table class=\"truth-demo wide\">\n  <thead><tr><th>S</th><th>R</th><th>Q⁺</th><th>說明</th></tr></thead>\n  <tbody>\n    <tr><td>0</td><td>0</td><td class=\"f\">Q</td><td>保持</td></tr>\n    <tr><td>0</td><td>1</td><td class=\"f\">0</td><td>重置（Reset）</td></tr>\n    <tr><td>1</td><td>0</td><td class=\"f\">1</td><td>置位（Set）</td></tr>\n    <tr><td>1</td><td>1</td><td class=\"f\">不確定</td><td>禁忌狀態，唔好用</td></tr>\n  </tbody>\n</table>\n</div>\n<p>時鐘口嘅三角係正緣，三角前面有氣泡就係負緣。正緣同負緣嘅符號，7.3 已經畫過，7.6 再講清楚。</p>\n<ul>\n  <li>用途：1-bit 記憶、控制電路，亦係之後 D、JK、T 正反器嘅基礎。</li>\n</ul>\n<div class=\"tip\">考試陷阱：只喺時鐘沿先更新；唔好撈亂 Q 同 <span class=\"obar\">Q</span>；永遠唔好用 S＝R＝1。</div>\n<div class=\"koujue\">口訣：設 S 置 1，設 R 置 0。</div>\n",
       "practice": {
         "type": "mcq",
         "prompt": "基本 SR，S＝0、R＝0 時輸出？",
@@ -3571,11 +3569,42 @@
       "support": {
         "definition": "SR：置位／復位／保持；11 禁忌。",
         "example": "00→hold。",
-        "tip": "00 保持、11 禁止。NOR 版 11 令兩個輸出都係 0；有 C 嘅 NAND 版，C＝1 且 S＝R＝1 令兩個輸出都係 1。",
+        "tip": "00 保持、11 禁止。NOR 版 11 令兩個輸出都係 0；有 C 嘅 NAND 版，C＝1 且 S＝R＝1 令兩個輸出都係 1。邊緣觸發嘅 SR 正反器同樣 00 保持、11 禁忌，而且只喺時鐘沿先更新。",
         "guidedHints": [
           "冇 Set 冇 Reset 會點？",
           "唔會強迫改 Q。",
           "保持。"
+        ]
+      }
+    },
+    {
+      "id": "c7-d",
+      "chapter": 7,
+      "nav": "7.3 D 正反器",
+      "title": "D 型觸發器：D／CLK／Q",
+      "pill": "D-FF",
+      "live": true,
+      "teach": "\n<p><strong>D 型觸發器（D-type flip-flop）</strong>係常用嘅 1-bit 記憶單元。「D」代表資料（Data）。三個主要接腳：</p>\n<ul>\n  <li><strong>D</strong>：想儲存嘅嗰位（0 或 1）</li>\n  <li><strong>CLK</strong>：決定「幾時」把 D 讀入</li>\n  <li><strong>Q</strong>：已經記住嘅輸出；多數仲有 <span class=\"obar\">Q</span>（Q 嘅相反：Q＝1 則 <span class=\"obar\">Q</span>＝0）</li>\n</ul>\n<p>喺有效時鐘沿（多數係上升沿 0→1），把 D 抄到 Q（下一狀態 Q⁺＝D）。沿以外，D 點變都唔會改 Q，直至下一次有效沿。</p>\n<ul>\n  <li>用途：暫存器位元、同步輸入、延遲一個時鐘</li>\n  <li>只要一條 D 線，唔使分開 Set／Reset；D 同非 D 永遠相反，唔會同時要求置 1 又置 0。（7.2 已見過基本 SR 有呢個 11 禁忌。）</li>\n</ul>\n<figure class=\"gate-fig\">\n  <img src=\"assets/c7_d.png\" alt=\"D 正反器：時鐘沿把 D 載入 Q，Q⁺＝D\">\n  <div class=\"gate-meta\">邊緣觸發：下一狀態 Q⁺＝D；CLK 沿以外保持 Q。</div>\n</figure>\n<figure class=\"fig\">\n  <img src=\"assets/c7_dff_edges.png\" alt=\"左：正緣觸發，時鐘口係三角；右：負緣觸發，三角前面有氣泡\">\n  <div class=\"gate-meta\">三角係正緣觸發；三角前面有氣泡就係負緣觸發（7.6 再講）。</div>\n</figure>\n<div class=\"koujue\">口訣：D-FF＝「拍一下，記住 D」。</div>\n<p class=\"sec\"><strong>上升沿真值表</strong></p>\n<p>喺上升沿，下一狀態 Q⁺ 抄 D。<span class=\"obar\">Q</span>⁺ 係下一狀態嘅相反：Q⁺＝0 則 <span class=\"obar\">Q</span>⁺＝1。</p>\n<table class=\"truth-demo\">\n  <thead><tr><th>D</th><th>Q⁺</th><th><span class=\"obar\">Q</span>⁺</th></tr></thead>\n  <tbody>\n    <tr><td>0</td><td class=\"f\">0</td><td>1</td></tr>\n    <tr><td>1</td><td class=\"f\">1</td><td>0</td></tr>\n  </tbody>\n</table>\n<p class=\"sec\"><strong>同 SR 正反器比較</strong></p>\n<table class=\"mini\">\n  <tr><th></th><th>SR 正反器</th><th>D 正反器</th></tr>\n  <tr><th>輸入</th><td>S 同 R 兩條</td><td>只有一條 D</td></tr>\n  <tr><th>禁忌狀態</th><td>有（S＝R＝1）</td><td>冇</td></tr>\n  <tr><th>做記憶位</th><td>要避開禁忌</td><td>較簡單</td></tr>\n</table>\n<p>用途再講清楚少少：幾隻並排就係<strong>暫存器</strong>；一位一個格就係<strong>記憶單元</strong>；等同一個時鐘沿先對齊，就係<strong>資料同步</strong>；今拍嘅 D 要下一拍先出現喺 Q，就係<strong>延遲一個時鐘</strong>。</p>\n<div class=\"tip\">考試陷阱：兩個沿之間 D 點變都唔會改 Q。先睇清楚題目係上升沿定下降沿。</div>\n",
+      "practice": {
+        "type": "mcq",
+        "prompt": "邊緣觸發 D-FF，喺有效時鐘沿之後 Q 等於？",
+        "choices": [
+          "上一拍嘅 Q 永遠唔變",
+          "該沿當下嘅 D",
+          "一定係 0",
+          "S 同 R 嘅 XOR"
+        ],
+        "answer": 1,
+        "explain": "特性：Q⁺＝D。"
+      },
+      "support": {
+        "definition": "D＝要存嘅位；CLK＝幾時讀；Q＝已記住嘅輸出（Q⁺＝D）。",
+        "example": "上升沿時 D＝1 → Q 變 1；之後 D 改做 0，Q 仍係 1，直至下一有效沿。",
+        "tip": "無 CLK 沿就唔會更新。兩個沿之間 D 變，Q 都唔會即刻變；先睇題目係上升沿定下降沿。",
+        "guidedHints": [
+          "D-FF 記住邊個信號？",
+          "輸入腳 D。",
+          "答案係該沿嘅 D。"
         ]
       }
     },
@@ -3586,34 +3615,101 @@
       "title": "JK：可切換",
       "pill": "JK",
       "live": true,
-      "teach": "\n<p><strong>JK 正反器</strong>可看成改良 SR：</p>\n<ul>\n  <li>J＝1,K＝0 → 置 1</li>\n  <li>J＝0,K＝1 → 置 0</li>\n  <li>J＝K＝0 → 保持</li>\n  <li>J＝K＝1 → <strong>Toggle</strong>（Q 反相）——解決 SR 嘅 11 問題</li>\n</ul>\n<figure class=\"gate-fig\">\n  <img src=\"assets/c7_jk.png\" alt=\"JK 正反器：J＝K＝1 時每個時鐘沿切換（toggle）\">\n  <div class=\"gate-meta\">00 保持、10 置 1、01 置 0；11 則 Q⁺＝Q 的反相。</div>\n</figure>\n",
+      "teach": "\n<p><strong>JK 正反器</strong>可看成改良 SR：</p>\n<ul>\n  <li>J＝1,K＝0 → 置 1</li>\n  <li>J＝0,K＝1 → 置 0</li>\n  <li>J＝K＝0 → 保持</li>\n  <li>J＝K＝1 → <strong>Toggle</strong>（Q 反相）——解決 SR 嘅 11 問題</li>\n</ul>\n<figure class=\"gate-fig\">\n  <img src=\"assets/c7_jk.png\" alt=\"JK 正反器：J＝K＝1 時每個時鐘沿切換（toggle）\">\n  <div class=\"gate-meta\">00 保持、10 置 1、01 置 0；11 則 Q⁺＝Q 的反相。</div>\n</figure>\n<p class=\"sec\"><strong>上升沿真值表</strong></p>\n<p>只喺有效時鐘沿（預設上升沿）更新。兩個沿之間，J、K 點變都唔會改 Q。四種組合都有效，<strong>冇禁忌狀態</strong>。</p>\n<div class=\"table-scroll\">\n<table class=\"truth-demo wide\">\n  <thead><tr><th>J</th><th>K</th><th>Q⁺</th><th>說明</th></tr></thead>\n  <tbody>\n    <tr><td>0</td><td>0</td><td class=\"f\">Q</td><td>保持</td></tr>\n    <tr><td>0</td><td>1</td><td class=\"f\">0</td><td>清零（Reset）</td></tr>\n    <tr><td>1</td><td>0</td><td class=\"f\">1</td><td>置位（Set）</td></tr>\n    <tr><td>1</td><td>1</td><td class=\"f\"><span class=\"obar\">Q</span></td><td>翻轉（Toggle）</td></tr>\n  </tbody>\n</table>\n</div>\n<div class=\"koujue\">口訣：J 設 1，K 清 0；同時為 1 就翻轉！</div>\n<ul>\n  <li><strong>計數器</strong>：用嚟上數或者下數</li>\n  <li><strong>狀態機</strong>：記住而家喺邊個狀態</li>\n  <li><strong>頻率分頻</strong>：J＝K＝1 時每個有效沿都翻轉，輸出頻率係時鐘嘅一半</li>\n</ul>\n<p>SR 嘅 S＝R＝1 係禁忌；JK 嘅 J＝K＝1 係翻轉。把 J 同 K 一齊接到 T（J＝K＝T），就等同 T 正反器（見 7.5）。同 D、T 嘅對照表亦喺 7.5。</p>\n<p>正緣／負緣符號見 7.6。</p>\n<div class=\"tip\">考試陷阱：J＝K＝1 係翻轉，唔係 SR 嗰種禁忌狀態。只喺有效時鐘沿先更新。</div>\n",
       "practice": {
-        "type": "mcq",
-        "prompt": "JK 正反器喺 J＝K＝1（邊緣觸發）時會？",
-        "choices": [
-          "禁止態崩潰",
-          "保持",
-          "Q 變反（toggle）",
-          "一定變 0"
+        "type": "design",
+        "scenario": "跟中欄 JK 真值表同用途，答下面兩題。",
+        "okText": "兩題全對！★",
+        "steps": [
+          {
+            "kind": "mcq",
+            "prompt": "JK 正反器喺 J＝K＝1（邊緣觸發）時會？",
+            "choices": [
+              "禁止態崩潰",
+              "保持",
+              "Q 變反（toggle）",
+              "一定變 0"
+            ],
+            "answer": 2
+          },
+          {
+            "kind": "mcq",
+            "prompt": "JK 正反器 J＝K＝1，輸出 Q 嘅頻率同 CLK 比較，係？",
+            "choices": [
+              "同 CLK 一樣",
+              "係 CLK 嘅一半",
+              "係 CLK 嘅兩倍",
+              "變成禁忌，冇輸出"
+            ],
+            "answer": 1
+          }
         ],
-        "answer": 2,
-        "explain": "JK 嘅 11＝切換；唔同基本 SR 嘅禁止態。"
+        "explain": "JK 嘅 11＝切換；唔同基本 SR 嘅禁止態。J＝K＝1 每個沿都翻轉，Q 頻率係 CLK 嘅一半。"
       },
       "support": {
-        "definition": "JK：11＝toggle。",
-        "example": "00 hold；10 set；01 reset。",
-        "tip": "計數器常用 toggle。",
+        "definition": "JK：00 保持、10 置 1、01 清 0、11＝翻轉（toggle）。",
+        "example": "J＝0、K＝0 保持；J＝1、K＝0 置 1；J＝0、K＝1 清零。",
+        "tip": "口訣：J 設 1，K 清 0；同時為 1 就翻轉。J＝K＝T 就係 7.5 嘅 T 正反器。",
         "guidedHints": [
-          "JK 對 11 點處理？",
-          "唔係禁止，而係反相。",
-          "toggle。"
+          "J＝K＝1 係保持，定係 Q 反相？",
+          "同 SR 嘅 11 唔同，JK 呢格叫 toggle。",
+          "每個沿都切一次，輸出脈衝會變疏定變密？同 CLK 比係一樣、一半、定兩倍？"
+        ]
+      }
+    },
+    {
+      "id": "c7-t",
+      "chapter": 7,
+      "nav": "7.5 T 正反器",
+      "title": "T 型觸發器：保持／切換",
+      "pill": "T-FF",
+      "live": true,
+      "teach": "\n<p><strong>T 正反器（T-type flip-flop）</strong>只有一條資料輸入 T（Toggle，翻轉）。佢係 JK 正反器簡化而成：把 J 同 K 接成同一條（J＝K＝T）。喺有效時鐘沿：</p>\n<ul>\n  <li>T＝0 → 保持（Q⁺＝Q）</li>\n  <li>T＝1 → <strong>翻轉（Toggle）</strong>（Q⁺＝<span class=\"obar\">Q</span>）</li>\n</ul>\n<p>特性方程：Q⁺＝T ⊕ Q。T＝0 就係 Q⁺＝Q；T＝1 就係 Q⁺＝<span class=\"obar\">Q</span>。</p>\n<figure class=\"fig\">\n  <img src=\"assets/c7_t.png\" alt=\"T 正反器：T＝0 保持，T＝1 每個時鐘沿切換；Q⁺＝T ⊕ Q\">\n  <div class=\"gate-meta\">邊緣觸發：T＝0 則 Q 不變；T＝1 則 Q⁺＝<span class=\"obar\">Q</span>。特性：Q⁺＝T ⊕ Q。<span class=\"obar\">Q</span> 係 Q 嘅相反。</div>\n</figure>\n<p class=\"sec\"><strong>上升沿真值表</strong></p>\n<p>預設喺上升沿更新；兩個上升沿之間 Q 保持。正緣同負緣符號見 7.6。</p>\n<table class=\"truth-demo\">\n  <thead><tr><th>T</th><th>Q⁺</th><th>說明</th></tr></thead>\n  <tbody>\n    <tr><td>0</td><td class=\"f\">Q</td><td>保持</td></tr>\n    <tr><td>1</td><td class=\"f\"><span class=\"obar\">Q</span></td><td>翻轉</td></tr>\n  </tbody>\n</table>\n<p>T 正反器就係 J＝K＝T 嘅 JK。JK 四種組合都有效，所以 T 正反器<strong>冇禁忌狀態</strong>。用 D 正反器都砌到：令 D＝T ⊕ Q，下一拍 Q⁺＝D，就同 T 一樣。</p>\n<ul>\n  <li><strong>二進制計數器</strong>：例如漣波計數，每位要輪到先翻轉</li>\n  <li><strong>頻率分頻</strong>：T 接 1，每個沿都翻轉，輸出頻率係時鐘嘅一半</li>\n  <li><strong>簡單狀態機</strong>：狀態少，只要保持或者翻轉</li>\n</ul>\n<div class=\"koujue\">口訣：T＝1，就翻轉；T＝0，就保持。</div>\n<div class=\"tip\">考試陷阱：只喺時鐘沿先更新。T＝1 係翻轉，唔係保持。先睇題目係上升沿定下降沿。</div>\n<p class=\"sec\"><strong>SR、JK、D、T 對照</strong></p>\n<div class=\"table-scroll\">\n<table class=\"mini\">\n  <tr><th></th><th>SR</th><th>JK</th><th>D</th><th>T</th></tr>\n  <tr><th>輸入數目</th><td>2（S、R）</td><td>2（J、K）</td><td>1（D）</td><td>1（T）</td></tr>\n  <tr><th>禁忌狀態</th><td>有（S＝R＝1）</td><td>冇</td><td>冇</td><td>冇</td></tr>\n  <tr><th>11 或 T＝1</th><td>禁忌，唔好用</td><td>翻轉</td><td>不適用</td><td>翻轉</td></tr>\n  <tr><th>常見用途</th><td>基本記憶（理論）</td><td>計數器、狀態機</td><td>暫存器、記憶、同步</td><td>計數器、頻率分頻</td></tr>\n</table>\n</div>\n",
+      "practice": {
+        "type": "design",
+        "scenario": "跟中欄 T 嘅真值表同砌法，答下面兩題。",
+        "okText": "兩題全對！★",
+        "steps": [
+          {
+            "kind": "mcq",
+            "prompt": "邊緣觸發 T 正反器，T＝1 時喺有效時鐘沿之後 Q 會？",
+            "choices": [
+              "保持不變",
+              "變反（toggle）",
+              "一定變 1",
+              "進入禁止態"
+            ],
+            "answer": 1
+          },
+          {
+            "kind": "mcq",
+            "prompt": "想用 JK 正反器砌一隻 T 正反器，J 同 K 應該點接？",
+            "choices": [
+              "J＝1、K＝0，固定唔變",
+              "J 同 K 一齊接到 T",
+              "J＝0、K＝1，固定唔變",
+              "J＝K＝0，先至會翻轉"
+            ],
+            "answer": 1
+          }
+        ],
+        "explain": "T＝1 → Q⁺＝非 Q（翻轉）；T＝0 先至保持。特性：Q⁺＝T ⊕ Q。JK 把 J＝K＝T，就等同一個 T 正反器。"
+      },
+      "support": {
+        "definition": "T＝0 保持；T＝1 翻轉。Q⁺＝T ⊕ Q。冇禁忌狀態。",
+        "example": "而家 Q＝0、T＝1，有效沿之後 Q 變 1；下一拍 T 仍係 1，Q 又變返 0。",
+        "tip": "口訣：T＝1，就翻轉；T＝0，就保持。計數器同分頻常用。",
+        "guidedHints": [
+          "T＝1 代表保持，定係 Q 反相？",
+          "翻轉，即 Q 變反。第一步揀「變反」。",
+          "T 只有一條資料輸入。JK 要變成同一條輸入，J 同 K 係分開固定，定接去同一條？"
         ]
       }
     },
     {
       "id": "c7-edge",
       "chapter": 7,
-      "nav": "7.5 邊緣觸發",
+      "nav": "7.6 邊緣觸發",
       "title": "上升沿／下降沿",
       "pill": "時鐘",
       "live": true,
@@ -3644,11 +3740,11 @@
     {
       "id": "c7-char",
       "chapter": 7,
-      "nav": "7.6 特性表",
+      "nav": "7.7 特性表",
       "title": "下一狀態點睇表",
       "pill": "特性",
       "live": true,
-      "teach": "\n<p><strong>特性表</strong>列出當前輸入同當前 Q，得出<strong>下一狀態 Q⁺</strong>。</p>\n<p>D-FF 好簡單：Q⁺＝D。JK 要睇 J、K、Q 組合（11 時 Q⁺＝非 Q（反相））。</p>\n",
+      "teach": "\n<p><strong>特性表</strong>列出當前輸入同當前 Q，得出<strong>下一狀態 Q⁺</strong>。</p>\n<p>D-FF 好簡單：Q⁺＝D。T-FF：Q⁺＝T ⊕ Q（T＝0 保持，T＝1 則 Q⁺＝<span class=\"obar\">Q</span>）。JK 要睇 J、K、Q 組合（11 時 Q⁺＝<span class=\"obar\">Q</span>（反相））。</p>\n",
       "practice": {
         "type": "mcq",
         "prompt": "D-FF 特性：若 D＝0，觸發後 Q⁺？",
@@ -3663,8 +3759,8 @@
       },
       "support": {
         "definition": "特性表→Q⁺。",
-        "example": "D：Q⁺＝D。",
-        "tip": "JK：11 → Q⁺＝非 Q。",
+        "example": "D：Q⁺＝D。T：Q⁺＝T ⊕ Q。",
+        "tip": "T＝0 保持，T＝1 則 Q⁺＝非 Q。JK：11 → Q⁺＝非 Q。",
         "guidedHints": [
           "D-FF 下一態跟邊個？",
           "跟 D。",
@@ -3675,7 +3771,7 @@
     {
       "id": "c7-race",
       "chapter": 7,
-      "nav": "7.7 競態簡說",
+      "nav": "7.8 競態簡說",
       "title": "點解要同步／避免 race",
       "pill": "競態",
       "live": true,
@@ -3706,7 +3802,7 @@
     {
       "id": "c7-cmos",
       "chapter": 7,
-      "nav": "7.8 CMOS",
+      "nav": "7.9 CMOS",
       "title": "CMOS 邏輯系列",
       "pill": "CMOS",
       "live": true,
