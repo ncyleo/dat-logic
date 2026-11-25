@@ -1,5 +1,5 @@
 {
-  "version": 22,
+  "version": 23,
   "titleZh": "數位邏輯自學 · 三欄（DAT）",
   "uiNoteZh": "校本自製示意圖 · DAT",
   "chapters": [
@@ -3493,7 +3493,7 @@
       "title": "Latch 同 Flip-flop 分別",
       "pill": "記憶",
       "live": true,
-      "teach": "\n<p>兩者都可<strong>記住 1 bit</strong>，但觸發方式不同。</p>\n<p><strong>鎖存（latch）</strong>係最簡單嘅記憶形式：輸出可以「鎖定」喺 0 或 1；即使原本令佢改變嘅輸入已經撤走，狀態仍然保持。多數屬<strong>電平觸發</strong>（Enable＝1 期間跟住輸入變）。</p>\n<p><strong>正反器（flip-flop）</strong>多數屬<strong>邊緣觸發</strong>：只喺時鐘上升沿或下降沿嗰一下先取樣，其餘時間保持 Q。</p>\n<figure class=\"gate-fig\">\n  <img src=\"assets/c7_latch_vs_ff.png\" alt=\"鎖存器跟住 CLK 高電平；正反器只喺邊緣取樣\">\n  <div class=\"gate-meta\">左邊 Latch 喺 CLK＝1 期間透明；右邊 FF 只喺上升沿更新 Q。</div>\n</figure>\n<div class=\"koujue\">口訣：Latch 跟住電平；FF 等「邊沿一刻」。</div>\n<p>呢章分兩組。鎖存係 7.2 SR、7.3 D、7.4 JK、7.5 T（T 鎖存係概念模型）；正反器係 7.6 SR、7.7 D、7.8 JK、7.9 T。邊緣、特性表、競態同 CMOS 喺 7.10 至 7.13。</p>\n\n<p class=\"sec\"><strong>特性比較</strong></p>\n<p>Latch 同 Flip-flop 可以睇下面三項：</p>\n<table class=\"mini\">\n  <tr><th></th><th>Latch</th><th>Flip-flop</th></tr>\n  <tr><th>邏輯閘數量</th><td>較少</td><td>較多</td></tr>\n  <tr><th>可寫入時間</th><td>較長</td><td>較短</td></tr>\n  <tr><th>輸出穩定性</th><td>較不穩定</td><td>較穩定</td></tr>\n</table>\n\n<p class=\"sec\"><strong>控制方式</strong></p>\n<div class=\"table-scroll\">\n<table class=\"mini\">\n  <tr><th>項目</th><th>鎖存（Latch）</th><th>正反器（Flip-flop）</th></tr>\n  <tr><th>控制方式</th><td>電平觸發（Level-triggered）</td><td>邊沿觸發（Edge-triggered）</td></tr>\n  <tr><th>更新時間</th><td>Enable／CLK 有效期間隨時可以變</td><td>只喺時脈邊沿先變</td></tr>\n  <tr><th>Clock</th><td>可以有 Enable，但唔係真正嘅邊沿觸發</td><td>一定有 Clock</td></tr>\n  <tr><th>例子</th><td>SR、D、JK 鎖存；T 鎖存係概念模型（7.5）</td><td>SR、D、JK、T 正反器</td></tr>\n</table>\n</div>\n<p>電路方面，鎖存較簡單，正反器較複雜。鎖存較少直接考，正反器較常考。</p>\n\n<p class=\"sec\"><strong>Latch（鎖存器）</strong></p>\n<p>Latch 跟電平。Enable＝1 嗰陣，輸入會直接傳到輸出，呢段叫<strong>透明</strong>（通透）。Enable 變做 0，先把當時嘅數據鎖住，之後就<strong>保持（Hold）</strong>。</p>\n<ul>\n  <li><strong>優點：</strong>電路佔用面積細、用嘅邏輯閘少、速度快。</li>\n  <li><strong>缺點：</strong>只要 Enable 有效，輸入嘅干擾、脈衝或者毛刺（glitch）都會傳到輸出，容易造成競態（race）。靜態時序分析（STA）都較難處理。競態喺 7.12 再講。</li>\n</ul>\n\n<p class=\"sec\"><strong>Flip-flop（正反器，又叫觸發器）</strong></p>\n<p>正反器跟時鐘邊沿（Clock Edge）：上升沿係 0→1，下降沿係 1→0。兩個邊沿之間，輸入點變都唔會改輸出。</p>\n<p>入面通常用兩個 Latch 前後串住，即係主從（Master-Slave）。</p>\n<ul>\n  <li><strong>優點：</strong>動作穩定、抗干擾、唔怕毛刺，時序較易控制，係同步電路設計嘅核心。</li>\n  <li><strong>缺點：</strong>電晶體較多、面積較大、功耗稍高。</li>\n</ul>\n",
+      "teach": "\n<p>兩者都可<strong>記住 1 bit</strong>，但觸發方式不同。</p>\n<p><strong>鎖存（latch）</strong>係最簡單嘅記憶形式：輸出可以「鎖定」喺 0 或 1；即使原本令佢改變嘅輸入已經撤走，狀態仍然保持。多數屬<strong>電平觸發</strong>（Enable＝1 期間跟住輸入變）。</p>\n<p><strong>正反器（flip-flop）</strong>多數屬<strong>邊緣觸發</strong>：只喺時鐘上升沿或下降沿嗰一下先取樣，其餘時間保持 Q。</p>\n<figure class=\"gate-fig\">\n  <img src=\"assets/c7_latch_vs_ff.png\" alt=\"鎖存器跟住 CLK 高電平；正反器只喺邊緣取樣\">\n  <div class=\"gate-meta\">左邊 Latch 喺 CLK＝1 期間透明；右邊 FF 只喺上升沿更新 Q。</div>\n</figure>\n<div class=\"koujue\">口訣：Latch 跟住電平；FF 等「邊沿一刻」。</div>\n<p>呢章分兩組。鎖存係 7.2 SR、7.3 D、7.4 JK、7.5 T（T 鎖存係概念模型）；正反器係 7.6 SR、7.7 D、7.8 JK、7.9 T。時序練習喺 7.9b。邊緣、特性表、競態同 CMOS 喺 7.10 至 7.13。</p>\n\n<p class=\"sec\"><strong>特性比較</strong></p>\n<p>Latch 同 Flip-flop 可以睇下面三項：</p>\n<table class=\"mini\">\n  <tr><th></th><th>Latch</th><th>Flip-flop</th></tr>\n  <tr><th>邏輯閘數量</th><td>較少</td><td>較多</td></tr>\n  <tr><th>可寫入時間</th><td>較長</td><td>較短</td></tr>\n  <tr><th>輸出穩定性</th><td>較不穩定</td><td>較穩定</td></tr>\n</table>\n\n<p class=\"sec\"><strong>控制方式</strong></p>\n<div class=\"table-scroll\">\n<table class=\"mini\">\n  <tr><th>項目</th><th>鎖存（Latch）</th><th>正反器（Flip-flop）</th></tr>\n  <tr><th>控制方式</th><td>電平觸發（Level-triggered）</td><td>邊沿觸發（Edge-triggered）</td></tr>\n  <tr><th>更新時間</th><td>Enable／CLK 有效期間隨時可以變</td><td>只喺時脈邊沿先變</td></tr>\n  <tr><th>Clock</th><td>可以有 Enable，但唔係真正嘅邊沿觸發</td><td>一定有 Clock</td></tr>\n  <tr><th>例子</th><td>SR、D、JK 鎖存；T 鎖存係概念模型（7.5）</td><td>SR、D、JK、T 正反器</td></tr>\n</table>\n</div>\n<p>電路方面，鎖存較簡單，正反器較複雜。鎖存較少直接考，正反器較常考。</p>\n\n<p class=\"sec\"><strong>Latch（鎖存器）</strong></p>\n<p>Latch 跟電平。Enable＝1 嗰陣，輸入會直接傳到輸出，呢段叫<strong>透明</strong>（通透）。Enable 變做 0，先把當時嘅數據鎖住，之後就<strong>保持（Hold）</strong>。</p>\n<ul>\n  <li><strong>優點：</strong>電路佔用面積細、用嘅邏輯閘少、速度快。</li>\n  <li><strong>缺點：</strong>只要 Enable 有效，輸入嘅干擾、脈衝或者毛刺（glitch）都會傳到輸出，容易造成競態（race）。靜態時序分析（STA）都較難處理。競態喺 7.12 再講。</li>\n</ul>\n\n<p class=\"sec\"><strong>Flip-flop（正反器，又叫觸發器）</strong></p>\n<p>正反器跟時鐘邊沿（Clock Edge）：上升沿係 0→1，下降沿係 1→0。兩個邊沿之間，輸入點變都唔會改輸出。</p>\n<p>入面通常用兩個 Latch 前後串住，即係主從（Master-Slave）。</p>\n<ul>\n  <li><strong>優點：</strong>動作穩定、抗干擾、唔怕毛刺，時序較易控制，係同步電路設計嘅核心。</li>\n  <li><strong>缺點：</strong>電晶體較多、面積較大、功耗稍高。</li>\n</ul>\n",
       "practice": {
         "type": "design",
         "scenario": "跟中欄嘅觸發方式同比較表，答下面三題。",
@@ -3806,7 +3806,7 @@
       "title": "T 型觸發器：保持／切換",
       "pill": "T-FF",
       "live": true,
-      "teach": "\n<p><strong>T 正反器（T-type flip-flop）</strong>只有一條資料輸入 T（Toggle，翻轉）。佢係 JK 正反器簡化而成：把 J 同 K 接成同一條（J＝K＝T）。喺有效時鐘沿：</p>\n<ul>\n  <li>T＝0 → 保持（Q⁺＝Q）</li>\n  <li>T＝1 → <strong>翻轉（Toggle）</strong>（Q⁺＝<span class=\"obar\">Q</span>）</li>\n</ul>\n<p>特性方程：Q⁺＝T ⊕ Q。T＝0 就係 Q⁺＝Q；T＝1 就係 Q⁺＝<span class=\"obar\">Q</span>。</p>\n<figure class=\"fig\">\n  <img src=\"assets/c7_t.png\" alt=\"T 正反器：T＝0 保持，T＝1 每個時鐘沿切換；Q⁺＝T ⊕ Q\">\n  <div class=\"gate-meta\">邊緣觸發：T＝0 則 Q 不變；T＝1 則 Q⁺＝<span class=\"obar\">Q</span>。特性：Q⁺＝T ⊕ Q。<span class=\"obar\">Q</span> 係 Q 嘅相反。</div>\n</figure>\n<p class=\"sec\"><strong>上升沿真值表</strong></p>\n<p>預設喺上升沿更新；兩個上升沿之間 Q 保持。正緣同負緣符號見 7.10。</p>\n<table class=\"truth-demo\">\n  <thead><tr><th>T</th><th>Q⁺</th><th>說明</th></tr></thead>\n  <tbody>\n    <tr><td>0</td><td class=\"f\">Q</td><td>保持</td></tr>\n    <tr><td>1</td><td class=\"f\"><span class=\"obar\">Q</span></td><td>翻轉</td></tr>\n  </tbody>\n</table>\n<p>T 正反器就係 J＝K＝T 嘅 JK。JK 四種組合都有效，所以 T 正反器<strong>冇禁忌狀態</strong>。用 D 正反器都砌到：令 D＝T ⊕ Q，下一拍 Q⁺＝D，就同 T 一樣。</p>\n<ul>\n  <li><strong>二進制計數器</strong>：例如漣波計數，每位要輪到先翻轉</li>\n  <li><strong>頻率分頻</strong>：T 接 1，每個沿都翻轉，輸出頻率係時鐘嘅一半</li>\n  <li><strong>簡單狀態機</strong>：狀態少，只要保持或者翻轉</li>\n</ul>\n<div class=\"koujue\">口訣：T＝1，就翻轉；T＝0，就保持。</div>\n<div class=\"tip\">考試陷阱：只喺時鐘沿先更新。T＝1 係翻轉，唔係保持。T＝0 係保持，唔係重置。單靠 T 變，Q 唔會即刻變，要睇邊沿，唔係睇電平。先睇題目係上升沿定下降沿。</div>\n<p>7.5 嘅 T 鎖存係概念模型，EN＝1 而且 T＝1 會競賽翻轉，所以實際計數用呢課嘅正反器。</p>\n<p class=\"sec\"><strong>SR、JK、D、T 對照</strong></p>\n<p>下面四欄都係正反器（跟邊沿），唔係鎖存。</p>\n<div class=\"table-scroll\">\n<table class=\"mini\">\n  <tr><th></th><th>SR</th><th>JK</th><th>D</th><th>T</th></tr>\n  <tr><th>輸入數目</th><td>2（S、R）</td><td>2（J、K）</td><td>1（D）</td><td>1（T）</td></tr>\n  <tr><th>禁忌狀態</th><td>有（S＝R＝1）</td><td>冇</td><td>冇</td><td>冇</td></tr>\n  <tr><th>11 或 T＝1</th><td>禁忌，唔好用</td><td>翻轉</td><td>不適用</td><td>翻轉</td></tr>\n  <tr><th>常見用途</th><td>基本記憶（理論）</td><td>計數器、狀態機</td><td>暫存器、記憶、同步</td><td>計數器、頻率分頻</td></tr>\n</table>\n</div>\n",
+      "teach": "\n<p><strong>T 正反器（T-type flip-flop）</strong>只有一條資料輸入 T（Toggle，翻轉）。佢係 JK 正反器簡化而成：把 J 同 K 接成同一條（J＝K＝T）。喺有效時鐘沿：</p>\n<ul>\n  <li>T＝0 → 保持（Q⁺＝Q）</li>\n  <li>T＝1 → <strong>翻轉（Toggle）</strong>（Q⁺＝<span class=\"obar\">Q</span>）</li>\n</ul>\n<p>特性方程：Q⁺＝T ⊕ Q。T＝0 就係 Q⁺＝Q；T＝1 就係 Q⁺＝<span class=\"obar\">Q</span>。</p>\n<figure class=\"fig\">\n  <img src=\"assets/c7_t.png\" alt=\"T 正反器：T＝0 保持，T＝1 每個時鐘沿切換；Q⁺＝T ⊕ Q\">\n  <div class=\"gate-meta\">邊緣觸發：T＝0 則 Q 不變；T＝1 則 Q⁺＝<span class=\"obar\">Q</span>。特性：Q⁺＝T ⊕ Q。<span class=\"obar\">Q</span> 係 Q 嘅相反。</div>\n</figure>\n<p class=\"sec\"><strong>上升沿真值表</strong></p>\n<p>預設喺上升沿更新；兩個上升沿之間 Q 保持。正緣同負緣符號見 7.10。</p>\n<table class=\"truth-demo\">\n  <thead><tr><th>T</th><th>Q⁺</th><th>說明</th></tr></thead>\n  <tbody>\n    <tr><td>0</td><td class=\"f\">Q</td><td>保持</td></tr>\n    <tr><td>1</td><td class=\"f\"><span class=\"obar\">Q</span></td><td>翻轉</td></tr>\n  </tbody>\n</table>\n<p>T 正反器就係 J＝K＝T 嘅 JK。JK 四種組合都有效，所以 T 正反器<strong>冇禁忌狀態</strong>。用 D 正反器都砌到：令 D＝T ⊕ Q，下一拍 Q⁺＝D，就同 T 一樣。</p>\n<ul>\n  <li><strong>二進制計數器</strong>：例如漣波計數，每位要輪到先翻轉</li>\n  <li><strong>頻率分頻</strong>：T 接 1，每個沿都翻轉，輸出頻率係時鐘嘅一半</li>\n  <li><strong>簡單狀態機</strong>：狀態少，只要保持或者翻轉</li>\n</ul>\n<div class=\"koujue\">口訣：T＝1，就翻轉；T＝0，就保持。</div>\n<div class=\"tip\">考試陷阱：只喺時鐘沿先更新。T＝1 係翻轉，唔係保持。T＝0 係保持，唔係重置。單靠 T 變，Q 唔會即刻變，要睇邊沿，唔係睇電平。先睇題目係上升沿定下降沿。</div>\n<p>7.5 嘅 T 鎖存係概念模型，EN＝1 而且 T＝1 會競賽翻轉，所以實際計數用呢課嘅正反器。</p>\n<p class=\"sec\"><strong>SR、JK、D、T 對照</strong></p>\n<p>下面四欄都係正反器（跟邊沿），唔係鎖存。</p>\n<div class=\"table-scroll\">\n<table class=\"mini\">\n  <tr><th></th><th>SR</th><th>JK</th><th>D</th><th>T</th></tr>\n  <tr><th>輸入數目</th><td>2（S、R）</td><td>2（J、K）</td><td>1（D）</td><td>1（T）</td></tr>\n  <tr><th>禁忌狀態</th><td>有（S＝R＝1）</td><td>冇</td><td>冇</td><td>冇</td></tr>\n  <tr><th>11 或 T＝1</th><td>禁忌，唔好用</td><td>翻轉</td><td>不適用</td><td>翻轉</td></tr>\n  <tr><th>常見用途</th><td>基本記憶（理論）</td><td>計數器、狀態機</td><td>暫存器、記憶、同步</td><td>計數器、頻率分頻</td></tr>\n</table>\n</div>\n<p>想逐個上升沿估 Q 同 <span class=\"obar\">Q</span>，去 <strong>7.9b 時序練習</strong>。</p>\n",
       "practice": {
         "type": "design",
         "scenario": "跟中欄 T 嘅真值表同砌法，答下面兩題。",
@@ -3845,6 +3845,30 @@
           "T＝1 代表保持，定係 Q 反相？",
           "翻轉，即 Q 變反。第一步揀「變反」。",
           "T 只有一條資料輸入。JK 要變成同一條輸入，J 同 K 係分開固定，定接去同一條？"
+        ]
+      }
+    },
+    {
+      "id": "c7-ff-timing",
+      "chapter": 7,
+      "nav": "7.9b 時序練習",
+      "title": "正反器時序：每個上升沿先估 Q",
+      "pill": "時序",
+      "live": true,
+      "teach": "\n<p>7.6 至 7.9 四隻都係<strong>上升沿正反器</strong>，唔係鎖存。下面張時序圖，<strong>時鐘同輸入由頭睇到</strong>；Q 同 <span class=\"obar\">Q</span> 要你先估呢個上升沿，先揭開嗰一段。未估到嘅後面，波形唔會畫出嚟。</p>\n<p>四隻都假設<strong>初始 Q＝0</strong>，所以開始時 <span class=\"obar\">Q</span>＝1。Q 只喺橙色上升沿更新。時鐘維持高電平，或者輸入喺兩個沿之間變，Q 都唔會自己跳。</p>\n<ul>\n  <li><strong>SR</strong>：00 保持、10 置 1、01 置 0、11 禁止／不定。不定之後唔當 Q 係 0 或者 1，圖用斜線。</li>\n  <li><strong>D</strong>：上升沿把當時嘅 D 抄入 Q。週期中途 D 變，Q 唔跟，要等下一個上升沿。</li>\n  <li><strong>JK</strong>：00 保持、10 置 1、01 置 0；11 唔係禁忌，每個上升沿翻轉一次。</li>\n  <li><strong>T</strong>：T＝0 保持；T＝1 只喺上升沿翻轉。T 一路係 1，Q 週期係時鐘嘅兩倍（除 2 分頻），高電平期間唔會連續震。</li>\n</ul>\n<p>揀一隻正反器，每個橙色箭嘴先估 Q，再撳「檢查呢個沿」。</p>\n",
+      "practice": {
+        "type": "ff-timing",
+        "prompt": "揀 SR、D、JK 或 T。每個上升沿先估之後嘅 Q，撳「檢查呢個沿」先揭開嗰一段。未估嘅波形唔會出現。",
+        "explain": "每個上升沿先估，先揭開嗰段。SR 嘅 11 係不定，斜線唔係 0 或 1。JK 嘅 11 同 T＝1 係每個沿翻轉一次，時鐘高電平唔會再震。D 中途變，Q 要去到下一個上升沿先至改。"
+      },
+      "support": {
+        "definition": "上升沿正反器：Q 只喺上升沿更新。SR 00 保持、10 置 1、01 置 0、11 不定。D 抄沿當下嘅 D。JK 嘅 11 同 T＝1 每個沿翻轉一次。",
+        "example": "初始 Q＝0。如果某個上升沿係保持，Q 就同沿之前一樣。T 連續係 1 時，Q 每沿翻一次，週期係時鐘嘅兩倍。",
+        "tip": "先睇橙色箭嘴指住嘅輸入，再決定 Q。補數一定相反；SR 嘅 11 就兩條都不定。",
+        "guidedHints": [
+          "先睇橙色箭嘴。Q 只會喺上升沿變，時鐘高電平期間唔好當佢會震。",
+          "SR：00 保持、10 置 1、01 置 0、11 係不定。JK 嘅 11 先至每個沿翻轉一次。",
+          "D 抄沿當下嘅 D。T＝0 保持，T＝1 先翻轉。補數一定相反；不定就兩條都唔填 0 或 1。"
         ]
       }
     },
