@@ -291,6 +291,50 @@ table.mini th { background: #e2e8f0; }
 .seg7-segrow span.off { background: #f8fafc; color: #64748b; }
 .seg7-segrow span.na { background: #fff7ed; color: #9a3412; border-color: #fdba74; }
 .seg7-hint { font-size: .82rem; color: #1e3a8a; margin: .55rem 0 0; line-height: 1.45; }
+.ff-lab { margin: .15rem 0 .2rem; }
+.ff-types { display: flex; flex-wrap: wrap; gap: .35rem; margin: 0 0 .6rem; }
+.ff-type {
+  appearance: none; border: 1px solid #94a3b8; background: #fff; border-radius: 999px;
+  padding: .32rem .75rem; font-weight: 800; cursor: pointer; font-size: .84rem; color: #1e293b;
+}
+.ff-type.active { background: #1d4ed8; border-color: #1d4ed8; color: #fff; }
+.ff-type.done:not(.active) { border-color: #6ee7b7; background: #ecfdf5; }
+.ff-chart {
+  background: #fff; border: 2px solid #1e3a5f; border-radius: 10px;
+  padding: .55rem .55rem .45rem;
+}
+.ff-chart-title { margin: .1rem 0 0; text-align: center; color: #1e3a5f; font-size: 1.12rem; letter-spacing: .02em; }
+.ff-chart-sub { margin: .2rem 0 .45rem; text-align: center; color: #334155; font-size: .8rem; line-height: 1.45; }
+.ff-scroll { overflow-x: auto; }
+.ff-svg { display: block; max-width: none; }
+.ff-svg .ff-axis { font-size: 11px; fill: #64748b; font-family: var(--font); }
+.ff-svg .ff-cap { font-size: 12px; font-weight: 800; font-family: var(--font); }
+.ff-svg .ff-note { font-size: 12px; font-weight: 800; font-family: var(--font); }
+.ff-rowlab {
+  display: flex; align-items: center; height: 100%; box-sizing: border-box;
+  font-weight: 800; color: #1e3a5f; font-size: 15px; font-family: var(--font);
+}
+.ff-foot {
+  margin: .45rem 0 0; background: #f8fafc; border: 1px solid #dbe3ee; border-radius: 999px;
+  text-align: center; font-size: .78rem; color: #334155; padding: .4rem .7rem; line-height: 1.45;
+}
+.ff-ask { margin-top: .65rem; }
+.ff-ask p { margin: .3rem 0; line-height: 1.5; }
+.ff-q { font-size: .95rem; }
+.ff-remind { font-size: .84rem; color: #1e3a8a; background: #eff6ff; border-radius: 8px; padding: .45rem .6rem; }
+.ff-hint { font-size: .78rem; color: #64748b; }
+.ff-choices { display: flex; flex-wrap: wrap; gap: .4rem; margin: .45rem 0; }
+.ff-choice {
+  appearance: none; border: 1px solid #94a3b8; background: #fff; color: var(--ink);
+  border-radius: 8px; padding: .45rem .7rem; font-weight: 800; cursor: pointer; font-size: .88rem;
+}
+.ff-choice:hover { border-color: #60a5fa; }
+.ff-choice.active { border-color: #1d4ed8; background: #dbeafe; color: #1e3a8a; }
+.ff-feedback { font-weight: 700; margin: .55rem 0 0; line-height: 1.5; }
+.ff-feedback.ok { color: var(--ok); }
+.ff-feedback.bad { color: var(--bad); }
+.ff-done { font-size: .95rem; }
+.ff-score { font-size: .8rem; color: #64748b; margin: .45rem 0 0; }
 .lightbox {
   display: none; position: fixed; inset: 0; z-index: 200;
   background: rgba(15, 23, 42, .82);
@@ -346,7 +390,8 @@ table.mini th { background: #e2e8f0; }
   <img id="lightboxImg" src="" alt="放大圖">
   <div class="lb-caption">撳空白處或按 Esc 關閉</div>
 </div>
-<script src="lessons-data.js?v=20261120a"></script>
-<script src="app.js?v=20261120a"></script>
+<script src="ff-timing.js?v=20261125a"></script>
+<script src="lessons-data.js?v=20261125a"></script>
+<script src="app.js?v=20261125a"></script>
 </body>
 </html>

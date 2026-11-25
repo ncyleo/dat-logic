@@ -8,6 +8,7 @@
   let practiceChecked = false;
   let hintStep = 0;
   let progress = loadProgress();
+  let ffMemo = null;
 
   function $(id) { return document.getElementById(id); }
   function esc(s) {
@@ -1125,6 +1126,9 @@
       body += '</div>';
     } else if (pr.type === 'tt-live') {
       body += renderTtLive(pr);
+    } else if (pr.type === 'ff-timing') {
+      body += '<p class="try-note">' + boolHtml(pr.prompt) + '</p>';
+      body += '<div id="ffTimingLab"></div>';
     } else if (pr.type === 'design') {
       body += '<p class="try-note"><strong>情境：</strong>' + boolHtml(pr.scenario || pr.prompt || '') + '</p>';
       (pr.steps || []).forEach((st, si) => {
@@ -1145,7 +1149,7 @@
     }
 
     const first = isFirstLivePractice(lesson.id);
-    const checkLabel = (pr.type === 'tt-live') ? '標為已練' : '檢查答案';
+    const checkLabel = (pr.type === 'tt-live' || pr.type === 'ff-timing') ? '標為已練' : '檢查答案';
     body += '<div class="btn-row">' +
       '<button type="button" class="btn btn-ghost" id="prevBtn"' +
       (first ? ' disabled title="已經係第一題"' : '') + '>上一題</button>' +
@@ -1247,6 +1251,9 @@
     }
     if (pr.type === 'tt-live') {
       bindTtLive(lesson);
+    }
+    if (pr.type === 'ff-timing') {
+      mountFfTiming();
     }
 
     const status = $('practiceStatus');
@@ -1413,11 +1420,31 @@
         }
         explain.style.display = 'block';
         explain.innerHTML = '<strong>講解：</strong>' + boolHtml(pr.explain || '');
+      } else if (pr.type === 'ff-timing') {
+        const ft = window.FFTiming;
+        const runs = (ffMemo && ffMemo.runs) || {};
+        const done = ft.types.filter(function (t) { return runs[t] && runs[t].revealed >= ft.cycles; });
+        if (!done.length) {
+          status.textContent = '請先估完一隻正反器嘅全部上升沿。每個沿要先揀 Q，再撳「檢查呢個沿」。';
+          status.className = 'status info';
+          return;
+        }
+        practiceChecked = true;
+        markDone(lesson.id);
+        const nameOf = { sr: 'SR', d: 'D', jk: 'JK', t: 'T' };
+        const left = ft.types.filter(function (t) { return done.indexOf(t) < 0; }).map(function (t) { return nameOf[t]; });
+        status.textContent = left.length
+          ? ('已標為練過。仲可以再估：' + left.join('、') + '。★')
+          : '四隻正反器都估完。★';
+        status.className = 'status ok';
+        explain.style.display = 'block';
+        explain.innerHTML = '<strong>講解：</strong>' + boolHtml(pr.explain || '');
       }
     });
 
     $('retryBtn').addEventListener('click', () => {
       practiceChecked = false;
+      if (pr.type === 'ff-timing') ffMemo = null;
       showLesson(lesson.id);
     });
     const prevBtn = $('prevBtn');
@@ -1694,6 +1721,73 @@
         paint();
       });
     });
+    paint();
+  }
+
+  /* 7.9b：每個上升沿先估 Q，先揭開嗰段。邏輯喺 ff-timing.js。 */
+  function mountFfTiming() {
+    const root = $('ffTimingLab');
+    const FT = window.FFTiming;
+    if (!root || !FT) return;
+    if (!ffMemo) ffMemo = { type: 'sr', runs: {} };
+
+    function stOf(type) {
+      if (!ffMemo.runs[type]) ffMemo.runs[type] = { revealed: 0, hits: 0, pick: null, last: null };
+      return ffMemo.runs[type];
+    }
+
+    function paint() {
+      root.innerHTML = FT.shellHtml(ffMemo);
+      const sc = root.querySelector('.ff-scroll');
+      const cur = root.querySelector('[data-ff-current="1"]');
+      if (sc && cur) {
+        const x = +cur.getAttribute('data-x') || 0;
+        const target = x - sc.clientWidth * 0.42;
+        sc.scrollLeft = target > 0 ? target : 0;
+      }
+      root.querySelectorAll('[data-ff-type]').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const id = btn.getAttribute('data-ff-type');
+          if (FT.types.indexOf(id) < 0) return;
+          ffMemo.type = id;
+          paint();
+        });
+      });
+      root.querySelectorAll('[data-ff-guess]').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const st = stOf(ffMemo.type);
+          if (st.revealed >= FT.cycles) return;
+          st.pick = btn.getAttribute('data-ff-guess');
+          paint();
+        });
+      });
+      const check = $('ffCheckEdge');
+      if (check) {
+        check.addEventListener('click', () => {
+          const st = stOf(ffMemo.type);
+          if (st.revealed >= FT.cycles) return;
+          const fb = FT.grade(ffMemo.type, st.revealed, st.pick);
+          if (!fb || fb.invalid) {
+            st.last = fb;
+            paint();
+            return;
+          }
+          if (fb.ok) st.hits += 1;
+          st.last = fb;
+          st.revealed += 1;
+          st.pick = null;
+          paint();
+        });
+      }
+      const again = $('ffAgain');
+      if (again) {
+        again.addEventListener('click', () => {
+          ffMemo.runs[ffMemo.type] = { revealed: 0, hits: 0, pick: null, last: null };
+          paint();
+        });
+      }
+    }
+
     paint();
   }
 
