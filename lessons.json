@@ -1,5 +1,5 @@
 {
-  "version": 25,
+  "version": 26,
   "titleZh": "數位邏輯自學 · 三欄（DAT）",
   "uiNoteZh": "校本自製示意圖 · DAT",
   "chapters": [
@@ -1840,7 +1840,7 @@
       "title": "K-map 練習：2×2 填格＋讀式",
       "pill": "填格",
       "live": true,
-      "teach": "\n<p>兩變數：列 <strong>A</strong>＝0／1，行 <strong>B</strong>＝0／1。</p>\n<table class=\"truth-demo\">\n  <thead><tr><th></th><th>B' (0)</th><th>B (1)</th></tr></thead>\n  <tbody>\n    <tr><th>A' (0)</th><td>m0</td><td>m1</td></tr>\n    <tr><th>A (1)</th><td>m2</td><td>m3</td></tr>\n  </tbody>\n</table>\n<p>例：F＝Σm(1,2,3) → 格填 0,1 / 1,1；簡式 <span class=\"kw\">A＋B</span>。</p>\n<figure class=\"gate-fig\">\n  <img src=\"assets/c4_kmap_read.png\" alt=\"由圈讀簡式\">\n  <div class=\"gate-meta\">不變位留下、有變就消 → 讀出簡式。</div>\n</figure>\n\n<div class=\"tip\">Try it：撳每格喺 0↔1 切換，填完再揀簡式。</div>\n",
+      "teach": "\n<figure class=\"lesson-video\">\n  <video controls preload=\"metadata\" playsinline width=\"1920\" height=\"1080\" aria-label=\"卡諾圖 2×2（二變數）粵語教學短片\">\n    <source src=\"assets/video/c4_kmap_2x2.mp4\" type=\"video/mp4\">\n    瀏覽器未能播放呢段短片。\n  </video>\n  <figcaption>粵語教學：卡諾圖 2×2（二變數）。</figcaption>\n</figure>\n<p>兩變數：列 <strong>A</strong>＝0／1，行 <strong>B</strong>＝0／1。</p>\n<table class=\"truth-demo\">\n  <thead><tr><th></th><th>B' (0)</th><th>B (1)</th></tr></thead>\n  <tbody>\n    <tr><th>A' (0)</th><td>m0</td><td>m1</td></tr>\n    <tr><th>A (1)</th><td>m2</td><td>m3</td></tr>\n  </tbody>\n</table>\n<p>例：F＝Σm(1,2,3) → 格填 0,1 / 1,1；簡式 <span class=\"kw\">A＋B</span>。</p>\n<figure class=\"gate-fig\">\n  <img src=\"assets/c4_kmap_read.png\" alt=\"由圈讀簡式\">\n  <div class=\"gate-meta\">不變位留下、有變就消 → 讀出簡式。</div>\n</figure>\n\n<div class=\"tip\">Try it：撳每格喺 0↔1 切換，填完再揀簡式。</div>\n",
       "practice": {
         "type": "kmap",
         "prompt": "F＝Σm(1, 2, 3)。填入 2×2 K-map，再揀簡式。",
@@ -1895,7 +1895,7 @@
       "title": "K-map 練習：2×4 填格＋讀式",
       "pill": "填格",
       "live": true,
-      "teach": "\n<p>三變數：左邊 <strong>A</strong>，上邊 <strong>BC</strong> 用 Gray：00、01、11、10。</p>\n<table class=\"truth-demo\">\n  <thead><tr><th></th><th>00</th><th>01</th><th>11</th><th>10</th></tr></thead>\n  <tbody>\n    <tr><th>A＝0</th><td>m0</td><td>m1</td><td>m3</td><td>m2</td></tr>\n    <tr><th>A＝1</th><td>m4</td><td>m5</td><td>m7</td><td>m6</td></tr>\n  </tbody>\n</table>\n<p>例：F＝Σm(0,1,2,3) → A＝0 整行四格為 1 → 簡式 <span class=\"kw\">A'</span>。</p>\n<div class=\"tip\">注意上邊唔係 00、01、10、11——中間係 <strong>11</strong> 先到 <strong>10</strong>。</div>\n",
+      "teach": "\n<figure class=\"lesson-video\">\n  <video controls preload=\"metadata\" playsinline width=\"1920\" height=\"1080\" aria-label=\"卡諾圖 2×4（三變數）粵語教學短片\">\n    <source src=\"assets/video/c4_kmap_2x4.mp4\" type=\"video/mp4\">\n    瀏覽器未能播放呢段短片。\n  </video>\n  <figcaption>粵語教學：卡諾圖 2×4（三變數，唔係 3×3）。</figcaption>\n</figure>\n<p>三變數：左邊 <strong>A</strong>，上邊 <strong>BC</strong> 用 Gray：00、01、11、10。</p>\n<table class=\"truth-demo\">\n  <thead><tr><th></th><th>00</th><th>01</th><th>11</th><th>10</th></tr></thead>\n  <tbody>\n    <tr><th>A＝0</th><td>m0</td><td>m1</td><td>m3</td><td>m2</td></tr>\n    <tr><th>A＝1</th><td>m4</td><td>m5</td><td>m7</td><td>m6</td></tr>\n  </tbody>\n</table>\n<p>例：F＝Σm(0,1,2,3) → A＝0 整行四格為 1 → 簡式 <span class=\"kw\">A'</span>。</p>\n<div class=\"tip\">注意上邊唔係 00、01、10、11——中間係 <strong>11</strong> 先到 <strong>10</strong>。</div>\n",
       "practice": {
         "type": "kmap",
         "prompt": "F＝Σm(0, 1, 2, 3)。填入三變數 2×4 K-map（Gray：00 01 11 10），再揀簡式。",
@@ -1959,7 +1959,7 @@
       "title": "K-map 練習：4×4 填格＋讀式",
       "pill": "填格",
       "live": true,
-      "teach": "\n<p>四變數：列 <strong>AB</strong>、行 <strong>CD</strong> 都用 Gray：00、01、11、10。</p>\n<table class=\"truth-demo\">\n  <thead><tr><th></th><th>00</th><th>01</th><th>11</th><th>10</th></tr></thead>\n  <tbody>\n    <tr><th>AB＝00</th><td>m0</td><td>m1</td><td>m3</td><td>m2</td></tr>\n    <tr><th>01</th><td>m4</td><td>m5</td><td>m7</td><td>m6</td></tr>\n    <tr><th>11</th><td>m12</td><td>m13</td><td>m15</td><td>m14</td></tr>\n    <tr><th>10</th><td>m8</td><td>m9</td><td>m11</td><td>m10</td></tr>\n  </tbody>\n</table>\n<p>例：F＝Σm(5,7,13,15) → 中間 2×2 四格 → 簡式 <span class=\"kw\">B·D</span>。</p>\n",
+      "teach": "\n<figure class=\"lesson-video\">\n  <video controls preload=\"metadata\" playsinline width=\"1920\" height=\"1080\" aria-label=\"卡諾圖 4×4（四變數）粵語教學短片\">\n    <source src=\"assets/video/c4_kmap_4x4.mp4\" type=\"video/mp4\">\n    瀏覽器未能播放呢段短片。\n  </video>\n  <figcaption>粵語教學：卡諾圖 4×4（四變數）。</figcaption>\n</figure>\n<p>四變數：列 <strong>AB</strong>、行 <strong>CD</strong> 都用 Gray：00、01、11、10。</p>\n<table class=\"truth-demo\">\n  <thead><tr><th></th><th>00</th><th>01</th><th>11</th><th>10</th></tr></thead>\n  <tbody>\n    <tr><th>AB＝00</th><td>m0</td><td>m1</td><td>m3</td><td>m2</td></tr>\n    <tr><th>01</th><td>m4</td><td>m5</td><td>m7</td><td>m6</td></tr>\n    <tr><th>11</th><td>m12</td><td>m13</td><td>m15</td><td>m14</td></tr>\n    <tr><th>10</th><td>m8</td><td>m9</td><td>m11</td><td>m10</td></tr>\n  </tbody>\n</table>\n<p>例：F＝Σm(5,7,13,15) → 中間 2×2 四格 → 簡式 <span class=\"kw\">B·D</span>。</p>\n",
       "practice": {
         "type": "kmap",
         "prompt": "F＝Σm(5, 7, 13, 15)。填入 4×4 K-map，再揀簡式。",
